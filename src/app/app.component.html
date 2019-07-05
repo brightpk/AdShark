@@ -1,0 +1,98 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-expand-sm bg-info">
+  <a class="navbar-brand mb-0" href="#">AdShark</a>
+</nav>
+
+<div class="container">
+    <div class="jumbotron text-center">
+      <h1 class="text-dark">Welcome to {{title}}</h1>
+      <p>Create 50 abs in 10 seconds</p>
+    </div>
+  </div><br>
+  
+    <div class="row" ng-app=""> <!--ng-app="inputApp" ng-controller="inputController"-->
+
+      <!-- Left side-->
+      <div class="col-sm-5 col-xs-offset-1 col-md-4">
+        <div class="container">
+          <div class="col-xs-4">
+            <!-- Headline -->
+            <label for="headline">Headline</label>
+            <textarea class="form-control" type="text" id="headlineId" (keydown)="addLinebreak($event)" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
+            <h5 class="text-primary">  Headline: {{data.headline}}</h5>
+            <!-- <div [innerHTML]="'hello\n\n this is a new paragraph\n and a new line' | translate | NewlineToBR">
+            </div> -->
+            <br>
+
+            <!-- subline -->
+            <label for="subheadline">Subheadline</label>
+            <textarea class="form-control" type="text" [(ngModel)]="data.subline" rows="3" placeholder="Text"></textarea>
+            <h5 class="text-primary"> Subline: {{data.subline}}</h5>
+            <br>
+            
+            <!-- paragraph -->
+            <label for="para">Paragraph</label>
+            <textarea class="form-control" type="text" [(ngModel)]="data.para" rows="3" placeholder="Text"></textarea>
+            <h5 class="text-primary"> Para: {{data.para}}</h5>
+            <br>
+
+            <!-- URL for background -->
+            <label for="Background">Background</label>
+            <input class="form-control" type="text" [(ngModel)]="data.bgURL" placeholder="url"/>
+            <h5 class="text-primary">BG: https://images.americanhotel.com/images/banners
+/8743K_Inteplast_AD_D1_060719.jpg</h5>
+            <br>
+            
+            <!-- URL for foreground -->
+            <label for="Foreground">Foreground</label>
+            <input class="form-control" type="text" [(ngModel)]="data.fgURL" placeholder="url"/>
+            <h5 class="text-primary"> foreground: https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg</h5>
+            <br>
+            
+            <!-- URL for Logo -->
+            <label for="Logo">Logo</label>
+            <input class="form-control" type="text" [(ngModel)]="data.logoURL" placeholder="url"/>
+            <h5 class="text-primary"> Logo: https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg</h5>
+            <br>
+            
+            <!-- URL / TYPE for button -->
+            <label for="Button">Button</label>
+            <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Shop Now"/><br>
+            <select class="form-control" id="buttonSelect">
+              <option value="" disabled selected>Select button</option>
+              <option value="1">Default</option>
+              <option value="2">Primary</option>
+              <option value="3">Alternate</option>
+            </select>
+            <br>
+            
+            
+            <label for="linkOption">Link Option</label><br>
+            <label class="radio-inline"><input type="radio" name="optradio">Only Button</label>  
+            <label class="radio-inline"><input type="radio" name="optradio">Entire Ad</label>
+            <input class="form-control" type="text" [(ngModel)]="data.buttonURL" placeholder="url"/><br>
+            <h5 class="text-primary">Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now</h5>
+            
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side-->
+      <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">
+        <div class="mat-app-background basic-container">
+            <mat-tab-group>
+                <mat-tab label="Hero Banner"> Content 1 </mat-tab>
+                <mat-tab label="One-Third Banner"><app-preview-A1 [data]="data"></app-preview-A1></mat-tab>
+                <mat-tab label="Email"> Content 3 </mat-tab>
+              </mat-tab-group>
+          </div>
+
+
+
+ 
+
+    </div>
+  <!-- </form> -->
+
+<router-outlet></router-outlet>
