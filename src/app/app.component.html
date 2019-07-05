@@ -13,15 +13,13 @@
     <div class="row" ng-app=""> <!--ng-app="inputApp" ng-controller="inputController"-->
 
       <!-- Left side-->
-      <div class="col-sm-5 col-xs-offset-1 col-md-4">
+      <div class=" split-pane col-lg-6 col-sm-12 left" id="one"> <!--col-sm-5 col-xs-offset-1 col-md-4-->
         <div class="container">
           <div class="col-xs-4">
             <!-- Headline -->
             <label for="headline">Headline</label>
-            <textarea class="form-control" type="text" id="headlineId" (keydown)="addLinebreak($event)" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
+            <textarea class="form-control" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
             <h5 class="text-primary">  Headline: {{data.headline}}</h5>
-            <!-- <div [innerHTML]="'hello\n\n this is a new paragraph\n and a new line' | translate | NewlineToBR">
-            </div> -->
             <br>
 
             <!-- subline -->
@@ -39,8 +37,7 @@
             <!-- URL for background -->
             <label for="Background">Background</label>
             <input class="form-control" type="text" [(ngModel)]="data.bgURL" placeholder="url"/>
-            <h5 class="text-primary">BG: https://images.americanhotel.com/images/banners
-/8743K_Inteplast_AD_D1_060719.jpg</h5>
+            <h5 class="text-primary">BG: https://images.americanhotel.com/images/banners/8743K_Inteplast_AD_D1_060719.jpg</h5>
             <br>
             
             <!-- URL for foreground -->
@@ -57,7 +54,7 @@
             
             <!-- URL / TYPE for button -->
             <label for="Button">Button</label>
-            <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Shop Now"/><br>
+            <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text"/><br>
             <select class="form-control" id="buttonSelect">
               <option value="" disabled selected>Select button</option>
               <option value="1">Default</option>
@@ -79,11 +76,11 @@
       </div>
 
       <!-- Right side-->
-      <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">
+      <div class="col-lg-6 col-sm-12 right" id="one"> <!--col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0-->
         <div class="mat-app-background basic-container">
             <mat-tab-group>
-                <mat-tab label="Hero Banner"> Content 1 </mat-tab>
-                <mat-tab label="One-Third Banner"><app-preview-A1 [data]="data"></app-preview-A1></mat-tab>
+                <mat-tab label="Hero Banner"><app-preview-A1 [data]="data"></app-preview-A1></mat-tab>
+                <mat-tab label="One-Third Banner"><app-preview-D1 [data]="data"></app-preview-D1></mat-tab>
                 <mat-tab label="Email"> Content 3 </mat-tab>
               </mat-tab-group>
           </div>
