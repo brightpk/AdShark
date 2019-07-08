@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material';
+import { AngularSplitModule } from 'angular-split';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +22,8 @@ import { PreviewD1Component } from './preview-D1/preview-D1.component';
       AppRoutingModule,
       FormsModule,
       BrowserAnimationsModule,
-      MatTabsModule
+      MatTabsModule,
+      AngularSplitModule.forRoot()
    ],
    providers: [],
    bootstrap: [
