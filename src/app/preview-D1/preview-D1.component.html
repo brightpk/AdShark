@@ -9,9 +9,9 @@ Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now -->
   <div class="c-hero c-hero--one_third onethirdcol">
     <img alt="Registry Can Liners" src="{{data.bgURL}}" class="c-hero__image">
     <div class="c-hero__inner">
-      <div class="c-hero__copy c-hero__copy--align-center"><img class="w-50 pb-2" src="{{data.logoURL}}" alt="Registry">
+      <div class="c-hero__copy c-hero__copy--align-center"><img class="w-50 pb-2" src="{{data.logoURL}}" alt="{{altLogo}}">
         <h2 class="c-hero__title c-hero__title--white c-hero__title--weight-extrabold c-hero__title--size-normal">{{data.headline}}</h2>
-        <a href="{{data.buttonURL}}" title="{{data.buttonTxt}}" class="btn btn--primary c-hero__action">{{data.buttonTxt}}</a> </div>
+        <a href="{{data.buttonURL}}" title="{{data.buttonTxt}}" class="btn btn--primary c-hero__action" (click)="openWindow(data, $event)">{{data.buttonTxt}}</a> </div>
     </div>
   </div>
 </div>

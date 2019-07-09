@@ -9,5 +9,6 @@ import { AppData } from '../AppData';
 })
 export class PreviewA1Component {
   @Input() data: AppData;
+  @Input() altLogo: string;
 
 }
