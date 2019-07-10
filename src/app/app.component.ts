@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { AppData } from './AppData';
 
 // import jquery = require('jquery');
@@ -9,7 +9,8 @@ declare const openNewWindowLink: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class AppComponent {
@@ -31,6 +32,11 @@ export class AppComponent {
   getDesktopPane(event) {
     event.preventDefault();
     this.paneSize = 1500;
+  }
+
+  getWideScreenPane(event) {
+    event.preventDefault();
+    this.paneSize = 2800;
   }
 
   getAlterLogo(data) {
