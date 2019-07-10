@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule } from '@angular/material';
+import { MatTabsModule, MatTooltipModule } from '@angular/material';
 import { AngularSplitModule } from 'angular-split';
 
 
@@ -23,7 +23,8 @@ import { PreviewD1Component } from './preview-D1/preview-D1.component';
       FormsModule,
       BrowserAnimationsModule,
       MatTabsModule,
-      AngularSplitModule.forRoot()
+      AngularSplitModule.forRoot(),
+      MatTooltipModule
    ],
    providers: [],
    bootstrap: [

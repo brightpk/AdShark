@@ -1,95 +1,105 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-expand-sm bg-info">
-  <a class="navbar-brand mb-0" href="#">AdShark</a>
+  <a class="navbar-brand mb-0" href="#">{{title}}</a>
 </nav>
 
-<!-- <div class="container">
-    <div class="jumbotron text-center">
-      <h1 class="text-dark">Welcome to {{title}}</h1>
-      <p>Create 50 abs in 10 seconds</p>
-    </div>
-  </div>
-  <br> -->
+<div class="splitexample" style="height: 1000px">
+  <as-split unit="pixel"> <!--  split-pane col-lg-6 col-sm-12 left" id="one" / col-sm-5 col-xs-offset-1 col-md-4-->
 
-    <div class="split-pane" style="width: 100%; height: 1000px"> <!--ng-app="inputApp" ng-controller="inputController"-->
-      <as-split direction="horizontal"> <!-- split-pane col-lg-6 col-sm-12 left" id="one" / col-sm-5 col-xs-offset-1 col-md-4-->
-        <!-- Left side -->  
-        <as-split-area [size]="30">
-        <div class="col-xs-6">
-            <!-- Headline -->
-            <label for="headline">Headline</label>
-            <textarea class="form-control" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
-            <h5 class="text-primary">  Headline: {{data.headline}}</h5>
-            <br>
+    <!-- Left side -->
+    <as-split-area>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="/"><i class="fas fa-mobile-alt" style="font-size:25px;" (click)="getMobilePane($event)" matTooltip="Mobile preview"></i></a></li>
+            <li><a href="/"><i class="fas fa-tablet-alt" style="font-size:25px;" (click)="getTabletPane($event)" matTooltip="Tablet preview"></i></a></li>
+            <li><a href="/"><i class="fas fa-desktop" style="font-size:25px;" (click)="getDesktopPane($event)" matTooltip="Desktop preview"></i></a></li>
+          </ul>
+        </div>
+      </nav>
 
-            <!-- subline -->
-            <label for="subheadline">Subheadline</label>
-            <textarea class="form-control" type="text" [(ngModel)]="data.subline" rows="3" placeholder="Text"></textarea>
-            <h5 class="text-primary"> Subline: {{data.subline}}</h5>
-            <br>
-            
-            <!-- paragraph -->
-            <label for="para">Paragraph</label>
-            <textarea class="form-control" type="text" [(ngModel)]="data.para" rows="3" placeholder="Text"></textarea>
-            <h5 class="text-primary"> Para: {{data.para}}</h5>
-            <br>
 
-            <!-- URL for background -->
-            <label for="Background">Background</label>
-            <input class="form-control" type="text" [(ngModel)]="data.bgURL" placeholder="url"/>
-            <h5 class="text-primary">BG: https://images.americanhotel.com/images/banners/8743K_Inteplast_AD_D1_060719.jpg</h5>
-            <br>
-            
-            <!-- URL for foreground -->
-            <label for="Foreground">Foreground</label>
-            <input class="form-control" type="text" [(ngModel)]="data.fgURL" placeholder="url"/>
-            <!-- <h5 class="text-primary"> foreground: https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg</h5> -->
-            <br>
-            
-            <!-- URL for Logo -->
-            <label for="Logo">Logo</label>
-            <input class="form-control" type="text" [(ngModel)]="data.logoURL" placeholder="url"/>
-            <h5 class="text-primary"> Logo: https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg</h5>
-            <br>
-            
-            <!-- URL / TYPE for button -->
-            <label for="Button">Button</label>
-            <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text"/><br>
-            <select class="form-control" id="buttonSelect">
-              <option value="" disabled selected>Select button</option>
-              <option value="1">Default</option>
-              <option value="2">Primary</option>
-              <option value="3">Alternate</option>
-            </select>
-            <br>
-            
-            
-            <label for="linkOption">Link Option</label><br>
-            <label class="radio-inline"><input type="radio" name="optradio">Only Button</label>  
-            <label class="radio-inline"><input type="radio" name="optradio">Entire Ad</label>
-            <input class="form-control" type="text" [(ngModel)]="data.buttonURL" placeholder="url"/><br>
-            <h5 class="text-primary">Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now</h5>
-            
-            
-          </div>
-        </as-split-area>
-      <!-- </div> -->
+      <div class="col-xs-6">
+        <!-- Headline -->
+        <label for="headline">Headline</label>
+        <textarea class="form-control" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2"
+          placeholder="Text"></textarea>
+        <h5 class="text-primary"> Headline: {{data.headline}}</h5>
+        <br>
 
-      <!-- Right side-->
-      <as-split-area [size]="70" minSize="17">
+        <!-- subline -->
+        <label for="subheadline">Subheadline</label>
+        <textarea class="form-control" type="text" [(ngModel)]="data.subline" rows="3" placeholder="Text"></textarea>
+        <h5 class="text-primary"> Subline: {{data.subline}}</h5>
+        <br>
+
+        <!-- paragraph -->
+        <label for="para">Paragraph</label>
+        <textarea class="form-control" type="text" [(ngModel)]="data.para" rows="3" placeholder="Text"></textarea>
+        <h5 class="text-primary"> Para: {{data.para}}</h5>
+        <br>
+
+        <!-- URL for background -->
+        <label for="Background">Background</label>
+        <input class="form-control" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
+        <h5 class="text-primary">BG: https://images.americanhotel.com/images/banners/8743K_Inteplast_AD_D1_060719.jpg
+        </h5>
+        <br>
+
+        <!-- URL for foreground -->
+        <label for="Foreground">Foreground</label>
+        <input class="form-control" type="text" [(ngModel)]="data.fgURL" placeholder="url" />
+        <!-- <h5 class="text-primary"> foreground: https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg</h5> -->
+        <br>
+
+        <!-- URL for Logo -->
+        <label for="Logo">Logo</label>
+        <input class="form-control" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)"
+          placeholder="url" />
+        <h5 class="text-primary"> Logo:
+          https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg</h5>
+        <br>
+
+        <!-- URL / TYPE for button -->
+        <label for="Button">Button</label>
+        <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /><br>
+        <select class="form-control" id="buttonSelect">
+          <option value="" disabled selected>Select button</option>
+          <option value="1">Default</option>
+          <option value="2">Primary</option>
+          <option value="3">Alternate</option>
+        </select>
+        <br>
+
+        <label for="linkOption">Link Option</label><br>
+        <label class="radio-inline"><input type="radio" name="optradio">Only Button</label>
+        <label class="radio-inline"><input type="radio" name="optradio">Entire Ad</label>
+        <input class="form-control" type="text" [(ngModel)]="data.buttonURL" placeholder="url" /><br>
+        <h5 class="text-primary">Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now</h5>
+
+
+      </div>
+    </as-split-area>
+    <!-- </div> -->
+
+    <!-- Right side-->
+    <as-split-area [size]="paneSize" minSize="500">
       <!--<div class="col-lg-6 col-sm-12 right"> col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0-->
-        <div class="mat-app-background basic-container" >
-            <mat-tab-group>
-                <mat-tab label="Hero Banner"><app-preview-A1 [data]="data"></app-preview-A1></mat-tab>
-                <mat-tab label="One-Third Banner"><app-preview-D1 [data]="data"></app-preview-D1></mat-tab>
-                <mat-tab label="Email"> Content 3 </mat-tab>
-              </mat-tab-group>
-          </div>
+      <div class="mat-app-background basic-container">
+        <mat-tab-group>
+          <mat-tab label="Hero Banner">
+            <app-preview-A1 [data]="data" [altLogo]="altLogo"></app-preview-A1>
+          </mat-tab>
+          <mat-tab label="One-Third Banner">
+            <app-preview-D1 [data]="data" [altLogo]="altLogo"></app-preview-D1>
+          </mat-tab>
+          <mat-tab label="Email"> Content 3 </mat-tab>
+        </mat-tab-group>
+      </div>
       <!-- </div> -->
 
-      </as-split-area>
-    </as-split>   
-  </div>
-  <!-- </form> -->
+    </as-split-area>
+  </as-split>
+</div>
 
 <router-outlet></router-outlet>
