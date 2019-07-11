@@ -10,6 +10,7 @@ import { AppData } from '../AppData';
 export class PreviewD1Component {
   @Input() data: AppData;
   @Input() altLogo: string;
+  @Input() button: string;
 
   openWindow(data, event) {
     event.preventDefault();

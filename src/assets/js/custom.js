@@ -20,3 +20,15 @@
 //   });
 // }
 
+// var option = document.getElementById('buttonSelect');
+
+// function changeButton() {
+//   var value = this.getAttribute('value');
+//   console.log(value);
+//   window.alert('Button select: ' + value);
+// }
+
+// for (var i = 0; i < options.length; i++) {
+//   options[i].addEventListener('click',changeName,false);
+//   }
+

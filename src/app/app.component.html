@@ -4,7 +4,7 @@
 </nav>
 
 <div class="splitexample" style="height: 1000px">
-  <as-split unit="pixel"> <!--  split-pane col-lg-6 col-sm-12 left" id="one" / col-sm-5 col-xs-offset-1 col-md-4-->
+  <as-split unit="pixel" (dragStart)='onDragStart($event)' (dragEnd)='onDragEnd($event)'> <!--  split-pane col-lg-6 col-sm-12 left" id="one" / col-sm-5 col-xs-offset-1 col-md-4-->
     <!-- Left side -->
     <as-split-area>
       <div class="container-fluid navbar-default">
@@ -15,63 +15,55 @@
       </div>
 
 
-      <div class="col-xs-6">
+      <div class="container col-xs-6">
         <!-- Headline -->
-        <label for="headline">Headline</label>
-        <textarea class="form-control" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2"
-          placeholder="Text"></textarea>
-        <h5 class="text-primary"> Headline: {{data.headline}}</h5>
+        <label for="headline"><h5 class="text-primary">Headline</h5></label>
+        <textarea class="form-control" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
         <br>
 
         <!-- subline -->
-        <label for="subheadline">Subheadline</label>
+        <label for="subheadline"><h5 class="text-primary">Subheadline</h5></label>
         <textarea class="form-control" type="text" [(ngModel)]="data.subline" rows="3" placeholder="Text"></textarea>
-        <h5 class="text-primary"> Subline: {{data.subline}}</h5>
         <br>
 
         <!-- paragraph -->
-        <label for="para">Paragraph</label>
+        <label for="para"><h5 class="text-primary">Paragraph</h5></label>
         <textarea class="form-control" type="text" [(ngModel)]="data.para" rows="3" placeholder="Text"></textarea>
-        <h5 class="text-primary"> Para: {{data.para}}</h5>
         <br>
 
         <!-- URL for background -->
-        <label for="Background">Background</label>
+        <label for="Background"><h5 class="text-primary">Background</h5></label>
         <input class="form-control" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
-        <h5 class="text-primary">BG: https://images.americanhotel.com/images/banners/8743K_Inteplast_AD_D1_060719.jpg
-        </h5>
+        <h5 class="text-dark">https://images.americanhotel.com/images/banners/8826_Columbian_AD_D1_061719_bg.jpg</h5>
         <br>
 
         <!-- URL for foreground -->
-        <label for="Foreground">Foreground</label>
+        <label for="Foreground"><h5 class="text-primary">Foreground</h5></label>
         <input class="form-control" type="text" [(ngModel)]="data.fgURL" placeholder="url" />
-        <!-- <h5 class="text-primary"> foreground: https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg</h5> -->
         <br>
 
         <!-- URL for Logo -->
-        <label for="Logo">Logo</label>
-        <input class="form-control" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)"
-          placeholder="url" />
-        <h5 class="text-primary"> Logo:
-          https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg</h5>
+        <label for="Logo"><h5 class="text-primary">Logo</h5></label>
+        <input class="form-control" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" placeholder="url" />
+        <h5 class="text-dark">https://images.americanhotel.com/images/logos/suppliers/graniteware-logo-white.svg</h5>
         <br>
 
         <!-- URL / TYPE for button -->
-        <label for="Button">Button</label>
-        <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /><br>
-        <select class="form-control" id="buttonSelect">
+        <label for="Button"><h5 class="text-primary">Button</h5></label><br>
+        <select class="custom-select" style="width:200px" (change)="changeButton($event.target.value)">
           <option value="" disabled selected>Select button</option>
-          <option value="1">Default</option>
-          <option value="2">Primary</option>
-          <option value="3">Alternate</option>
+          <option value="default">Default</option>
+          <option value="primary">Primary</option>
+          <option value="alternate">Alternate</option>
         </select>
+        <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /><br>
         <br>
 
-        <label for="linkOption">Link Option</label><br>
+        <label for="linkOption"><h5 class="text-primary">Button Link</h5></label><br>
         <label class="radio-inline"><input type="radio" name="optradio">Only Button</label>
         <label class="radio-inline"><input type="radio" name="optradio">Entire Ad</label>
         <input class="form-control" type="text" [(ngModel)]="data.buttonURL" placeholder="url" /><br>
-        <h5 class="text-primary">Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now</h5>
+        <h5 class="text-dark">/foodservice/kitchen-supplies/cookware-and-bakeware/bakeware-and-casserole/c/A1FS1B11C10D10?q=%3Arelevance%3AmanufacturerName%3AGranite%2BWare&amp;text=&amp;pageSize=12&amp;icid=columbian-d1-d3_hp_otb_4_20190705_1_1048812</h5>
 
 
       </div>
@@ -83,10 +75,10 @@
       <div class="container-fluid navbar-default">
         <nav class="navbar pull-left">
           <ul class="nav">
-            <li><i class="fas fa-mobile-alt" style="font-size:25px;" (click)="getMobilePane($event)" matTooltip="Mobile preview"></i></li>
-            <li><i class="fas fa-tablet-alt" style="font-size:25px;" (click)="getTabletPane($event)" matTooltip="Tablet preview"></i></li>
-            <li><i class="fas fa-desktop" style="font-size:25px;" (click)="getDesktopPane($event)" matTooltip="Desktop preview"></i></li>
-            <li><i class="fas fa-desktop" style="font-size:30px;" (click)="getWideScreenPane($event)" matTooltip="Wide Screen preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-mobile-alt" style="font-size:25px;" (click)="getMobilePane($event)" matTooltip="Mobile preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-tablet-alt" style="font-size:25px;" (click)="getTabletPane($event)" matTooltip="Tablet preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-desktop" style="font-size:25px;" (click)="getDesktopPane($event)" matTooltip="Desktop preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-desktop" style="font-size:30px;" (click)="getWideScreenPane($event)" matTooltip="Wide Screen preview"></i></li>
           </ul>
 
         </nav>
@@ -95,10 +87,10 @@
       <div class="mat-app-background basic-container">
         <mat-tab-group>
           <mat-tab label="One-Third Banner">
-            <app-preview-D1 [data]="data" [altLogo]="altLogo"></app-preview-D1>
+            <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button"></app-preview-D1>
           </mat-tab>
           <mat-tab label="Hero Banner">
-            <app-preview-A1 [data]="data" [altLogo]="altLogo"></app-preview-A1>
+            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button"></app-preview-A1>
           </mat-tab>
           <mat-tab label="Email"> Content 3 </mat-tab>
         </mat-tab-group>
