@@ -1,22 +1,18 @@
 <!-- Fixed navbar -->
-<nav class="navbar navbar-expand-sm bg-info">
+<nav class="navbar navbar-expand-sm bg-primary">
   <a class="navbar-brand mb-0" href="#">{{title}}</a>
 </nav>
 
 <div class="splitexample" style="height: 1000px">
   <as-split unit="pixel"> <!--  split-pane col-lg-6 col-sm-12 left" id="one" / col-sm-5 col-xs-offset-1 col-md-4-->
-
     <!-- Left side -->
     <as-split-area>
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
+      <div class="container-fluid navbar-default">
+        <nav class="navbar">
           <ul class="nav navbar-nav pull-right">
-            <li><a href="/"><i class="fas fa-mobile-alt" style="font-size:25px;" (click)="getMobilePane($event)" matTooltip="Mobile preview"></i></a></li>
-            <li><a href="/"><i class="fas fa-tablet-alt" style="font-size:25px;" (click)="getTabletPane($event)" matTooltip="Tablet preview"></i></a></li>
-            <li><a href="/"><i class="fas fa-desktop" style="font-size:25px;" (click)="getDesktopPane($event)" matTooltip="Desktop preview"></i></a></li>
           </ul>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
 
       <div class="col-xs-6">
@@ -84,14 +80,25 @@
 
     <!-- Right side-->
     <as-split-area [size]="paneSize" minSize="500">
+      <div class="container-fluid navbar-default">
+        <nav class="navbar pull-left">
+          <ul class="nav">
+            <li><i class="fas fa-mobile-alt" style="font-size:25px;" (click)="getMobilePane($event)" matTooltip="Mobile preview"></i></li>
+            <li><i class="fas fa-tablet-alt" style="font-size:25px;" (click)="getTabletPane($event)" matTooltip="Tablet preview"></i></li>
+            <li><i class="fas fa-desktop" style="font-size:25px;" (click)="getDesktopPane($event)" matTooltip="Desktop preview"></i></li>
+            <li><i class="fas fa-desktop" style="font-size:30px;" (click)="getWideScreenPane($event)" matTooltip="Wide Screen preview"></i></li>
+          </ul>
+
+        </nav>
+      </div>
       <!--<div class="col-lg-6 col-sm-12 right"> col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0-->
       <div class="mat-app-background basic-container">
         <mat-tab-group>
-          <mat-tab label="Hero Banner">
-            <app-preview-A1 [data]="data" [altLogo]="altLogo"></app-preview-A1>
-          </mat-tab>
           <mat-tab label="One-Third Banner">
             <app-preview-D1 [data]="data" [altLogo]="altLogo"></app-preview-D1>
+          </mat-tab>
+          <mat-tab label="Hero Banner">
+            <app-preview-A1 [data]="data" [altLogo]="altLogo"></app-preview-A1>
           </mat-tab>
           <mat-tab label="Email"> Content 3 </mat-tab>
         </mat-tab-group>
