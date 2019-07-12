@@ -1,44 +1,64 @@
-import { Component, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppData } from './AppData';
 
 // import jquery = require('jquery');
 // const $: JQueryStatic = jquery;
 
-declare const openNewWindowLink: any;
+// declare const changeButton: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 
 export class AppComponent {
+  public innerWidth: any;
   title = 'AdShark';
-  data = new AppData('', '', '', '', '', '', '', '');
-  altLogo: string;
-  paneSize = 1600;
+  data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around to ads
+  altLogo: string; // variable for alternate logo
+  button: string; // variable for changing button
+  paneSize = 1600; // size in px for each icon that user clicks
 
+  // size > 1350px
   getMobilePane(event) {
     event.preventDefault();
     this.paneSize = 500;
   }
 
+  // 750px
   getTabletPane(event) {
     event.preventDefault();
     this.paneSize = 1000;
   }
 
+  // 1150px
   getDesktopPane(event) {
     event.preventDefault();
     this.paneSize = 1500;
   }
 
+  // 1350px
   getWideScreenPane(event) {
     event.preventDefault();
     this.paneSize = 2800;
   }
 
+  // change the button style
+  changeButton(value) {
+    console.log(value);
+    this.button = 'btn btn--' + value;
+  }
+
+  onDragStart({sizes}) {
+    console.log('Start: ', sizes[1]);
+  }
+
+  onDragEnd({sizes}) {
+    console.log('End: ', sizes[1]);
+  }
+
+  // get a logo name to insert in HTML
   getAlterLogo(data) {
     let lst: string[] = [];
     if (data.logoURL !== null) {
@@ -50,8 +70,5 @@ export class AppComponent {
       this.altLogo = tmp.charAt(0).toUpperCase() + tmp.slice(1);
     }
     console.log('AltLogo: ', this.altLogo);
-    console.log(this.paneSize);
   }
-
-
 }
