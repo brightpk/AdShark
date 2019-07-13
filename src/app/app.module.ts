@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule, MatTooltipModule } from '@angular/material';
 import { AngularSplitModule } from 'angular-split';
+import { AngularResizedEventModule } from 'angular-resize-event';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +25,8 @@ import { PreviewD1Component } from './preview-D1/preview-D1.component';
       BrowserAnimationsModule,
       MatTabsModule,
       AngularSplitModule.forRoot(),
-      MatTooltipModule
+      MatTooltipModule,
+      AngularResizedEventModule
    ],
    providers: [],
    bootstrap: [
