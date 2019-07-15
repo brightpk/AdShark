@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppData } from './AppData';
+import { ResizedEvent } from 'angular-resize-event';
 
 // import jquery = require('jquery');
 // const $: JQueryStatic = jquery;
@@ -19,6 +20,16 @@ export class AppComponent {
   altLogo: string; // variable for alternate logo
   button: string; // variable for changing button
   paneSize = 1600; // size in px for each icon that user clicks
+  realtimeWidth: number;
+  realtimeHeight: number;
+
+  // get size of the previewside
+  onResized(event: ResizedEvent) {
+    this.realtimeWidth = event.newWidth;
+    this.realtimeHeight = event.newHeight;
+    console.log('width: ', this.realtimeWidth);
+    console.log('height: ', this.realtimeHeight);
+  }
 
   // size > 1350px
   getMobilePane(event) {
@@ -50,13 +61,15 @@ export class AppComponent {
     this.button = 'btn btn--' + value;
   }
 
-  onDragStart({sizes}) {
-    console.log('Start: ', sizes[1]);
-  }
+  // (dragStart)='onDragStart($event)'
+  // onDragStart({sizes}) {
+  //   console.log('Start: ', sizes[1]);
+  // }
 
-  onDragEnd({sizes}) {
-    console.log('End: ', sizes[1]);
-  }
+  // (dragEnd)='onDragEnd($event)'
+  // onDragEnd({sizes}) {
+  //   console.log('End: ', sizes[1]);
+  // }
 
   // get a logo name to insert in HTML
   getAlterLogo(data) {
