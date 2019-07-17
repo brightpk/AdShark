@@ -34,7 +34,7 @@
         <!-- URL for background -->
         <label for="Background"><h5 class="text-primary">Background</h5></label>
         <input class="form-control" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
-        <h5 class="text-dark">https://images.americanhotel.com/images/banners/8826_Columbian_AD_D1_061719_bg.jpg</h5>
+        <h5 class="text-dark">https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg</h5>
         <br>
 
         <!-- URL for foreground -->
@@ -45,7 +45,7 @@
         <!-- URL for Logo -->
         <label for="Logo"><h5 class="text-primary">Logo</h5></label>
         <input class="form-control" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" placeholder="url" />
-        <h5 class="text-dark">https://images.americanhotel.com/images/logos/suppliers/graniteware-logo-white.svg</h5>
+        <h5 class="text-dark">https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h5>
         <br>
 
         <!-- URL / TYPE for button -->
@@ -63,7 +63,7 @@
         <label class="radio-inline"><input type="radio" name="optradio">Only Button</label>
         <label class="radio-inline"><input type="radio" name="optradio">Entire Ad</label>
         <input class="form-control" type="text" [(ngModel)]="data.buttonURL" placeholder="url" /><br>
-        <h5 class="text-dark">/foodservice/kitchen-supplies/cookware-and-bakeware/bakeware-and-casserole/c/A1FS1B11C10D10?q=%3Arelevance%3AmanufacturerName%3AGranite%2BWare&amp;text=&amp;pageSize=12&amp;icid=columbian-d1-d3_hp_otb_4_20190705_1_1048812</h5>
+        <h5 class="text-dark">/bed-and-bath-linens/towels/c/A1BBB21?q=%3Arelevance%3AcollectionName%3A1888%2BMills%2BSweet%2BSouth&text=&pageSize=12&icid=1888-mills-d1-d3_hp_otb_4_20190712_1_1089798</h5>
 
 
       </div>
@@ -71,7 +71,7 @@
     <!-- </div> -->
 
     <!-- Right side-->
-    <as-split-area (resized)="onResized($event)" [size]="paneSize" minSize="500">
+    <as-split-area class="rightPane" (resized)="onResized($event)" [size]="paneSize" minSize="500">
       <div class="container-fluid navbar-default">
         <nav class="navbar pull-left">
           <ul class="nav">

@@ -1,0 +1,36 @@
+:host .onethirdcol {
+  max-height: 350px;
+}
+
+:host .c-hero__copy {
+  max-width: 100%;
+}
+
+:host .w-50.square {
+  width: 30% !important;
+}
+
+:host .c-hero__sub-title--size-normal {
+  line-height: 24px;
+}
+
+:host .w-40 {
+  width: 40% !important;
+}
+
+:host .logo-stacked {
+  max-height: 80px;
+}
+
+:host .logo-stacked {
+  max-height: 80px;
+}
+
+:host .c-hero.c-hero--one_third.onethirdcol img {
+    height: auto;
+} 
+
+:host .c-hero__image {
+    min-width: 100%;
+    object-fit: cover;
+}
