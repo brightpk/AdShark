@@ -54,7 +54,7 @@ li#nav-icon {
 
 /* element queries (Sample) */
 .rightPane[min-width="500px"] {
-  background-color: lightgreen;
+  background-color: rebeccapurple;
 }
 
 .rightPane[min-width~="750px"] {
