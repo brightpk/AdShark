@@ -35,7 +35,7 @@ li#nav-icon {
   color: rgb(149, 155, 161);
 }
 
-/* button color */
+/* Buttons: Default, Primary, Alternate */
 .btn--default, .btn--square:hover {
   background-color: rgb(0, 93, 163);
   border: rgb(0, 93, 163);

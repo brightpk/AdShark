@@ -60,10 +60,9 @@
         <br>
 
         <label for="linkOption"><h5 class="text-primary">Button Link</h5></label><br>
-        <label class="radio-inline"><input type="radio" name="optradio">Only Button</label>
-        <label class="radio-inline"><input type="radio" name="optradio">Entire Ad</label>
+        <!-- <label class="radio-inline"><input type="radio" name="optradio">Only Button</label>
+        <label class="radio-inline"><input type="radio" name="optradio">Entire Ad</label> -->
         <input class="form-control" type="text" [(ngModel)]="data.buttonURL" placeholder="url" /><br>
-        <h5 class="text-dark">/bed-and-bath-linens/towels/c/A1BBB21?q=%3Arelevance%3AcollectionName%3A1888%2BMills%2BSweet%2BSouth&text=&pageSize=12&icid=1888-mills-d1-d3_hp_otb_4_20190712_1_1089798</h5>
 
 
       </div>
@@ -87,7 +86,7 @@
       <div class="mat-app-background basic-container">
         <mat-tab-group>
           <mat-tab label="One-Third Banner">
-            <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button"></app-preview-D1>
+            <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device"></app-preview-D1>
           </mat-tab>
           <mat-tab label="Hero Banner">
             <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button"></app-preview-A1>

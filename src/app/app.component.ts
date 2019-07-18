@@ -24,31 +24,41 @@ export class AppComponent {
   realtimeWidth: number;
   realtimeHeight: number;
 
-  // get size of the previewside
+  // Get realtime size of right pane
   onResized(event: ResizedEvent) {
     this.realtimeWidth = event.newWidth;
     this.realtimeHeight = event.newHeight;
+
+    if (this.realtimeWidth <= 500) {
+      this.device = 'Mobile';
+    } else if (this.realtimeWidth <= 750) {
+      this.device = 'Tablet';
+    } else if (this.realtimeWidth <= 1150) {
+      this.device = 'Desktop';
+    } else {
+      this.device = 'Wide screen';
+    }
   }
 
-  // size > 1350px
+  // Mobile: 1350px
   getMobilePane(event) {
     event.preventDefault();
     this.paneSize = 500;
   }
 
-  // 750px
+  // Desktop: 750px
   getTabletPane(event) {
     event.preventDefault();
     this.paneSize = 750;
   }
 
-  // 1150px
+  // Tablet: 1150px
   getDesktopPane(event) {
     event.preventDefault();
     this.paneSize = 1150;
   }
 
-  // 1350px
+  // Widescreen: 1350px
   getWideScreenPane(event) {
     event.preventDefault();
     this.paneSize = 1350;
@@ -59,16 +69,6 @@ export class AppComponent {
     console.log('Button type: ' , value);
     this.button = 'btn btn--' + value;
   }
-
-  // (dragStart)='onDragStart($event)'
-  // onDragStart({sizes}) {
-  //   console.log('Start: ', sizes[1]);
-  // }
-
-  // (dragEnd)='onDragEnd($event)'
-  // onDragEnd({sizes}) {
-  //   console.log('End: ', sizes[1]);
-  // }
 
   // get a logo name to insert in HTML
   getAlterLogo(data) {
