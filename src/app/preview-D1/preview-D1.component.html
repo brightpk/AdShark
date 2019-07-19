@@ -4,17 +4,29 @@ img: https://images.americanhotel.com/images/banners/8743K_Inteplast_AD_D1_06071
 Logo: https://images.americanhotel.com/images/logos/private-label/registry-logo-white.svg
 Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now -->
 
-<h2>Wide screen</h2>
-<div class="c-hero c-hero--one_third onethirdcol">
-  <img alt="{{altLogo}}" src="{{data.bgURL}}" class="c-hero__image">
-<div class="c-hero__inner">
-  <div class="c-hero__copy c-hero__copy--align-center"><img class="w-50 pb-2" src="{{data.logoURL}}" alt="{{altLogo}}">
-      <h2 class="c-hero__title c-hero__title--white c-hero__title--weight-extrabold c-hero__title--size-normal">{{data.headline}}</h2>
-      <h3 class="c-hero__sub-title c-hero__sub-title--white c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">{{data.subline}}</h3>
-      <h4 class="c-hero__sub-title c-hero__sub-title--white c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">{{data.para}}</h4>
-    <div class="{{button}} c-hero__action"><a href="{{data.buttonURL}}" title="{{data.buttonTxt}}" (click)="openWindow(data, $event)">{{data.buttonTxt}}</a></div>
+<h2>{{device}}</h2>
+
+<style type="text/css"> .onethirdcol { 	max-height: 350px; } .c-hero__copy { 	max-width: 100%; } .w-50.square { 	width: 30% !important; } .c-hero__sub-title--size-normal { 	line-height: 24px; } .w-40 { 	width: 40% !important; }     .logo-stacked {     max-height: 80px; }   .logo-stacked {     max-height: 80px; }   </style>
+
+<div id="D1" (onchange)="getHTML()">
+  <div class="col-lg-4 col-md-12 mt-4">
+    <div class="c-hero c-hero--one_third onethirdcol"> <img alt="{{altLogo}}" src="{{data.bgURL}}" class="c-hero__image">
+      <div class="c-hero__inner">
+        <div class="c-hero__copy c-hero__copy--align-center"><img class="w-50 pb-2" src="{{data.logoURL}}" alt="{{altLogo}}">
+          <h2 class="c-hero__title c-hero__title--white c-hero__title--weight-extrabold c-hero__title--size-normal">{{data.headline}}</h2>
+          <h3 class="c-hero__sub-title c-hero__sub-title--white c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">{{data.subline}}</h3>
+          <h4 class="c-hero__sub-title c-hero__sub-title--white c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">{{data.para}}</h4>
+          <div class="{{button}} c-hero__action"><a href="{{data.buttonURL}}" title="{{data.buttonTxt}}" (click)="openWindow(data, $event)">{{data.buttonTxt}}</a></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
 
-<!-- button: primary, default, alternate  -->
+<br>
+  <button type="button" class="btn btn-info" (click)="getHTML()" (click)="showCode=true">GENERATE CODE</button>
+  <i class="fas fa-toggle-on" data-toggle="button" (click)="getHTML()" (click)="showCode=!showCode" matTooltip="Show/Hide"></i>
+  <i class="far fa-copy" (click)="copyCode()" style="font-size:25px" matTooltip="Copy CODE"></i>
+  <div class="codeBox card card-body" *ngIf="showCode">
+    <code>{{HTMLCode}}</code>
+  </div>

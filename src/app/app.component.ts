@@ -19,57 +19,56 @@ export class AppComponent {
   data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around to ads
   altLogo: string; // variable for alternate logo
   button: string; // variable for changing button
-  paneSize = 1600; // size in px for each icon that user clicks
+  paneSize = 1500; // size in px for each icon that user clicks
+  device: string; // type of screen
   realtimeWidth: number;
   realtimeHeight: number;
 
-  // get size of the previewside
+  // Get realtime size of right pane
   onResized(event: ResizedEvent) {
     this.realtimeWidth = event.newWidth;
     this.realtimeHeight = event.newHeight;
-    console.log('width: ', this.realtimeWidth);
-    console.log('height: ', this.realtimeHeight);
+
+    if (this.realtimeWidth <= 500) {
+      this.device = 'Mobile';
+    } else if (this.realtimeWidth <= 750) {
+      this.device = 'Tablet';
+    } else if (this.realtimeWidth <= 1150) {
+      this.device = 'Desktop';
+    } else {
+      this.device = 'Wide screen';
+    }
   }
 
-  // size > 1350px
+  // Mobile: 1350px
   getMobilePane(event) {
     event.preventDefault();
     this.paneSize = 500;
   }
 
-  // 750px
+  // Desktop: 750px
   getTabletPane(event) {
     event.preventDefault();
-    this.paneSize = 1000;
+    this.paneSize = 750;
   }
 
-  // 1150px
+  // Tablet: 1150px
   getDesktopPane(event) {
     event.preventDefault();
-    this.paneSize = 1500;
+    this.paneSize = 1150;
   }
 
-  // 1350px
+  // Widescreen: 1350px
   getWideScreenPane(event) {
     event.preventDefault();
-    this.paneSize = 2800;
+    this.paneSize = 1350;
   }
 
   // change the button style
   changeButton(value) {
-    console.log(value);
+    console.log('Button type: ' , value);
     this.button = 'btn btn--' + value;
   }
-
-  // (dragStart)='onDragStart($event)'
-  // onDragStart({sizes}) {
-  //   console.log('Start: ', sizes[1]);
-  // }
-
-  // (dragEnd)='onDragEnd($event)'
-  // onDragEnd({sizes}) {
-  //   console.log('End: ', sizes[1]);
-  // }
 
   // get a logo name to insert in HTML
   getAlterLogo(data) {

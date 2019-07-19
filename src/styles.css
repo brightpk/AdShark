@@ -1,41 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 .column {
-    float: left;
-    width: 50%;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  label.radio-inline {
-      margin-right: 10px;
-  }
-  
-  input[type="radio"] {
-      margin-right: 10px;
-      display: inline-block;
-  }
-  
-  .form-control {
-    white-space: pre-line
-  }
-  
-  [type=button] {
-      /* -webkit-appearance: button; */
-      margin-right: 10px;
-  }
-
-  /* space between icons*/
-  li#nav-icon {
-    margin-right: 20px;
-    color: rgb(149, 155, 161);
+  float: left;
+  width: 50%;
 }
 
-/* button color */
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+label.radio-inline {
+  margin-right: 10px;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.form-control {
+  white-space: pre-line
+}
+
+[type=button] {
+  /* -webkit-appearance: button; */
+  margin-right: 10px;
+}
+
+/* space between icons*/
+li#nav-icon {
+  margin-right: 20px;
+  color: rgb(149, 155, 161);
+}
+
+/* Code box*/
+.codeBox {
+  margin: 20px;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+/* Buttons: Default, Primary, Alternate */
 .btn--default, .btn--square:hover {
   background-color: rgb(0, 93, 163);
   border: rgb(0, 93, 163);
@@ -51,3 +59,83 @@
 .btn--alternate:hover {
   background-color: rgb(0, 93, 163)
 }
+
+/* element queries (Sample) */
+.rightPane[min-width="500px"] {
+  background-color: lightgreen;
+}
+
+.rightPane[min-width~="750px"] {
+  background-color: lightpink;
+}
+
+.rightPane[min-width~="992px"] {
+  background-color: lightblue;
+}
+
+.rightPane[min-width~="1200px"] {
+  background-color: lightsalmon;
+}
+
+/* -------------------------------------------- */
+
+
+/* element queries for size of pane */
+.rightPane .c-hero[min-width="750px"] {
+  background-color: lightpink;
+  max-height: 500px
+}
+
+.rightPane .col-md-12[min-width="750px"] {
+  -webkit-box-flex: 0;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.rightPane .c-hero__copy[max-width="1025px"] {
+  padding-left: 15px;
+  padding-right: 15px
+}
+
+.rightPane .c-hero--page .c-hero__image[min-width="1025px"] {
+  position: absolute;
+  top: 0;
+  left: 0
+}
+
+.rightPane .col-lg-4[min-width="1025px"] {
+  -webkit-box-flex: 0;
+  flex: 0 0 33.3333333333%;
+  max-width: 33.3333333333%;
+}
+
+.rightPane .c-hero[max-width="1469.98px"] {
+  overflow: hidden
+}
+
+.c-hero.c-hero--one_third.onethirdcol img {
+  height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
