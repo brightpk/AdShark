@@ -1,6 +1,8 @@
 import { Component, Input, ViewEncapsulation, HostListener } from '@angular/core';
 import { AppData } from '../AppData';
 
+declare const loadD1iframe: any;
+
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-preview-D1',
@@ -21,6 +23,7 @@ export class PreviewD1Component {
   @HostListener('window:keyup', ['$event'])
   keyEvent(event) {
     this.getHTML();
+    loadD1iframe(this.HTMLCode);
     console.log('some changes');
   }
 
