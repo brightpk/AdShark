@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AppData } from './AppData';
 import { ResizedEvent } from 'angular-resize-event';
 
 // import jquery = require('jquery');
 // const $: JQueryStatic = jquery;
 
-// declare const changeButton: any;
+declare const dragSmooth: any;
 
 @Component({
   selector: 'app-root',
@@ -18,16 +18,17 @@ export class AppComponent {
   title = 'AdShark';
   data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around to ads
   altLogo: string; // variable for alternate logo
-  button: string; // variable for changing button
+  button = ''; // variable for changing button
   paneSize = 1500; // size in px for each icon that user clicks
   device: string; // type of screen
   realtimeWidth: number;
-  realtimeHeight: number;
-
+  buttonOptions: string[] = ['default', 'primary', 'alternate'];
   // Get realtime size of right pane
   onResized(event: ResizedEvent) {
     this.realtimeWidth = event.newWidth;
-    this.realtimeHeight = event.newHeight;
+    // $('iframe').css('pointer-events: none;');
+    // console.log('resizing..');
+    dragSmooth();
 
     if (this.realtimeWidth <= 500) {
       this.device = 'Mobile';
@@ -40,7 +41,7 @@ export class AppComponent {
     }
   }
 
-  // Mobile: 1350px
+  // Mobile: 500px
   getMobilePane(event) {
     event.preventDefault();
     this.paneSize = 500;

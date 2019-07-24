@@ -50,11 +50,13 @@
 
         <!-- URL / TYPE for button -->
         <label for="Button"><h5 class="text-primary">Button</h5></label><br>
-        <select class="custom-select" style="width:200px" (change)="changeButton($event.target.value)">
-          <option value="" disabled selected>Select button</option>
+        <select class="custom-select" style="width:200px" [(ngModel)]="button"> <!--(change)="changeButton($event.target.value)" -->
+          <!-- <option value="" disabled selected>Select button</option>
           <option value="default">Default</option>
           <option value="primary">Primary</option>
-          <option value="alternate">Alternate</option>
+          <option value="alternate">Alternate</option> -->
+          <option value="" disabled selected>Select button</option>
+          <option *ngFor="let option of buttonOptions" [ngValue]="option">{{option}}</option>
         </select>
         <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /><br>
         <br>

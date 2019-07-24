@@ -60,6 +60,11 @@ li#nav-icon {
   background-color: rgb(0, 93, 163)
 }
 
+/* iframe {
+  pointer-events: none;
+} */
+
+
 /* element queries (Sample) */
 /* .rightPane[min-width="500px"] {
   background-color: lightgreen;
