@@ -3,10 +3,10 @@
   <a class="navbar-brand mb-0" href="#">{{title}}</a>
 </nav>
 
-<div class="splitexample" style="height: 1000px">
+<div class="splitexample" style="height: 1400px">
   <as-split unit="pixel"> <!--  split-pane col-lg-6 col-sm-12 left" id="one" / col-sm-5 col-xs-offset-1 col-md-4-->
     <!-- Left side -->
-    <as-split-area class="leftPane" (resized)="onResizedLeft($event)" size="500" maxSize="2049">
+    <as-split-area class="leftPane" (resized)="onResizedLeft($event)" size="500">
       <div class="container-fluid navbar-default">
         <nav class="navbar">
           <ul class="nav navbar-nav">
@@ -72,7 +72,7 @@
     <!-- </div> -->
 
     <!-- Right side-->
-    <as-split-area class="rightPane" (resized)="onResizedRight($event)" [size]="paneSize">
+    <as-split-area class="rightPane" (resized)="onResizedRight($event)" [size]="paneSize" [minSize]="500">
       <div class="container-fluid navbar-default">
         <nav class="navbar pull-left">
           <ul class="nav">
