@@ -28,7 +28,7 @@ export class AppComponent {
     this.realtimeWidth = event.newWidth;
     // $('iframe').css('pointer-events: none;');
     // console.log('resizing..');
-    dragSmooth();
+    //dragSmooth();
 
     if (this.realtimeWidth <= 500) {
       this.device = 'Mobile';

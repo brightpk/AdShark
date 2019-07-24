@@ -39,5 +39,12 @@ $('.btn-widescreen').on('click', function(e) {
   e.preventDefault();
   });
 
+//gutter smoothness
+$('.as-split-gutter-icon').mousedown(function() {
+    $('iframe').css("pointer-events","none");
+});
+$('.as-split-gutter-icon').mouseup(function() {
+    $('iframe').css("pointer-events","auto");
+});
 
 });
