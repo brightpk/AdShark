@@ -26,7 +26,6 @@ export class PreviewD1Component {
   @HostListener('document:keyup', ['$event'])
   keyEvent(event) {
     this.getHTML();
-    // loadD1iframe(this.HTMLCode);
     insertD1(this.HTMLCode);
     console.log('some changes');
   }

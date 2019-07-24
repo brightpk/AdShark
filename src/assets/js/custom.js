@@ -11,40 +11,41 @@ function insertD1(code) {
   // $('input').change(function () {
   //   D1HTML.contents().find('#D1').append(code);
   // });
-  D1HTML.contents().find('#D1').html(code);
+  var style = '<script>$( document ).ready(function() { $(\'a.btn\').click(function(e) {e.preventDefault();});});});</script>'
+  D1HTML.contents().find('#D1').html(style + code);
 }
 
-
-$( document ).ready(function() {
-
-//mobile
-$('.btn-mobile').on('click', function(e) {
-  $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-tablet').addClass("iframe-mobile"); 
-  e.preventDefault();
+$(document).ready(function () {
+  //mobile
+  $('.btn-mobile').on('click', function (e) {
+    $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-tablet').addClass("iframe-mobile");
+    e.preventDefault();
   });
 
-//tablet
-  $('.btn-tablet').on('click', function(e) {
-        $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-mobile').addClass("iframe-tablet"); 
-        e.preventDefault();
-        });
-//dekstop
-$('.btn-desktop').on('click', function(e) {
-  $('iframe').removeClass('iframe-widescreen iframe-mobile iframe-tablet').addClass("iframe-desktop"); 
-  e.preventDefault();
-  });
-//widescreen
-$('.btn-widescreen').on('click', function(e) {
-  $('iframe').removeClass('iframe-mobile iframe-desktop iframe-tablet').addClass("iframe-widescreen"); 
-  e.preventDefault();
+  //tablet
+  $('.btn-tablet').on('click', function (e) {
+    $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-mobile').addClass("iframe-tablet");
+    e.preventDefault();
   });
 
-//gutter smoothness
-$('.as-split-gutter-icon').mousedown(function() {
-    $('iframe').css("pointer-events","none");
-});
-$('.as-split-gutter-icon').mouseup(function() {
-    $('iframe').css("pointer-events","auto");
-});
+  //dekstop
+  $('.btn-desktop').on('click', function (e) {
+    $('iframe').removeClass('iframe-widescreen iframe-mobile iframe-tablet').addClass("iframe-desktop");
+    e.preventDefault();
+  });
+
+  //widescreen
+  $('.btn-widescreen').on('click', function (e) {
+    $('iframe').removeClass('iframe-mobile iframe-desktop iframe-tablet').addClass("iframe-widescreen");
+    e.preventDefault();
+  });
+
+  //gutter smoothness
+  $('.as-split-gutter-icon').mousedown(function () {
+    $('iframe').css("pointer-events", "none");
+  });
+  $('.as-split-gutter-icon').mouseup(function () {
+    $('iframe').css("pointer-events", "auto");
+  });
 
 });

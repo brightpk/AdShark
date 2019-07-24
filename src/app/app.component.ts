@@ -19,28 +19,34 @@ export class AppComponent {
   data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around to ads
   altLogo: string; // variable for alternate logo
   button = ''; // variable for changing button
-  paneSize = 1500; // size in px for each icon that user clicks
+  paneSize: number; // size in px for each icon that user clicks
   device: string; // type of screen
-  realtimeWidth: number;
+  rightWidth: number;
+  leftWidth: number;
   buttonOptions: string[] = ['default', 'primary', 'alternate'];
-  // Get realtime size of right pane
-  onResized(event: ResizedEvent) {
-    this.realtimeWidth = event.newWidth;
-    // $('iframe').css('pointer-events: none;');
-    // console.log('resizing..');
-    //dragSmooth();
 
-    if (this.realtimeWidth <= 500) {
+  /* Size right pane */
+  onResizedRight(event: ResizedEvent) {
+    this.rightWidth = event.newWidth;
+    $('iframe').css('width', this.rightWidth);
+
+    if (this.rightWidth <= 500) {
       this.device = 'Mobile';
-    } else if (this.realtimeWidth <= 750) {
+    } else if (this.rightWidth <= 750) {
       this.device = 'Tablet';
-    } else if (this.realtimeWidth <= 1150) {
+    } else if (this.rightWidth <= 1150) {
       this.device = 'Desktop';
     } else {
       this.device = 'Wide screen';
     }
+
   }
-/*
+
+  /* Size right pane */
+  onResizedLeft(event: ResizedEvent) {
+    this.leftWidth = event.newWidth;
+  }
+
   // Mobile: 500px
   getMobilePane(event) {
     event.preventDefault();
@@ -50,7 +56,7 @@ export class AppComponent {
   // Desktop: 750px
   getTabletPane(event) {
     event.preventDefault();
-    this.paneSize = 750;
+    this.paneSize = 700;
   }
 
   // Tablet: 1150px
@@ -64,7 +70,7 @@ export class AppComponent {
     event.preventDefault();
     this.paneSize = 1350;
   }
-*/
+
   // change the button style
   changeButton(value) {
     console.log('Button type: ' , value);

@@ -80,12 +80,8 @@ li#nav-icon {
 }
 iframe {
   border: none;
+  align-items: left;
 }
-
-/* iframe {
-  pointer-events: none;
-} */
-
 
 /* element queries (Sample) */
 /* .rightPane[min-width="500px"] {

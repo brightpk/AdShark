@@ -6,7 +6,7 @@
 <div class="splitexample" style="height: 1000px">
   <as-split unit="pixel"> <!--  split-pane col-lg-6 col-sm-12 left" id="one" / col-sm-5 col-xs-offset-1 col-md-4-->
     <!-- Left side -->
-    <as-split-area>
+    <as-split-area class="leftPane" (resized)="onResizedLeft($event)" size="500" maxSize="2049">
       <div class="container-fluid navbar-default">
         <nav class="navbar">
           <ul class="nav navbar-nav">
@@ -72,16 +72,16 @@
     <!-- </div> -->
 
     <!-- Right side-->
-    <as-split-area class="rightPane" (resized)="onResized($event)" [size]="paneSize" minSize="500">
+    <as-split-area class="rightPane" (resized)="onResizedRight($event)" [size]="paneSize">
       <div class="container-fluid navbar-default">
         <nav class="navbar pull-left">
           <ul class="nav">
-            <li id="nav-icon"><i class="fas fa-mobile-alt btn-mobile" style="font-size:25px;"  matTooltip="Mobile preview"></i></li>
-            <li id="nav-icon"><i class="fas fa-tablet-alt btn-tablet" style="font-size:25px;"  matTooltip="Tablet preview"></i></li>
-            <li id="nav-icon"><i class="fas fa-desktop btn-desktop" style="font-size:25px;"  matTooltip="Desktop preview"></i></li>
-            <li id="nav-icon"><i class="fas fa-desktop btn-widescreen" style="font-size:30px;"  matTooltip="Wide Screen preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-mobile-alt btn-mobile" style="font-size:25px;" (click)="getMobilePane($event)"  matTooltip="Mobile preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-tablet-alt btn-tablet" style="font-size:25px;" (click)="getTabletPane($event)"  matTooltip="Tablet preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-desktop btn-desktop" style="font-size:25px;" (click)="getDesktopPane($event)" matTooltip="Desktop preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-desktop btn-widescreen" style="font-size:30px;" (click)="getWideScreenPane($event)"  matTooltip="Wide Screen preview"></i></li>
           </ul>
-          <h5><div class="resize-info float-right badge badge-secondary">{{realtimeWidth}}px x 1000px </div></h5>
+          <h5><div class="resize-info float-right badge badge-secondary">{{rightWidth}}px x 1000px </div></h5>
         </nav>
       </div>
       <!--<div class="col-lg-6 col-sm-12 right"> col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0-->
