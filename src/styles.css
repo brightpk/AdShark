@@ -60,6 +60,26 @@ li#nav-icon {
   background-color: rgb(0, 93, 163)
 }
 
+/* breakpoint button styles */
+
+.iframe-widescreen {
+  width: 1350px;
+  height: 500px;
+}
+.iframe-desktop {
+  width: 1150px;
+  height: 500px;
+}
+.iframe-tablet {
+  width: 700px;
+  height: 500px;
+}
+.iframe-mobile {
+  width: 500px;
+  height: 500px;
+}
+
+
 /* iframe {
   pointer-events: none;
 } */

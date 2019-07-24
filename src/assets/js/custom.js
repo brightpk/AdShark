@@ -13,3 +13,31 @@ function insertD1(code) {
   // });
   D1HTML.contents().find('#D1').html(code);
 }
+
+
+$( document ).ready(function() {
+
+//mobile
+$('.btn-mobile').on('click', function(e) {
+  $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-tablet').addClass("iframe-mobile"); 
+  e.preventDefault();
+  });
+
+//tablet
+  $('.btn-tablet').on('click', function(e) {
+        $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-mobile').addClass("iframe-tablet"); 
+        e.preventDefault();
+        });
+//dekstop
+$('.btn-desktop').on('click', function(e) {
+  $('iframe').removeClass('iframe-widescreen iframe-mobile iframe-tablet').addClass("iframe-desktop"); 
+  e.preventDefault();
+  });
+//widescreen
+$('.btn-widescreen').on('click', function(e) {
+  $('iframe').removeClass('iframe-mobile iframe-desktop iframe-tablet').addClass("iframe-widescreen"); 
+  e.preventDefault();
+  });
+
+
+});

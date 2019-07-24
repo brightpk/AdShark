@@ -40,7 +40,7 @@ export class AppComponent {
       this.device = 'Wide screen';
     }
   }
-
+/*
   // Mobile: 500px
   getMobilePane(event) {
     event.preventDefault();
@@ -64,7 +64,7 @@ export class AppComponent {
     event.preventDefault();
     this.paneSize = 1350;
   }
-
+*/
   // change the button style
   changeButton(value) {
     console.log('Button type: ' , value);
