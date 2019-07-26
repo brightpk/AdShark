@@ -50,13 +50,9 @@
 
         <!-- URL / TYPE for button -->
         <label for="Button"><h5 class="text-primary">Button</h5></label><br>
-        <select class="custom-select" style="width:200px" [(ngModel)]="button"> <!--(change)="changeButton($event.target.value)" -->
-          <!-- <option value="" disabled selected>Select button</option>
-          <option value="default">Default</option>
-          <option value="primary">Primary</option>
-          <option value="alternate">Alternate</option> -->
+        <select class="custom-select selectButton" style="width:200px" [(ngModel)]="button" (change)="changeButton($event.target.value)"> <!--(change)="changeButton($event.target.value)" -->
           <option value="" disabled selected>Select button</option>
-          <option *ngFor="let option of buttonOptions" [ngValue]="option">{{option}}</option>
+          <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
         </select>
         <input class="form-control" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /><br>
         <br>
@@ -86,17 +82,26 @@
       </div>
       <!--<div class="col-lg-6 col-sm-12 right"> col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0-->
       <div class="mat-app-background basic-container">
-        <mat-tab-group>
+        <mat-tab-group class="" (selectedTabChange)="onTabClick($event)" (click)="onTabClick($event)"> <!-- (selectedTabChange)="tabClick($event)" -->
           <mat-tab label="One-Third Banner">
-            <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device"></app-preview-D1>
+            <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" (D1Code)="getD1Code($event)"></app-preview-D1>
           </mat-tab>
           <mat-tab label="Hero Banner">
-            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button"></app-preview-A1>
+            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" (A1Code)="getA1Code($event)"></app-preview-A1>
           </mat-tab>
           <mat-tab label="Email"> Content 3 </mat-tab>
         </mat-tab-group>
       </div>
       <!-- </div> -->
+      <br>
+
+  <button type="button" class="btn btn-info" (click)="showCode=true">GENERATE CODE</button>
+  <i class="fas fa-toggle-on" data-toggle="button" (click)="showCode=!showCode" matTooltip="Show/Hide"></i>
+  <i class="far fa-copy" (click)="copyCode()" style="font-size:25px" matTooltip="Copy CODE"></i>
+  <div class="codeBox card card-body" *ngIf="showCode">
+    <code>{{OutputCode}}</code>
+  </div>
+
 
     </as-split-area>
   </as-split>

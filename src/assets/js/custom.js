@@ -6,13 +6,14 @@
 // }
 
 // A1 iframe Output
-function insertD1(code) {
+function insertD1(code, button) {
   var D1HTML = $('.D1HTML');
-  // $('input').change(function () {
-  //   D1HTML.contents().find('#D1').append(code);
-  // });
-  var style = '<script>$( document ).ready(function() { $(\'a.btn\').click(function(e) {e.preventDefault();});});});</script>'
-  D1HTML.contents().find('#D1').html(style + code);
+  D1HTML.contents().find('#D1').html(code);  
+}
+
+function insertA1(code) {
+  var A1HTML = $('.A1HTML');
+  A1HTML.contents().find('#A1').html(code);
 }
 
 $(document).ready(function () {
@@ -47,5 +48,5 @@ $(document).ready(function () {
   $('.as-split-gutter-icon').mouseup(function () {
     $('iframe').css("pointer-events", "auto");
   });
-
+  
 });
