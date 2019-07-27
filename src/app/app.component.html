@@ -96,7 +96,8 @@
       <br>
 
   <button type="button" class="btn btn-info" (click)="showCode=true">GENERATE CODE</button>
-  <i class="fas fa-toggle-on" data-toggle="button" (click)="showCode=!showCode" matTooltip="Show/Hide"></i>
+  <!-- <i class="fas fa-toggle-on" data-toggle="button" (click)="showCode=!showCode" matTooltip="Show/Hide"></i> -->
+  <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
   <i class="far fa-copy" (click)="copyCode()" style="font-size:25px" matTooltip="Copy CODE"></i>
   <div class="codeBox card card-body" *ngIf="showCode">
     <code>{{OutputCode}}</code>

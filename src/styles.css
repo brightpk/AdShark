@@ -83,6 +83,10 @@ iframe {
   align-items: left;
 }
 
+#mat-toggle {
+  margin-right: 10px;
+}
+
 /* element queries (Sample) */
 /* .rightPane[min-width="500px"] {
   background-color: lightgreen;

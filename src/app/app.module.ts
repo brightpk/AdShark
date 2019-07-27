@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule, MatTooltipModule } from '@angular/material';
+import { MatTabsModule, MatTooltipModule, MatSlideToggleModule } from '@angular/material';
 import { AngularSplitModule } from 'angular-split';
 import { AngularResizedEventModule } from 'angular-resize-event';
 
@@ -26,7 +26,8 @@ import { PreviewD1Component } from './preview-D1/preview-D1.component';
       MatTabsModule,
       AngularSplitModule.forRoot(),
       MatTooltipModule,
-      AngularResizedEventModule
+      AngularResizedEventModule,
+      MatSlideToggleModule
    ],
    providers: [],
    bootstrap: [

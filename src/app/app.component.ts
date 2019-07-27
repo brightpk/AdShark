@@ -72,10 +72,16 @@ export class AppComponent {
     if (this.rightWidth <= 500) {
       this.device = 'Mobile';
       $('iframe').css('height', 1150);
+      if (this.tabClick === 1) {
+        $('iframe').css('height', 420);
+      }
 
     } else if (this.rightWidth <= 1024) {
       this.device = 'Tablet';
       $('iframe').css('height', 1150);
+      if (this.tabClick === 1) {
+        $('iframe').css('height', 420);
+      }
 
     } else if (this.rightWidth <= 1280) {
       this.device = 'Desktop';
