@@ -12,11 +12,13 @@ declare var $: any;
   encapsulation: ViewEncapsulation.None,
 })
 
-export class PreviewD1Component  implements DoCheck {
+export class PreviewD1Component implements DoCheck {
   @Input() data: AppData;
   @Input() altLogo: string;
   @Input() button: string;
   @Input() device: string;
+  @Input() headColor: string;
+  @Input() subColor: string;
   @Output() D1Code = new EventEmitter();
   HTMLCode: string;
   showCode = false;
@@ -25,10 +27,10 @@ export class PreviewD1Component  implements DoCheck {
     this.getHTML();
   }
 
-  @HostListener('document:keyup', ['$event'])
-  keyEvent(event) {
-    this.getHTML();
-  }
+  // @HostListener('document:keyup', ['$event'])
+  // keyEvent(event) {
+  //   this.getHTML();
+  // }
 
   openWindow(data, event) {
     event.preventDefault();
@@ -43,10 +45,26 @@ export class PreviewD1Component  implements DoCheck {
     // this.D1Code.emit(tmp);
 
     try {
-
+      /* Button Type */
       if (tmp.includes('btn--')) {
         const str = tmp.substring(tmp.search('btn--'), tmp.search('c-hero__action'));
         const res = tmp.replace(str, 'btn--' + this.button + ' ');
+        tmp = res;
+        this.HTMLCode = tmp;
+      }
+
+      /* Headline Color */
+      if (tmp.includes('c-hero__title--')) {
+        const str = tmp.substring(tmp.search('c-hero__title--'), tmp.indexOf('c-hero__title--') + 20);
+        const res = tmp.replace(str, 'c-hero__title--' + this.headColor + ' ');
+        tmp = res;
+        this.HTMLCode = tmp;
+      }
+
+      /* Subline Color */
+      if (tmp.includes('c-hero__sub-title--')) {
+        const str = tmp.substring(tmp.search('c-hero__sub-title--'), tmp.indexOf('c-hero__sub-title--') + 24);
+        const res = tmp.replace(str, 'c-hero__sub-title--' + this.subColor + ' ');
         tmp = res;
         this.HTMLCode = tmp;
       }
@@ -72,14 +90,14 @@ export class PreviewD1Component  implements DoCheck {
       }
 
     // if no paragraph
-      if (this.data.para === '') {
-        const start = tmp.indexOf('h4');
-        const end = tmp.indexOf('h4>');
-        const str = tmp.substring(start - 1, end + 3);
-        const res = tmp.replace(str, '');
-        tmp = res;
-        this.HTMLCode = tmp;
-      }
+      // if (this.data.para === '') {
+      //   const start = tmp.indexOf('h4');
+      //   const end = tmp.indexOf('h4>');
+      //   const str = tmp.substring(start - 1, end + 3);
+      //   const res = tmp.replace(str, '');
+      //   tmp = res;
+      //   this.HTMLCode = tmp;
+      // }
 
       // erase addition code for resize-sensor
       if (tmp.includes('dir')) {
@@ -96,21 +114,4 @@ export class PreviewD1Component  implements DoCheck {
 
   }
 
-  // copyCode() {
-  //   if (this.HTMLCode == null) {
-  //     alert('Please click "GENERATE CODE" before copying');
-  //   }
-  //   let txtarea: any;
-  //   txtarea = document.createElement('textarea');
-  //   txtarea.style.position = 'fixed';
-  //   txtarea.style.left = '0';
-  //   txtarea.style.top = '0';
-  //   txtarea.style.opacity = '0';
-  //   txtarea.value = this.HTMLCode;
-  //   document.body.appendChild(txtarea);
-  //   txtarea.focus();
-  //   txtarea.select();
-  //   document.execCommand('copy');
-  //   document.body.removeChild(txtarea);
-  // }
 }

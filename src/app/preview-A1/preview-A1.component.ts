@@ -16,6 +16,8 @@ export class PreviewA1Component implements DoCheck {
   @Input() altLogo: string;
   @Input() button: string;
   @Input() device: string;
+  @Input() headColor: string;
+  @Input() subColor: string;
   @Output() A1Code = new EventEmitter();
   HTMLCode: string;
   showCode = false;
@@ -47,6 +49,21 @@ export class PreviewA1Component implements DoCheck {
         this.HTMLCode = tmp;
       }
 
+      if (tmp.includes('c-hero__title--')) {
+        const str = tmp.substring(tmp.search('c-hero__title--'), tmp.indexOf('c-hero__title--') + 20);
+        const res = tmp.replace(str, 'c-hero__title--' + this.headColor + ' ');
+        tmp = res;
+        this.HTMLCode = tmp;
+      }
+
+      /* Subline Color */
+      if (tmp.includes('c-hero__sub-title--')) {
+        const str = tmp.substring(tmp.search('c-hero__sub-title--'), tmp.indexOf('c-hero__sub-title--') + 24);
+        const res = tmp.replace(str, 'c-hero__sub-title--' + this.subColor + ' ');
+        tmp = res;
+        this.HTMLCode = tmp;
+      }
+
       // if no headline
       if (this.data.headline === '') {
         const start = tmp.indexOf('h2');
@@ -68,14 +85,14 @@ export class PreviewA1Component implements DoCheck {
       }
 
     // if no paragraph
-      if (this.data.para === '') {
-        const start = tmp.indexOf('h4');
-        const end = tmp.indexOf('h4>');
-        const str = tmp.substring(start - 1, end + 3);
-        const res = tmp.replace(str, '');
-        tmp = res;
-        this.HTMLCode = tmp;
-      }
+      // if (this.data.para === '') {
+      //   const start = tmp.indexOf('h4');
+      //   const end = tmp.indexOf('h4>');
+      //   const str = tmp.substring(start - 1, end + 3);
+      //   const res = tmp.replace(str, '');
+      //   tmp = res;
+      //   this.HTMLCode = tmp;
+      // }
 
       // erase addition code for resize-sensor
       if (tmp.includes('dir')) {
@@ -92,22 +109,11 @@ export class PreviewA1Component implements DoCheck {
 
   }
 
-    // copyCode() {
-    //   if (this.HTMLCode == null) {
-    //     alert('Please click "GENERATE CODE" before copying');
-    //   }
-    //   let txtarea: any;
-    //   txtarea = document.createElement('textarea');
-    //   txtarea.style.position = 'fixed';
-    //   txtarea.style.left = '0';
-    //   txtarea.style.top = '0';
-    //   txtarea.style.opacity = '0';
-    //   txtarea.value = this.HTMLCode;
-    //   document.body.appendChild(txtarea);
-    //   txtarea.focus();
-    //   txtarea.select();
-    //   document.execCommand('copy');
-    //   document.body.removeChild(txtarea);
-    // }
+  addSrcset(src): string {
+    let srcset = this.data.bgURL;
+    const str = srcset.substring(srcset.search('widescreen'), srcset.search('widescreen') + 10);
+    srcset = srcset.replace(str, src);
+    return srcset;
+  }
 }
 

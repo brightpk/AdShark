@@ -1,6 +1,4 @@
-import { PreviewD1Component } from './preview-D1/preview-D1.component';
-import { PreviewA1Component } from './preview-A1/preview-A1.component';
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppData } from './AppData';
 import { ResizedEvent } from 'angular-resize-event';
 import { MatTabChangeEvent } from '@angular/material';
@@ -9,9 +7,6 @@ import { MatTabChangeEvent } from '@angular/material';
 // const $: JQueryStatic = jquery;
 declare var $: any;
 
-// declare const insertD1: any;
-// declare const insertA1: any;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,21 +14,27 @@ declare var $: any;
 })
 
 export class AppComponent {
-  @ViewChild(PreviewD1Component, {static: false}) D1Component: PreviewD1Component;
-  @ViewChild(PreviewA1Component, {static: false}) A1Component: PreviewA1Component;
   title = 'AdShark';
-  data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around to ads
+  data = new AppData('', '', '', '', '', '', '', '#'); // object to store inputs and pass around inside ads
   altLogo = ''; // variable for alternate logo
   button = ''; // variable for changing button
   device = ''; // type of screen
-  paneSize: number; // size in px for each icon that user clicks
+  headColor = 'blue';
+  subColor = 'blue';
+  paneSize: number; // size in px for each icon that users click
   rightWidth: number;
   leftWidth: number;
-  showCode = false;
   OutputCode: string;
-  D1Code = '';
-  A1Code = '';
+  showCode = false;
   tabClick = 0;
+
+  listofColor = ['blue', 'black', 'white'];
+
+  previewCode: any = [
+    { section: 'D1', code: '' },
+    { section: 'A1', code: '' }
+    // { section: 'email', code: '' }
+  ];
 
   buttonOptions: any = [
     { type: 'default', name: 'Solid/Blue' },
@@ -41,28 +42,54 @@ export class AppComponent {
     { type: 'alternate', name: 'Clear/Blue' }
   ];
 
-  getD1Code(code) {
-    this.D1Code = code;
-    this.OutputCode = code;
+  /* Check the text color */
+  changeColor(value) {
+    console.log('Headline color: ', this.headColor);
+    console.log('Subline color: ', this.subColor);
   }
 
-  getA1Code(code) {
-    this.A1Code = code;
-    this.OutputCode = code;
+  /* Check the button style */
+  changeButton(event) {
+    console.log('Button type: ' , event.value);
   }
 
-  onTabClick(e: MatTabChangeEvent) {
-    if (e.index === 0) {
-      this.OutputCode = this.D1Code;
-      this.tabClick = e.index;
-      console.log(e.index);
+  /* Receive code from children */
+  receiveCode(section, code) {
+    switch (section) {
+      case 'D1':
+        this.previewCode.D1 = code;
+        this.OutputCode = code;
+        break;
 
-    } else if (e.index === 1) {
-      this.OutputCode = this.A1Code;
-      this.tabClick = e.index;
-      console.log(e.index);
+      case 'A1':
+        this.previewCode.A1 = code;
+        this.OutputCode = code;
+        break;
+
+      default:
+        this.OutputCode = '';
     }
   }
+
+  /* Check what tab is on */
+  onTabClick(e: MatTabChangeEvent) {
+    switch (e.index) {
+      case 0:
+        this.OutputCode = this.previewCode.D1;
+        this.tabClick = e.index;
+        console.log(e.index);
+        break;
+
+      case 1:
+        this.OutputCode = this.previewCode.A1;
+        this.tabClick = e.index;
+        console.log(e.index);
+        break;
+
+      default:
+          this.OutputCode = '';
+      }
+    }
 
   /* Size right pane */
   onResizedRight(event: ResizedEvent) {
@@ -71,6 +98,7 @@ export class AppComponent {
 
     if (this.rightWidth <= 500) {
       this.device = 'Mobile';
+
       $('iframe').css('height', 1150);
       if (this.tabClick === 1) {
         $('iframe').css('height', 420);
@@ -78,6 +106,7 @@ export class AppComponent {
 
     } else if (this.rightWidth <= 1024) {
       this.device = 'Tablet';
+
       $('iframe').css('height', 1150);
       if (this.tabClick === 1) {
         $('iframe').css('height', 420);
@@ -94,41 +123,38 @@ export class AppComponent {
 
   }
 
-  /* Size right pane */
+  /* Size left pane */
   onResizedLeft(event: ResizedEvent) {
     this.leftWidth = event.newWidth;
   }
 
-  // Mobile: 500px
-  getMobilePane(event) {
-    event.preventDefault();
-    this.paneSize = 500;
+  /* Set size of pane each device */
+  setPaneSize(event, device) {
+    switch (device) {
+      case 'mobile':
+        this.paneSize = 500;
+        break;
+
+      case 'tablet':
+        event.preventDefault();
+        this.paneSize = 700;
+        break;
+
+      case 'desktop':
+        event.preventDefault();
+        this.paneSize = 1150;
+        break;
+
+      case 'widescreen':
+        event.preventDefault();
+        this.paneSize = 1350;
+        break;
+
+      default:
+    }
   }
 
-  // Desktop: 750px
-  getTabletPane(event) {
-    event.preventDefault();
-    this.paneSize = 700;
-  }
-
-  // Tablet: 1150px
-  getDesktopPane(event) {
-    event.preventDefault();
-    this.paneSize = 1150;
-  }
-
-  // Widescreen: 1350px
-  getWideScreenPane(event) {
-    event.preventDefault();
-    this.paneSize = 1350;
-  }
-
-  // change the button style
-  changeButton(value) {
-    console.log('Button type: ' , value);
-  }
-
-  // get a logo name to insert in HTML
+  /* Get a alternate logo name */
   getAlterLogo(data) {
     let lst: string[] = [];
     if (data.logoURL !== null) {
@@ -142,6 +168,7 @@ export class AppComponent {
     console.log('AltLogo: ', this.altLogo);
   }
 
+  /* Copy code */
   copyCode() {
     if (this.OutputCode == null) {
       alert('Please click "GENERATE CODE" before copying');

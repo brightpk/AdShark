@@ -5,12 +5,13 @@
 //   iframe.src = 'data:text/html,' + encodeURIComponent(html);
 // }
 
-// A1 iframe Output
+/* D1 iframe insert Output */
 function insertD1(code, button) {
   var D1HTML = $('.D1HTML');
   D1HTML.contents().find('#D1').html(code);  
 }
 
+/* A1 iframe insert Output */
 function insertA1(code) {
   var A1HTML = $('.A1HTML');
   A1HTML.contents().find('#A1').html(code);
@@ -19,7 +20,9 @@ function insertA1(code) {
 $(document).ready(function () {
   //mobile
   $('.btn-mobile').on('click', function (e) {
+    console.log('mobile button clicked');
     $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-tablet').addClass("iframe-mobile");
+    console.log('mobile button clicked iframe');
     e.preventDefault();
   });
 

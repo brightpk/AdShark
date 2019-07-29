@@ -10,17 +10,16 @@
   <div class="c-hero c-hero--full">
     <div class="c-hero__image-wrap">
       <picture>
-        <source media="(max-width: 600px)" srcset="">
-        <source media="(min-width: 768px) and (max-width: 991px)" srcset="">
-        <source media="(min-width: 992px) and (max-width: 1200px)" srcset="">
-        <source media="(min-width: 1201px)" srcset="">
-        <img alt="Get comfortable with stylish bedding" class="c-hero__image" src="{{data.bgURL}}"> </picture>
+        <source media="(max-width: 600px)" srcset="{{addSrcset('mobile')}}">
+        <source media="(min-width: 601px) and (max-width: 991px)" srcset="{{addSrcset('tablet')}}">
+        <source media="(min-width: 992px) and (max-width: 1200px)" srcset="{{addSrcset('desktop')}}">
+        <source media="(min-width: 1201px)" srcset="{{data.bgURL}}">
+        <img alt="{{data.headline}}" class="c-hero__image" src="{{data.bgURL}}"> </picture>
     </div>
     <div class="c-hero__inner home-a1-ad">
       <div class="c-hero__copy c-hero__copy--align-left padding">
         <h2 class="c-hero__title c-hero__title--blue c-hero__title--weight-extrabold c-hero__title--size-large">{{data.headline}}</h2>
         <h3 class="c-hero__sub-title c-hero__sub-title--white c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">{{data.subline}}</h3>
-        <h4 class="c-hero__sub-title c-hero__sub-title--white c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">{{data.para}}</h4>
         <div class="mt-1"><a class="btn btn--{{button}} c-hero__action" href="{{data.buttonURL}}" (click)="openWindow(data, $event)">{{data.buttonTxt}}</a>
       </div>
     </div>
