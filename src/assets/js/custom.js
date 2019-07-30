@@ -18,11 +18,13 @@ function insertA1(code) {
 }
 
 $(document).ready(function () {
+  // start doc with hide para and foreground for D1
+  $('.paragraph').hide();
+  $('.foreground').hide();
+
   //mobile
   $('.btn-mobile').on('click', function (e) {
-    console.log('mobile button clicked');
     $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-tablet').addClass("iframe-mobile");
-    console.log('mobile button clicked iframe');
     e.preventDefault();
   });
 

@@ -26,10 +26,10 @@ export class PreviewA1Component implements DoCheck {
     this.getHTML();
   }
 
-  @HostListener('document:keyup', ['$event'])
-  keyEvent(event) {
-    this.getHTML();
-  }
+  // @HostListener('document:keyup', ['$event'])
+  // keyEvent(event) {
+  //   this.getHTML();
+  // }
 
   openWindow(data, event) {
     event.preventDefault();
@@ -81,23 +81,6 @@ export class PreviewA1Component implements DoCheck {
         const str = tmp.substring(start - 1, end + 3);
         const res = tmp.replace(str, '');
         tmp = res;
-        this.HTMLCode = tmp;
-      }
-
-    // if no paragraph
-      // if (this.data.para === '') {
-      //   const start = tmp.indexOf('h4');
-      //   const end = tmp.indexOf('h4>');
-      //   const str = tmp.substring(start - 1, end + 3);
-      //   const res = tmp.replace(str, '');
-      //   tmp = res;
-      //   this.HTMLCode = tmp;
-      // }
-
-      // erase addition code for resize-sensor
-      if (tmp.includes('dir')) {
-        const i = tmp.indexOf('dir');
-        tmp = tmp.substring(0, i - 5) + '</div></div></div>';
         this.HTMLCode = tmp;
       }
 

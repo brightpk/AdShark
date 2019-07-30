@@ -1,5 +1,6 @@
 import { Component, Input, ViewEncapsulation, HostListener, Output, EventEmitter, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
+import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 
 declare const insertD1: any;
 declare var $: any;

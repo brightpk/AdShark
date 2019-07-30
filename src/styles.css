@@ -44,7 +44,6 @@ li#nav-icon {
 }
 
 /* breakpoint button styles */
-
 .iframe-widescreen {
   width: 1350px;
   height: 400px;
@@ -66,9 +65,9 @@ iframe {
   align-items: left;
 }
 
-/* Spcace between toggle and copy*/ 
+/* Spcace between toggle switch and copy*/ 
 #mat-toggle {
-  margin-right: 10px;
+  margin-left: 5px;
 }
 
 /* Device icon buttons */
@@ -81,6 +80,28 @@ iframe {
 .mat-radio-button {
   margin-right: 10px;
 }
+
+/* Copy button rgb(79, 169, 230) rgb(104, 207, 117) */
+.copy-button {
+  background-color: rgb(8, 164, 236);
+  color: white;
+  margin-left: 20px !important;
+  margin-right: 10px !important;
+}
+
+/* Show/Hide toggle switch */
+#show-hide-toggle {
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+.mat-toggle {
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+
+
 
 /* element queries (Sample) */
 /* .rightPane[min-width="500px"] {
@@ -100,51 +121,6 @@ iframe {
 } */
 
 /* -------------------------------------------- */
-
-
-/* element queries for size of pane */
-/* .rightPane .c-hero[min-width="750px"] {
-  background-color: lightpink;
-  max-height: 500px
-}
-
-.rightPane .col-md-12[min-width="750px"] {
-  -webkit-box-flex: 0;
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-
-.rightPane .c-hero__copy[max-width="1025px"] {
-  padding-left: 15px;
-  padding-right: 15px
-}
-
-.rightPane .c-hero--page .c-hero__image[min-width="1025px"] {
-  position: absolute;
-  top: 0;
-  left: 0
-}
-
-.rightPane .col-lg-4[min-width="1025px"] {
-  -webkit-box-flex: 0;
-  flex: 0 0 33.3333333333%;
-  max-width: 33.3333333333%;
-}
-
-.rightPane .c-hero[max-width="1469.98px"] {
-  overflow: hidden
-}
-
-.c-hero.c-hero--one_third.onethirdcol img {
-  height: auto;
-} */
-
-
-
-
-
-
-
 
 
 

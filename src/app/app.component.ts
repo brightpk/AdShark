@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AppData } from './AppData';
 import { ResizedEvent } from 'angular-resize-event';
 import { MatTabChangeEvent } from '@angular/material';
@@ -15,7 +15,7 @@ declare var $: any;
 
 export class AppComponent {
   title = 'AdShark';
-  data = new AppData('', '', '', '', '', '', '', '#'); // object to store inputs and pass around inside ads
+  data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around inside ads
   altLogo = ''; // variable for alternate logo
   button = ''; // variable for changing button
   device = ''; // type of screen
@@ -25,7 +25,7 @@ export class AppComponent {
   rightWidth: number;
   leftWidth: number;
   OutputCode: string;
-  showCode = false;
+  showCode = true;
   tabClick = 0;
 
   listofColor = ['blue', 'black', 'white'];
@@ -42,15 +42,25 @@ export class AppComponent {
     { type: 'alternate', name: 'Clear/Blue' }
   ];
 
+    /* -------- Show and Hide Sample bg and logo -----*/
+    showSampleBg = false;
+    showSampleLogo = false;
+    /* ------------------------------------------------*/
+
+
   /* Check the text color */
   changeColor(value) {
-    console.log('Headline color: ', this.headColor);
-    console.log('Subline color: ', this.subColor);
+    $('.copy-button').html('COPY CODE');
   }
 
   /* Check the button style */
   changeButton(event) {
-    console.log('Button type: ' , event.value);
+    $('.copy-button').html('COPY CODE');
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  keyEvent(event) {
+    $('.copy-button').html('COPY CODE');
   }
 
   /* Receive code from children */
@@ -75,15 +85,21 @@ export class AppComponent {
   onTabClick(e: MatTabChangeEvent) {
     switch (e.index) {
       case 0:
+        $('.copy-button').html('COPY CODE');
         this.OutputCode = this.previewCode.D1;
         this.tabClick = e.index;
+        $('.paragraph').hide();
+        $('.foreground').hide();
         console.log(e.index);
         break;
 
       case 1:
+        $('.copy-button').html('COPY CODE');
         this.OutputCode = this.previewCode.A1;
         this.tabClick = e.index;
         console.log(e.index);
+        $('.paragraph').show();
+        $('.foreground').show();
         break;
 
       default:
@@ -170,20 +186,25 @@ export class AppComponent {
 
   /* Copy code */
   copyCode() {
-    if (this.OutputCode == null) {
-      alert('Please click "GENERATE CODE" before copying');
-    }
-    let txtarea: any;
-    txtarea = document.createElement('textarea');
-    txtarea.style.position = 'fixed';
-    txtarea.style.left = '0';
-    txtarea.style.top = '0';
-    txtarea.style.opacity = '0';
-    txtarea.value = this.OutputCode;
-    document.body.appendChild(txtarea);
-    txtarea.focus();
-    txtarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(txtarea);
+      if (this.tabClick === 0 && this.data.isEmpty('D1')) {
+        alert('One-Third Banner (D1) form is empty! Please fill up the form!');
+      } else if (this.tabClick === 1 && this.data.isEmpty('A1')) {
+        alert('Hero Banner (A1) form is empty! Please fill up the form!');
+      } else {
+        let txtarea: any;
+        txtarea = document.createElement('textarea');
+        txtarea.style.position = 'fixed';
+        txtarea.style.left = '0';
+        txtarea.style.top = '0';
+        txtarea.style.opacity = '0';
+        txtarea.value = this.OutputCode;
+        document.body.appendChild(txtarea);
+        txtarea.focus();
+        txtarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(txtarea);
+        $('.copy-button').html('COPIED!');
+      }
   }
+
 }
