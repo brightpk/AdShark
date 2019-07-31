@@ -12,22 +12,28 @@ export class AppData {
 
   public isEmpty(ad): any {
     switch (ad) {
-      case 'D1': {
+      case 'D1':
         if (this.headline === '' && this.subline === '' && this.bgURL === '' &&
-          this.buttonTxt === '' && this.buttonURL === '' && this.logoURL === '') {
-          return true;
+            this.buttonTxt === '' && this.buttonURL === '' && this.logoURL === '') {
+              return true;
         }
         break;
-      }
 
-      case 'A1': {
+      case 'A1':
         if (this.headline === '' && this.subline === '' && this.bgURL === '' &&
-          this.buttonTxt === '' && this.buttonURL === '' && this.logoURL === '' &&
-          this.para === '' && this.fgURL === '') {
-          return true;
+            this.buttonTxt === '' && this.buttonURL === '' && this.logoURL === '' &&
+            this.para === '' && this.fgURL === '') {
+              return true;
         }
         break;
-      }
+
+      case 'email':
+        if (this.headline === '' && this.para === '' && this.bgURL === '' &&
+            this.buttonTxt === '' && this.buttonURL === '' && this.logoURL === '') {
+              return true;
+        }
+        break;
+
       default:
         return false;
     }

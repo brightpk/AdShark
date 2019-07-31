@@ -75,6 +75,12 @@ iframe {
   cursor:pointer;
   margin-right: 10px;
 }
+#icon-button:hover {
+  box-shadow: 0 0 0 4px rgba(255,255,255,1);
+  transition: background 0.2s, color 0.2s;
+	color: #267cdd;
+  opacity: .5;
+} 
 
 /* Space between radio */
 .mat-radio-button {
@@ -88,17 +94,34 @@ iframe {
   margin-left: 20px !important;
   margin-right: 10px !important;
 }
+.copy-button:hover {
+  background-color: rgb(228, 229, 230);
+	color: rgb(8, 164, 236);
+} 
 
 /* Show/Hide toggle switch */
 #show-hide-toggle {
   font-size: 10px;
   margin-left: 5px;
 }
-
 .mat-toggle {
   font-size: 10px;
   margin-left: 5px;
 }
+
+/* Checkbox no button */
+.mat-checkbox {
+  margin-left: 10px;
+}
+
+/* White transparent bg to a logo */
+img.bg-white-transparent {
+  background-color: rgba(255,255,255,0.9);
+  padding: 10px;
+}
+
+
+
 
 
 

@@ -1,6 +1,5 @@
-import { Component, Input, ViewEncapsulation, HostListener, Output, EventEmitter, DoCheck } from '@angular/core';
+import { Component, Input, ViewEncapsulation, Output, EventEmitter, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
-import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 
 declare const insertD1: any;
 declare var $: any;
@@ -18,8 +17,8 @@ export class PreviewD1Component implements DoCheck {
   @Input() altLogo: string;
   @Input() button: string;
   @Input() device: string;
-  @Input() headColor: string;
-  @Input() subColor: string;
+  @Input() disabledButton: boolean;
+  @Input() txtColor: any = [];
   @Output() D1Code = new EventEmitter();
   HTMLCode: string;
   showCode = false;
@@ -28,11 +27,6 @@ export class PreviewD1Component implements DoCheck {
     this.getHTML();
   }
 
-  // @HostListener('document:keyup', ['$event'])
-  // keyEvent(event) {
-  //   this.getHTML();
-  // }
-
   openWindow(data, event) {
     event.preventDefault();
     window.open(data.buttonURL);
@@ -40,10 +34,9 @@ export class PreviewD1Component implements DoCheck {
   }
 
   getHTML() {
-    // $('.resize-sensor').remove();
+    // $('.resize-sensor').remove(); // this.D1Code.emit(tmp);
     let tmp: string;
-    tmp = $('#D1').children().html();
-    // this.D1Code.emit(tmp);
+    tmp = $('.D1-template').children().html();
 
     try {
       /* Button Type */
@@ -57,7 +50,7 @@ export class PreviewD1Component implements DoCheck {
       /* Headline Color */
       if (tmp.includes('c-hero__title--')) {
         const str = tmp.substring(tmp.search('c-hero__title--'), tmp.indexOf('c-hero__title--') + 20);
-        const res = tmp.replace(str, 'c-hero__title--' + this.headColor + ' ');
+        const res = tmp.replace(str, 'c-hero__title--' + this.txtColor[0].color + ' ');
         tmp = res;
         this.HTMLCode = tmp;
       }
@@ -65,7 +58,7 @@ export class PreviewD1Component implements DoCheck {
       /* Subline Color */
       if (tmp.includes('c-hero__sub-title--')) {
         const str = tmp.substring(tmp.search('c-hero__sub-title--'), tmp.indexOf('c-hero__sub-title--') + 24);
-        const res = tmp.replace(str, 'c-hero__sub-title--' + this.subColor + ' ');
+        const res = tmp.replace(str, 'c-hero__sub-title--' + this.txtColor[1].color + ' ');
         tmp = res;
         this.HTMLCode = tmp;
       }

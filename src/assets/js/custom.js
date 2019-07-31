@@ -7,20 +7,28 @@
 
 /* D1 iframe insert Output */
 function insertD1(code, button) {
-  var D1HTML = $('.D1HTML');
-  D1HTML.contents().find('#D1').html(code);  
+  var D1iframe = $('.D1-iframe');
+  D1iframe.contents().find('#D1HTML').html(code);  
 }
 
 /* A1 iframe insert Output */
 function insertA1(code) {
-  var A1HTML = $('.A1HTML');
-  A1HTML.contents().find('#A1').html(code);
+  var A1iframe = $('.A1-iframe');
+  A1iframe.contents().find('#A1HTML').html(code);
 }
+
+function insertEmail(code) {
+  var emailiframe = $('.email-iframe');
+  emailiframe.contents().find('#emailHTML').html(code);
+}
+
 
 $(document).ready(function () {
   // start doc with hide para and foreground for D1
-  $('.paragraph').hide();
-  $('.foreground').hide();
+  $('.paragraph-form').hide();
+  $('.foreground-form').hide();
+
+  $('.selectpicker').selectpicker();
 
   //mobile
   $('.btn-mobile').on('click', function (e) {
