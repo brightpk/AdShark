@@ -28,8 +28,6 @@ $(document).ready(function () {
   $('.paragraph-form').hide();
   $('.foreground-form').hide();
 
-  $('.selectpicker').selectpicker();
-
   //mobile
   $('.btn-mobile').on('click', function (e) {
     $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-tablet').addClass("iframe-mobile");
