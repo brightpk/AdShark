@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-expand-sm bg-primary">
-  <a class="navbar-brand mb-0 text-light" href="#">{{title}}</a>
+  <a class="navbar-brand mb-0 text-light" href="#" ngbTooltip="Tooltip on bottom">{{title}}</a>
 </nav>
 
 <div class="splitexample" style="height: 1400px">
@@ -14,77 +14,116 @@
         </nav>
       </div>
 
-
       <div class="container col-xs-6">
         <!-- Headline -->
-        <label for="headline"><h5 class="text-primary">Headline</h5></label><br>
-        <mat-radio-group [(ngModel)]="headColor" (change)="changeColor($event)">
-          <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
-        </mat-radio-group>
-        <textarea class="form-control" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
-        <br>
-
-        <!-- subline -->
-        <label for="subheadline"><h5 class="text-primary">Sub-Headline</h5></label><br>
-        <mat-radio-group [(ngModel)]="subColor" (change)="changeColor($event)">
+        <div class="headline-form mb-3">
+          <label for="headline"><h5 class="text-primary">Headline</h5></label><br>
+          <mat-radio-group [(ngModel)]="txtColor[0].color" (change)="changeColor($event)">
             <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
           </mat-radio-group>
-        <textarea class="form-control" type="text" [(ngModel)]="data.subline" rows="3" placeholder="Text"></textarea>
-        <br>
+          <textarea class="form-control ad-field" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
+        </div>
+
+        <!-- subline -->
+        <div class="subheadline-form mb-3">
+          <label for="subheadline"><h5 class="text-primary">Sub-Headline</h5></label><br>
+          <mat-radio-group class="select-color-subline" [(ngModel)]="txtColor[1].color" (change)="changeColor($event)">
+            <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
+          </mat-radio-group>
+          <textarea class="form-control ad-field" type="text" [(ngModel)]="data.subline" rows="3" placeholder="Text"></textarea>
+        </div>
+         
 
         <!-- paragraph -->
-        <div class="paragraph">
-          <label for="para"><h5 class="text-primary">Paragraph</h5></label>
-          <textarea class="form-control" type="text" [(ngModel)]="data.para" rows="3" placeholder="Text"></textarea>
+        <div class="paragraph-form mb-3">
+          <label for="para"><h5 class="text-primary">Paragraph</h5></label><br>
+          <mat-radio-group class="select-color-para" [(ngModel)]="txtColor[2].color" (change)="changeColor($event)">
+              <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
+          </mat-radio-group>
+          <textarea class="form-control ad-field" type="text" [(ngModel)]="data.para" rows="3" placeholder="Text"></textarea>
         </div>
-        <br>
+         
 
         <!-- URL for background -->
-        <label for="Background"><h5 class="text-primary">Background</h5></label>
-        <input class="form-control" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
-        <!-- Sample background for D1 & A1 -->
-        <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleBg = !showSampleBg">
-          <u><b>Click for sample background URL</b></u></h6>
-        <div class="codeBox card card-body" *ngIf="showSampleBg" style="border-color: hotpink; border-width: thin; width: 400px;">
-          <h6 style="color:rgb(204, 3, 160);"><u>Background</u></h6>
-          <h6 class="text-dark"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg</h6>
-          <h6 class="text-dark"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg</h6>
+        <div class="background-form mb-3">
+          <label for="Background"><h5 class="text-primary">Background</h5></label>
+          <input class="form-control ad-field" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
+          <!-- Sample background for D1 & A1 -->
+          <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleBg = !showSampleBg">
+            <u><b>Click for sample background URL</b></u></h6>
+          <div class="codeBox card card-body" *ngIf="showSampleBg" style="border-color: hotpink; border-width: thin; width: 420px;">
+            <h6 style="color:rgb(204, 3, 160);"><u>Background</u></h6>
+            <h6 class="text-dark"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg</h6>
+            <h6 class="text-dark"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg</h6>
+            <h6 class="text-dark"><b>Email Banner: </b>https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg</h6>
+          </div>
         </div>
-        <br>
+         
 
         <!-- URL for foreground -->
-        <div class="foreground">
-          <label for="Foreground"><h5 class="text-primary">Foreground</h5></label>
-          <input class="form-control" type="text" [(ngModel)]="data.fgURL" placeholder="url" />
+        <div class="foreground-form mb-3">
+          <div class="foreground">
+            <label for="Foreground"><h5 class="text-primary">Foreground</h5></label>
+            <input class="form-control ad-field" type="text" [(ngModel)]="data.fgURL" placeholder="url" />
+          </div>
         </div>
-        <br>
+         
 
         <!-- URL for Logo -->
-        <label for="Logo"><h5 class="text-primary">Logo</h5></label>
-        <input class="form-control" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" placeholder="url" />
-        <!-- Sample Logo for D1 & A1 -->
-        <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleLogo = !showSampleLogo">
-          <u><b>Click for sample logo URL</b></u></h6>
-        <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: hotpink; border-width: thin; width: 400px;">
-          <h6 style="color:rgb(3, 147, 204);"><u>Logo</u></h6>
-          <h6 class="text-dark"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
-          <h6 class="text-dark"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png</h6>
+        <div class="logo-form mb-3">
+            <div class="logo-label"><label for="Logo"><h5 class="text-primary">Logo</h5></label></div>
+            <input class="form-control ad-field mb-2" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" placeholder="url" />
+
+          <!-- Button plus/minus -->
+          <div class="plus-minus-logoWidth">
+          <label for="plus-minus-logoWidth" id="logo-width-label"><h6 class="text-primary">Width:</h6></label>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-primary btn-sm btn-number" (click)="minusLogo($event)">
+                <span><i class="fas fa-minus"></i></span>
+              </button>
+            </span>
+          <input class="input-number input-width-logo" type="number" [(ngModel)]="logoWidth"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-primary btn-sm btn-number" (click)="plusLogo($event)">
+                <span><i class="fas fa-plus"></i></span>
+              </button>
+
+            </span>
+          </div>
+
+          <div class="checkbox-bg-white">
+            <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
+          </div>
+
+          <!-- Sample Logo for D1 & A1 -->
+          <br>
+          <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleLogo = !showSampleLogo">
+            <u><b>Click for sample logo URL</b></u></h6>
+          <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: hotpink; border-width: thin; width: 420px;">
+            <h6 style="color:rgb(3, 147, 204);"><u>Logo</u></h6>
+            <h6 class="text-dark"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
+            <h6 class="text-dark"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png</h6>
+            <h6 class="text-dark"><b>Email Banner:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
+          </div>
         </div>
-        <br>
+         
 
         <!-- URL / TYPE for button -->
-        <label for="Button"><h5 class="text-primary">Button</h5></label><br>
-        <select class="custom-select selectButton" style="width:200px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
-          <option value="" disabled selected>Select button</option>
-          <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
-        </select>
-        <input class="form-control" style="width:200px" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /><br>
-        <br>
-
-        <label for="linkOption"><h5 class="text-primary">Button Link</h5></label><br>
-        <!-- <label class="radio-inline"><input type="radio" name="optradio">Only Button</label>
-        <label class="radio-inline"><input type="radio" name="optradio">Entire Ad</label> -->
-        <input class="form-control" type="text" [(ngModel)]="data.buttonURL" placeholder="url" /><br>
+        <div class="button-form mb-3">
+          <div class="button-link-form mb-3">
+            <label for="linkOption"><h5 class="text-primary">Button Link</h5></label> 
+            <input [disabled]="disabledButton" class="form-control ad-field" type="text" [(ngModel)]="data.buttonURL" placeholder="url" />
+          </div>
+          
+          <label for="Button"><h5 class="text-primary">Button</h5></label><br>
+          <select [disabled]="disabledButton" class="custom-select selectpicker selectButton mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
+            <option value="" disabled selected>Select button</option>
+            <option value="none">None</option>
+            <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
+          </select> 
+          <mat-checkbox (change)="disabledButton=!disabledButton" [checked]="disabledButton">No button</mat-checkbox>
+          <input [disabled]="disabledButton" class="form-control" style="width:300px" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /> 
+        </div>
 
 
       </div>
@@ -108,18 +147,23 @@
       <div class="mat-app-background basic-container">
         <mat-tab-group class="" (selectedTabChange)="onTabClick($event)" (click)="onTabClick($event)">
           <mat-tab label="One-Third Banner">
-            <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [headColor]="headColor" [subColor]="subColor" (D1Code)="receiveCode('D1', $event)"></app-preview-D1>
+            <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" [logoWidth]="logoWidth" [disabledButton]="disabledButton" (D1Code)="receiveCode('D1', $event)"></app-preview-D1>
           </mat-tab>
           <mat-tab label="Hero Banner">
-            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [headColor]="headColor" [subColor]="subColor" (A1Code)="receiveCode('A1', $event)"></app-preview-A1>
+            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" [logoWidth]="logoWidth" (A1Code)="receiveCode('A1', $event)"></app-preview-A1>
           </mat-tab>
-          <mat-tab label="Email"> Content 3 </mat-tab>
+          <mat-tab label="Email"> 
+            <app-preview-email [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" (emailCode)="receiveCode('email', $event)"></app-preview-email>
+          </mat-tab>
         </mat-tab-group>
       </div>
       <!-- </div> -->
-      <br>
+       
 
-  <button mat-flat-button class="copy-button" (click)="showCode=true" (click)="copyCode()">COPY CODE</button>
+  <button mat-flat-button class="copy-button" (click)="showCode=true" (click)="copyCode()">
+    <span><i class="fas fa-code"></i></span>
+    <span class="copy-btn-txt"> Copy Code</span>
+  </button>
   <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
   <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Show</b></span>
   <ng-template #hideCode><span id="show-hide-toggle">Hide</span></ng-template>
