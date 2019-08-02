@@ -121,6 +121,9 @@ iframe {
   transition: background 0.2s, color 0.2s;
   opacity: .5;
 } 
+li#nav-icon .current {
+  color: #ff4081;
+}
 
 /* Space between radio */
 .mat-radio-button {
