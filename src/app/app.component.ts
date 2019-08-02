@@ -22,6 +22,7 @@ export class AppComponent {
   OutputCode: string;
   showCode = true;
   tabClick = 0;
+  logoWidth = 160;
   disabledButton = false;
   whiteBGLogo = false;
   previewCode: any = [];
@@ -46,35 +47,47 @@ export class AppComponent {
 
   @HostListener('document:keyup', ['$event'])
   keyEvent(event) {
-    $('.copy-button').html('COPY CODE');
+    $('.copy-btn-txt').html(' Copy Code');
     this.copyButtonReact();
+    console.log(this.logoWidth);
   }
 
   /* Check the text color */
   changeColor(value) {
-    $('.copy-button').html('COPY CODE');
+    $('.copy-btn-txt').html(' Copy Code');
     this.copyButtonReact();
   }
 
   /* Check the button style */
   changeButton(event) {
-    $('.copy-button').html('COPY CODE');
+    $('.copy-btn-txt').html(' Copy Code');
     this.copyButtonReact();
+  }
+
+  minusLogo(e) {
+    this.logoWidth -= 5;
+    console.log(this.logoWidth);
+  }
+
+  plusLogo(e) {
+    this.logoWidth += 5;
+    console.log(this.logoWidth);
+
   }
 
   /* Add a white transparent bg to a logo */
   addWhiteBgLogo() {
-    this.whiteBGLogo = ! this.whiteBGLogo;
-    console.log(this.whiteBGLogo);
+    this.whiteBGLogo = !this.whiteBGLogo;
 
     switch (this.whiteBGLogo) {
       case true:
-        $('#D1').find('.w-50 pb-2').addClass('bg-white-transparent');
-        console.log($('#D1').find('.pb-2').contents().html());
+        $('.D1-template').find('img.w-50').addClass('bg-white-transparent');
+        $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
         break;
 
       case false:
-        $('#D1').find('.w-50 pb-2').removeClass('bg-white-transparent');
+        $('.D1-template').find('img.w-50').removeClass('bg-white-transparent');
+        $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
         break;
 
     }
@@ -107,7 +120,8 @@ export class AppComponent {
   onTabClick(e: MatTabChangeEvent) {
     switch (e.index) {
       case 0:
-        $('.copy-button').html('COPY CODE');
+        // $('.copy-button').html('COPY CODE');
+        $('.copy-btn-txt').html(' Copy Code');
         this.copyButtonReact();
         this.listofColor[2] = 'white';
         this.OutputCode = this.previewCode.D1;
@@ -120,7 +134,8 @@ export class AppComponent {
         break;
 
       case 1:
-        $('.copy-button').html('COPY CODE');
+        // $('.copy-button').html('COPY CODE');
+        $('.copy-btn-txt').html(' Copy Code');
         this.copyButtonReact();
         this.listofColor[2] = 'white';
         this.OutputCode = this.previewCode.A1;
@@ -133,7 +148,8 @@ export class AppComponent {
         break;
 
       case 2:
-        $('.copy-button').html('COPY CODE');
+        // $('.copy-button').html('COPY CODE');
+        $('.copy-btn-txt').html(' Copy Code');
         this.copyButtonReact();
         $('iframe').css('height', 520);
         this.listofColor[2] = 'red';
@@ -265,30 +281,41 @@ export class AppComponent {
         txtarea.select();
         document.execCommand('copy');
         document.body.removeChild(txtarea);
-        $('.copy-button').html('COPIED!');
+        $('.copy-btn-txt').html(' Copied!');
         this.copyButtonReact();
       }
   }
 
   /* Change color when COPIED! is completed */
   copyButtonReact() {
-    if ($('.copy-button').html() === 'COPIED!') {
+    if ($('.copy-btn-txt').html() === ' Copied!') {
+      $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
+      $('.fa-code').css('color' , 'rgb(134, 134, 134)');
+      $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
+
       $('.copy-button').hover(() => {
         $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-        $('.copy-button').css('color' , 'rgb(8, 164, 236)');
-      }, () => {
-        $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-        $('.copy-button').css('color' , 'rgb(8, 164, 236)');
+        $('.fa-code').css('color' , 'rgb(134, 134, 134)');
+        $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
+      // }, () => {
+      //   $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
+      //   $('.fa-code').css('color' , 'rgb(134, 134, 134)');
+      //   $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
       });
-    } else if ($('.copy-button').html() === 'COPY CODE') {
+
+    } else if ($('.copy-btn-txt').html() === ' Copy Code') {
       $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
-      $('.copy-button').css('color' , 'white');
+      $('.fa-code').css('color' , 'white');
+      $('.copy-btn-txt').css('color' , 'white');
+
       $('.copy-button').hover(() => {
         $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-        $('.copy-button').css('color', 'rgb(8, 164, 236)');
+        $('.fa-code').css('color', 'rgb(134, 134, 134)');
+        $('.copy-btn-txt').css('color', 'rgb(134, 134, 134)');
       }, () => {
         $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
-        $('.copy-button').css('color' , 'white');
+        $('.fa-code').css('color' , 'white');
+        $('.copy-btn-txt').css('color' , 'white');
       });
     }
   }

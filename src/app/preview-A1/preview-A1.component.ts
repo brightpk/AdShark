@@ -16,6 +16,7 @@ export class PreviewA1Component implements DoCheck {
   @Input() altLogo: string;
   @Input() button: string;
   @Input() device: string;
+  @Input() logoWidth: string;
   @Input() txtColor: any = [];
   @Output() A1Code = new EventEmitter();
   HTMLCode: string;

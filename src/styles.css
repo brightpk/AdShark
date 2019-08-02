@@ -20,13 +20,54 @@ input[type="radio"] {
   display: inline-block;
 }
 
+/* Style each field */
 .form-control {
   white-space: pre-line
 }
+.ad-field {
+  width: 470px;
+}
+/* Style for logo field */
+.logo-form .ad-field {
+  width: 220px;
+  float: left;
+}
+#logo-width-label {
+  margin-left: 44px;
+  margin-right: 20px;
+}
 
+/* Checbox bg-white-transparent */
+.checkbox-bg-white {
+  position: absolute;
+}
+
+/* Plue-Minus width Logo */
+.input-width-logo {
+  width: 60px;
+  height: 35px;
+  text-align: center;
+  font-size: small;
+  text-align: center;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 1rem;
+}
+
+/* Each button on the app */
 [type=button] {
   /* -webkit-appearance: button; */
-  margin-right: 10px;
+  margin-right: 0px;
+}
+
+/* Hide input number's spin box */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 /* space between icons*/
@@ -78,7 +119,6 @@ iframe {
 #icon-button:hover {
   box-shadow: 0 0 0 4px rgba(255,255,255,1);
   transition: background 0.2s, color 0.2s;
-	color: #267cdd;
   opacity: .5;
 } 
 
@@ -87,7 +127,7 @@ iframe {
   margin-right: 10px;
 }
 
-/* Copy button rgb(79, 169, 230) rgb(104, 207, 117) */
+/* Copy button rgb(79, 169, 230) rgb(104, 207, 117)  */
 .copy-button {
   background-color: rgb(8, 164, 236);
   color: white;
@@ -96,7 +136,7 @@ iframe {
 }
 .copy-button:hover {
   background-color: rgb(228, 229, 230);
-	color: rgb(8, 164, 236);
+	color: rgb(134, 134, 134);
 } 
 
 /* Show/Hide toggle switch */
@@ -114,16 +154,12 @@ iframe {
   margin-left: 10px;
 }
 
+
 /* White transparent bg to a logo */
-img.bg-white-transparent {
+/* img.bg-white-transparent {
   background-color: rgba(255,255,255,0.9);
   padding: 10px;
-}
-
-
-
-
-
+} */
 
 
 /* element queries (Sample) */

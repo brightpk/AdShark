@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-expand-sm bg-primary">
-  <a class="navbar-brand mb-0 text-light" href="#">{{title}}</a>
+  <a class="navbar-brand mb-0 text-light" href="#" ngbTooltip="Tooltip on bottom">{{title}}</a>
 </nav>
 
 <div class="splitexample" style="height: 1400px">
@@ -21,7 +21,7 @@
           <mat-radio-group [(ngModel)]="txtColor[0].color" (change)="changeColor($event)">
             <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
           </mat-radio-group>
-          <textarea class="form-control" type="text" style="width:470px" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
+          <textarea class="form-control ad-field" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
         </div>
 
         <!-- subline -->
@@ -30,7 +30,7 @@
           <mat-radio-group class="select-color-subline" [(ngModel)]="txtColor[1].color" (change)="changeColor($event)">
             <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
           </mat-radio-group>
-          <textarea class="form-control" type="text" style="width:470px" [(ngModel)]="data.subline" rows="3" placeholder="Text"></textarea>
+          <textarea class="form-control ad-field" type="text" [(ngModel)]="data.subline" rows="3" placeholder="Text"></textarea>
         </div>
          
 
@@ -40,16 +40,16 @@
           <mat-radio-group class="select-color-para" [(ngModel)]="txtColor[2].color" (change)="changeColor($event)">
               <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
           </mat-radio-group>
-          <textarea class="form-control" type="text" style="width:470px" [(ngModel)]="data.para" rows="3" placeholder="Text"></textarea>
+          <textarea class="form-control ad-field" type="text" [(ngModel)]="data.para" rows="3" placeholder="Text"></textarea>
         </div>
          
 
         <!-- URL for background -->
         <div class="background-form mb-3">
           <label for="Background"><h5 class="text-primary">Background</h5></label>
-          <input class="form-control" type="text" style="width:470px" [(ngModel)]="data.bgURL" placeholder="url" />
+          <input class="form-control ad-field" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
           <!-- Sample background for D1 & A1 -->
-          <h6 style="color:rgb(70, 170, 84); cursor:pointer; text-align: right" (click)="showSampleBg = !showSampleBg">
+          <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleBg = !showSampleBg">
             <u><b>Click for sample background URL</b></u></h6>
           <div class="codeBox card card-body" *ngIf="showSampleBg" style="border-color: hotpink; border-width: thin; width: 420px;">
             <h6 style="color:rgb(204, 3, 160);"><u>Background</u></h6>
@@ -64,18 +64,40 @@
         <div class="foreground-form mb-3">
           <div class="foreground">
             <label for="Foreground"><h5 class="text-primary">Foreground</h5></label>
-            <input class="form-control" type="text" style="width:470px" [(ngModel)]="data.fgURL" placeholder="url" />
+            <input class="form-control ad-field" type="text" [(ngModel)]="data.fgURL" placeholder="url" />
           </div>
         </div>
          
 
         <!-- URL for Logo -->
         <div class="logo-form mb-3">
-          <label for="Logo"><h5 class="text-primary">Logo</h5></label>
-          <input class="form-control mb-2" type="text" style="width:470px" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" placeholder="url" /> 
-          <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
+            <div class="logo-label"><label for="Logo"><h5 class="text-primary">Logo</h5></label></div>
+            <input class="form-control ad-field mb-2" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" placeholder="url" />
+
+          <!-- Button plus/minus -->
+          <div class="plus-minus-logoWidth">
+          <label for="plus-minus-logoWidth" id="logo-width-label"><h6 class="text-primary">Width:</h6></label>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-primary btn-sm btn-number" (click)="minusLogo($event)">
+                <span><i class="fas fa-minus"></i></span>
+              </button>
+            </span>
+          <input class="input-number input-width-logo" type="number" [(ngModel)]="logoWidth"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-primary btn-sm btn-number" (click)="plusLogo($event)">
+                <span><i class="fas fa-plus"></i></span>
+              </button>
+
+            </span>
+          </div>
+
+          <div class="checkbox-bg-white">
+            <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
+          </div>
+
           <!-- Sample Logo for D1 & A1 -->
-          <h6 style="color:rgb(70, 170, 84); cursor:pointer; text-align: right" (click)="showSampleLogo = !showSampleLogo">
+          <br>
+          <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleLogo = !showSampleLogo">
             <u><b>Click for sample logo URL</b></u></h6>
           <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: hotpink; border-width: thin; width: 420px;">
             <h6 style="color:rgb(3, 147, 204);"><u>Logo</u></h6>
@@ -90,7 +112,7 @@
         <div class="button-form mb-3">
           <div class="button-link-form mb-3">
             <label for="linkOption"><h5 class="text-primary">Button Link</h5></label> 
-            <input [disabled]="disabledButton" class="form-control" type="text" style="width:470px" [(ngModel)]="data.buttonURL" placeholder="url" />
+            <input [disabled]="disabledButton" class="form-control ad-field" type="text" [(ngModel)]="data.buttonURL" placeholder="url" />
           </div>
           
           <label for="Button"><h5 class="text-primary">Button</h5></label><br>
@@ -99,14 +121,6 @@
             <option value="none">None</option>
             <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
           </select> 
-          <!-- <mat-form-field>
-              <mat-label>Select Button</mat-label>
-              <mat-select [(ngModel)]="button">
-                <mat-option *ngFor="let option of buttonOptions" [value]="option.type">
-                    {{option.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> -->
           <mat-checkbox (change)="disabledButton=!disabledButton" [checked]="disabledButton">No button</mat-checkbox>
           <input [disabled]="disabledButton" class="form-control" style="width:300px" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /> 
         </div>
@@ -136,7 +150,7 @@
             <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" [disabledButton]="disabledButton" (D1Code)="receiveCode('D1', $event)"></app-preview-D1>
           </mat-tab>
           <mat-tab label="Hero Banner">
-            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" (A1Code)="receiveCode('A1', $event)"></app-preview-A1>
+            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" [logoWidth]="logoWidth" (A1Code)="receiveCode('A1', $event)"></app-preview-A1>
           </mat-tab>
           <mat-tab label="Email"> 
             <app-preview-email [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" (emailCode)="receiveCode('email', $event)"></app-preview-email>
@@ -146,7 +160,10 @@
       <!-- </div> -->
        
 
-  <button mat-flat-button class="copy-button" (click)="showCode=true" (click)="copyCode()">COPY CODE</button>
+  <button mat-flat-button class="copy-button" (click)="showCode=true" (click)="copyCode()">
+    <span><i class="fas fa-code"></i></span>
+    <span class="copy-btn-txt"> Copy Code</span>
+  </button>
   <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
   <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Show</b></span>
   <ng-template #hideCode><span id="show-hide-toggle">Hide</span></ng-template>
