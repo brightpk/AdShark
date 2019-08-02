@@ -81,12 +81,12 @@ export class AppComponent {
 
     switch (this.whiteBGLogo) {
       case true:
-        $('.D1-template').find('img.w-50').addClass('bg-white-transparent');
+        $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
         $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
         break;
 
       case false:
-        $('.D1-template').find('img.w-50').removeClass('bg-white-transparent');
+        $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
         $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
         break;
 
