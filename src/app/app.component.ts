@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AppData } from './AppData';
 import { ResizedEvent } from 'angular-resize-event';
 import { MatTabChangeEvent } from '@angular/material';
@@ -14,7 +14,7 @@ declare var $: any;
   styleUrls: ['./app.component.css'],
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'AdShark';
   data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around inside ads
   altLogo = ''; button = ''; device = '';
@@ -22,7 +22,7 @@ export class AppComponent {
   OutputCode: string;
   showCode = true;
   tabClick = 0;
-  logoWidth = 160;
+  logoWidth = 150;
   disabledButton = false;
   whiteBGLogo = false;
   previewCode: any = [];
@@ -43,6 +43,11 @@ export class AppComponent {
     /* -------- Show and Hide Sample bg and logo -----*/
     showSampleBg = false;
     showSampleLogo = false;
+
+  ngOnInit(): void {
+    $('.silverpop-button').hide();
+  }
+
     onClickSample(field, ad) {
       if (field === 'bg') {
         if (ad === 'D1') {
@@ -104,28 +109,19 @@ export class AppComponent {
   changeColor(value) {
     $('.copy-btn-txt').html(' Copy Code');
     this.copyButtonReact();
-
-    if (this.tabClick === 2) {
-    //   switch (this.txtColor[0]) {
-    //     case this.txtColor[0]:
-    //       if (this.txtColor[0].color === 'blue') {
-    //         this.txtColor[0].color = '#005da3';
-    //       } else if (this.txtColor[0].color === 'black') {
-    //         this.txtColor[0].color = '#1e1e1e';
-    //       } else if (this.txtColor[0].color === 'red') {
-    //         this.txtColor[0].color = '#ed1a3b';
-    //       }
-    //       console.log('TxtColor: ', this.txtColor[0]);
-    //   }
-    // }
-      console.log('TxtColor: ', this.txtColor[0]);
-    }
   }
 
   /* Check the button style */
   changeButton(event) {
     $('.copy-btn-txt').html(' Copy Code');
     this.copyButtonReact();
+    console.log(this.button);
+
+    if (this.button === 'none') {
+      this.disabledButton = true;
+    } else {
+      this.disabledButton = false;
+    }
   }
 
   minusLogo(e) {
@@ -192,8 +188,10 @@ export class AppComponent {
         console.log(e.index);
         $('.subheadline-form').show();
         $('.button-link-form').show();
+        $('.impex-button').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
+        $('.silverpop-button').hide();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -212,8 +210,10 @@ export class AppComponent {
         console.log(e.index);
         $('.subheadline-form').show();
         $('.button-link-form').show();
+        $('.impex-button').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
+        $('.silverpop-button').hide();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -232,9 +232,11 @@ export class AppComponent {
         this.tabClick = e.index;
         console.log(e.index);
         $('.paragraph-form').show();
+        $('.silverpop-button').show();
         $('.subheadline-form').hide();
         $('.button-link-form').hide();
         $('.foreground-form').hide();
+        $('.impex-button').hide();
 
         if (this.txtColor[0].color === 'white') {
           this.txtColor[0].color = 'red';

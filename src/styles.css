@@ -135,13 +135,23 @@ li#nav-icon .current {
   background-color: rgb(8, 164, 236);
   color: white;
   margin-left: 20px !important;
-  margin-right: 10px !important;
+  /* margin-right: 10px !important; */
 } 
 /* Previous color: background-color: rgb(228, 229, 230); color: rgb(134, 134, 134); */
 .copy-button:hover {
   background-color: rgb(3, 125, 182);
 	color: white;
-} 
+}
+.impex-button {
+  background-color:lightblue;
+  color: white;
+  margin-left: 10px !important;
+}
+.silverpop-button {
+  background-color:lightblue;
+  color: white;
+  margin-left: 10px !important;
+}
 
 /* Show/Hide toggle switch */
 #show-hide-toggle {

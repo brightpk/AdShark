@@ -52,7 +52,8 @@ export class PreviewEmailComponent implements DoCheck {
         tmp = res;
         this.HTMLCode = tmp;
       }
-      this.rgbToHex(tmp);
+
+      tmp = this.rgbToHex(tmp);
       this.HTMLCode = tmp;
       this.emailCode.emit(tmp);
       insertEmail(this.HTMLCode);
@@ -99,15 +100,31 @@ export class PreviewEmailComponent implements DoCheck {
   }
 
   rgbToHex(output) {
-    // if (output.includes('rgb(255, 255, 255)')) {
-    //   // startEnd = output.substring( output.indexOf('rgb(255, 255, 255') - 131, output.indexOf('rgb(255, 255, 255') + 18 );
-    //   // console.log('Before pt-20 pb-8: ', startEnd);
-    //   // const before = output.substring( output.indexOf('rgb(255, 255, 255'), output.indexOf('rgb(255, 255, 255') + 18 );
-    //   // startEnd = output.replace(before, '#FFFFFF');
-    //   // console.log('After pt-20 pb-8: ', startEnd.substring( startEnd.search('pt-20') - 30, startEnd.indexOf('rgb(') + 36 ));
-    //   console.log('while loop: ', cnt++);
-    //   break;
-    // }
+    let res: string;
+    for (let i = 0; i < 4; i++) {
+      const hdTmp = output.substring( output.indexOf('headline') + 279, output.indexOf('headline') + 296 );
+      // console.log('Headline Color', hdTmp);
+
+      const paraTmp = output.substring( output.indexOf('p-medium') + 131, output.indexOf('p-medium') + 148 );
+      // console.log('Paragraph Color:', paraTmp);
+
+      // console.log(hdTmp.includes('rgb(0, 93, 163)'));
+      // console.log(hdTmp.includes('rgb(30, 30, 30)'));
+      // console.log(hdTmp.includes('rgb(237, 26, 59)'));
+
+      if (hdTmp.includes('rgb(0, 93, 163)')) {
+        res = output.replace(hdTmp, '#005da3; ');
+        // console.log('HEAD:', res.substring( res.indexOf('headline') + 279, res.indexOf('headline') + 296 ));
+      } else if (hdTmp.includes('rgb(30, 30, 30)')) {
+        res = output.replace(hdTmp, '#1e1e1e; ');
+        // console.log('HEAD:', res.substring( res.indexOf('headline') + 279, res.indexOf('headline') + 296 ));
+      } else if (hdTmp.includes('rgb(237, 26, 59)')) {
+        res = output.replace(hdTmp, '#ed1a3b;');
+        // console.log('HEAD:', res.substring( res.indexOf('headline') + 279, res.indexOf('headline') + 296 ));
+      }
+
+      return res;
+    }
   }
 
 

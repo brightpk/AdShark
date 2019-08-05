@@ -1,6 +1,8 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-expand-sm bg-primary">
-  <a class="navbar-brand mb-0 text-light" href="#" ngbTooltip="Tooltip on bottom">{{title}}</a>
+  <a class="navbar-brand mb-0 text-light" href="#" ngbTooltip="Tooltip on bottom">
+    <img src="https://images.americanhotel.com/images/banners/adshark_logo_white.png" style="width:100px">
+  </a>
 </nav>
 
 <div class="splitexample" style="height: 1400px">
@@ -117,12 +119,12 @@
           </div>
           
           <label for="Button"><h5 class="text-primary">Button</h5></label><br>
-          <select [disabled]="disabledButton" class="custom-select selectpicker selectButton mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
+          <select class="custom-select selectpicker selectButton mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
             <option value="" disabled selected>Select button</option>
             <option value="none">None</option>
             <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
           </select> 
-          <mat-checkbox (change)="disabledButton=!disabledButton" [checked]="disabledButton">No button</mat-checkbox>
+          <!-- <mat-checkbox (change)="disabledButton=!disabledButton" [checked]="disabledButton">No button</mat-checkbox> -->
           <input [disabled]="disabledButton" class="form-control" style="width:300px" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /> 
         </div>
 
@@ -165,6 +167,8 @@
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
   </button>
+  <button mat-flat-button class="impex-button" disabled="false">Download impex</button>
+  <button mat-flat-button class="silverpop-button" disabled="false">Copy Silverpop code</button>
   <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
   <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Hide</b></span>
   <ng-template #hideCode><span id="show-hide-toggle">Show</span></ng-template>
