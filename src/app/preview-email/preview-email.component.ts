@@ -18,9 +18,16 @@ export class PreviewEmailComponent implements DoCheck {
   @Output() emailCode = new EventEmitter();
   HTMLCode: string;
   showCode = false;
-  headlineColor = '';
+  previousHeadColor = '';
+  previousParaColor = '';
 
   ngDoCheck() {
+    if (this.txtColor[0].color !== this.previousHeadColor) {
+      this.getHeadColor(this.txtColor[0].color);
+    }
+    if (this.txtColor[2].color !== this.previousParaColor) {
+      this.getParaColor(this.txtColor[2].color);
+    }
     this.getHTML();
   }
 
@@ -34,8 +41,8 @@ export class PreviewEmailComponent implements DoCheck {
     // tmp = $('div.preheader').parent().html();
     // tmp = $('div.preheader').parents('div#email').html();
     tmp = $('.email-template').html();
-    this.getHEXColor(this.txtColor[0].color);
-    // $('.headline').css('color', this.txtColor[0].color);
+    this.getHeadColor(this.txtColor[0].color);
+    this.getParaColor(this.txtColor[2].color);
 
     try {
 
@@ -45,7 +52,7 @@ export class PreviewEmailComponent implements DoCheck {
         tmp = res;
         this.HTMLCode = tmp;
       }
-
+      this.rgbToHex(tmp);
       this.HTMLCode = tmp;
       this.emailCode.emit(tmp);
       insertEmail(this.HTMLCode);
@@ -54,25 +61,54 @@ export class PreviewEmailComponent implements DoCheck {
 
   }
 
-  getHEXColor(color) {
+  /* Headline color */
+  getHeadColor(color) {
     switch (color) {
       case 'blue':
-        $('td').css('color', '#005da3');
-        console.log('#005da3');
-        this.headlineColor = '#005da3';
+        $('td').find('.headline').css('color', '#005da3'); // rgb(0, 93, 163)
+        this.previousHeadColor = 'blue';
         break;
       case 'black':
-        $('td').css('color', '#1e1e1e');
-        console.log('#1e1e1e');
-        this.headlineColor = '#1e1e1e';
+        $('td').find('.headline').css('color', '#1e1e1e'); // rgb(30, 30, 30)
+        this.previousHeadColor = 'black';
         break;
       case 'red':
-        $('td').css('color', '#ed1a3b');
-        console.log('#ed1a3b');
-        this.headlineColor = '#ed1a3b';
+        $('td').find('.headline').css('color', '#ed1a3b'); // rgb(237, 26, 59)
+        this.previousHeadColor = 'red';
         break;
     }
 
   }
+
+  /* Paragraph color */
+  getParaColor(color) {
+    switch (color) {
+      case 'blue':
+        $('td').find('.p-medium').css('color', '#005da3');
+        this.previousParaColor = 'blue';
+        break;
+      case 'black':
+        $('td').find('.p-medium').css('color', '#1e1e1e');
+        this.previousParaColor = 'black';
+        break;
+      case 'red':
+        $('td').find('.p-medium').css('color', '#ed1a3b');
+        this.previousParaColor = 'red';
+        break;
+    }
+  }
+
+  rgbToHex(output) {
+    // if (output.includes('rgb(255, 255, 255)')) {
+    //   // startEnd = output.substring( output.indexOf('rgb(255, 255, 255') - 131, output.indexOf('rgb(255, 255, 255') + 18 );
+    //   // console.log('Before pt-20 pb-8: ', startEnd);
+    //   // const before = output.substring( output.indexOf('rgb(255, 255, 255'), output.indexOf('rgb(255, 255, 255') + 18 );
+    //   // startEnd = output.replace(before, '#FFFFFF');
+    //   // console.log('After pt-20 pb-8: ', startEnd.substring( startEnd.search('pt-20') - 30, startEnd.indexOf('rgb(') + 36 ));
+    //   console.log('while loop: ', cnt++);
+    //   break;
+    // }
+  }
+
 
 }

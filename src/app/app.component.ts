@@ -197,6 +197,7 @@ export class AppComponent {
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
+          console.log('if red, change to wht');
         }
 
         break;
@@ -216,6 +217,7 @@ export class AppComponent {
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
+          console.log('if red, change to wht');
         }
 
         break;
