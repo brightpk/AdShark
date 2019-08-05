@@ -18,6 +18,7 @@ export class PreviewEmailComponent implements DoCheck {
   @Output() emailCode = new EventEmitter();
   HTMLCode: string;
   showCode = false;
+  headlineColor = '';
 
   ngDoCheck() {
     this.getHTML();
