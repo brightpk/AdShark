@@ -18,6 +18,7 @@ export class PreviewEmailComponent implements DoCheck {
   @Output() emailCode = new EventEmitter();
   HTMLCode: string;
   showCode = false;
+  headlineColor = '';
 
   ngDoCheck() {
     this.getHTML();
@@ -33,6 +34,8 @@ export class PreviewEmailComponent implements DoCheck {
     // tmp = $('div.preheader').parent().html();
     // tmp = $('div.preheader').parents('div#email').html();
     tmp = $('.email-template').html();
+    this.getHEXColor(this.txtColor[0].color);
+    // $('.headline').css('color', this.txtColor[0].color);
 
     try {
 
@@ -43,26 +46,32 @@ export class PreviewEmailComponent implements DoCheck {
         this.HTMLCode = tmp;
       }
 
-      if (tmp.includes('c-hero__title--')) {
-        const str = tmp.substring(tmp.search('c-hero__title--'), tmp.indexOf('c-hero__title--') + 20);
-        const res = tmp.replace(str, 'c-hero__title--' + this.txtColor[0].color + ' ');
-        tmp = res;
-        this.HTMLCode = tmp;
-      }
-
-      /* Subline Color */
-      if (tmp.includes('c-hero__sub-title--')) {
-        const str = tmp.substring(tmp.search('c-hero__sub-title--'), tmp.indexOf('c-hero__sub-title--') + 24);
-        const res = tmp.replace(str, 'c-hero__sub-title--' + this.txtColor[1].color + ' ');
-        tmp = res;
-        this.HTMLCode = tmp;
-      }
-
       this.HTMLCode = tmp;
       this.emailCode.emit(tmp);
       insertEmail(this.HTMLCode);
 
     } catch (err) { }
+
+  }
+
+  getHEXColor(color) {
+    switch (color) {
+      case 'blue':
+        $('td').css('color', '#005da3');
+        console.log('#005da3');
+        this.headlineColor = '#005da3';
+        break;
+      case 'black':
+        $('td').css('color', '#1e1e1e');
+        console.log('#1e1e1e');
+        this.headlineColor = '#1e1e1e';
+        break;
+      case 'red':
+        $('td').css('color', '#ed1a3b');
+        console.log('#ed1a3b');
+        this.headlineColor = '#ed1a3b';
+        break;
+    }
 
   }
 

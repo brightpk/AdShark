@@ -43,7 +43,55 @@ export class AppComponent {
     /* -------- Show and Hide Sample bg and logo -----*/
     showSampleBg = false;
     showSampleLogo = false;
+    onClickSample(field, ad) {
+      if (field === 'bg') {
+        if (ad === 'D1') {
+          this.data.bgURL = 'https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg';
+        } else if (ad === 'A1') {
+          this.data.bgURL = 'https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg';
+        } else { this.data.bgURL = 'https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg'; }
+      } else if (field === 'logo') {
+        if (ad === 'D1') {
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg';
+        } else if (ad === 'A1') {
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png';
+        } else { this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; }
+      }
+    }
+
+    bgBorder(ad) {
+      if (ad === 'D1') {
+        $('.sample-bg-D1').css('border', 'groove');
+        $('.sample-bg-A1').css('border', 'none');
+        $('.sample-bg-email').css('border', 'none');
+      } else if (ad === 'A1') {
+        $('.sample-bg-D1').css('border', 'none');
+        $('.sample-bg-A1').css('border', 'groove');
+        $('.sample-bg-email').css('border', 'none');
+      } else if (ad === 'email') {
+        $('.sample-bg-D1').css('border', 'none');
+        $('.sample-bg-A1').css('border', 'none');
+        $('.sample-bg-email').css('border', 'groove');
+      }
+    }
+
+    logoBorder(ad) {
+      if (ad === 'D1') {
+        $('.sample-logo-D1').css('border', 'groove');
+        $('.sample-logo-A1').css('border', 'none');
+        $('.sample-logo-email').css('border', 'none');
+      } else if (ad === 'A1') {
+        $('.sample-logo-D1').css('border', 'none');
+        $('.sample-logo-A1').css('border', 'groove');
+        $('.sample-logo-email').css('border', 'none');
+      } else if (ad === 'email') {
+        $('.sample-logo-D1').css('border', 'none');
+        $('.sample-logo-A1').css('border', 'none');
+        $('.sample-logo-email').css('border', 'groove');
+      }
+    }
     /* ------------------------------------------------*/
+
 
   @HostListener('document:keyup', ['$event'])
   keyEvent(event) {
@@ -56,6 +104,22 @@ export class AppComponent {
   changeColor(value) {
     $('.copy-btn-txt').html(' Copy Code');
     this.copyButtonReact();
+
+    if (this.tabClick === 2) {
+    //   switch (this.txtColor[0]) {
+    //     case this.txtColor[0]:
+    //       if (this.txtColor[0].color === 'blue') {
+    //         this.txtColor[0].color = '#005da3';
+    //       } else if (this.txtColor[0].color === 'black') {
+    //         this.txtColor[0].color = '#1e1e1e';
+    //       } else if (this.txtColor[0].color === 'red') {
+    //         this.txtColor[0].color = '#ed1a3b';
+    //       }
+    //       console.log('TxtColor: ', this.txtColor[0]);
+    //   }
+    // }
+      console.log('TxtColor: ', this.txtColor[0]);
+    }
   }
 
   /* Check the button style */
@@ -72,7 +136,6 @@ export class AppComponent {
   plusLogo(e) {
     this.logoWidth += 5;
     console.log(this.logoWidth);
-
   }
 
   /* Add a white transparent bg to a logo */
@@ -131,6 +194,11 @@ export class AppComponent {
         $('.button-link-form').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
+
+        if (this.txtColor[0].color === 'red') {
+          this.txtColor[0].color = 'white';
+        }
+
         break;
 
       case 1:
@@ -143,8 +211,13 @@ export class AppComponent {
         console.log(e.index);
         $('.subheadline-form').show();
         $('.button-link-form').show();
-        $('.foreground-form').hide();
         $('.paragraph-form').hide();
+        $('.foreground-form').hide();
+
+        if (this.txtColor[0].color === 'red') {
+          this.txtColor[0].color = 'white';
+        }
+
         break;
 
       case 2:
@@ -157,9 +230,17 @@ export class AppComponent {
         this.tabClick = e.index;
         console.log(e.index);
         $('.paragraph-form').show();
-        $('.foreground-form').show();
         $('.subheadline-form').hide();
         $('.button-link-form').hide();
+        $('.foreground-form').hide();
+
+        if (this.txtColor[0].color === 'white') {
+          this.txtColor[0].color = 'red';
+          console.log('if wht, change to red');
+        } else if (this.txtColor[2].color === 'white') {
+          this.txtColor[2].color = 'red';
+        }
+
         break;
 
       default:
@@ -257,13 +338,17 @@ export class AppComponent {
   /* Get a alternate logo name */
   getAlterLogo(data) {
     let lst: string[] = [];
+    let tmp = data.logoURL;
     if (data.logoURL !== null) {
-      let tmp = data.logoURL;
+      // let tmp = data.logoURL;
       lst = tmp.split('/');
       tmp = lst[lst.length - 1];
       const i = lst[lst.length - 1].indexOf('-logo');
       tmp = tmp.substring(0, i);
+      console.log(tmp.slice(1));
+      console.log(tmp.replace('-', ' '));
       this.altLogo = tmp.charAt(0).toUpperCase() + tmp.slice(1);
+      this.altLogo = this.altLogo.replace('-', ' ');
     }
     console.log('AltLogo: ', this.altLogo);
   }
@@ -317,9 +402,9 @@ export class AppComponent {
       $('.copy-btn-txt').css('color' , 'white');
 
       $('.copy-button').hover(() => {
-        $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-        $('.fa-code').css('color', 'rgb(134, 134, 134)');
-        $('.copy-btn-txt').css('color', 'rgb(134, 134, 134)');
+        $('.copy-button').css('background-color', 'rgb(3, 125, 182)');
+        $('.fa-code').css('color', 'white');
+        $('.copy-btn-txt').css('color', 'white');
       }, () => {
         $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
         $('.fa-code').css('color' , 'white');

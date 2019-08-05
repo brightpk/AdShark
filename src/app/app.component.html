@@ -24,7 +24,7 @@
           <textarea class="form-control ad-field" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
         </div>
 
-        <!-- subline -->
+        <!-- Subline -->
         <div class="subheadline-form mb-3">
           <label for="subheadline"><h5 class="text-primary">Sub-Headline</h5></label><br>
           <mat-radio-group class="select-color-subline" [(ngModel)]="txtColor[1].color" (change)="changeColor($event)">
@@ -34,7 +34,7 @@
         </div>
          
 
-        <!-- paragraph -->
+        <!-- Paragraph -->
         <div class="paragraph-form mb-3">
           <label for="para"><h5 class="text-primary">Paragraph</h5></label><br>
           <mat-radio-group class="select-color-para" [(ngModel)]="txtColor[2].color" (change)="changeColor($event)">
@@ -48,14 +48,15 @@
         <div class="background-form mb-3">
           <label for="Background"><h5 class="text-primary">Background</h5></label>
           <input class="form-control ad-field" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
-          <!-- Sample background for D1 & A1 -->
-          <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleBg = !showSampleBg">
+          
+          <!-- Sample background for D1/A1/email -->
+          <h6 style="color:rgb(70, 170, 84);" (click)="showSampleBg = !showSampleBg">
             <u><b>Click for sample background URL</b></u></h6>
           <div class="codeBox card card-body" *ngIf="showSampleBg" style="border-color: hotpink; border-width: thin; width: 420px;">
-            <h6 style="color:rgb(204, 3, 160);"><u>Background</u></h6>
-            <h6 class="text-dark"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg</h6>
-            <h6 class="text-dark"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg</h6>
-            <h6 class="text-dark"><b>Email Banner: </b>https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg</h6>
+            <h6 style="color:rgb(204, 3, 160); cursor:default"><u>Background</u></h6>
+            <h6 class="text-dark sample-bg-D1" (click)="onClickSample('bg', 'D1')" (mouseover)="bgBorder('D1')"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg</h6>
+            <h6 class="text-dark sample-bg-A1" (click)="onClickSample('bg', 'A1')" (mouseover)="bgBorder('A1')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg</h6>
+            <h6 class="text-dark sample-bg-email" (click)="onClickSample('bg', 'email')" (mouseover)="bgBorder('email')"><b>Email Banner: </b>https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg</h6>
           </div>
         </div>
          
@@ -95,15 +96,15 @@
             <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
           </div>
 
-          <!-- Sample Logo for D1 & A1 -->
+          <!-- Sample logo for D1/A1/email -->
           <br>
           <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleLogo = !showSampleLogo">
             <u><b>Click for sample logo URL</b></u></h6>
           <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: hotpink; border-width: thin; width: 420px;">
             <h6 style="color:rgb(3, 147, 204);"><u>Logo</u></h6>
-            <h6 class="text-dark"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
-            <h6 class="text-dark"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png</h6>
-            <h6 class="text-dark"><b>Email Banner:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
+            <h6 class="text-dark sample-logo-D1" (click)="onClickSample('logo', 'D1')" (mouseover)="logoBorder('D1')"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
+            <h6 class="text-dark sample-logo-A1" (click)="onClickSample('logo', 'A1')" (mouseover)="logoBorder('A1')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png</h6>
+            <h6 class="text-dark sample-logo-email" (click)="onClickSample('logo', 'email')" (mouseover)="logoBorder('email')"><b>Email Banner:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
           </div>
         </div>
          
@@ -165,8 +166,8 @@
     <span class="copy-btn-txt"> Copy Code</span>
   </button>
   <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
-  <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Show</b></span>
-  <ng-template #hideCode><span id="show-hide-toggle">Hide</span></ng-template>
+  <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Hide</b></span>
+  <ng-template #hideCode><span id="show-hide-toggle">Show</span></ng-template>
   
   <div class="codeBox card card-body" *ngIf="showCode">
     <code>{{OutputCode}}</code>

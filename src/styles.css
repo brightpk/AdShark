@@ -136,10 +136,11 @@ li#nav-icon .current {
   color: white;
   margin-left: 20px !important;
   margin-right: 10px !important;
-}
+} 
+/* Previous color: background-color: rgb(228, 229, 230); color: rgb(134, 134, 134); */
 .copy-button:hover {
-  background-color: rgb(228, 229, 230);
-	color: rgb(134, 134, 134);
+  background-color: rgb(3, 125, 182);
+	color: white;
 } 
 
 /* Show/Hide toggle switch */
@@ -155,6 +156,11 @@ li#nav-icon .current {
 /* Checkbox no button */
 .mat-checkbox {
   margin-left: 10px;
+}
+
+/* Sample bg and Logo URL*/
+h6 {
+  cursor: pointer;
 }
 
 
