@@ -174,6 +174,8 @@ export class AppComponent {
 
     if (this.rightWidth <= 500) {
       this.device = 'Mobile';
+      $('.btn-mobile').addClass("current");
+      $('.btn-tablet,.btn-desktop,.btn-widescreen').removeClass('current');
       $('iframe').css('height', 1150);
       if (this.tabClick === 2) {
         $('iframe').css('height', 520);
@@ -187,6 +189,8 @@ export class AppComponent {
 
     } else if (this.rightWidth <= 1024) {
       this.device = 'Tablet';
+      $('.btn-tablet').addClass("current");
+      $('.btn-mobile,.btn-desktop,.btn-widescreen').removeClass('current');
       $('iframe').css('height', 1150);
 
       if (this.tabClick === 1) {
@@ -197,6 +201,8 @@ export class AppComponent {
 
     } else if (this.rightWidth <= 1280) {
       this.device = 'Desktop';
+      $('.btn-desktop').addClass("current");
+      $('.btn-tablet,.btn-mobile,.btn-widescreen').removeClass('current');
       $('iframe').css('height', 400);
       if (this.tabClick === 2) {
         $('iframe').css('height', 520);
@@ -206,6 +212,8 @@ export class AppComponent {
     // tslint:disable-next-line:one-line
     else {
       this.device = 'Wide Screen';
+      $('.btn-widescreen').addClass("current");
+      $('.btn-tablet,.btn-desktop,.btn-mobile').removeClass('current');
       if (this.tabClick === 1) {
         $('iframe').css('height', 400);
       } else if (this.tabClick === 2) {
