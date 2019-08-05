@@ -40,14 +40,14 @@ export class AppComponent implements OnInit {
     { type: 'alternate', name: 'Clear/Blue' }
   ];
 
-    /* -------- Show and Hide Sample bg and logo -----*/
-    showSampleBg = false;
-    showSampleLogo = false;
+  showSampleBg = false;
+  showSampleLogo = false;
 
   ngOnInit(): void {
     $('.silverpop-button').hide();
   }
 
+    /* -------- Show and Hide Sample bg and logo -----*/
     onClickSample(field, ad) {
       if (field === 'bg') {
         if (ad === 'D1') {

@@ -100,30 +100,39 @@ export class PreviewEmailComponent implements DoCheck {
   }
 
   rgbToHex(output) {
+    let tmp: string;
     let res: string;
-    for (let i = 0; i < 4; i++) {
-      const hdTmp = output.substring( output.indexOf('headline') + 279, output.indexOf('headline') + 296 );
-      // console.log('Headline Color', hdTmp);
+    const hdTmp = output.substring( output.indexOf('headline') + 279, output.indexOf('headline') + 296 );
 
-      const paraTmp = output.substring( output.indexOf('p-medium') + 131, output.indexOf('p-medium') + 148 );
-      // console.log('Paragraph Color:', paraTmp);
-
-      // console.log(hdTmp.includes('rgb(0, 93, 163)'));
-      // console.log(hdTmp.includes('rgb(30, 30, 30)'));
-      // console.log(hdTmp.includes('rgb(237, 26, 59)'));
-
-      if (hdTmp.includes('rgb(0, 93, 163)')) {
-        res = output.replace(hdTmp, '#005da3; ');
-        // console.log('HEAD:', res.substring( res.indexOf('headline') + 279, res.indexOf('headline') + 296 ));
-      } else if (hdTmp.includes('rgb(30, 30, 30)')) {
-        res = output.replace(hdTmp, '#1e1e1e; ');
-        // console.log('HEAD:', res.substring( res.indexOf('headline') + 279, res.indexOf('headline') + 296 ));
-      } else if (hdTmp.includes('rgb(237, 26, 59)')) {
-        res = output.replace(hdTmp, '#ed1a3b;');
-        // console.log('HEAD:', res.substring( res.indexOf('headline') + 279, res.indexOf('headline') + 296 ));
-      }
-
+    if (hdTmp === 'rgb(0, 93, 163); ') {
+      tmp = output.replace(hdTmp, '#005da3; ');
+      res = this.getHEXPara(tmp);
       return res;
+    } else if (hdTmp === 'rgb(30, 30, 30); ') {
+      tmp = output.replace(hdTmp, '#1e1e1e; ');
+      res = this.getHEXPara(tmp);
+      return res;
+    } else if (hdTmp === 'rgb(237, 26, 59);') {
+      tmp = output.replace(hdTmp, '#ed1a3b;');
+      res = this.getHEXPara(tmp);
+      return res;
+    }
+  }
+
+  getHEXPara(output) {
+    let paraHex: string;
+    const paraTmp = output.substring( output.indexOf('p-medium') + 132, output.indexOf('p-medium') + 149 );
+
+    if (paraTmp === 'rgb(0, 93, 163); ') {
+      console.log(paraTmp === ' rgb(0, 93, 163);');
+      paraHex = output.replace(paraTmp, '#005da3; ');
+      return paraHex;
+    } else if (paraTmp === 'rgb(30, 30, 30); ') {
+      paraHex = output.replace(paraTmp, '#1e1e1e; ');
+      return paraHex;
+    } else if (paraTmp === 'rgb(237, 26, 59);') {
+      paraHex = output.replace(paraTmp, '#ed1a3b;');
+      return paraHex;
     }
   }
 
