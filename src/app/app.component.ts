@@ -44,6 +44,8 @@ export class AppComponent implements OnInit {
   showSampleLogo = false;
 
   ngOnInit(): void {
+    $('.paragraph-form').hide();
+    $('.foreground-form').hide();
     $('.silverpop-button').hide();
   }
 
@@ -122,16 +124,15 @@ export class AppComponent implements OnInit {
     } else {
       this.disabledButton = false;
     }
+
   }
 
   minusLogo(e) {
     this.logoWidth -= 5;
-    console.log(this.logoWidth);
   }
 
   plusLogo(e) {
     this.logoWidth += 5;
-    console.log(this.logoWidth);
   }
 
   /* Add a white transparent bg to a logo */
@@ -188,6 +189,7 @@ export class AppComponent implements OnInit {
         console.log(e.index);
         $('.subheadline-form').show();
         $('.button-link-form').show();
+        $('.checkbox-bg-white').show();
         $('.impex-button').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
@@ -210,6 +212,7 @@ export class AppComponent implements OnInit {
         console.log(e.index);
         $('.subheadline-form').show();
         $('.button-link-form').show();
+        $('.checkbox-bg-white').show();
         $('.impex-button').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
@@ -236,6 +239,7 @@ export class AppComponent implements OnInit {
         $('.subheadline-form').hide();
         $('.button-link-form').hide();
         $('.foreground-form').hide();
+        $('.checkbox-bg-white').hide();
         $('.impex-button').hide();
 
         if (this.txtColor[0].color === 'white') {
@@ -243,6 +247,8 @@ export class AppComponent implements OnInit {
           console.log('if wht, change to red');
         } else if (this.txtColor[2].color === 'white') {
           this.txtColor[2].color = 'red';
+        } else if (this.button === 'primary') {
+          this.button = '';
         }
 
         break;
@@ -262,12 +268,9 @@ export class AppComponent implements OnInit {
       $('.btn-mobile').addClass('current');
       $('.btn-tablet,.btn-desktop,.btn-widescreen').removeClass('current');
       $('iframe').css('height', 1150);
-      if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
-      }
 
       if (this.tabClick === 1) {
-        $('iframe').css('height', 420);
+        $('iframe').css('height', 400);
       } else if (this.tabClick === 2) {
         $('iframe').css('height', 520);
       }
@@ -279,7 +282,7 @@ export class AppComponent implements OnInit {
       $('iframe').css('height', 1150);
 
       if (this.tabClick === 1) {
-        $('iframe').css('height', 420);
+        $('iframe').css('height', 400);
       } else if (this.tabClick === 2) {
         $('iframe').css('height', 520);
       }
@@ -289,16 +292,16 @@ export class AppComponent implements OnInit {
       $('.btn-desktop').addClass('current');
       $('.btn-tablet,.btn-mobile,.btn-widescreen').removeClass('current');
       $('iframe').css('height', 400);
+
       if (this.tabClick === 2) {
         $('iframe').css('height', 520);
       }
 
-    }
-    // tslint:disable-next-line:one-line
-    else {
+    } else {
       this.device = 'Wide Screen';
       $('.btn-widescreen').addClass('current');
       $('.btn-tablet,.btn-desktop,.btn-mobile').removeClass('current');
+
       if (this.tabClick === 1) {
         $('iframe').css('height', 400);
       } else if (this.tabClick === 2) {

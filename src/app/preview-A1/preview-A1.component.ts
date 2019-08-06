@@ -75,7 +75,7 @@ export class PreviewA1Component implements DoCheck {
         const start = tmp.indexOf('h2');
         const end = tmp.indexOf('h2>');
         const str = tmp.substring(start - 1, end + 3);
-        const res = tmp.replace(str, '<!--' + str + '-->');
+        const res = tmp.replace(str, '');
         tmp = res;
         this.HTMLCode = tmp;
       }
@@ -85,7 +85,7 @@ export class PreviewA1Component implements DoCheck {
         const start = tmp.indexOf('h3');
         const end = tmp.indexOf('h3>');
         const str = tmp.substring(start - 1, end + 3);
-        const res = tmp.replace(str, '<!--' + str + '-->');
+        const res = tmp.replace(str, '');
         tmp = res;
         this.HTMLCode = tmp;
       }

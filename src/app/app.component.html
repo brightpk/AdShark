@@ -119,11 +119,21 @@
           </div>
           
           <label for="Button"><h5 class="text-primary">Button</h5></label><br>
-          <select class="custom-select selectpicker selectButton mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
-            <option value="" disabled selected>Select button</option>
-            <option value="none">None</option>
-            <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
-          </select> 
+          <div *ngIf="tabClick!=2">
+            <select class="custom-select selectpicker selectButton mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
+              <option value="" disabled selected>Select button</option>
+              <option value="none">None</option>
+              <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
+            </select>
+          </div>
+          <div *ngIf="tabClick==2">
+            <select class="custom-select selectpicker selectButton mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
+              <option value="" disabled selected>Select button</option>
+              <option value="none">None</option>
+              <option value="default">Solid/Blue</option>
+              <option value="alternate">Clear/Blue</option>
+            </select>
+          </div>
           <!-- <mat-checkbox (change)="disabledButton=!disabledButton" [checked]="disabledButton">No button</mat-checkbox> -->
           <input [disabled]="disabledButton" class="form-control" style="width:300px" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /> 
         </div>

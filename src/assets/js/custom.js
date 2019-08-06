@@ -24,10 +24,6 @@ function insertEmail(code) {
 
 
 $(document).ready(function () {
-  // start doc with hide para and foreground for D1
-  $('.paragraph-form').hide();
-  $('.foreground-form').hide();
-
   //mobile
   $('.btn-mobile').on('click', function (e) {
     $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-tablet').addClass("iframe-mobile");

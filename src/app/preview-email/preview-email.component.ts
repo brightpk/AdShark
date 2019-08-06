@@ -17,7 +17,6 @@ export class PreviewEmailComponent implements DoCheck {
   @Input() txtColor: any = [];
   @Output() emailCode = new EventEmitter();
   HTMLCode: string;
-  showCode = false;
   previousHeadColor = '';
   previousParaColor = '';
 
@@ -28,6 +27,7 @@ export class PreviewEmailComponent implements DoCheck {
     if (this.txtColor[2].color !== this.previousParaColor) {
       this.getParaColor(this.txtColor[2].color);
     }
+
     this.getHTML();
   }
 
@@ -124,7 +124,6 @@ export class PreviewEmailComponent implements DoCheck {
     const paraTmp = output.substring( output.indexOf('p-medium') + 132, output.indexOf('p-medium') + 149 );
 
     if (paraTmp === 'rgb(0, 93, 163); ') {
-      console.log(paraTmp === ' rgb(0, 93, 163);');
       paraHex = output.replace(paraTmp, '#005da3; ');
       return paraHex;
     } else if (paraTmp === 'rgb(30, 30, 30); ') {
