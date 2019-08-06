@@ -17,7 +17,7 @@ export class PreviewD1Component implements DoCheck {
   @Input() altLogo: string;
   @Input() button: string;
   @Input() device: string;
-  @Input() logoWidth: string;
+  @Input() logoWidth: number;
   @Input() disabledButton: boolean;
   @Input() txtColor: any = [];
   @Output() D1Code = new EventEmitter();
@@ -31,7 +31,6 @@ export class PreviewD1Component implements DoCheck {
   openWindow(data, event) {
     event.preventDefault();
     window.open(data.buttonURL);
-    console.log('trigger');
   }
 
   getHTML() {
@@ -46,6 +45,13 @@ export class PreviewD1Component implements DoCheck {
         const res = tmp.replace(str, 'btn--' + this.button + ' ');
         tmp = res;
         this.HTMLCode = tmp;
+      }
+
+      /* If no button, comment out */
+      if (this.button === 'none') {
+        const str = tmp.substring(tmp.search('btn') - 12, tmp.search('/a') + 9);
+        const res = tmp.replace(str, '');
+        tmp = res;
       }
 
       /* Headline Color */
@@ -64,7 +70,7 @@ export class PreviewD1Component implements DoCheck {
         this.HTMLCode = tmp;
       }
 
-      // if no headline
+      /* if no headline, comment out */
       if (this.data.headline === '') {
         const start = tmp.indexOf('h2');
         const end = tmp.indexOf('h2>');
@@ -74,7 +80,7 @@ export class PreviewD1Component implements DoCheck {
         this.HTMLCode = tmp;
       }
 
-      // if no subline
+      /* if no subline, comment out */
       if (this.data.subline === '') {
         const start = tmp.indexOf('h3');
         const end = tmp.indexOf('h3>');

@@ -1,9 +1,11 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-expand-sm bg-primary">
-  <a class="navbar-brand mb-0 text-light" href="#" ngbTooltip="Tooltip on bottom">{{title}}</a>
+  <a class="navbar-brand mb-0 text-light" href="#" ngbTooltip="Tooltip on bottom">
+    <img src="https://images.americanhotel.com/images/banners/adshark_logo_white.png" style="width:100px">
+  </a>
 </nav>
 
-<div class="splitexample" style="height: 1400px">
+<div class="splitexample" style="height: 1200px">
   <as-split unit="pixel"> <!--  split-pane col-lg-6 col-sm-12 left" id="one" / col-sm-5 col-xs-offset-1 col-md-4-->
     <!-- Left side -->
     <as-split-area class="leftPane" (resized)="onResizedLeft($event)" size="500">
@@ -24,7 +26,7 @@
           <textarea class="form-control ad-field" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
         </div>
 
-        <!-- subline -->
+        <!-- Subline -->
         <div class="subheadline-form mb-3">
           <label for="subheadline"><h5 class="text-primary">Sub-Headline</h5></label><br>
           <mat-radio-group class="select-color-subline" [(ngModel)]="txtColor[1].color" (change)="changeColor($event)">
@@ -34,7 +36,7 @@
         </div>
          
 
-        <!-- paragraph -->
+        <!-- Paragraph -->
         <div class="paragraph-form mb-3">
           <label for="para"><h5 class="text-primary">Paragraph</h5></label><br>
           <mat-radio-group class="select-color-para" [(ngModel)]="txtColor[2].color" (change)="changeColor($event)">
@@ -48,14 +50,15 @@
         <div class="background-form mb-3">
           <label for="Background"><h5 class="text-primary">Background</h5></label>
           <input class="form-control ad-field" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
-          <!-- Sample background for D1 & A1 -->
-          <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleBg = !showSampleBg">
+          
+          <!-- Sample background for D1/A1/email -->
+          <h6 (click)="showSampleBg = !showSampleBg">
             <u><b>Click for sample background URL</b></u></h6>
           <div class="codeBox card card-body" *ngIf="showSampleBg" style="border-color: hotpink; border-width: thin; width: 420px;">
-            <h6 style="color:rgb(204, 3, 160);"><u>Background</u></h6>
-            <h6 class="text-dark"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg</h6>
-            <h6 class="text-dark"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg</h6>
-            <h6 class="text-dark"><b>Email Banner: </b>https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg</h6>
+            <h6 style="color:rgb(204, 3, 160); cursor:default"><u>Background</u></h6>
+            <h6 class="text-dark sample-bg-D1" (click)="onClickSample('bg', 'D1')" (mouseover)="bgBorder('D1')"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg</h6>
+            <h6 class="text-dark sample-bg-A1" (click)="onClickSample('bg', 'A1')" (mouseover)="bgBorder('A1')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg</h6>
+            <h6 class="text-dark sample-bg-email" (click)="onClickSample('bg', 'email')" (mouseover)="bgBorder('email')"><b>Email Banner: </b>https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg</h6>
           </div>
         </div>
          
@@ -91,19 +94,18 @@
             </span>
           </div>
 
-          <div class="checkbox-bg-white">
+          <div class="checkbox-bg-white mb-3">
             <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
           </div>
 
-          <!-- Sample Logo for D1 & A1 -->
-          <br>
-          <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleLogo = !showSampleLogo">
-            <u><b>Click for sample logo URL</b></u></h6>
+          <!-- Sample logo for D1/A1/email -->
+          <div><h6 class="sample-logo" (click)="showSampleLogo = !showSampleLogo">
+            <u><b>Click for sample logo URL</b></u></h6></div>
           <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: hotpink; border-width: thin; width: 420px;">
             <h6 style="color:rgb(3, 147, 204);"><u>Logo</u></h6>
-            <h6 class="text-dark"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
-            <h6 class="text-dark"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png</h6>
-            <h6 class="text-dark"><b>Email Banner:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
+            <h6 class="text-dark sample-logo-D1" (click)="onClickSample('logo', 'D1')" (mouseover)="logoBorder('D1')"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
+            <h6 class="text-dark sample-logo-A1" (click)="onClickSample('logo', 'A1')" (mouseover)="logoBorder('A1')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png</h6>
+            <h6 class="text-dark sample-logo-email" (click)="onClickSample('logo', 'email')" (mouseover)="logoBorder('email')"><b>Email Banner:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
           </div>
         </div>
          
@@ -116,12 +118,22 @@
           </div>
           
           <label for="Button"><h5 class="text-primary">Button</h5></label><br>
-          <select [disabled]="disabledButton" class="custom-select selectpicker selectButton mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
-            <option value="" disabled selected>Select button</option>
-            <option value="none">None</option>
-            <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
-          </select> 
-          <mat-checkbox (change)="disabledButton=!disabledButton" [checked]="disabledButton">No button</mat-checkbox>
+          <div *ngIf="tabClick!=2" class="option-button1">
+            <select class="custom-select selectpicker mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
+              <option value="" disabled selected>Select button</option>
+              <option value="none">None</option>
+              <option *ngFor="let option of buttonOptions" [ngValue]="option.type">{{option.name}}</option>
+            </select>
+          </div>
+          <div *ngIf="tabClick==2">
+            <select class="custom-select selectpicker option-button2 mb-1" style="width:300px" [(ngModel)]="button" (change)="changeButton($event.target.value)">
+              <option value="" disabled selected>Select button</option>
+              <option value="none">None</option>
+              <option value="default">Solid/Blue</option>
+              <option value="alternate">Clear/Blue</option>
+            </select>
+          </div>
+          <!-- <mat-checkbox (change)="disabledButton=!disabledButton" [checked]="disabledButton">No button</mat-checkbox> -->
           <input [disabled]="disabledButton" class="form-control" style="width:300px" type="text" [(ngModel)]="data.buttonTxt" placeholder="Text" /> 
         </div>
 
@@ -137,7 +149,7 @@
           <ul class="nav">
             <li id="nav-icon"><i class="fas fa-mobile-alt btn-mobile" id="icon-button" style="font-size:25px;" (click)="setPaneSize($event, 'mobile')"  matTooltip="Mobile preview"></i></li>
             <li id="nav-icon"><i class="fas fa-tablet-alt btn-tablet" id="icon-button" style="font-size:25px;" (click)="setPaneSize($event, 'tablet')"  matTooltip="Tablet preview"></i></li>
-            <li id="nav-icon"><i class="fas fa-desktop btn-desktop" id="icon-button" style="font-size:25px;" (click)="setPaneSize($event, 'desktop')" matTooltip="Desktop preview"></i></li>
+            <li id="nav-icon"><i class="fas fa-desktop btn-desktop current" id="icon-button" style="font-size:25px;" (click)="setPaneSize($event, 'desktop')" matTooltip="Desktop preview"></i></li>
             <li id="nav-icon"><i class="fas fa-desktop btn-widescreen" id="icon-button" style="font-size:30px;" (click)="setPaneSize($event, 'widescreen')"  matTooltip="Wide Screen preview"></i></li>
           </ul>
           <h5><div class="resize-info float-right badge badge-secondary">{{rightWidth}}px x 1000px </div></h5>
@@ -164,9 +176,11 @@
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
   </button>
+  <button mat-flat-button class="impex-button" disabled="false">Download impex</button>
+  <button mat-flat-button class="silverpop-button" disabled="false">Copy Silverpop code</button>
   <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
-  <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Show</b></span>
-  <ng-template #hideCode><span id="show-hide-toggle">Hide</span></ng-template>
+  <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Hide</b></span>
+  <ng-template #hideCode><span id="show-hide-toggle">Show</span></ng-template>
   
   <div class="codeBox card card-body" *ngIf="showCode">
     <code>{{OutputCode}}</code>

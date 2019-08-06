@@ -16,7 +16,7 @@ export class PreviewA1Component implements DoCheck {
   @Input() altLogo: string;
   @Input() button: string;
   @Input() device: string;
-  @Input() logoWidth: string;
+  @Input() logoWidth: number;
   @Input() txtColor: any = [];
   @Output() A1Code = new EventEmitter();
   HTMLCode: string;
@@ -37,6 +37,7 @@ export class PreviewA1Component implements DoCheck {
 
     try {
 
+      /* Button Type */
       if (tmp.includes('btn--')) {
         const str = tmp.substring(tmp.search('btn--'), tmp.search('c-hero__action'));
         const res = tmp.replace(str, 'btn--' + this.button + ' ');
@@ -44,6 +45,16 @@ export class PreviewA1Component implements DoCheck {
         this.HTMLCode = tmp;
       }
 
+      /* If no button, comment out */
+      if (this.button === 'none') {
+        const str = tmp.substring(tmp.search('btn') - 28, tmp.search('/a') + 9);
+        console.log(str);
+        const res = tmp.replace(str, '');
+        tmp = res;
+        // console.log(res);
+      }
+
+      /* Headline Color */
       if (tmp.includes('c-hero__title--')) {
         const str = tmp.substring(tmp.search('c-hero__title--'), tmp.indexOf('c-hero__title--') + 20);
         const res = tmp.replace(str, 'c-hero__title--' + this.txtColor[0].color + ' ');
@@ -59,7 +70,7 @@ export class PreviewA1Component implements DoCheck {
         this.HTMLCode = tmp;
       }
 
-      // if no headline
+      /* if no headline, comment out */
       if (this.data.headline === '') {
         const start = tmp.indexOf('h2');
         const end = tmp.indexOf('h2>');
@@ -69,7 +80,7 @@ export class PreviewA1Component implements DoCheck {
         this.HTMLCode = tmp;
       }
 
-      // if no subline
+      /* if no subline, comment out */
       if (this.data.subline === '') {
         const start = tmp.indexOf('h3');
         const end = tmp.indexOf('h3>');

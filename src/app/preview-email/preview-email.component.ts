@@ -17,9 +17,21 @@ export class PreviewEmailComponent implements DoCheck {
   @Input() txtColor: any = [];
   @Output() emailCode = new EventEmitter();
   HTMLCode: string;
-  showCode = false;
+  previousHeadColor = '';
+  previousParaColor = '';
 
   ngDoCheck() {
+    $('.option-button2').mouseout(() => {
+      console.log('mouseout from button select area');
+    });
+
+    if (this.txtColor[0].color !== this.previousHeadColor) {
+      this.getHeadColor(this.txtColor[0].color);
+    }
+    if (this.txtColor[2].color !== this.previousParaColor) {
+      this.getParaColor(this.txtColor[2].color);
+    }
+
     this.getHTML();
   }
 
@@ -33,6 +45,8 @@ export class PreviewEmailComponent implements DoCheck {
     // tmp = $('div.preheader').parent().html();
     // tmp = $('div.preheader').parents('div#email').html();
     tmp = $('.email-template').html();
+    this.getHeadColor(this.txtColor[0].color);
+    this.getParaColor(this.txtColor[2].color);
 
     try {
 
@@ -43,27 +57,97 @@ export class PreviewEmailComponent implements DoCheck {
         this.HTMLCode = tmp;
       }
 
-      if (tmp.includes('c-hero__title--')) {
-        const str = tmp.substring(tmp.search('c-hero__title--'), tmp.indexOf('c-hero__title--') + 20);
-        const res = tmp.replace(str, 'c-hero__title--' + this.txtColor[0].color + ' ');
-        tmp = res;
-        this.HTMLCode = tmp;
-      }
-
-      /* Subline Color */
-      if (tmp.includes('c-hero__sub-title--')) {
-        const str = tmp.substring(tmp.search('c-hero__sub-title--'), tmp.indexOf('c-hero__sub-title--') + 24);
-        const res = tmp.replace(str, 'c-hero__sub-title--' + this.txtColor[1].color + ' ');
-        tmp = res;
-        this.HTMLCode = tmp;
-      }
-
+      tmp = this.rgbToHex(tmp);
       this.HTMLCode = tmp;
-      this.emailCode.emit(tmp);
+      this.HTMLCode = this.removeComment(this.HTMLCode);
+      this.emailCode.emit(this.HTMLCode);
       insertEmail(this.HTMLCode);
 
     } catch (err) { }
 
   }
 
+  /* Headline color */
+  getHeadColor(color) {
+    switch (color) {
+      case 'blue':
+        $('td').find('.headline').css('color', '#005da3'); // rgb(0, 93, 163)
+        this.previousHeadColor = 'blue';
+        break;
+      case 'black':
+        $('td').find('.headline').css('color', '#1e1e1e'); // rgb(30, 30, 30)
+        this.previousHeadColor = 'black';
+        break;
+      case 'red':
+        $('td').find('.headline').css('color', '#ed1a3b'); // rgb(237, 26, 59)
+        this.previousHeadColor = 'red';
+        break;
+    }
+
+  }
+
+  /* Paragraph color */
+  getParaColor(color) {
+    switch (color) {
+      case 'blue':
+        $('td').find('.p-medium').css('color', '#005da3');
+        this.previousParaColor = 'blue';
+        break;
+      case 'black':
+        $('td').find('.p-medium').css('color', '#1e1e1e');
+        this.previousParaColor = 'black';
+        break;
+      case 'red':
+        $('td').find('.p-medium').css('color', '#ed1a3b');
+        this.previousParaColor = 'red';
+        break;
+    }
+  }
+
+  rgbToHex(output) {
+    let tmp: string;
+    let res: string;
+    const hdTmp = output.substring( output.indexOf('headline') + 279, output.indexOf('headline') + 296 );
+
+    if (hdTmp === 'rgb(0, 93, 163); ') {
+      tmp = output.replace(hdTmp, '#005da3; ');
+      res = this.getHEXPara(tmp);
+      return res;
+    } else if (hdTmp === 'rgb(30, 30, 30); ') {
+      tmp = output.replace(hdTmp, '#1e1e1e; ');
+      res = this.getHEXPara(tmp);
+      return res;
+    } else if (hdTmp === 'rgb(237, 26, 59);') {
+      tmp = output.replace(hdTmp, '#ed1a3b;');
+      res = this.getHEXPara(tmp);
+      return res;
+    }
+  }
+
+  getHEXPara(output) {
+    let paraHex: string;
+    const paraTmp = output.substring( output.indexOf('p-medium') + 132, output.indexOf('p-medium') + 149 );
+
+    if (paraTmp === 'rgb(0, 93, 163); ') {
+      paraHex = output.replace(paraTmp, '#005da3; ');
+      return paraHex;
+    } else if (paraTmp === 'rgb(30, 30, 30); ') {
+      paraHex = output.replace(paraTmp, '#1e1e1e; ');
+      return paraHex;
+    } else if (paraTmp === 'rgb(237, 26, 59);') {
+      paraHex = output.replace(paraTmp, '#ed1a3b;');
+      return paraHex;
+    }
+  }
+
+  removeComment(html) {
+    // const code = $('.email-template').findhtml();
+    let res: string;
+    console.log(html.includes('bind'));
+    console.log(html.search('binding'));
+    console.log(html.substring(html.search('<!--binding') , html.search('-><tr') + 2));
+    const str = html.substring(html.search('<!--binding') , html.search('-><tr') + 2);
+    res = html.replace(str, '');
+    return res;
+  }
 }

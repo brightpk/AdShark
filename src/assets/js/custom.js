@@ -24,31 +24,35 @@ function insertEmail(code) {
 
 
 $(document).ready(function () {
-  // start doc with hide para and foreground for D1
-  $('.paragraph-form').hide();
-  $('.foreground-form').hide();
-
   //mobile
   $('.btn-mobile').on('click', function (e) {
     $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-tablet').addClass("iframe-mobile");
+    $(this).addClass("current");
+    $('.btn-tablet,.btn-desktop,.btn-widescreen').removeClass('current');
     e.preventDefault();
   });
 
   //tablet
   $('.btn-tablet').on('click', function (e) {
     $('iframe').removeClass('iframe-widescreen iframe-desktop iframe-mobile').addClass("iframe-tablet");
+    $(this).addClass("current");
+    $('.btn-mobile,.btn-desktop,.btn-widescreen').removeClass('current');
     e.preventDefault();
   });
 
   //dekstop
   $('.btn-desktop').on('click', function (e) {
     $('iframe').removeClass('iframe-widescreen iframe-mobile iframe-tablet').addClass("iframe-desktop");
+    $(this).addClass("current");
+    $('.btn-tablet,.btn-mobile,.btn-widescreen').removeClass('current');
     e.preventDefault();
   });
 
   //widescreen
   $('.btn-widescreen').on('click', function (e) {
     $('iframe').removeClass('iframe-mobile iframe-desktop iframe-tablet').addClass("iframe-widescreen");
+    $(this).addClass("current");
+    $('.btn-tablet,.btn-desktop,.btn-mobile').removeClass('current');
     e.preventDefault();
   });
 
