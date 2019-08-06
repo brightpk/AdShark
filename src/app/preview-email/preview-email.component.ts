@@ -21,6 +21,10 @@ export class PreviewEmailComponent implements DoCheck {
   previousParaColor = '';
 
   ngDoCheck() {
+    $('.option-button2').mouseout(() => {
+      console.log('mouseout from button select area');
+    });
+
     if (this.txtColor[0].color !== this.previousHeadColor) {
       this.getHeadColor(this.txtColor[0].color);
     }
@@ -55,7 +59,8 @@ export class PreviewEmailComponent implements DoCheck {
 
       tmp = this.rgbToHex(tmp);
       this.HTMLCode = tmp;
-      this.emailCode.emit(tmp);
+      this.HTMLCode = this.removeComment(this.HTMLCode);
+      this.emailCode.emit(this.HTMLCode);
       insertEmail(this.HTMLCode);
 
     } catch (err) { }
@@ -135,5 +140,14 @@ export class PreviewEmailComponent implements DoCheck {
     }
   }
 
-
+  removeComment(html) {
+    // const code = $('.email-template').findhtml();
+    let res: string;
+    console.log(html.includes('bind'));
+    console.log(html.search('binding'));
+    console.log(html.substring(html.search('<!--binding') , html.search('-><tr') + 2));
+    const str = html.substring(html.search('<!--binding') , html.search('-><tr') + 2);
+    res = html.replace(str, '');
+    return res;
+  }
 }

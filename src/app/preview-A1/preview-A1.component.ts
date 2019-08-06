@@ -49,7 +49,7 @@ export class PreviewA1Component implements DoCheck {
       if (this.button === 'none') {
         const str = tmp.substring(tmp.search('btn') - 28, tmp.search('/a') + 9);
         console.log(str);
-        const res = tmp.replace(str, '<!--' + str + '-->');
+        const res = tmp.replace(str, '');
         tmp = res;
         // console.log(res);
       }
