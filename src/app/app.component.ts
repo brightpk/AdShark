@@ -180,7 +180,7 @@ export class AppComponent implements OnInit {
   onTabClick(e: MatTabChangeEvent) {
     switch (e.index) {
       case 0:
-        // $('.copy-button').html('COPY CODE');
+        $('.sample-logo').css('margin-top', '22px'); // sample logo
         $('.copy-btn-txt').html(' Copy Code');
         this.copyButtonReact();
         this.listofColor[2] = 'white';
@@ -190,6 +190,7 @@ export class AppComponent implements OnInit {
         $('.subheadline-form').show();
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
+        $('.plus-minus-logoWidth').show();
         $('.impex-button').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
@@ -203,7 +204,7 @@ export class AppComponent implements OnInit {
         break;
 
       case 1:
-        // $('.copy-button').html('COPY CODE');
+        $('.sample-logo').css('margin-top', '22px'); // sample logo
         $('.copy-btn-txt').html(' Copy Code');
         this.copyButtonReact();
         this.listofColor[2] = 'white';
@@ -213,6 +214,7 @@ export class AppComponent implements OnInit {
         $('.subheadline-form').show();
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
+        $('.plus-minus-logoWidth').show();
         $('.impex-button').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
@@ -226,7 +228,7 @@ export class AppComponent implements OnInit {
         break;
 
       case 2:
-        // $('.copy-button').html('COPY CODE');
+        $('.sample-logo').css('margin-top', '46px'); // sample logo
         $('.copy-btn-txt').html(' Copy Code');
         this.copyButtonReact();
         $('iframe').css('height', 520);
@@ -240,6 +242,7 @@ export class AppComponent implements OnInit {
         $('.button-link-form').hide();
         $('.foreground-form').hide();
         $('.checkbox-bg-white').hide();
+        $('.plus-minus-logoWidth').hide();
         $('.impex-button').hide();
 
         if (this.txtColor[0].color === 'white') {

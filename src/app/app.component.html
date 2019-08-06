@@ -52,7 +52,7 @@
           <input class="form-control ad-field" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
           
           <!-- Sample background for D1/A1/email -->
-          <h6 style="color:rgb(70, 170, 84);" (click)="showSampleBg = !showSampleBg">
+          <h6 (click)="showSampleBg = !showSampleBg">
             <u><b>Click for sample background URL</b></u></h6>
           <div class="codeBox card card-body" *ngIf="showSampleBg" style="border-color: hotpink; border-width: thin; width: 420px;">
             <h6 style="color:rgb(204, 3, 160); cursor:default"><u>Background</u></h6>
@@ -94,14 +94,13 @@
             </span>
           </div>
 
-          <div class="checkbox-bg-white">
+          <div class="checkbox-bg-white mb-3">
             <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
           </div>
 
           <!-- Sample logo for D1/A1/email -->
-          <br>
-          <h6 style="color:rgb(70, 170, 84); cursor:pointer;" (click)="showSampleLogo = !showSampleLogo">
-            <u><b>Click for sample logo URL</b></u></h6>
+          <div><h6 class="sample-logo" (click)="showSampleLogo = !showSampleLogo">
+            <u><b>Click for sample logo URL</b></u></h6></div>
           <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: hotpink; border-width: thin; width: 420px;">
             <h6 style="color:rgb(3, 147, 204);"><u>Logo</u></h6>
             <h6 class="text-dark sample-logo-D1" (click)="onClickSample('logo', 'D1')" (mouseover)="logoBorder('D1')"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>

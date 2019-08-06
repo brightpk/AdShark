@@ -170,7 +170,12 @@ li#nav-icon .current {
 
 /* Sample bg and Logo URL*/
 h6 {
+  color:rgb(70, 170, 84);
   cursor: pointer;
+}
+.sample-logo {
+  align-content: left;
+  margin-top: 22px;
 }
 
 
