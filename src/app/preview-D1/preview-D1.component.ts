@@ -101,18 +101,51 @@ export class PreviewD1Component implements DoCheck {
       // }
 
       // erase addition code for resize-sensor
-      if (tmp.includes('dir')) {
-        const i = tmp.indexOf('dir');
-        tmp = tmp.substring(0, i - 5) + '</div></div></div>';
-        this.HTMLCode = tmp;
-      }
+      // if (tmp.includes('dir')) {
+      //   const i = tmp.indexOf('dir');
+      //   tmp = tmp.substring(0, i - 5) + '</div></div></div>';
+      //   this.HTMLCode = tmp;
+      // }
+
+      // this.HTMLCode = tmp;
+      // this.HTMLCode = this.addHTTP(this.HTMLCode);
+      // insertD1(this.HTMLCode);
+      // this.HTMLCode = this.removeTarget(tmp);
+      // this.D1Code.emit(this.HTMLCode);
 
       this.HTMLCode = tmp;
+      this.HTMLCode = this.changeHref(this.HTMLCode);
+      insertD1(this.HTMLCode);
       this.D1Code.emit(tmp);
-      insertD1(this.HTMLCode, this.button);
 
   } catch (err) { }
 
   }
+
+  changeHref(html) {
+    let res: string;
+    // console.log(html.substring(html.search('href'), html.search('title="') - 1));
+    const str = html.substring(html.search('href'), html.search('title="') - 1);
+    res = html.replace(str, 'href="#"');
+    return res;
+  }
+
+    /* Remove target="_new" */
+  // removeTarget(html) {
+  //   let res: string;
+  //   const target = html.substring(html.search('target') , html.search('target') + 13);
+  //   res = html.replace(target, '');
+  //   return res;
+  // }
+
+  // addHTTP(html) {
+  //   let res: string;
+  //   if (this.data.buttonURL.startsWith('www.')) {
+  //     const tmp = 'https://' + this.data.buttonURL;
+  //     const link = html.substring(html.search('www.') , html.search('le=') - 5);
+  //     res = html.replace(link, tmp);
+  //   }
+  //   return res;
+  // }
 
 }

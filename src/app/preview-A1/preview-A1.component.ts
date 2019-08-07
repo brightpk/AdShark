@@ -48,10 +48,8 @@ export class PreviewA1Component implements DoCheck {
       /* If no button, comment out */
       if (this.button === 'none') {
         const str = tmp.substring(tmp.search('btn') - 28, tmp.search('/a') + 9);
-        console.log(str);
         const res = tmp.replace(str, '');
         tmp = res;
-        // console.log(res);
       }
 
       /* Headline Color */
@@ -92,17 +90,28 @@ export class PreviewA1Component implements DoCheck {
 
       this.HTMLCode = tmp;
       this.A1Code.emit(tmp);
+      this.HTMLCode = this.changeHref(this.HTMLCode);
       insertA1(this.HTMLCode);
 
     } catch (err) { }
 
   }
 
+  /* add srcet in html for each breakpoint */
   addSrcset(src): string {
     let srcset = this.data.bgURL;
     const str = srcset.substring(srcset.search('widescreen'), srcset.search('widescreen') + 10);
     srcset = srcset.replace(str, src);
     return srcset;
   }
+
+  changeHref(html) {
+    let res: string;
+    // console.log(html.substring(html.search('href'), html.search('href') + 7 + this.data.buttonURL.length));
+    const str = html.substring(html.search('href'), html.search('href') + 7 + this.data.buttonURL.length);
+    res = html.replace(str, 'href="#"');
+    return res;
+  }
+
 }
 

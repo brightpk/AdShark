@@ -141,13 +141,25 @@ export class PreviewEmailComponent implements DoCheck {
   }
 
   removeComment(html) {
-    // const code = $('.email-template').findhtml();
-    let res: string;
-    console.log(html.includes('bind'));
-    console.log(html.search('binding'));
-    console.log(html.substring(html.search('<!--binding') , html.search('-><tr') + 2));
-    const str = html.substring(html.search('<!--binding') , html.search('-><tr') + 2);
-    res = html.replace(str, '');
+    let res = html;
+    if (res.includes('bing')) {
+      const str1 = res.substring(res.search('<!--binding') , res.search('-><tr') + 2);
+      res = res.replace(str1, '');
+    }
+    if (res.includes('false')) {
+      const str2 = res.substring(res.search('<!--binding') , res.search('-><tr') + 2);
+      res = res.replace(str2, '');
+    }
+    if (html.includes('true')) {
+      const str3 = res.substring(res.search('<!--binding') , res.search('-><tr') + 2);
+      res = res.replace(str3, '');
+    }
+    if (this.button === 'alternate') {
+      res = '<' + res;
+    }
+
+    // const str = res.substring(res.search('<!--binding') , res.search('-><tr') + 2);
+    // res = res.replace(str, '');
     return res;
   }
 }
