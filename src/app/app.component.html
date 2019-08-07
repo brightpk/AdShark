@@ -23,7 +23,7 @@
           <mat-radio-group [(ngModel)]="txtColor[0].color" (change)="changeColor($event)">
             <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
           </mat-radio-group>
-          <textarea class="form-control ad-field" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
+          <textarea class="form-control ad-field" type="text" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
         </div>
 
         <!-- Subline -->
