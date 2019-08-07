@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, Output, EventEmitter, DoCheck } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
 
 declare const insertD1: any;
@@ -107,27 +107,17 @@ export class PreviewD1Component implements DoCheck {
       //   this.HTMLCode = tmp;
       // }
 
-      // this.HTMLCode = tmp;
-      // this.HTMLCode = this.addHTTP(this.HTMLCode);
-      // insertD1(this.HTMLCode);
-      // this.HTMLCode = this.removeTarget(tmp);
-      // this.D1Code.emit(this.HTMLCode);
-
       this.HTMLCode = tmp;
-      this.HTMLCode = this.changeHref(this.HTMLCode);
-      insertD1(this.HTMLCode);
       this.D1Code.emit(tmp);
+      this.HTMLCode = this.getScript(this.HTMLCode);
+      insertD1(this.HTMLCode);
 
-  } catch (err) { }
+    } catch (err) { }
 
   }
 
-  changeHref(html) {
-    let res: string;
-    // console.log(html.substring(html.search('href'), html.search('title="') - 1));
-    const str = html.substring(html.search('href'), html.search('title="') - 1);
-    res = html.replace(str, 'href="#"');
-    return res;
+  getScript(html) {
+    return '<script>$( document ).ready(function() { $(\'a.btn\').click(function(e) { e.preventDefault(); }); }); </script>' + html;
   }
 
     /* Remove target="_new" */

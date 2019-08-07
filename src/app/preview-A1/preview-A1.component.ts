@@ -11,6 +11,7 @@ declare var $: any;
   styleUrls: ['./preview-A1.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class PreviewA1Component implements DoCheck {
   @Input() data: AppData;
   @Input() altLogo: string;
@@ -90,7 +91,7 @@ export class PreviewA1Component implements DoCheck {
 
       this.HTMLCode = tmp;
       this.A1Code.emit(tmp);
-      this.HTMLCode = this.changeHref(this.HTMLCode);
+      this.HTMLCode = this.getScript(this.HTMLCode);
       insertA1(this.HTMLCode);
 
     } catch (err) { }
@@ -105,12 +106,9 @@ export class PreviewA1Component implements DoCheck {
     return srcset;
   }
 
-  changeHref(html) {
-    let res: string;
-    // console.log(html.substring(html.search('href'), html.search('href') + 7 + this.data.buttonURL.length));
-    const str = html.substring(html.search('href'), html.search('href') + 7 + this.data.buttonURL.length);
-    res = html.replace(str, 'href="#"');
-    return res;
+  /* Prevent default from clicking iframe button */
+  getScript(html) {
+    return '<script>$( document ).ready(function() { $(\'a.btn\').click(function(e) { e.preventDefault(); }); }); </script>' + html;
   }
 
 }
