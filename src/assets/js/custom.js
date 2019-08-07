@@ -6,7 +6,7 @@
 // }
 
 /* D1 iframe insert Output */
-function insertD1(code, button) {
+function insertD1(code) {
   var D1iframe = $('.D1-iframe');
   D1iframe.contents().find('#D1HTML').html(code);  
 }

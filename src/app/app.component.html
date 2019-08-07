@@ -23,7 +23,7 @@
           <mat-radio-group [(ngModel)]="txtColor[0].color" (change)="changeColor($event)">
             <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
           </mat-radio-group>
-          <textarea class="form-control ad-field" type="text" maxlength="60" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
+          <textarea class="form-control ad-field" type="text" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
         </div>
 
         <!-- Subline -->
@@ -179,8 +179,8 @@
   <button mat-flat-button class="impex-button" disabled="false">Download impex</button>
   <button mat-flat-button class="silverpop-button" disabled="false">Copy Silverpop code</button>
   <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
-  <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Hide</b></span>
-  <ng-template #hideCode><span id="show-hide-toggle">Show</span></ng-template>
+  <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Show</b></span>
+  <ng-template #hideCode><span id="show-hide-toggle">Hide</span></ng-template>
   
   <div class="codeBox card card-body" *ngIf="showCode">
     <code>{{OutputCode}}</code>

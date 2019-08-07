@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, Output, EventEmitter, DoCheck } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
 
 declare const insertD1: any;
@@ -101,18 +101,41 @@ export class PreviewD1Component implements DoCheck {
       // }
 
       // erase addition code for resize-sensor
-      if (tmp.includes('dir')) {
-        const i = tmp.indexOf('dir');
-        tmp = tmp.substring(0, i - 5) + '</div></div></div>';
-        this.HTMLCode = tmp;
-      }
+      // if (tmp.includes('dir')) {
+      //   const i = tmp.indexOf('dir');
+      //   tmp = tmp.substring(0, i - 5) + '</div></div></div>';
+      //   this.HTMLCode = tmp;
+      // }
 
       this.HTMLCode = tmp;
       this.D1Code.emit(tmp);
-      insertD1(this.HTMLCode, this.button);
+      this.HTMLCode = this.getScript(this.HTMLCode);
+      insertD1(this.HTMLCode);
 
-  } catch (err) { }
+    } catch (err) { }
 
   }
+
+  getScript(html) {
+    return '<script>$( document ).ready(function() { $(\'a.btn\').click(function(e) { e.preventDefault(); }); }); </script>' + html;
+  }
+
+    /* Remove target="_new" */
+  // removeTarget(html) {
+  //   let res: string;
+  //   const target = html.substring(html.search('target') , html.search('target') + 13);
+  //   res = html.replace(target, '');
+  //   return res;
+  // }
+
+  // addHTTP(html) {
+  //   let res: string;
+  //   if (this.data.buttonURL.startsWith('www.')) {
+  //     const tmp = 'https://' + this.data.buttonURL;
+  //     const link = html.substring(html.search('www.') , html.search('le=') - 5);
+  //     res = html.replace(link, tmp);
+  //   }
+  //   return res;
+  // }
 
 }

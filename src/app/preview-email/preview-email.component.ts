@@ -21,9 +21,16 @@ export class PreviewEmailComponent implements DoCheck {
   previousParaColor = '';
 
   ngDoCheck() {
-    $('.option-button2').mouseout(() => {
-      console.log('mouseout from button select area');
-    });
+    if (this.button === 'default') {
+      $('.blue-btn').show();
+      $('.wht-btn').hide();
+    } else if (this.button === 'alternate') {
+      $('.blue-btn').hide();
+      $('.wht-btn').show();
+    } else {
+      $('.blue-btn').hide();
+      $('.wht-btn').hide();
+    }
 
     if (this.txtColor[0].color !== this.previousHeadColor) {
       this.getHeadColor(this.txtColor[0].color);
@@ -57,9 +64,25 @@ export class PreviewEmailComponent implements DoCheck {
         this.HTMLCode = tmp;
       }
 
+      /* Remove button code if not chosen  */
+      if (this.button === '' || this.button === 'none') {
+        const str1 = tmp.substring(tmp.search('blue-btn') - 11, tmp.search('wht-btn') - 11);
+        const str2 = tmp.substring(tmp.search('wht-btn') - 11, tmp.search('logo') - 11);
+        tmp = tmp.replace(str1, '');
+        tmp = tmp.replace(str2, '');
+        this.HTMLCode = tmp;
+      } else if (this.button === 'default') {
+        const str = tmp.substring(tmp.search('wht-btn') - 11, tmp.search('logo') - 11);
+        tmp = tmp.replace(str, '');
+        this.HTMLCode = tmp;
+      } else if (this.button === 'alternate') {
+        const str = tmp.substring(tmp.search('blue-btn') - 11, tmp.search('wht-btn') - 11);
+        tmp = tmp.replace(str, '');
+        this.HTMLCode = tmp;
+      }
+
       tmp = this.rgbToHex(tmp);
       this.HTMLCode = tmp;
-      this.HTMLCode = this.removeComment(this.HTMLCode);
       this.emailCode.emit(this.HTMLCode);
       insertEmail(this.HTMLCode);
 
@@ -138,16 +161,5 @@ export class PreviewEmailComponent implements DoCheck {
       paraHex = output.replace(paraTmp, '#ed1a3b;');
       return paraHex;
     }
-  }
-
-  removeComment(html) {
-    // const code = $('.email-template').findhtml();
-    let res: string;
-    console.log(html.includes('bind'));
-    console.log(html.search('binding'));
-    console.log(html.substring(html.search('<!--binding') , html.search('-><tr') + 2));
-    const str = html.substring(html.search('<!--binding') , html.search('-><tr') + 2);
-    res = html.replace(str, '');
-    return res;
   }
 }
