@@ -107,6 +107,12 @@ export class AppComponent implements OnInit {
     console.log(this.logoWidth);
   }
 
+  onPaste(e: ClipboardEvent) {
+    const clipboard = e.clipboardData;
+    const pastedText = clipboard.getData('text');
+    console.log(pastedText);
+  }
+
   /* Check the text color */
   changeColor(value) {
     $('.copy-btn-txt').html(' Copy Code');
@@ -359,6 +365,11 @@ export class AppComponent implements OnInit {
       console.log(tmp.replace('-', ' '));
       this.altLogo = tmp.charAt(0).toUpperCase() + tmp.slice(1);
       this.altLogo = this.altLogo.replace('-', ' ');
+    }
+
+    if (this.data.logoURL.includes('Registry')) {
+      console.log(this.data.logoURL.includes('Registry'));
+      this.altLogo = 'Registry';
     }
     console.log('AltLogo: ', this.altLogo);
   }

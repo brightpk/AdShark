@@ -75,7 +75,7 @@
         <!-- URL for Logo -->
         <div class="logo-form mb-3">
             <div class="logo-label"><label for="Logo"><h5 class="text-primary">Logo</h5></label></div>
-            <input class="form-control ad-field mb-2" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" placeholder="url" />
+            <input class="form-control ad-field mb-2" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" (paste)="onPaste($event)" placeholder="url" />
 
           <!-- Button plus/minus -->
           <div class="plus-minus-logoWidth">
