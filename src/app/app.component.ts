@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { AppData } from './AppData';
 import { ResizedEvent } from 'angular-resize-event';
@@ -17,7 +18,8 @@ declare var $: any;
 export class AppComponent implements OnInit {
   title = 'AdShark';
   data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around inside ads
-  altLogo = ''; button = ''; device = '';
+  altLogo = ''; altImg = '';
+  button = ''; device = '';
   paneSize: number; rightWidth: number; leftWidth: number;
   OutputCode: string;
   showCode = true;
@@ -104,7 +106,6 @@ export class AppComponent implements OnInit {
   keyEvent(event) {
     $('.copy-btn-txt').html(' Copy Code');
     this.copyButtonReact();
-    console.log(this.logoWidth);
   }
 
   onPaste(e: ClipboardEvent) {
@@ -351,27 +352,36 @@ export class AppComponent implements OnInit {
     }
   }
 
-  /* Get a alternate logo name */
+  /* Get an alternate logo name */
   getAlterLogo(data) {
     let lst: string[] = [];
     let tmp = data.logoURL;
     if (data.logoURL !== null) {
-      // let tmp = data.logoURL;
       lst = tmp.split('/');
       tmp = lst[lst.length - 1];
       const i = lst[lst.length - 1].indexOf('-logo');
       tmp = tmp.substring(0, i);
-      console.log(tmp.slice(1));
-      console.log(tmp.replace('-', ' '));
+      // console.log(tmp.slice(1));
+      // console.log(tmp.replace('-', ' '));
       this.altLogo = tmp.charAt(0).toUpperCase() + tmp.slice(1);
       this.altLogo = this.altLogo.replace('-', ' ');
     }
-
-    if (this.data.logoURL.includes('Registry')) {
-      console.log(this.data.logoURL.includes('Registry'));
+    if (data.logoURL.includes('Registry')) {
       this.altLogo = 'Registry';
     }
     console.log('AltLogo: ', this.altLogo);
+  }
+
+  /* Get an alternate img name */
+  getAlterImg(data) {
+    let lst: string[] = [];
+    let tmp = data.bgURL;
+    if (data.bgURL !== null) {
+      lst = tmp.split('/');
+      tmp = lst[lst.length - 1];
+      tmp = tmp.substring(0, tmp.search('.jpg'));
+      this.altImg = tmp;
+    }
   }
 
   /* Copy code */

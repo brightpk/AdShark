@@ -15,10 +15,10 @@ declare var $: any;
 export class PreviewD1Component implements DoCheck {
   @Input() data: AppData;
   @Input() altLogo: string;
+  @Input() altImg: string;
   @Input() button: string;
   @Input() device: string;
   @Input() logoWidth: number;
-  @Input() disabledButton: boolean;
   @Input() txtColor: any = [];
   @Output() D1Code = new EventEmitter();
   HTMLCode: string;
