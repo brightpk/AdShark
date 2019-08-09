@@ -1,3 +1,7 @@
+.rightPane {
+  padding-bottom: 50px;
+}
+
 /* You can add global styles to this file, and also import other style files */
 .column {
   float: left;
@@ -79,7 +83,7 @@ li#nav-icon {
 /* Code box*/
 .codeBox {
   margin: 20px;
-  width: 60%;
+  width: auto;
   height: 150px;
   border: 3px solid #73AD21;
   padding: 10px;
@@ -137,7 +141,6 @@ li#nav-icon .current {
   background-color: rgb(8, 164, 236);
   color: white;
   margin-left: 20px !important;
-  /* margin-right: 10px !important; */
 } 
 /* Previous color: background-color: rgb(228, 229, 230); color: rgb(134, 134, 134); */
 .copy-button:hover {
@@ -147,12 +150,12 @@ li#nav-icon .current {
 .impex-button {
   background-color:lightblue;
   color: white;
-  margin-left: 10px !important;
+  margin-left: 20px !important;
 }
 .silverpop-button {
   background-color:lightblue;
   color: white;
-  margin-left: 10px !important;
+  margin-left: 20px !important;
 }
 
 /* Show/Hide toggle switch */

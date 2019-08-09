@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     $('.paragraph-form').hide();
     $('.foreground-form').hide();
-    $('.silverpop-button').hide();
+    $('.silverpop-code').hide();
   }
 
     /* -------- Show and Hide Sample bg and logo -----*/
@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
         if (ad === 'D1') {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg';
         } else if (ad === 'A1') {
-          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png';
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg';
         } else { this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; }
       }
     }
@@ -198,10 +198,10 @@ export class AppComponent implements OnInit {
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
         $('.plus-minus-logoWidth').show();
-        $('.impex-button').show();
+        $('.impex-code').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
-        $('.silverpop-button').hide();
+        $('.silverpop-code').hide();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -222,10 +222,10 @@ export class AppComponent implements OnInit {
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
         $('.plus-minus-logoWidth').show();
-        $('.impex-button').show();
+        $('.impex-code').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
-        $('.silverpop-button').hide();
+        $('.silverpop-code').hide();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -244,13 +244,13 @@ export class AppComponent implements OnInit {
         this.tabClick = e.index;
         console.log(e.index);
         $('.paragraph-form').show();
-        $('.silverpop-button').show();
+        $('.silverpop-code').show();
         $('.subheadline-form').hide();
         $('.button-link-form').hide();
         $('.foreground-form').hide();
         $('.checkbox-bg-white').hide();
         $('.plus-minus-logoWidth').hide();
-        $('.impex-button').hide();
+        $('.impex-code').hide();
 
         if (this.txtColor[0].color === 'white') {
           this.txtColor[0].color = 'red';
