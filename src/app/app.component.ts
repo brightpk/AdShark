@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { AppData } from './AppData';
 import { ResizedEvent } from 'angular-resize-event';
 import { MatTabChangeEvent } from '@angular/material';
@@ -13,6 +13,7 @@ declare var $: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class AppComponent implements OnInit {
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
   altLogo = ''; altImg = '';
   button = ''; device = '';
   paneSize: number; rightWidth: number; leftWidth: number;
-  OutputCode: string;
+  outputCode: string; impexCode: string; silverpopCode: string; copyCode: string;
   showCode = true;
   tabClick = 0;
   logoWidth = 150;
@@ -48,7 +49,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     $('.paragraph-form').hide();
     $('.foreground-form').hide();
-    $('.silverpop-code').hide();
+    $('.silverpop').hide();
   }
 
     /* -------- Show and Hide Sample bg and logo -----*/
@@ -105,7 +106,7 @@ export class AppComponent implements OnInit {
   @HostListener('document:keyup', ['$event'])
   keyEvent(event) {
     $('.copy-btn-txt').html(' Copy Code');
-    this.copyButtonReact();
+    $('.impex-btn-txt').html(' Download impex');
   }
 
   onPaste(e: ClipboardEvent) {
@@ -117,13 +118,13 @@ export class AppComponent implements OnInit {
   /* Check the text color */
   changeColor(value) {
     $('.copy-btn-txt').html(' Copy Code');
-    this.copyButtonReact();
+    $('.impex-btn-txt').html(' Download impex');
   }
 
   /* Check the button style */
   changeButton(event) {
     $('.copy-btn-txt').html(' Copy Code');
-    this.copyButtonReact();
+    $('.impex-btn-txt').html(' Download impex');
     console.log(this.button);
 
     if (this.button === 'none') {
@@ -164,22 +165,24 @@ export class AppComponent implements OnInit {
   receiveCode(section, code) {
     switch (section) {
       case 'D1':
-        this.previewCode.D1 = code;
-        this.OutputCode = code;
+        // this.previewCode.D1 = code;
+        this.outputCode = code;
+        this.impexCode = code.replace(/"/g, '""');
         break;
 
       case 'A1':
-        this.previewCode.A1 = code;
-        this.OutputCode = code;
+        // this.previewCode.A1 = code;
+        this.outputCode = code;
+        this.impexCode = code.replace(/"/g, '""');
         break;
 
       case 'email':
-        this.previewCode.email = code;
-        this.OutputCode = code;
+        // this.previewCode.email = code;
+        this.outputCode = code;
         break;
 
       default:
-        this.OutputCode = '';
+        this.outputCode = '';
     }
   }
 
@@ -189,19 +192,20 @@ export class AppComponent implements OnInit {
       case 0:
         $('.sample-logo').css('margin-top', '22px'); // sample logo
         $('.copy-btn-txt').html(' Copy Code');
-        this.copyButtonReact();
+        $('.impex-btn-txt').html(' Download impex');
         this.listofColor[2] = 'white';
-        this.OutputCode = this.previewCode.D1;
+        // this.outputCode = this.previewCode.D1;
+        // this.impexCode = this.previewCode.D1.replace(/"/g, '""');
         this.tabClick = e.index;
         console.log(e.index);
         $('.subheadline-form').show();
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
         $('.plus-minus-logoWidth').show();
-        $('.impex-code').show();
+        $('.impex-file').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
-        $('.silverpop-code').hide();
+        $('.silverpop').hide();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -213,19 +217,19 @@ export class AppComponent implements OnInit {
       case 1:
         $('.sample-logo').css('margin-top', '22px'); // sample logo
         $('.copy-btn-txt').html(' Copy Code');
-        this.copyButtonReact();
+        $('.impex-btn-txt').html(' Download impex');
         this.listofColor[2] = 'white';
-        this.OutputCode = this.previewCode.A1;
+        // this.outputCode = this.previewCode.A1;
         this.tabClick = e.index;
         console.log(e.index);
         $('.subheadline-form').show();
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
         $('.plus-minus-logoWidth').show();
-        $('.impex-code').show();
+        $('.impex-file').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
-        $('.silverpop-code').hide();
+        $('.silverpop').hide();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -237,20 +241,20 @@ export class AppComponent implements OnInit {
       case 2:
         $('.sample-logo').css('margin-top', '46px'); // sample logo
         $('.copy-btn-txt').html(' Copy Code');
-        this.copyButtonReact();
+        $('.impex-btn-txt').html(' Download impex');
         $('iframe').css('height', 520);
         this.listofColor[2] = 'red';
-        this.OutputCode = this.previewCode.email;
+        // this.outputCode = this.previewCode.email;
         this.tabClick = e.index;
         console.log(e.index);
         $('.paragraph-form').show();
-        $('.silverpop-code').show();
+        $('.silverpop').show();
         $('.subheadline-form').hide();
         $('.button-link-form').hide();
         $('.foreground-form').hide();
         $('.checkbox-bg-white').hide();
         $('.plus-minus-logoWidth').hide();
-        $('.impex-code').hide();
+        $('.impex-file').hide();
 
         if (this.txtColor[0].color === 'white') {
           this.txtColor[0].color = 'red';
@@ -264,7 +268,7 @@ export class AppComponent implements OnInit {
         break;
 
       default:
-          this.OutputCode = '';
+          this.outputCode = '';
       }
     }
 
@@ -385,63 +389,77 @@ export class AppComponent implements OnInit {
   }
 
   /* Copy code */
-  copyCode() {
-      if (this.tabClick === 0 && this.data.isEmpty('D1')) {
-        alert('One-Third Banner (D1) form is empty! Please fill up the form!');
-      } else if (this.tabClick === 1 && this.data.isEmpty('A1')) {
-        alert('Hero Banner (A1) form is empty! Please fill up the form!');
-      } else if (this.tabClick === 2 && this.data.isEmpty('email')) {
-        alert('Email Banner form is empty! Please fill up the form!');
-      } else {
-        let txtarea: any;
-        txtarea = document.createElement('textarea');
-        txtarea.style.position = 'fixed';
-        txtarea.style.left = '0';
-        txtarea.style.top = '0';
-        txtarea.style.opacity = '0';
-        txtarea.value = this.OutputCode;
-        document.body.appendChild(txtarea);
-        txtarea.focus();
-        txtarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(txtarea);
-        $('.copy-btn-txt').html(' Copied!');
-        this.copyButtonReact();
-      }
+  onCopy(codeType) {
+    if (codeType === 'plain') {
+      this.copyCode = this.outputCode;
+    } else if (codeType === 'impex') {
+      this.copyCode = $('code#impex-code').text();
+    }
+
+    if (this.tabClick === 0 && this.data.isEmpty('D1')) {
+      alert('One-Third Banner (D1) form is empty! Please fill up the form!');
+    } else if (this.tabClick === 1 && this.data.isEmpty('A1')) {
+      alert('Hero Banner (A1) form is empty! Please fill up the form!');
+    } else if (this.tabClick === 2 && this.data.isEmpty('email')) {
+      alert('Email Banner form is empty! Please fill up the form!');
+    } else {
+      let txtarea: any;
+      txtarea = document.createElement('textarea');
+      txtarea.style.position = 'fixed';
+      txtarea.style.left = '0';
+      txtarea.style.top = '0';
+      txtarea.style.opacity = '0';
+      txtarea.value = this.copyCode;
+      document.body.appendChild(txtarea);
+      txtarea.focus();
+      txtarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(txtarea);
+      this.copyButtonReact(codeType);
+    }
   }
 
   /* Change color when COPIED! is completed */
-  copyButtonReact() {
-    if ($('.copy-btn-txt').html() === ' Copied!') {
-      $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-      $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-      $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
+  copyButtonReact(codeType) {
+    if (codeType === 'plain') {
+      $('.copy-btn-txt').html(' Copied!');
+      $('.impex-btn-txt').html(' Download impex');
 
-      $('.copy-button').hover(() => {
-        $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-        $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-        $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
-      // }, () => {
-      //   $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-      //   $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-      //   $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
-      });
-
-    } else if ($('.copy-btn-txt').html() === ' Copy Code') {
-      $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
-      $('.fa-code').css('color' , 'white');
-      $('.copy-btn-txt').css('color' , 'white');
-
-      $('.copy-button').hover(() => {
-        $('.copy-button').css('background-color', 'rgb(3, 125, 182)');
-        $('.fa-code').css('color', 'white');
-        $('.copy-btn-txt').css('color', 'white');
-      }, () => {
-        $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
-        $('.fa-code').css('color' , 'white');
-        $('.copy-btn-txt').css('color' , 'white');
-      });
+    } else if (codeType === 'impex') {
+      $('.impex-btn-txt').html(' Copied!');
+      $('.copy-btn-txt').html(' Copy Code');
     }
+
+    // if ($('.copy-btn-txt').html() === ' Copied!') {
+    //   $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
+    //   $('.fa-code').css('color' , 'rgb(134, 134, 134)');
+    //   $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
+
+    //   $('.copy-button').hover(() => {
+    //     $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
+    //     $('.fa-code').css('color' , 'rgb(134, 134, 134)');
+    //     $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
+    //   // }, () => {
+    //   //   $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
+    //   //   $('.fa-code').css('color' , 'rgb(134, 134, 134)');
+    //   //   $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
+    //   });
+
+    // } else if ($('.copy-btn-txt').html() === ' Copy Code') {
+    //   $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
+    //   $('.fa-code').css('color' , 'white');
+    //   $('.copy-btn-txt').css('color' , 'white');
+
+    //   $('.copy-button').hover(() => {
+    //     $('.copy-button').css('background-color', 'rgb(3, 125, 182)');
+    //     $('.fa-code').css('color', 'white');
+    //     $('.copy-btn-txt').css('color', 'white');
+    //   }, () => {
+    //     $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
+    //     $('.fa-code').css('color' , 'white');
+    //     $('.copy-btn-txt').css('color' , 'white');
+    //   });
+    // }
   }
 
 }
