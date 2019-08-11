@@ -15,10 +15,10 @@ declare var $: any;
 export class PreviewD1Component implements DoCheck {
   @Input() data: AppData;
   @Input() altLogo: string;
+  @Input() altImg: string;
   @Input() button: string;
   @Input() device: string;
   @Input() logoWidth: number;
-  @Input() disabledButton: boolean;
   @Input() txtColor: any = [];
   @Output() D1Code = new EventEmitter();
   HTMLCode: string;
@@ -90,23 +90,6 @@ export class PreviewD1Component implements DoCheck {
         this.HTMLCode = tmp;
       }
 
-    // if no paragraph
-      // if (this.data.para === '') {
-      //   const start = tmp.indexOf('h4');
-      //   const end = tmp.indexOf('h4>');
-      //   const str = tmp.substring(start - 1, end + 3);
-      //   const res = tmp.replace(str, '');
-      //   tmp = res;
-      //   this.HTMLCode = tmp;
-      // }
-
-      // erase addition code for resize-sensor
-      // if (tmp.includes('dir')) {
-      //   const i = tmp.indexOf('dir');
-      //   tmp = tmp.substring(0, i - 5) + '</div></div></div>';
-      //   this.HTMLCode = tmp;
-      // }
-
       this.HTMLCode = tmp;
       this.D1Code.emit(tmp);
       this.HTMLCode = this.getScript(this.HTMLCode);
@@ -119,23 +102,5 @@ export class PreviewD1Component implements DoCheck {
   getScript(html) {
     return '<script>$( document ).ready(function() { $(\'a.btn\').click(function(e) { e.preventDefault(); }); }); </script>' + html;
   }
-
-    /* Remove target="_new" */
-  // removeTarget(html) {
-  //   let res: string;
-  //   const target = html.substring(html.search('target') , html.search('target') + 13);
-  //   res = html.replace(target, '');
-  //   return res;
-  // }
-
-  // addHTTP(html) {
-  //   let res: string;
-  //   if (this.data.buttonURL.startsWith('www.')) {
-  //     const tmp = 'https://' + this.data.buttonURL;
-  //     const link = html.substring(html.search('www.') , html.search('le=') - 5);
-  //     res = html.replace(link, tmp);
-  //   }
-  //   return res;
-  // }
 
 }

@@ -1,3 +1,17 @@
+.rightPane {
+  padding-bottom: 50px;
+}
+
+/* impex file code output #212529 */
+pre {
+  display: inline-block;
+  font-size: 100%;
+  color: #08a4ec;
+  word-break: break-word;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+}
+
 /* You can add global styles to this file, and also import other style files */
 .column {
   float: left;
@@ -79,9 +93,11 @@ li#nav-icon {
 /* Code box*/
 .codeBox {
   margin: 20px;
-  width: 60%;
+  width: auto;
+  height: 150px;
   border: 3px solid #73AD21;
   padding: 10px;
+  overflow-y: scroll;
 }
 
 /* breakpoint button styles */
@@ -117,7 +133,7 @@ iframe {
   margin-right: 10px;
 }
 #icon-button:hover {
-  box-shadow: 0 0 0 4px rgba(255,255,255,1);
+  box-shadow: 0 0 0 4px #ffffff;
   transition: background 0.2s, color 0.2s;
   opacity: .5;
 } 
@@ -132,25 +148,28 @@ li#nav-icon .current {
 
 /* Copy button rgb(79, 169, 230) rgb(104, 207, 117)  */
 .copy-button {
-  background-color: rgb(8, 164, 236);
+  background-color: #08a4ec;
   color: white;
   margin-left: 20px !important;
-  /* margin-right: 10px !important; */
 } 
 /* Previous color: background-color: rgb(228, 229, 230); color: rgb(134, 134, 134); */
 .copy-button:hover {
-  background-color: rgb(3, 125, 182);
+  background-color: #037db6;
 	color: white;
 }
 .impex-button {
-  background-color:lightblue;
+  background-color:hotpink;
   color: white;
-  margin-left: 10px !important;
+  margin-left: 20px !important;
+}
+.impex-button:hover {
+  background-color: #c04f88;
+	color: white;
 }
 .silverpop-button {
   background-color:lightblue;
   color: white;
-  margin-left: 10px !important;
+  margin-left: 20px !important;
 }
 
 /* Show/Hide toggle switch */
@@ -170,7 +189,7 @@ li#nav-icon .current {
 
 /* Sample bg and Logo URL*/
 h6 {
-  color:rgb(70, 170, 84);
+  color:#46aa54;
   cursor: pointer;
 }
 .sample-logo {

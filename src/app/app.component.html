@@ -49,7 +49,7 @@
         <!-- URL for background -->
         <div class="background-form mb-3">
           <label for="Background"><h5 class="text-primary">Background</h5></label>
-          <input class="form-control ad-field" type="text" [(ngModel)]="data.bgURL" placeholder="url" />
+          <input class="form-control ad-field" type="text" [(ngModel)]="data.bgURL" (ngModelChange)="getAlterImg(data)" (paste)="onPaste($event)" placeholder="url" />
           
           <!-- Sample background for D1/A1/email -->
           <h6 (click)="showSampleBg = !showSampleBg">
@@ -75,7 +75,7 @@
         <!-- URL for Logo -->
         <div class="logo-form mb-3">
             <div class="logo-label"><label for="Logo"><h5 class="text-primary">Logo</h5></label></div>
-            <input class="form-control ad-field mb-2" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" placeholder="url" />
+            <input class="form-control ad-field mb-2" type="text" [(ngModel)]="data.logoURL" (ngModelChange)="getAlterLogo(data)" (paste)="onPaste($event)" placeholder="url" />
 
           <!-- Button plus/minus -->
           <div class="plus-minus-logoWidth">
@@ -104,7 +104,7 @@
           <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: hotpink; border-width: thin; width: 420px;">
             <h6 style="color:rgb(3, 147, 204);"><u>Logo</u></h6>
             <h6 class="text-dark sample-logo-D1" (click)="onClickSample('logo', 'D1')" (mouseover)="logoBorder('D1')"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
-            <h6 class="text-dark sample-logo-A1" (click)="onClickSample('logo', 'A1')" (mouseover)="logoBorder('A1')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo-overlay.png</h6>
+            <h6 class="text-dark sample-logo-A1" (click)="onClickSample('logo', 'A1')" (mouseover)="logoBorder('A1')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg</h6>
             <h6 class="text-dark sample-logo-email" (click)="onClickSample('logo', 'email')" (mouseover)="logoBorder('email')"><b>Email Banner:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
           </div>
         </div>
@@ -159,32 +159,76 @@
       <div class="mat-app-background basic-container">
         <mat-tab-group class="" (selectedTabChange)="onTabClick($event)" (click)="onTabClick($event)">
           <mat-tab label="One-Third Banner">
-            <app-preview-D1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" [logoWidth]="logoWidth" [disabledButton]="disabledButton" (D1Code)="receiveCode('D1', $event)"></app-preview-D1>
+            <app-preview-D1 [data]="data" [altLogo]="altLogo" [altImg]="altImg" [button]="button" [txtColor]="txtColor" [logoWidth]="logoWidth" (D1Code)="receiveCode('D1', $event)"></app-preview-D1>
           </mat-tab>
           <mat-tab label="Hero Banner">
-            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" [logoWidth]="logoWidth" (A1Code)="receiveCode('A1', $event)"></app-preview-A1>
+            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor" [logoWidth]="logoWidth" (A1Code)="receiveCode('A1', $event)"></app-preview-A1>
           </mat-tab>
           <mat-tab label="Email"> 
-            <app-preview-email [data]="data" [altLogo]="altLogo" [button]="button" [device]="device" [txtColor]="txtColor" (emailCode)="receiveCode('email', $event)"></app-preview-email>
+            <app-preview-email [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor" (emailCode)="receiveCode('email', $event)"></app-preview-email>
           </mat-tab>
         </mat-tab-group>
       </div>
       <!-- </div> -->
-       
+      <div class="plain-text">
+        <h4 class="mt-4 ml-4">Plain Text</h4>
+        <div class="codeBox card card-body" *ngIf="showCode">
+        <code>{{outputCode}}</code>
+        </div>
+        <button mat-flat-button class="copy-button" (click)="showCode=true" (click)="onCopy('plain')" matTooltip="Copy plain code" matTooltipPosition="right">
+          <span><i class="fas fa-code"></i></span>
+          <span class="copy-btn-txt"> Copy Code</span>
+        </button>
+      </div>  
 
-  <button mat-flat-button class="copy-button" (click)="showCode=true" (click)="copyCode()">
-    <span><i class="fas fa-code"></i></span>
-    <span class="copy-btn-txt"> Copy Code</span>
-  </button>
-  <button mat-flat-button class="impex-button" disabled="false">Download impex</button>
-  <button mat-flat-button class="silverpop-button" disabled="false">Copy Silverpop code</button>
-  <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
-  <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Show</b></span>
-  <ng-template #hideCode><span id="show-hide-toggle">Hide</span></ng-template>
-  
-  <div class="codeBox card card-body" *ngIf="showCode">
-    <code>{{OutputCode}}</code>
-  </div>
+      <div class="impex-file">
+        <h4 class="mt-4 ml-4">Impex File</h4>
+        <div class="codeBox card card-body" *ngIf="showCode">
+          <code id="impex-code">
+            <pre>
+$contentCatalog = americanhotelContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default = $contentCatalog]), CatalogVersion.version[default = Staged])[default = $contentCatalog:Staged]
+$mediaContainer = media(qualifier, $contentCV);
+$medias = medias(code, $contentCV);
+$media = media(code, $contentCV);
+$productCatalog = americanhotelProductCatalog
+$productCV = catalogVersion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = $productCatalog:Staged]
+$siteResource = jar:com.americanhotel.hybris.initialdata.constants.AmericanhotelInitialDataConstants&/americanhotelinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$lang = en
+                
+UPDATE GenericItem[processor = de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor]; pk[unique = true]
+$jarResourceCms = $config-jarResourceCmsValue
+                
+                
+                
+                
+                
+INSERT_UPDATE CMSParagraphComponent ; $contentCV[unique = true] ; uid[unique = true] ; onlyOneRestrictionMustApply[default='false'] ; name                          ; &componentRef    ; content[lang = $lang]
+
+                                    ;                           ; componentid   ;                                              ; component name ; componentid ; "
+                                    {{impexCode}}
+                
+"</pre>
+          </code>
+        </div>
+        <button mat-flat-button class="impex-button" (click)="onCopy('impex')" matTooltip="Copy impex file" matTooltipPosition="right">
+          <span class="fas fa-file-code"></span>
+          <span class="impex-btn-txt"> Download impex</span>
+        </button>
+      </div>
+
+      <div class="silverpop">
+        <h4 class="mt-4 ml-4">Silverpop</h4>
+        <div class="codeBox card card-body" *ngIf="showCode">
+          <code>{{outputCode}}</code>
+        </div> 
+        <button mat-flat-button class="silverpop-button" disabled="false" matTooltip="Copy silverpop" matTooltipPosition="right">
+          <span class="fas fa-file-code"></span>
+          <span> Silverpop Code</span></button>
+      </div>
+        <!-- <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
+        <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Show</b></span>
+        <ng-template #hideCode><span id="show-hide-toggle">Hide</span></ng-template> -->
 
     </as-split-area>
   </as-split>
