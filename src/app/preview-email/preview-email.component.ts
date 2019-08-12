@@ -81,6 +81,13 @@ export class PreviewEmailComponent implements DoCheck {
 
       this.HTMLCode = tmp;
       this.emailCode.emit(this.HTMLCode);
+
+      if (this.HTMLCode.includes('target="_blank"')) {
+        this.HTMLCode = this.HTMLCode.replace(new RegExp('target="_blank"', 'g'), '');
+        // this.HTMLCode = this.HTMLCode.replace(new RegExp('href="#"', 'g'), 'href=""');
+        console.log(this.HTMLCode);
+      }
+      
       insertEmail(this.HTMLCode);
 
     } catch (err) { }
