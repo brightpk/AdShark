@@ -48,7 +48,7 @@
 
         <!-- URL for background -->
         <div class="background-form mb-3">
-          <label for="Background"><h5 class="text-primary">Background</h5></label>
+          <label for="Background"><h5 class="text-primary background-label">Background</h5></label>
           <input class="form-control ad-field" type="text" [(ngModel)]="data.bgURL" (ngModelChange)="getAlterImg(data)" (paste)="onPaste($event)" placeholder="url" />
           
           <!-- Sample background for D1/A1/email -->
@@ -172,10 +172,10 @@
       <!-- </div> -->
       <div class="plain-text">
         <h4 class="mt-4 ml-4">Plain Text</h4>
-        <div class="codeBox card card-body" *ngIf="showCode">
+        <div class="codeBox card card-body">
         <code>{{outputCode}}</code>
         </div>
-        <button mat-flat-button class="copy-button" (click)="showCode=true" (click)="onCopy('plain')" matTooltip="Copy plain code" matTooltipPosition="right">
+        <button mat-flat-button class="copy-button" (click)="onCopy('plain')" matTooltip="Copy plain code" matTooltipPosition="right">
           <span><i class="fas fa-code"></i></span>
           <span class="copy-btn-txt"> Copy Code</span>
         </button>
@@ -183,7 +183,7 @@
 
       <div class="impex-file">
         <h4 class="mt-4 ml-4">Impex File</h4>
-        <div class="codeBox card card-body" *ngIf="showCode">
+        <div class="codeBox card card-body">
           <code id="impex-code">
             <pre>
 $contentCatalog = americanhotelContentCatalog
@@ -219,7 +219,7 @@ INSERT_UPDATE CMSParagraphComponent ; $contentCV[unique = true] ; uid[unique = t
 
       <div class="silverpop">
         <h4 class="mt-4 ml-4">Silverpop</h4>
-        <div class="codeBox card card-body" *ngIf="showCode">
+        <div class="codeBox card card-body">
           <code>{{outputCode}}</code>
         </div> 
         <button mat-flat-button class="silverpop-button" disabled="false" matTooltip="Copy silverpop" matTooltipPosition="right">

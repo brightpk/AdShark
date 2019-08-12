@@ -49,7 +49,7 @@ export class PreviewD1Component implements DoCheck {
 
       /* If no button, comment out */
       if (this.button === 'none') {
-        const str = tmp.substring(tmp.search('btn') - 12, tmp.search('/a') + 9);
+        const str = tmp.substring(tmp.search('btn') - 10, tmp.search('/a') + 3);
         const res = tmp.replace(str, '');
         tmp = res;
       }
