@@ -136,10 +136,12 @@ export class AppComponent implements OnInit {
   }
 
   minusLogo(e) {
+    this.logoWidth = Number(this.logoWidth);
     this.logoWidth -= 5;
   }
 
   plusLogo(e) {
+    this.logoWidth = Number(this.logoWidth);
     this.logoWidth += 5;
   }
 

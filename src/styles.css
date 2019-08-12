@@ -57,7 +57,7 @@ input[type="radio"] {
 }
 
 /* Plue-Minus width Logo */
-.input-width-logo {
+.input-logo-width {
   width: 60px;
   height: 35px;
   text-align: center;
@@ -68,23 +68,17 @@ input[type="radio"] {
   padding: 1rem;
 }
 
-/* Each button on the app */
-[type=button] {
-  /* -webkit-appearance: button; */
-  margin-right: 0px;
-}
-
 /* Hide input number's spin box */
-input[type="number"]::-webkit-outer-spin-button,
+/* input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 input[type="number"] {
     -moz-appearance: textfield;
-}
+} */
 
-/* space between icons*/
+/* space between icons */
 li#nav-icon {
   margin-right: 5px;
   color: rgb(149, 155, 161);
