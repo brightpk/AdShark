@@ -400,6 +400,8 @@ export class AppComponent implements OnInit {
       this.copyCode = this.outputCode;
     } else if (codeType === 'impex') {
       this.copyCode = $('code#impex-code').text();
+    } else if (codeType === 'silverpop') {
+      this.copyCode = $('code#silverpop-code').text();
     }
 
     if (this.tabClick === 0 && this.data.isEmpty('D1')) {
