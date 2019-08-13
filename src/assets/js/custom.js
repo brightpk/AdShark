@@ -17,6 +17,7 @@ function insertA1(code) {
   A1iframe.contents().find('#A1HTML').html(code);
 }
 
+/* Email iframe insert Output */
 function insertEmail(code) {
   var emailiframe = $('.email-iframe');
   emailiframe.contents().find('#emailHTML').html(code);

@@ -112,7 +112,7 @@ export class AppComponent implements OnInit {
   onPaste(e: ClipboardEvent) {
     const clipboard = e.clipboardData;
     const pastedText = clipboard.getData('text');
-    console.log(pastedText);
+    // console.log(pastedText);
   }
 
   /* Check the text color */
@@ -136,10 +136,12 @@ export class AppComponent implements OnInit {
   }
 
   minusLogo(e) {
+    this.logoWidth = Number(this.logoWidth);
     this.logoWidth -= 5;
   }
 
   plusLogo(e) {
+    this.logoWidth = Number(this.logoWidth);
     this.logoWidth += 5;
   }
 
@@ -178,7 +180,9 @@ export class AppComponent implements OnInit {
 
       case 'email':
         // this.previewCode.email = code;
-        this.outputCode = code;
+        if (this.tabClick === 2 ) {
+          this.outputCode = code;
+        }
         break;
 
       default:
@@ -216,6 +220,7 @@ export class AppComponent implements OnInit {
 
       case 1:
         $('.sample-logo').css('margin-top', '22px'); // sample logo
+        $('.background-label').html('Background');
         $('.copy-btn-txt').html(' Copy Code');
         $('.impex-btn-txt').html(' Download impex');
         this.listofColor[2] = 'white';
@@ -240,6 +245,7 @@ export class AppComponent implements OnInit {
 
       case 2:
         $('.sample-logo').css('margin-top', '46px'); // sample logo
+        $('.background-label').html('Hero Image');
         $('.copy-btn-txt').html(' Copy Code');
         $('.impex-btn-txt').html(' Download impex');
         $('iframe').css('height', 520);
@@ -394,6 +400,8 @@ export class AppComponent implements OnInit {
       this.copyCode = this.outputCode;
     } else if (codeType === 'impex') {
       this.copyCode = $('code#impex-code').text();
+    } else if (codeType === 'silverpop') {
+      this.copyCode = $('code#silverpop-code').text();
     }
 
     if (this.tabClick === 0 && this.data.isEmpty('D1')) {

@@ -11,6 +11,10 @@ pre {
   overflow-x: hidden;
   white-space: pre-wrap;
 }
+/* plain/impex/silverpop title */
+h4 {
+  font-family: Verdana, Geneva, sans-serif;
+}
 
 /* You can add global styles to this file, and also import other style files */
 .column {
@@ -57,7 +61,7 @@ input[type="radio"] {
 }
 
 /* Plue-Minus width Logo */
-.input-width-logo {
+.input-logo-width {
   width: 60px;
   height: 35px;
   text-align: center;
@@ -68,23 +72,17 @@ input[type="radio"] {
   padding: 1rem;
 }
 
-/* Each button on the app */
-[type=button] {
-  /* -webkit-appearance: button; */
-  margin-right: 0px;
-}
-
 /* Hide input number's spin box */
-input[type="number"]::-webkit-outer-spin-button,
+/* input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 input[type="number"] {
     -moz-appearance: textfield;
-}
+} */
 
-/* space between icons*/
+/* space between icons */
 li#nav-icon {
   margin-right: 5px;
   color: rgb(149, 155, 161);
@@ -122,11 +120,6 @@ iframe {
   align-items: left;
 }
 
-/* Spcace between toggle switch and copy*/ 
-#mat-toggle {
-  margin-left: 5px;
-}
-
 /* Device icon buttons */
 #icon-button {
   cursor:pointer;
@@ -146,19 +139,20 @@ li#nav-icon .current {
   margin-right: 10px;
 }
 
-/* Copy button rgb(79, 169, 230) rgb(104, 207, 117)  */
+/* Copy button */
 .copy-button {
   background-color: #08a4ec;
   color: white;
   margin-left: 20px !important;
 } 
-/* Previous color: background-color: rgb(228, 229, 230); color: rgb(134, 134, 134); */
 .copy-button:hover {
   background-color: #037db6;
 	color: white;
 }
+
+/* Impex button */
 .impex-button {
-  background-color:hotpink;
+  background-color: hotpink;
   color: white;
   margin-left: 20px !important;
 }
@@ -166,10 +160,16 @@ li#nav-icon .current {
   background-color: #c04f88;
 	color: white;
 }
+
+/* Silverpop button */
 .silverpop-button {
-  background-color:lightblue;
+  background-color:hotpink;
   color: white;
   margin-left: 20px !important;
+}
+.silverpop-button:hover {
+  background-color: #c04f88;
+	color: white;
 }
 
 /* Show/Hide toggle switch */
