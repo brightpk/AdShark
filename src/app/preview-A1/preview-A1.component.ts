@@ -2,6 +2,9 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } fr
 import { AppData } from '../AppData';
 
 declare const insertA1: any;
+declare const insertbg: any;
+declare const insertLogo: any;
+declare const insertWidth: any;
 declare var $: any;
 
 @Component({
@@ -24,6 +27,9 @@ export class PreviewA1Component implements DoCheck {
   showCode = false;
 
   ngDoCheck() {
+    insertbg(this.data.bgURL, 'A1');
+    insertLogo(this.data.logoURL);
+    insertWidth(this.logoWidth);
     this.getHTML();
   }
 
@@ -43,7 +49,6 @@ export class PreviewA1Component implements DoCheck {
         const str = tmp.substring(tmp.search('btn--'), tmp.search('c-hero__action'));
         const res = tmp.replace(str, 'btn--' + this.button + ' ');
         tmp = res;
-        this.HTMLCode = tmp;
       }
 
       /* If no button, comment out */
@@ -58,7 +63,6 @@ export class PreviewA1Component implements DoCheck {
         const str = tmp.substring(tmp.search('c-hero__title--'), tmp.indexOf('c-hero__title--') + 20);
         const res = tmp.replace(str, 'c-hero__title--' + this.txtColor[0].color + ' ');
         tmp = res;
-        this.HTMLCode = tmp;
       }
 
       /* Subline Color */
@@ -66,7 +70,6 @@ export class PreviewA1Component implements DoCheck {
         const str = tmp.substring(tmp.search('c-hero__sub-title--'), tmp.indexOf('c-hero__sub-title--') + 24);
         const res = tmp.replace(str, 'c-hero__sub-title--' + this.txtColor[1].color + ' ');
         tmp = res;
-        this.HTMLCode = tmp;
       }
 
       /* if no headline, comment out */
@@ -76,7 +79,6 @@ export class PreviewA1Component implements DoCheck {
         const str = tmp.substring(start - 1, end + 3);
         const res = tmp.replace(str, '');
         tmp = res;
-        this.HTMLCode = tmp;
       }
 
       /* if no subline, comment out */
@@ -86,11 +88,16 @@ export class PreviewA1Component implements DoCheck {
         const str = tmp.substring(start - 1, end + 3);
         const res = tmp.replace(str, '');
         tmp = res;
-        this.HTMLCode = tmp;
       }
 
-      this.HTMLCode = tmp;
       this.A1Code.emit(tmp);
+
+      this.HTMLCode =
+      '<div class="c-hero__copy c-hero__copy--align-left">' +
+      '<h2 class="c-hero__title c-hero__title--' + this.txtColor[0].color + ' c-hero__title--weight-extrabold c-hero__title--size-large">' + this.data.headline + '</h2>' +
+      '<h3 class="c-hero__sub-title c-hero__sub-title--' + this.txtColor[1].color + ' c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">' + this.data.subline + '</h3>' +
+      '<div class="mt-2"><a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '">' + this.data.buttonTxt + '</a></div></div>';
+      
       this.HTMLCode = this.getScript(this.HTMLCode);
       insertA1(this.HTMLCode);
 

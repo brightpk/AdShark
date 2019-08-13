@@ -2,6 +2,9 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } fr
 import { AppData } from '../AppData';
 
 declare const insertEmail: any;
+declare const insertbg: any;
+declare const insertLogo: any;
+declare const insertWidth: any;
 
 @Component({
   selector: 'app-preview-email',
@@ -21,6 +24,9 @@ export class PreviewEmailComponent implements DoCheck {
   previousParaColor = '';
 
   ngDoCheck() {
+    insertbg(this.data.bgURL, 'email');
+    insertLogo(this.data.logoURL);
+
     if (this.button === 'default') {
       $('.blue-btn').show();
       $('.wht-btn').hide();
@@ -80,12 +86,14 @@ export class PreviewEmailComponent implements DoCheck {
       }
 
       this.HTMLCode = tmp;
-      this.emailCode.emit(this.HTMLCode);
+      this.emailCode.emit(tmp);
 
       if (this.HTMLCode.includes('target="_blank"')) {
         this.HTMLCode = this.HTMLCode.replace(new RegExp('target="_blank"', 'g'), '');
         // this.HTMLCode = this.HTMLCode.replace(new RegExp('href="#"', 'g'), 'href=""');
       }
+
+      this.HTMLCode = this.HTMLCode.substring(this.HTMLCode.search('<tr class="start-headline"'), this.HTMLCode.search('<tr class="logo"'));
 
       insertEmail(this.HTMLCode);
 

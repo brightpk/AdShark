@@ -23,6 +23,40 @@ function insertEmail(code) {
   emailiframe.contents().find('#emailHTML').html(code);
 }
 
+/* Insert background into iframe */
+function insertbg(img, ad) {
+  switch (ad) {
+    case 'D1':
+      $('.D1-iframe').contents().find('#D1bg').attr('src', img);
+      break;
+    case 'A1':
+      var A1bg = $('.A1-iframe');
+      A1bg.contents().find('#A1bg').attr('src', img);
+      var img1 = img;
+      var str = img1.substring(img1.search('widescreen'), img1.search('widescreen') + 10);
+      A1bg.contents().find('#A1Mobile').attr('srcset', img1.replace(str, 'mobile'));
+      A1bg.contents().find('#A1Tablet').attr('srcset', img1.replace(str, 'tablet'));
+      A1bg.contents().find('#A1Desktop').attr('srcset', img1.replace(str, 'desktop'));   
+      A1bg.contents().find('#A1Wide').attr('srcset', img);  
+      break; 
+    case 'email':
+      $('.email-iframe').contents().find('#emailbg').attr('src', img);
+  }
+
+}
+
+/* Insert logo into iframe */
+function insertLogo(logo) {
+  $('.D1-iframe').contents().find('#D1logo').attr('src', logo);
+  $('.A1-iframe').contents().find('#A1logo').attr('src', logo);
+  $('.email-iframe').contents().find('#emaillogo').attr('src', logo);
+}
+
+/* Insert logo width into iframe */
+function insertWidth(width) {
+  $('.D1-iframe').contents().find('#D1logo').attr('width', width);
+  $('.A1-iframe').contents().find('#A1logo').attr('width', width);
+}
 
 $(document).ready(function () {
   //mobile

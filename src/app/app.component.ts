@@ -152,12 +152,20 @@ export class AppComponent implements OnInit {
     switch (this.whiteBGLogo) {
       case true:
         $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
+        $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');
+
+        $('.A1-iframe').contents().find('#A1logo').addClass('bg-white-transparent');
         $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
+
         break;
 
       case false:
         $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
+        $('.D1-iframe').contents().find('#D1logo').removeClass('bg-white-transparent');
+
+        $('.A1-iframe').contents().find('#A1logo').removeClass('bg-white-transparent');
         $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
+
         break;
 
     }
