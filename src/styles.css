@@ -2,6 +2,11 @@
   padding-bottom: 50px;
 }
 
+/* active tab */
+.mat-tab-label-active {
+  background-color: #dddcdc;
+}
+
 /* impex file code output #212529 */
 pre {
   display: inline-block;
@@ -88,12 +93,12 @@ li#nav-icon {
   color: rgb(149, 155, 161);
 }
 
-/* Code box*/
+/* Code box  #73AD21*/
 .codeBox {
   margin: 20px;
   width: auto;
   height: 150px;
-  border: 3px solid #73AD21;
+  border: 2px solid grey;
   padding: 10px;
   overflow-y: scroll;
 }
@@ -141,23 +146,23 @@ li#nav-icon .current {
 
 /* Copy button */
 .copy-button {
-  background-color: #08a4ec;
+  background-color: hotpink;
   color: white;
   margin-left: 20px !important;
 } 
 .copy-button:hover {
-  background-color: #037db6;
+  background-color: #c04f88;
 	color: white;
 }
 
 /* Impex button */
 .impex-button {
-  background-color: hotpink;
+  background-color: #08a4ec;
   color: white;
   margin-left: 20px !important;
 }
 .impex-button:hover {
-  background-color: #c04f88;
+  background-color: #037db6;
 	color: white;
 }
 

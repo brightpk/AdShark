@@ -1,10 +1,12 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
+import { GlobalCSS } from '../GlobalCSS';
 
 declare const insertA1: any;
 declare const insertbg: any;
 declare const insertLogo: any;
 declare const insertWidth: any;
+declare const insertGlobalcss: any;
 declare var $: any;
 
 @Component({
@@ -24,9 +26,10 @@ export class PreviewA1Component implements DoCheck {
   @Input() txtColor: any = [];
   @Output() A1Code = new EventEmitter();
   HTMLCode: string;
-  showCode = false;
+  global = new GlobalCSS();
 
   ngDoCheck() {
+    insertGlobalcss(this.global.css);
     insertbg(this.data.bgURL, 'A1');
     insertLogo(this.data.logoURL);
     insertWidth(this.logoWidth);

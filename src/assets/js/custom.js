@@ -15,12 +15,20 @@ function insertD1(code) {
 function insertA1(code) {
   var A1iframe = $('.A1-iframe');
   A1iframe.contents().find('#A1HTML').html(code);
+  // console.log(A1iframe.contents().find('#A1HTML').html());
 }
 
 /* Email iframe insert Output */
 function insertEmail(code) {
   var emailiframe = $('.email-iframe');
   emailiframe.contents().find('#emailHTML').html(code);
+}
+
+function insertGlobalcss(css) {
+  $('.D1-iframe').contents().find('#globalcss').html(css);
+  $('.A1-iframe').contents().find('#globalcss').html(css);
+  // console.log('D1 global:\n', $('.D1-iframe').contents().find('#globalcss').html());
+  // console.log('A1 global:\n', $('.A1-iframe').contents().find('#globalcss').html());
 }
 
 /* Insert background into iframe */
