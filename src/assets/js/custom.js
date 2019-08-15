@@ -31,6 +31,18 @@ function insertGlobalcss(css) {
   // console.log('A1 global:\n', $('.A1-iframe').contents().find('#globalcss').html());
 }
 
+function insertAlignment(css, align) {
+  if (align == 'left') {
+    $('.A1-iframe').contents().find('#style-align-left').html(css);
+    $('.A1-iframe').contents().find('#style-align-right').html('');
+  } else if (align == 'right') {
+    $('.A1-iframe').contents().find('#style-align-left').html('');
+    $('.A1-iframe').contents().find('#style-align-right').html(css);
+  }
+  // console.log('A1 ALIGN LEFT:\n', $('.A1-iframe').contents().find('#style-align-left').html() + '\n----------------------------------------------------------------');
+  // console.log('A1 ALIGN RIGHT:\n', $('.A1-iframe').contents().find('#style-align-right').html() + '\n----------------------------------------------------------------');
+}
+
 /* Insert background into iframe */
 function insertbg(img, ad) {
   switch (ad) {
@@ -54,10 +66,25 @@ function insertbg(img, ad) {
 }
 
 /* Insert logo into iframe */
-function insertLogo(logo) {
-  $('.D1-iframe').contents().find('#D1logo').attr('src', logo);
-  $('.A1-iframe').contents().find('#A1logo').attr('src', logo);
-  $('.email-iframe').contents().find('#emaillogo').attr('src', logo);
+function insertLogo(logo, ad) {
+  switch (ad) {
+    case 'D1':
+      $('.D1-iframe').contents().find('#D1logo').attr('src', logo);
+      break;
+    case 'A1':
+      $('.A1-iframe').contents().find('#A1logo').attr('src', logo);
+      break;
+    case 'email':
+        $('.email-iframe').contents().find('#emaillogo').attr('src', logo);
+        $('.email-iframe').contents().find('#emaillogo').attr('height', 51);
+        $('.email-iframe').contents().find('#emaillogo').attr('width', 211);
+
+      if (logo == '') {
+        $('.email-iframe').contents().find('#emaillogo').attr('height', '');
+        $('.email-iframe').contents().find('#emaillogo').attr('width', '');
+      } 
+  }
+
 }
 
 /* Insert logo width into iframe */

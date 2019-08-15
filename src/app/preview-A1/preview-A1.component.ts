@@ -1,12 +1,13 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
-import { GlobalCSS } from '../GlobalCSS';
+import { AppCss } from '../AppCss';
 
 declare const insertA1: any;
 declare const insertbg: any;
 declare const insertLogo: any;
 declare const insertWidth: any;
 declare const insertGlobalcss: any;
+declare const insertAlignment: any;
 declare var $: any;
 
 @Component({
@@ -24,17 +25,25 @@ export class PreviewA1Component implements DoCheck {
   @Input() device: string;
   @Input() logoWidth: number;
   @Input() txtColor: any = [];
-  @Output() A1Code = new EventEmitter();
+  @Input() alignment: string;
+  // @Output() A1Code = new EventEmitter();
   A1iframeCode: string;
   outputCode: string;
   impexCode: string;
-  global = new GlobalCSS();
+  css = new AppCss();
 
   ngDoCheck() {
-    insertGlobalcss(this.global.css);
+    insertGlobalcss(this.css.getGlobalCSS);
     insertbg(this.data.bgURL, 'A1');
-    insertLogo(this.data.logoURL);
+    insertLogo(this.data.logoURL, 'A1');
     insertWidth(this.logoWidth);
+
+    if (this.alignment === 'left') {
+      insertAlignment(this.css.getStyleLeft(), 'left');
+    } else if (this.alignment === 'right') {
+      insertAlignment(this.css.getStyleRight(), 'right');
+    }
+
     this.getHTML();
   }
 
@@ -46,6 +55,7 @@ export class PreviewA1Component implements DoCheck {
   getHTML() {
     let tmp: string;
     tmp = $('.A1-template').children().html();
+    let tmpButtonTxt = this.data.buttonTxt;
 
     try {
 
@@ -61,6 +71,7 @@ export class PreviewA1Component implements DoCheck {
         const str = tmp.substring(tmp.search('btn') - 28, tmp.search('/a') + 9);
         const res = tmp.replace(str, '');
         tmp = res;
+        tmpButtonTxt = '';
       }
 
       /* Headline Color */
@@ -96,15 +107,15 @@ export class PreviewA1Component implements DoCheck {
       }
 
       this.outputCode = tmp;
-      this.A1Code.emit(tmp);
+      // this.A1Code.emit(tmp);
 
       this.impexCode = tmp.replace(/"/g, '""');
 
       this.A1iframeCode =
-      '<div class="c-hero__copy c-hero__copy--align-left">' +
+      '<div class="c-hero__copy c-hero__copy--align-' + this.alignment + '">' +
       '<h2 class="c-hero__title c-hero__title--' + this.txtColor[0].color + ' c-hero__title--weight-extrabold c-hero__title--size-large">' + this.data.headline + '</h2>' +
       '<h3 class="c-hero__sub-title c-hero__sub-title--' + this.txtColor[1].color + ' c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">' + this.data.subline + '</h3>' +
-      '<div class="mt-2"><a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '">' + this.data.buttonTxt + '</a></div></div>';
+      '<div class="mt-2"><a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '">' + tmpButtonTxt + '</a></div></div>';
       
       this.A1iframeCode = this.getScript(this.A1iframeCode);
       insertA1(this.A1iframeCode);

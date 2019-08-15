@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
-import { GlobalCSS } from '../GlobalCSS';
+import { AppCss } from '../AppCss';
 
 declare const insertD1: any;
 declare const insertbg: any;
@@ -25,17 +25,16 @@ export class PreviewD1Component implements DoCheck {
   @Input() device: string;
   @Input() logoWidth: number;
   @Input() txtColor: any = [];
-  @Output() D1Code = new EventEmitter();
-  @Output() D1Impex = new EventEmitter();
+  // @Output() D1Code = new EventEmitter();
   D1iframeCode: string;
   outputCode: string;
   impexCode: string;
-  global = new GlobalCSS();
+  css = new AppCss();
 
   ngDoCheck() {
-    insertGlobalcss(this.global.css);
+    insertGlobalcss(this.css.getGlobalCSS());
     insertbg(this.data.bgURL, 'D1');
-    insertLogo(this.data.logoURL);
+    insertLogo(this.data.logoURL, 'D1');
     insertWidth(this.logoWidth);
     this.getHTML();
   }
@@ -49,6 +48,7 @@ export class PreviewD1Component implements DoCheck {
     // $('.resize-sensor').remove(); // this.D1Code.emit(tmp);
     let tmp: string;
     tmp = $('.D1-template').children().html();
+    let tmpButtonTxt = this.data.buttonTxt;
 
     try {
       /* Button Type */
@@ -63,6 +63,7 @@ export class PreviewD1Component implements DoCheck {
         const str = tmp.substring(tmp.search('btn') - 10, tmp.search('/a') + 3);
         const res = tmp.replace(str, '');
         tmp = res;
+        tmpButtonTxt = '';
       }
 
       /* Headline Color */
@@ -98,14 +99,14 @@ export class PreviewD1Component implements DoCheck {
       }
 
       this.outputCode = tmp;
-      this.D1Code.emit(tmp);
+      // this.D1Code.emit(tmp);
 
       this.impexCode = tmp.replace(/"/g, '""');
 
       this.D1iframeCode =
       '<h2 class="c-hero__title c-hero__title--' + this.txtColor[0].color + ' c-hero__title--weight-extrabold c-hero__title--size-normal">' + this.data.headline + '</h2>' +
       '<h3 class="c-hero__sub-title c-hero__sub-title--' + this.txtColor[1].color + ' c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">' + this.data.subline + '</h3>' +
-      '<a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '" title="' + this.data.buttonTxt + '">' + this.data.buttonTxt + '</a>';
+      '<a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '" title="' + tmpButtonTxt + '">' + tmpButtonTxt + '</a>';
 
       this.D1iframeCode = this.getScript(this.D1iframeCode);
       insertD1(this.D1iframeCode);

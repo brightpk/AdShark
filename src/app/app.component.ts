@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   altLogo = ''; altImg = '';
   button = ''; device = '';
   paneSize: number; rightWidth: number; leftWidth: number;
-  outputCode: string; impexCode: string; silverpopCode: string; copyCode: string;
+  outputCode: string; alignment = 'left';
   showCode = true;
   tabClick = 0;
   logoWidth = 150;
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   whiteBGLogo = false;
   previewCode: any = [];
   listofColor = ['blue', 'black', 'white'];
+  listofAlignment = ['left', 'center', 'right'];
 
   txtColor: any = [
     { name: 'headline', color: 'blue'},
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit {
   showSampleLogo = false;
 
   ngOnInit(): void {
+    $('.text-alignment').hide();
     $('.paragraph-form').hide();
     $('.foreground-form').hide();
     $('.silverpop').hide();
@@ -109,12 +111,6 @@ export class AppComponent implements OnInit {
     $('.impex-btn-txt').html(' Download impex');
   }
 
-  onPaste(e: ClipboardEvent) {
-    const clipboard = e.clipboardData;
-    const pastedText = clipboard.getData('text');
-    // console.log(pastedText);
-  }
-
   /* Check the text color */
   changeColor(value) {
     $('.copy-btn-txt').html(' Copy Code');
@@ -132,7 +128,10 @@ export class AppComponent implements OnInit {
     } else {
       this.disabledButton = false;
     }
+  }
 
+  changeAlignment(e) {
+    // console.log('main-page align: ', this.alignment);
   }
 
   minusLogo(e) {
@@ -172,29 +171,29 @@ export class AppComponent implements OnInit {
   }
 
   /* Receive code from children */
-  receiveCode(section, code) {
-    switch (section) {
-      case 'D1':
-        // this.previewCode.D1 = code;
-        this.outputCode = code;
-        break;
+  // receiveCode(section, code) {
+  //   switch (section) {
+  //     case 'D1':
+  //       // this.previewCode.D1 = code;
+  //       this.outputCode = code;
+  //       break;
 
-      case 'A1':
-        // this.previewCode.A1 = code;
-        this.outputCode = code;
-        break;
+  //     case 'A1':
+  //       // this.previewCode.A1 = code;
+  //       this.outputCode = code;
+  //       break;
 
-      case 'email':
-        // this.previewCode.email = code;
-        if (this.tabClick === 2 ) {
-          this.outputCode = code;
-        }
-        break;
+  //     case 'email':
+  //       // this.previewCode.email = code;
+  //       if (this.tabClick === 2 ) {
+  //         this.outputCode = code;
+  //       }
+  //       break;
 
-      default:
-        this.outputCode = '';
-    }
-  }
+  //     default:
+  //       this.outputCode = '';
+  //   }
+  // }
 
   /* Check what tab is on */
   onTabClick(e: MatTabChangeEvent) {
@@ -207,6 +206,7 @@ export class AppComponent implements OnInit {
         // this.outputCode = this.previewCode.D1;
         this.tabClick = e.index;
         console.log(e.index);
+        $('.text-alignment').hide();
         $('.subheadline-form').show();
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
@@ -230,6 +230,7 @@ export class AppComponent implements OnInit {
         // this.outputCode = this.previewCode.A1;
         this.tabClick = e.index;
         console.log(e.index);
+        $('.text-alignment').show();
         $('.subheadline-form').show();
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
@@ -254,6 +255,7 @@ export class AppComponent implements OnInit {
         // this.outputCode = this.previewCode.email;
         this.tabClick = e.index;
         console.log(e.index);
+        $('.text-alignment').hide();
         $('.paragraph-form').show();
         $('.subheadline-form').hide();
         $('.button-link-form').hide();

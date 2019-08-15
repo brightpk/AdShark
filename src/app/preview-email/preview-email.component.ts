@@ -18,7 +18,7 @@ export class PreviewEmailComponent implements DoCheck {
   @Input() button: string;
   @Input() device: string;
   @Input() txtColor: any = [];
-  @Output() emailCode = new EventEmitter();
+  // @Output() emailCode = new EventEmitter();
   emailiframeCode: string;
   outputCode: string;
   previousHeadColor = '';
@@ -26,8 +26,8 @@ export class PreviewEmailComponent implements DoCheck {
 
   ngDoCheck() {
     insertbg(this.data.bgURL, 'email');
-    insertLogo(this.data.logoURL);
-
+    insertLogo(this.data.logoURL, 'email');
+    
     if (this.button === 'default') {
       $('.blue-btn').show();
       $('.wht-btn').hide();
@@ -89,7 +89,7 @@ export class PreviewEmailComponent implements DoCheck {
       this.outputCode = tmp;
       this.emailiframeCode = tmp;
 
-      this.emailCode.emit(tmp);
+      // this.emailCode.emit(tmp);
 
       if (this.emailiframeCode.includes('target="_blank"')) {
         this.emailiframeCode = this.emailiframeCode.replace(new RegExp('target="_blank"', 'g'), '');
