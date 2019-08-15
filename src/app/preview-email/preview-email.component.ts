@@ -19,7 +19,8 @@ export class PreviewEmailComponent implements DoCheck {
   @Input() device: string;
   @Input() txtColor: any = [];
   @Output() emailCode = new EventEmitter();
-  HTMLCode: string;
+  emailiframeCode: string;
+  outputCode: string;
   previousHeadColor = '';
   previousParaColor = '';
 
@@ -85,17 +86,19 @@ export class PreviewEmailComponent implements DoCheck {
 
       }
 
-      this.HTMLCode = tmp;
+      this.outputCode = tmp;
+      this.emailiframeCode = tmp;
+
       this.emailCode.emit(tmp);
 
-      if (this.HTMLCode.includes('target="_blank"')) {
-        this.HTMLCode = this.HTMLCode.replace(new RegExp('target="_blank"', 'g'), '');
+      if (this.emailiframeCode.includes('target="_blank"')) {
+        this.emailiframeCode = this.emailiframeCode.replace(new RegExp('target="_blank"', 'g'), '');
         // this.HTMLCode = this.HTMLCode.replace(new RegExp('href="#"', 'g'), 'href=""');
       }
 
-      this.HTMLCode = this.HTMLCode.substring(this.HTMLCode.search('<tr class="start-headline"'), this.HTMLCode.search('<tr class="logo"'));
+      this.emailiframeCode = this.emailiframeCode.substring(this.emailiframeCode.search('<tr class="start-headline"'), this.emailiframeCode.search('<tr class="logo"'));
 
-      insertEmail(this.HTMLCode);
+      insertEmail(this.emailiframeCode);
 
     } catch (err) { }
 
@@ -178,6 +181,46 @@ export class PreviewEmailComponent implements DoCheck {
     }
 
     return paraHex;
+  }
+
+  /* Copy code */
+  onCopy(codeType) {
+    let copyCode = '';
+    if (codeType === 'plain') {
+      copyCode = this.outputCode;
+    } else if (codeType === 'silverpop') {
+      copyCode = $('code#silverpop-code').text();
+    } 
+  
+    if (this.data.isEmpty('email')) {
+      alert('Email form is empty! Please fill up the form!');
+    } else {
+      let txtarea: any;
+      txtarea = document.createElement('textarea');
+      txtarea.style.position = 'fixed';
+      txtarea.style.left = '0';
+      txtarea.style.top = '0';
+      txtarea.style.opacity = '0';
+      txtarea.value = copyCode;
+      document.body.appendChild(txtarea);
+      txtarea.focus();
+      txtarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(txtarea);
+      this.copyButtonReact(codeType);
+    }
+  }
+  
+  /* Change color when COPIED! is completed */
+  copyButtonReact(codeType) {
+    if (codeType === 'plain') {
+      $('.copy-btn-txt').html(' Copied!');
+      $('.silverpop-btn-txt').html(' Silverpop code');
+  
+    } else if (codeType === 'silverpop') {
+      $('.silverpop-btn-txt').html(' Copied!');
+      $('.copy-btn-txt').html(' Copy Code');
+    }
   }
 
 }

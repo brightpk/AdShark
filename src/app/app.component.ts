@@ -177,13 +177,11 @@ export class AppComponent implements OnInit {
       case 'D1':
         // this.previewCode.D1 = code;
         this.outputCode = code;
-        this.impexCode = code.replace(/"/g, '""');
         break;
 
       case 'A1':
         // this.previewCode.A1 = code;
         this.outputCode = code;
-        this.impexCode = code.replace(/"/g, '""');
         break;
 
       case 'email':
@@ -207,17 +205,14 @@ export class AppComponent implements OnInit {
         $('.impex-btn-txt').html(' Download impex');
         this.listofColor[2] = 'white';
         // this.outputCode = this.previewCode.D1;
-        // this.impexCode = this.previewCode.D1.replace(/"/g, '""');
         this.tabClick = e.index;
         console.log(e.index);
         $('.subheadline-form').show();
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
         $('.plus-minus-logoWidth').show();
-        $('.impex-file').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
-        $('.silverpop').hide();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -239,10 +234,8 @@ export class AppComponent implements OnInit {
         $('.button-link-form').show();
         $('.checkbox-bg-white').show();
         $('.plus-minus-logoWidth').show();
-        $('.impex-file').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
-        $('.silverpop').hide();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -262,13 +255,11 @@ export class AppComponent implements OnInit {
         this.tabClick = e.index;
         console.log(e.index);
         $('.paragraph-form').show();
-        $('.silverpop').show();
         $('.subheadline-form').hide();
         $('.button-link-form').hide();
         $('.foreground-form').hide();
         $('.checkbox-bg-white').hide();
         $('.plus-minus-logoWidth').hide();
-        $('.impex-file').hide();
 
         if (this.txtColor[0].color === 'white') {
           this.txtColor[0].color = 'red';
@@ -300,7 +291,7 @@ export class AppComponent implements OnInit {
       if (this.tabClick === 1) {
         $('iframe').css('height', 400);
       } else if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
+        $('iframe').css('height', 530);
       }
 
     } else if (this.rightWidth <= 1024) {
@@ -312,7 +303,7 @@ export class AppComponent implements OnInit {
       if (this.tabClick === 1) {
         $('iframe').css('height', 400);
       } else if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
+        $('iframe').css('height', 530);
       }
 
     } else if (this.rightWidth <= 1280) {
@@ -322,7 +313,7 @@ export class AppComponent implements OnInit {
       $('iframe').css('height', 400);
 
       if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
+        $('iframe').css('height', 530);
       }
 
     } else {
@@ -333,7 +324,7 @@ export class AppComponent implements OnInit {
       if (this.tabClick === 1) {
         $('iframe').css('height', 400);
       } else if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
+        $('iframe').css('height', 530);
       }
     }
 
@@ -400,82 +391,6 @@ export class AppComponent implements OnInit {
       tmp = tmp.substring(0, tmp.search('.jpg'));
       this.altImg = tmp;
     }
-  }
-
-  /* Copy code */
-  onCopy(codeType) {
-    if (codeType === 'plain') {
-      this.copyCode = this.outputCode;
-    } else if (codeType === 'impex') {
-      this.copyCode = $('code#impex-code').text();
-    } else if (codeType === 'silverpop') {
-      this.copyCode = $('code#silverpop-code').text();
-    }
-
-    if (this.tabClick === 0 && this.data.isEmpty('D1')) {
-      alert('One-Third Banner (D1) form is empty! Please fill up the form!');
-    } else if (this.tabClick === 1 && this.data.isEmpty('A1')) {
-      alert('Hero Banner (A1) form is empty! Please fill up the form!');
-    } else if (this.tabClick === 2 && this.data.isEmpty('email')) {
-      alert('Email Banner form is empty! Please fill up the form!');
-    } else {
-      let txtarea: any;
-      txtarea = document.createElement('textarea');
-      txtarea.style.position = 'fixed';
-      txtarea.style.left = '0';
-      txtarea.style.top = '0';
-      txtarea.style.opacity = '0';
-      txtarea.value = this.copyCode;
-      document.body.appendChild(txtarea);
-      txtarea.focus();
-      txtarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(txtarea);
-      this.copyButtonReact(codeType);
-    }
-  }
-
-  /* Change color when COPIED! is completed */
-  copyButtonReact(codeType) {
-    if (codeType === 'plain') {
-      $('.copy-btn-txt').html(' Copied!');
-      $('.impex-btn-txt').html(' Download impex');
-
-    } else if (codeType === 'impex') {
-      $('.impex-btn-txt').html(' Copied!');
-      $('.copy-btn-txt').html(' Copy Code');
-    }
-
-    // if ($('.copy-btn-txt').html() === ' Copied!') {
-    //   $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-    //   $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-    //   $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
-
-    //   $('.copy-button').hover(() => {
-    //     $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-    //     $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-    //     $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
-    //   // }, () => {
-    //   //   $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-    //   //   $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-    //   //   $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
-    //   });
-
-    // } else if ($('.copy-btn-txt').html() === ' Copy Code') {
-    //   $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
-    //   $('.fa-code').css('color' , 'white');
-    //   $('.copy-btn-txt').css('color' , 'white');
-
-    //   $('.copy-button').hover(() => {
-    //     $('.copy-button').css('background-color', 'rgb(3, 125, 182)');
-    //     $('.fa-code').css('color', 'white');
-    //     $('.copy-btn-txt').css('color', 'white');
-    //   }, () => {
-    //     $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
-    //     $('.fa-code').css('color' , 'white');
-    //     $('.copy-btn-txt').css('color' , 'white');
-    //   });
-    // }
   }
 
 }

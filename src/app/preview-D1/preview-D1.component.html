@@ -24,3 +24,50 @@ Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now -->
 </div>
 
 <iframe class="D1-iframe iframe-widescreen" src="assets/html/D1.html"></iframe>
+
+<div class="plain-text">
+  <h4 class="mt-4 ml-4">Plain Text</h4>
+  <div class="codeBox card card-body">
+  <code>{{outputCode}}</code>
+  </div>
+  <button mat-flat-button class="copy-button" (click)="onCopy('plain')" matTooltip="Copy plain code" matTooltipPosition="right">
+    <span><i class="fas fa-code"></i></span>
+    <span class="copy-btn-txt"> Copy Code</span>
+  </button>
+</div>  
+
+<div class="impex-file">
+  <h4 class="mt-4 ml-4">Impex File</h4>
+  <div class="codeBox card card-body">
+    <code id="impex-code">
+      <pre>
+$contentCatalog = americanhotelContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default = $contentCatalog]), CatalogVersion.version[default = Staged])[default = $contentCatalog:Staged]
+$mediaContainer = media(qualifier, $contentCV);
+$medias = medias(code, $contentCV);
+$media = media(code, $contentCV);
+$productCatalog = americanhotelProductCatalog
+$productCV = catalogVersion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = $productCatalog:Staged]
+$siteResource = jar:com.americanhotel.hybris.initialdata.constants.AmericanhotelInitialDataConstants&/americanhotelinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$lang = en
+          
+UPDATE GenericItem[processor = de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor]; pk[unique = true]
+$jarResourceCms = $config-jarResourceCmsValue
+          
+          
+          
+          
+          
+INSERT_UPDATE CMSParagraphComponent ; $contentCV[unique = true] ; uid[unique = true] ; onlyOneRestrictionMustApply[default='false'] ; name                          ; &componentRef    ; content[lang = $lang]
+
+                              ;                           ; componentid   ;                                              ; component name ; componentid ; "
+                              {{impexCode}}
+          
+"</pre>
+    </code>
+  </div>
+  <button mat-flat-button class="impex-button" (click)="onCopy('impex')" matTooltip="Copy impex file" matTooltipPosition="right">
+    <span class="fas fa-file-code"></span>
+    <span class="impex-btn-txt"> Download impex</span>
+  </button>
+</div>

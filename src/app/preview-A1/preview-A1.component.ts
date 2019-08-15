@@ -25,7 +25,9 @@ export class PreviewA1Component implements DoCheck {
   @Input() logoWidth: number;
   @Input() txtColor: any = [];
   @Output() A1Code = new EventEmitter();
-  HTMLCode: string;
+  A1iframeCode: string;
+  outputCode: string;
+  impexCode: string;
   global = new GlobalCSS();
 
   ngDoCheck() {
@@ -93,16 +95,19 @@ export class PreviewA1Component implements DoCheck {
         tmp = res;
       }
 
+      this.outputCode = tmp;
       this.A1Code.emit(tmp);
 
-      this.HTMLCode =
+      this.impexCode = tmp.replace(/"/g, '""');
+
+      this.A1iframeCode =
       '<div class="c-hero__copy c-hero__copy--align-left">' +
       '<h2 class="c-hero__title c-hero__title--' + this.txtColor[0].color + ' c-hero__title--weight-extrabold c-hero__title--size-large">' + this.data.headline + '</h2>' +
       '<h3 class="c-hero__sub-title c-hero__sub-title--' + this.txtColor[1].color + ' c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">' + this.data.subline + '</h3>' +
       '<div class="mt-2"><a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '">' + this.data.buttonTxt + '</a></div></div>';
       
-      this.HTMLCode = this.getScript(this.HTMLCode);
-      insertA1(this.HTMLCode);
+      this.A1iframeCode = this.getScript(this.A1iframeCode);
+      insertA1(this.A1iframeCode);
 
     } catch (err) { }
 
@@ -120,6 +125,47 @@ export class PreviewA1Component implements DoCheck {
   getScript(html) {
     return '<script>$( document ).ready(function() { $(\'a.btn\').click(function(e) { e.preventDefault(); }); }); </script>' + html;
   }
+
+  /* Copy code */
+  onCopy(codeType) {
+    let copyCode = '';
+    if (codeType === 'plain') {
+      copyCode = this.outputCode;
+    } else if (codeType === 'impex') {
+      copyCode = $('code#impex-code').text();
+    } 
+  
+    if (this.data.isEmpty('A1')) {
+      alert('Hero Banner (A1) form is empty! Please fill up the form!');
+    } else {
+      let txtarea: any;
+      txtarea = document.createElement('textarea');
+      txtarea.style.position = 'fixed';
+      txtarea.style.left = '0';
+      txtarea.style.top = '0';
+      txtarea.style.opacity = '0';
+      txtarea.value = copyCode;
+      document.body.appendChild(txtarea);
+      txtarea.focus();
+      txtarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(txtarea);
+      this.copyButtonReact(codeType);
+    }
+  }
+  
+  /* Change color when COPIED! is completed */
+  copyButtonReact(codeType) {
+    if (codeType === 'plain') {
+      $('.copy-btn-txt').html(' Copied!');
+      $('.impex-btn-txt').html(' Download impex');
+  
+    } else if (codeType === 'impex') {
+      $('.impex-btn-txt').html(' Copied!');
+      $('.copy-btn-txt').html(' Copy Code');
+    }
+  }
+
 
 }
 

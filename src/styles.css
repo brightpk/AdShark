@@ -1,6 +1,9 @@
 .rightPane {
   padding-bottom: 50px;
 }
+.silverpop {
+  margin-bottom: 50px;
+}
 
 /* active tab */
 .mat-tab-label-active {
@@ -168,12 +171,12 @@ li#nav-icon .current {
 
 /* Silverpop button */
 .silverpop-button {
-  background-color:hotpink;
+  background-color: #08a4ec;
   color: white;
   margin-left: 20px !important;
 }
 .silverpop-button:hover {
-  background-color: #c04f88;
+  background-color: #037db6;
 	color: white;
 }
 
