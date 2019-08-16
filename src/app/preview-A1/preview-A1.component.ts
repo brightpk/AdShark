@@ -34,7 +34,14 @@ export class PreviewA1Component implements DoCheck {
 
   ngDoCheck() {
     insertGlobalcss(this.css.getGlobalCSS);
-    insertbg(this.data.bgURL, 'A1');
+
+    if (this.data.bgURL === '') {
+      const tmpBg = 'https://images.americanhotel.com/images/banners/A1-placeholder-widescreen.jpg';
+      insertbg(tmpBg, 'A1');
+    } else {
+      insertbg(this.data.bgURL, 'A1');
+    }
+    
     insertLogo(this.data.logoURL, 'A1');
     insertWidth(this.logoWidth);
 

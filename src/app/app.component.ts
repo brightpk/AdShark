@@ -20,9 +20,9 @@ export class AppComponent implements OnInit {
   title = 'AdShark';
   data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around inside ads
   altLogo = ''; altImg = '';
-  button = ''; device = '';
+  button = ''; device = ''; logoSize = 150;
   paneSize: number; rightWidth: number; leftWidth: number;
-  outputCode: string; alignment = 'left';
+  outputCode: string; alignment = 'left'; calloutBar = 'sale'
   showCode = true;
   tabClick = 0;
   logoWidth = 150;
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   previewCode: any = [];
   listofColor = ['blue', 'black', 'white'];
   listofAlignment = ['left', 'center', 'right'];
+  listofCalloutBar = ['sale', 'no sale'];
 
   txtColor: any = [
     { name: 'headline', color: 'blue'},
@@ -44,6 +45,14 @@ export class AppComponent implements OnInit {
     { type: 'alternate', name: 'Clear/Blue' }
   ];
 
+  logoSizeOptions: any = [
+    { size: 150, name: 'Small' },
+    { size: 180, name: 'Medium' },
+    { size: 200, name: 'Large' }
+  ];
+
+
+
   showSampleBg = false;
   showSampleLogo = false;
 
@@ -52,6 +61,7 @@ export class AppComponent implements OnInit {
     $('.paragraph-form').hide();
     $('.foreground-form').hide();
     $('.silverpop').hide();
+    $('.callout-bar').hide();
   }
 
     /* -------- Show and Hide Sample bg and logo -----*/
@@ -59,14 +69,23 @@ export class AppComponent implements OnInit {
       if (field === 'bg') {
         if (ad === 'D1') {
           this.data.bgURL = 'https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg';
-        } else if (ad === 'A1') {
+        
+        } else if (ad === 'A1Left') {
           this.data.bgURL = 'https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg';
-        } else { this.data.bgURL = 'https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg'; }
+        
+        }  else if (ad === 'A1Right') {
+          this.data.bgURL = 'https://images.americanhotel.com/images/banners/8865_1888Mills_080619_widescreen.jpg?q=123';
+        
+        }else { this.data.bgURL = 'https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg'; }
+      
       } else if (field === 'logo') {
+        
         if (ad === 'D1') {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg';
+        
         } else if (ad === 'A1') {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg';
+        
         } else { this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; }
       }
     }
@@ -74,15 +93,23 @@ export class AppComponent implements OnInit {
     bgBorder(ad) {
       if (ad === 'D1') {
         $('.sample-bg-D1').css('border', 'groove');
-        $('.sample-bg-A1').css('border', 'none');
+        $('.sample-bg-A1Left').css('border', 'none');
+        $('.sample-bg-A1Right').css('border', 'none');
         $('.sample-bg-email').css('border', 'none');
-      } else if (ad === 'A1') {
+      } else if (ad === 'A1Left') {
         $('.sample-bg-D1').css('border', 'none');
-        $('.sample-bg-A1').css('border', 'groove');
+        $('.sample-bg-A1Left').css('border', 'groove');
+        $('.sample-bg-A1Right').css('border', 'none');
         $('.sample-bg-email').css('border', 'none');
-      } else if (ad === 'email') {
+      } else if (ad === 'A1Right') {
         $('.sample-bg-D1').css('border', 'none');
-        $('.sample-bg-A1').css('border', 'none');
+        $('.sample-bg-A1Left').css('border', 'none');
+        $('.sample-bg-A1Right').css('border', 'groove');
+        $('.sample-bg-email').css('border', 'none');
+      }else if (ad === 'email') {
+        $('.sample-bg-D1').css('border', 'none');
+        $('.sample-bg-A1Left').css('border', 'none');
+        $('.sample-bg-A1Right').css('border', 'none');
         $('.sample-bg-email').css('border', 'groove');
       }
     }
@@ -147,26 +174,30 @@ export class AppComponent implements OnInit {
   /* Add a white transparent bg to a logo */
   addWhiteBgLogo() {
     this.whiteBGLogo = !this.whiteBGLogo;
+    console.log('WhiteBGLogo: ', this.whiteBGLogo, ' tabClick: ', this.tabClick);
 
     switch (this.whiteBGLogo) {
       case true:
-        $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
-        $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');
-
-        $('.A1-iframe').contents().find('#A1logo').addClass('bg-white-transparent');
-        $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
-
+        if (this.tabClick === 0) {
+          $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
+          $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');
+          console.log($('.D1-iframe').contents().find('#D1logo').parent().html()); 
+          
+        } else if (this.tabClick === 1) {
+          $('.A1-iframe').contents().find('#A1logo').addClass('bg-white-transparent');
+          $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
+        }
         break;
 
-      case false:
-        $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
-        $('.D1-iframe').contents().find('#D1logo').removeClass('bg-white-transparent');
-
-        $('.A1-iframe').contents().find('#A1logo').removeClass('bg-white-transparent');
-        $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
-
+      case false: 
+        if (this.tabClick === 0) {
+          $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
+          $('.D1-iframe').contents().find('#D1logo').removeClass('bg-white-transparent');
+        } else if (this.tabClick === 1) {
+          $('.A1-iframe').contents().find('#A1logo').removeClass('bg-white-transparent');
+          $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
+        }
         break;
-
     }
   }
 
@@ -206,6 +237,7 @@ export class AppComponent implements OnInit {
         // this.outputCode = this.previewCode.D1;
         this.tabClick = e.index;
         console.log(e.index);
+        $('.callout-bar').hide();
         $('.text-alignment').hide();
         $('.subheadline-form').show();
         $('.button-link-form').show();
@@ -219,6 +251,12 @@ export class AppComponent implements OnInit {
           console.log('if red, change to wht');
         }
 
+        console.log(this.whiteBGLogo);
+        if (this.whiteBGLogo === true) {
+          $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
+          $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');        
+        }
+
         break;
 
       case 1:
@@ -230,6 +268,7 @@ export class AppComponent implements OnInit {
         // this.outputCode = this.previewCode.A1;
         this.tabClick = e.index;
         console.log(e.index);
+        $('.callout-bar').hide();
         $('.text-alignment').show();
         $('.subheadline-form').show();
         $('.button-link-form').show();
@@ -255,6 +294,7 @@ export class AppComponent implements OnInit {
         // this.outputCode = this.previewCode.email;
         this.tabClick = e.index;
         console.log(e.index);
+        $('.callout-bar').show();
         $('.text-alignment').hide();
         $('.paragraph-form').show();
         $('.subheadline-form').hide();
