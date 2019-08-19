@@ -27,10 +27,17 @@
       </div>
 
         <!-- Text alignment -->
-        <div class="text-alignment mb-2 mt-1">
-          <label for="headline"><h5 class="text-primary mr-3">Text Alignment:</h5></label>
-          <mat-radio-group [(ngModel)]="alignment" (change)="changeAlignment($event)">
+        <div class="text-alignment mt-1">
+          <label for="text-align"><h5 class="text-primary mr-3">Text Alignment:</h5></label>
+          <mat-radio-group [(ngModel)]="textAlign" (change)="changeAlignment($event)">
             <mat-radio-button *ngFor="let align of listofAlignment" [value]="align">{{align | titlecase}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="logo-alignment">
+          <label for="logo-align"><h5 class="text-primary mr-3">Logo Alignment:</h5></label>
+          <mat-radio-group [(ngModel)]="logoAlign" (change)="changeAlignment($event)">
+            <mat-radio-button value="left">Left</mat-radio-button>
+            <mat-radio-button value="right">Right</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -115,13 +122,13 @@
               <button type="button" class="btn btn-primary btn-sm btn-number" (click)="plusLogo($event)">
                 <span><i class="fas fa-plus"></i></span>
               </button>
-
             </span>
           </div>
 
-          <div class="checkbox-bg-white mb-3">
-            <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
-          </div>
+          <!-- White bg logo -->
+          <div class="checkbox-bg-white">
+              <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
+          </div> 
 
           <!-- Sample logo for D1/A1/email -->
           <div><h6 class="sample-logo" (click)="showSampleLogo = !showSampleLogo">
@@ -129,7 +136,8 @@
           <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: #08a4ec; border-width: thin; width: 420px;">
             <h6 style="color:#0393cc;"><u>Logo</u></h6>
             <h6 class="text-dark sample-logo-D1" (click)="onClickSample('logo', 'D1')" (mouseover)="logoBorder('D1')"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
-            <h6 class="text-dark sample-logo-A1" (click)="onClickSample('logo', 'A1')" (mouseover)="logoBorder('A1')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg</h6>
+            <h6 class="text-dark sample-logo-A1Left" (click)="onClickSample('logo', 'A1Left')" (mouseover)="logoBorder('A1Left')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg</h6>
+            <h6 class="text-dark sample-logo-A1Right" (click)="onClickSample('logo', 'A1Right')" (mouseover)="logoBorder('A1Right')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png</h6>
             <h6 class="text-dark sample-logo-email" (click)="onClickSample('logo', 'email')" (mouseover)="logoBorder('email')"><b>Email Banner:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
           </div>
         </div>
@@ -183,10 +191,10 @@
       <div class="mat-app-background basic-container">
         <mat-tab-group class="" (selectedTabChange)="onTabClick($event)" (click)="onTabClick($event)">
           <mat-tab label="One-Third Banner">
-            <app-preview-D1 [data]="data" [altLogo]="altLogo" [altImg]="altImg" [button]="button" [txtColor]="txtColor" [logoWidth]="logoWidth"></app-preview-D1>
+            <app-preview-D1 [data]="data" [altLogo]="altLogo" [altImg]="altImg" [button]="button" [txtColor]="txtColor" [logoWidth]="logoWidth" [whiteBGLogo]="whiteBGLogo"></app-preview-D1>
           </mat-tab>
           <mat-tab label="Hero Banner">
-            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor" [logoWidth]="logoWidth" [alignment]="alignment"></app-preview-A1>
+            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor" [logoWidth]="logoWidth" [whiteBGLogo]="whiteBGLogo" [textAlign]="textAlign" [logoAlign]="logoAlign"></app-preview-A1>
           </mat-tab>
           <mat-tab label="Email"> 
             <app-preview-email [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor"></app-preview-email>

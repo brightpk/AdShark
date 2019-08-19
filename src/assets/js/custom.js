@@ -31,17 +31,17 @@ function insertGlobalcss(css) {
   // console.log('A1 global:\n', $('.A1-iframe').contents().find('#globalcss').html());
 }
 
-function insertAlignment(css, align) {
-  if (align == 'left') {
-    $('.A1-iframe').contents().find('#style-align-left').html(css);
-    $('.A1-iframe').contents().find('#style-align-right').html('');
-  } else if (align == 'right') {
-    $('.A1-iframe').contents().find('#style-align-left').html('');
-    $('.A1-iframe').contents().find('#style-align-right').html(css);
-  }
-  // console.log('A1 ALIGN LEFT:\n', $('.A1-iframe').contents().find('#style-align-left').html() + '\n----------------------------------------------------------------');
-  // console.log('A1 ALIGN RIGHT:\n', $('.A1-iframe').contents().find('#style-align-right').html() + '\n----------------------------------------------------------------');
-}
+// function insertAlignment(css, align) {
+//   if (align == 'left') {
+//     $('.A1-iframe').contents().find('#style-align-left').html(css);
+//     $('.A1-iframe').contents().find('#style-align-right').html('');
+//   } else if (align == 'right') {
+//     $('.A1-iframe').contents().find('#style-align-left').html('');
+//     $('.A1-iframe').contents().find('#style-align-right').html(css);
+//   }
+//   // console.log('A1 ALIGN LEFT:\n', $('.A1-iframe').contents().find('#style-align-left').html() + '\n----------------------------------------------------------------');
+//   // console.log('A1 ALIGN RIGHT:\n', $('.A1-iframe').contents().find('#style-align-right').html() + '\n----------------------------------------------------------------');
+// }
 
 /* Insert background into iframe */
 function insertbg(img, ad) {
@@ -91,6 +91,8 @@ function insertLogo(logo, ad) {
 function insertWidth(width) {
   $('.D1-iframe').contents().find('#D1logo').attr('width', width);
   $('.A1-iframe').contents().find('#A1logo').attr('width', width);
+  console.log($('.A1-iframe').contents().find('#A1logo').parent().html());
+  
 }
 
 $(document).ready(function () {

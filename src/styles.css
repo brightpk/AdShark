@@ -1,9 +1,6 @@
 .rightPane {
   padding-bottom: 50px;
 }
-.silverpop {
-  margin-bottom: 50px;
-}
 
 /* active tab */
 .mat-tab-label-active {
@@ -22,6 +19,10 @@ pre {
 /* plain/impex/silverpop title */
 h4 {
   font-family: Verdana, Geneva, sans-serif;
+}
+
+textarea {
+  resize: none;
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -51,26 +52,25 @@ input[type="radio"] {
   white-space: pre-line
 }
 .ad-field {
-  width: 470px;
+  max-width: 470px;
 }
 /* Style for logo field */
 .logo-form .ad-field {
-  width: 220px;
-  float: left;
+  max-width: 220px;
 }
 #logo-width-label {
-  margin-left: 44px;
   margin-right: 20px;
 }
 
 /* Checbox bg-white-transparent */
 .checkbox-bg-white {
-  position: absolute;
+  position: none;
+  margin-left: -8px;
 }
 
 /* Plue-Minus width Logo */
 .input-logo-width {
-  width: 60px;
+  width: 65px;
   height: 35px;
   text-align: center;
   font-size: small;
@@ -179,6 +179,9 @@ li#nav-icon .current {
   background-color: #037db6;
 	color: white;
 }
+.silverpop {
+  margin-bottom: 50px;
+}
 
 /* Show/Hide toggle switch */
 #show-hide-toggle {
@@ -201,8 +204,6 @@ h6 {
   cursor: pointer;
 }
 .sample-logo {
-  align-content: left;
-  margin-top: 22px;
 }
 
 

@@ -1,13 +1,14 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
 import { AppCss } from '../AppCss';
+import { TouchSequence } from 'selenium-webdriver';
+import { ThrowStmt } from '@angular/compiler';
 
 declare const insertA1: any;
 declare const insertbg: any;
 declare const insertLogo: any;
 declare const insertWidth: any;
 declare const insertGlobalcss: any;
-declare const insertAlignment: any;
 declare var $: any;
 
 @Component({
@@ -25,11 +26,14 @@ export class PreviewA1Component implements DoCheck {
   @Input() device: string;
   @Input() logoWidth: number;
   @Input() txtColor: any = [];
-  @Input() alignment: string;
+  @Input() whiteBGLogo: boolean;
+  @Input() textAlign: string;
+  @Input() logoAlign: string;
   // @Output() A1Code = new EventEmitter();
   A1iframeCode: string;
   outputCode: string;
   impexCode: string;
+  prevTextAlign = 'left'; prevLogoAlign = 'left';
   css = new AppCss();
 
   ngDoCheck() {
@@ -44,13 +48,16 @@ export class PreviewA1Component implements DoCheck {
     
     insertLogo(this.data.logoURL, 'A1');
     insertWidth(this.logoWidth);
+    $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoAlign).addClass(this.logoAlign);
 
-    if (this.alignment === 'left') {
-      insertAlignment(this.css.getStyleLeft(), 'left');
-    } else if (this.alignment === 'right') {
-      insertAlignment(this.css.getStyleRight(), 'right');
+    if (this.whiteBGLogo === true) {
+      $('.A1-iframe').contents().find('#A1logo').addClass('bg-white-transparent');
+      $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
+    } else {
+      $('.A1-iframe').contents().find('#A1logo').removeClass('bg-white-transparent');
+      $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
     }
-
+ 
     this.getHTML();
   }
 
@@ -66,6 +73,24 @@ export class PreviewA1Component implements DoCheck {
 
     try {
 
+      /* Text alignment */
+      if (this.textAlign !== this.prevTextAlign) {
+        const len = this.prevTextAlign.length;
+        const str = tmp.substring( tmp.search('c-hero__copy--align-') + 20, tmp.search('c-hero__copy--align-') + 20 + len);
+        const res = tmp.replace(str, this.textAlign);
+        tmp = res;
+        this.prevTextAlign = this.textAlign;
+      }
+
+      if (this.logoAlign !== this.prevLogoAlign) { 
+        // $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoAlign).addClass(this.logoAlign);
+        const str = $('.a1-supplier-logo').html();   
+        const str1 = $('.a1-supplier-logo').html().replace(this.prevLogoAlign, this.logoAlign);
+        const res = $('.A1-template').children().html().replace(str, str1);
+        this.prevLogoAlign = this.logoAlign;
+        tmp = res;
+      }
+      
       /* Button Type */
       if (tmp.includes('btn--')) {
         const str = tmp.substring(tmp.search('btn--'), tmp.search('c-hero__action'));
@@ -119,7 +144,7 @@ export class PreviewA1Component implements DoCheck {
       this.impexCode = tmp.replace(/"/g, '""');
 
       this.A1iframeCode =
-      '<div class="c-hero__copy c-hero__copy--align-' + this.alignment + '">' +
+      '<div class="c-hero__copy c-hero__copy--align-' + this.textAlign + '">' +
       '<h2 class="c-hero__title c-hero__title--' + this.txtColor[0].color + ' c-hero__title--weight-extrabold c-hero__title--size-large">' + this.data.headline + '</h2>' +
       '<h3 class="c-hero__sub-title c-hero__sub-title--' + this.txtColor[1].color + ' c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">' + this.data.subline + '</h3>' +
       '<div class="mt-2"><a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '">' + tmpButtonTxt + '</a></div></div>';

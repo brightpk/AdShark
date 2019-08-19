@@ -25,22 +25,8 @@ export class PreviewEmailComponent implements DoCheck {
   previousParaColor = '';
 
   ngDoCheck() {
-
-    if (this.data.bgURL === '') {
-      const tmpBg = 'https://images.americanhotel.com/images/banners/email-hero-placeholder.jpg';
-      insertbg(tmpBg, 'email');
-    } else {
-      insertbg(this.data.bgURL, 'email');
-    }
-
-    if (this.data.logoURL === '') {
-      const tmpBg = 'https://images.americanhotel.com/images/banners/email-logo-placeholder.jpg';
-      insertLogo(tmpBg, 'email');
-    } else {
-      insertLogo(this.data.logoURL, 'email');
-    }
-    // insertbg(this.data.bgURL, 'email');
-    // insertLogo(this.data.logoURL, 'email');
+    insertbg(this.data.bgURL, 'email');
+    insertLogo(this.data.logoURL, 'email');
 
     
     if (this.button === 'default') {

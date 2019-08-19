@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   altLogo = ''; altImg = '';
   button = ''; device = ''; logoSize = 150;
   paneSize: number; rightWidth: number; leftWidth: number;
-  outputCode: string; alignment = 'left'; calloutBar = 'sale'
+  outputCode: string; textAlign = 'left'; logoAlign = 'left'; calloutBar = 'sale'
   showCode = true;
   tabClick = 0;
   logoWidth = 150;
@@ -58,8 +58,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     $('.text-alignment').hide();
+    $('.logo-alignment').hide();
     $('.paragraph-form').hide();
     $('.foreground-form').hide();
+    $('.logo-size').hide();
     $('.silverpop').hide();
     $('.callout-bar').hide();
   }
@@ -83,8 +85,11 @@ export class AppComponent implements OnInit {
         if (ad === 'D1') {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg';
         
-        } else if (ad === 'A1') {
+        } else if (ad === 'A1Left') {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg';
+        
+        } else if (ad === 'A1Right') {
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png';
         
         } else { this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; }
       }
@@ -106,7 +111,7 @@ export class AppComponent implements OnInit {
         $('.sample-bg-A1Left').css('border', 'none');
         $('.sample-bg-A1Right').css('border', 'groove');
         $('.sample-bg-email').css('border', 'none');
-      }else if (ad === 'email') {
+      } else if (ad === 'email') {
         $('.sample-bg-D1').css('border', 'none');
         $('.sample-bg-A1Left').css('border', 'none');
         $('.sample-bg-A1Right').css('border', 'none');
@@ -117,15 +122,23 @@ export class AppComponent implements OnInit {
     logoBorder(ad) {
       if (ad === 'D1') {
         $('.sample-logo-D1').css('border', 'groove');
-        $('.sample-logo-A1').css('border', 'none');
+        $('.sample-logo-A1Left').css('border', 'none');
+        $('.sample-logo-A1Right').css('border', 'none');
         $('.sample-logo-email').css('border', 'none');
-      } else if (ad === 'A1') {
+      } else if (ad === 'A1Left') {
         $('.sample-logo-D1').css('border', 'none');
-        $('.sample-logo-A1').css('border', 'groove');
+        $('.sample-logo-A1Left').css('border', 'groove');
+        $('.sample-logo-A1Right').css('border', 'none');
+        $('.sample-logo-email').css('border', 'none');
+      } else if (ad === 'A1Right') {
+        $('.sample-logo-D1').css('border', 'none');
+        $('.sample-logo-A1Left').css('border', 'none');
+        $('.sample-logo-A1Right').css('border', 'groove');
         $('.sample-logo-email').css('border', 'none');
       } else if (ad === 'email') {
         $('.sample-logo-D1').css('border', 'none');
-        $('.sample-logo-A1').css('border', 'none');
+        $('.sample-logo-A1Left').css('border', 'none');
+        $('.sample-logo-A1Right').css('border', 'none');
         $('.sample-logo-email').css('border', 'groove');
       }
     }
@@ -158,7 +171,8 @@ export class AppComponent implements OnInit {
   }
 
   changeAlignment(e) {
-    // console.log('main-page align: ', this.alignment);
+    // console.log('Text align: ', this.textAlign);
+    // console.log('Logo align: ', this.logoAlign);
   }
 
   minusLogo(e) {
@@ -175,30 +189,6 @@ export class AppComponent implements OnInit {
   addWhiteBgLogo() {
     this.whiteBGLogo = !this.whiteBGLogo;
     console.log('WhiteBGLogo: ', this.whiteBGLogo, ' tabClick: ', this.tabClick);
-
-    switch (this.whiteBGLogo) {
-      case true:
-        if (this.tabClick === 0) {
-          $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
-          $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');
-          console.log($('.D1-iframe').contents().find('#D1logo').parent().html()); 
-          
-        } else if (this.tabClick === 1) {
-          $('.A1-iframe').contents().find('#A1logo').addClass('bg-white-transparent');
-          $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
-        }
-        break;
-
-      case false: 
-        if (this.tabClick === 0) {
-          $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
-          $('.D1-iframe').contents().find('#D1logo').removeClass('bg-white-transparent');
-        } else if (this.tabClick === 1) {
-          $('.A1-iframe').contents().find('#A1logo').removeClass('bg-white-transparent');
-          $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
-        }
-        break;
-    }
   }
 
   /* Receive code from children */
@@ -239,12 +229,14 @@ export class AppComponent implements OnInit {
         console.log(e.index);
         $('.callout-bar').hide();
         $('.text-alignment').hide();
+        $('.logo-alignment').hide();
         $('.subheadline-form').show();
-        $('.button-link-form').show();
-        $('.checkbox-bg-white').show();
-        $('.plus-minus-logoWidth').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
+        $('.logo-size').hide();
+        $('.checkbox-bg-white').show();
+        $('.plus-minus-logoWidth').show();
+        $('.button-link-form').show();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -270,12 +262,14 @@ export class AppComponent implements OnInit {
         console.log(e.index);
         $('.callout-bar').hide();
         $('.text-alignment').show();
+        $('.logo-alignment').show();
         $('.subheadline-form').show();
-        $('.button-link-form').show();
-        $('.checkbox-bg-white').show();
-        $('.plus-minus-logoWidth').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
+        $('.logo-size').show();
+        $('.checkbox-bg-white').show();
+        $('.plus-minus-logoWidth').hide();
+        $('.button-link-form').show();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -296,12 +290,14 @@ export class AppComponent implements OnInit {
         console.log(e.index);
         $('.callout-bar').show();
         $('.text-alignment').hide();
-        $('.paragraph-form').show();
+        $('.logo-alignment').hide();
         $('.subheadline-form').hide();
-        $('.button-link-form').hide();
+        $('.paragraph-form').show();
         $('.foreground-form').hide();
+        $('.logo-size').show();
         $('.checkbox-bg-white').hide();
         $('.plus-minus-logoWidth').hide();
+        $('.button-link-form').hide();
 
         if (this.txtColor[0].color === 'white') {
           this.txtColor[0].color = 'red';

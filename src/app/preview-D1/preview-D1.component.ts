@@ -25,6 +25,7 @@ export class PreviewD1Component implements DoCheck {
   @Input() device: string;
   @Input() logoWidth: number;
   @Input() txtColor: any = [];
+  @Input() whiteBGLogo: boolean;
   // @Output() D1Code = new EventEmitter();
   D1iframeCode: string;
   outputCode: string;
@@ -44,6 +45,15 @@ export class PreviewD1Component implements DoCheck {
     // insertbg(this.data.bgURL, 'D1');
     insertLogo(this.data.logoURL, 'D1');
     insertWidth(this.logoWidth);
+
+    if (this.whiteBGLogo === true) {
+      $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
+      $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');
+    } else {
+      $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
+      $('.D1-iframe').contents().find('#D1logo').removeClass('bg-white-transparent');
+    }
+
     this.getHTML();
   }
 
