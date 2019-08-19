@@ -2,18 +2,34 @@
 
 <div class="email-template" hidden>
 
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;background:#FFFFFF;background: #ffffff; width: 100% !important; margin: 0; padding: 0;" bgcolor="#ffffff">
+    <!-- <table width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;background:#FFFFFF;background: #ffffff; width: 100% !important; margin: 0; padding: 0;" bgcolor="#ffffff">
       <tr>
-        <td valign="top" align="center" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;">
+        <td valign="top" align="center" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;"> -->
           <!-- *********** Code from here ********* -->
           <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;">
             <!-- START CONTENT ROW -->
             <tr>
               <td valign="top" align="center" class="font-family_proxima" style="color:#1e1e1e;font-family:proxima-nova, arial, sans-serif;background-color:#ffffff;">
                 <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;">
+                  
                   <tbody>
+                    
+                    <!-- sale -->
                     <!-- START ROW -->
-                    <tr>
+                    <tr class="callout-sale">
+                      <td align="center" valign="top" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;background:#FFFFFF;background-color:#ed1a3b;background:linear-gradient(to left, #9d0a0f, #e92323);font-family:proxima-nova, sans-serif, Arial;font-size:16px;color:#FFFFFF;text-align:center;font-weight:700;padding-top:8px;padding-bottom:7px;text-transform:uppercase;">{{data.callout}}</td>
+                    </tr>
+                    <!-- END ROW -->
+
+                    <!-- no sale -->
+                    <!-- START ROW -->
+                    <tr class="callout-nosale">
+                      <td align="center" valign="top" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;background:#FFFFFF;background-color:#005da3;font-family:proxima-nova, sans-serif, Arial; font-size:16px;color:#FFFFFF;text-align:center;font-weight:700;padding-top:8px;padding-bottom:7px;text-transform:uppercase;">{{data.callout}}</td>
+                    </tr>
+                    <!-- END ROW -->
+
+                    <!-- START ROW -->
+                    <tr class="bg-image">
                       <td align="center" valign="top" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;">
                         <table width="600" border="0" cellspacing="0" cellpadding="0" style="font-family:proxima-nova, arial, sans-serif;color:#1e1e1e;">
                           <tr>
@@ -129,9 +145,9 @@
             <!-- END CONTENT ROW -->
           </table>
           <!-- *********** Code to here ********* -->
-        </td>
+        <!-- </td>
       </tr>
-    </table>
+    </table> -->
 
 </div>
 

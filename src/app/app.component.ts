@@ -18,20 +18,22 @@ declare var $: any;
 
 export class AppComponent implements OnInit {
   title = 'AdShark';
-  data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around inside ads
+  data = new AppData('', '', '', '', '', '', '', '', ''); // object to store inputs and pass around inside ads
   altLogo = ''; altImg = '';
-  button = ''; device = ''; logoSize = 150;
+  button = ''; device = ''; 
   paneSize: number; rightWidth: number; leftWidth: number;
-  outputCode: string; textAlign = 'left'; logoAlign = 'left'; calloutBar = 'sale'
+  outputCode: string; textAlign = 'left'; logoAlign = 'left'; calloutBar = 'none'
   showCode = true;
   tabClick = 0;
   logoWidth = 150;
+  logoSize = 'small';
   disabledButton = false;
+  disabledcallout = false;
   whiteBGLogo = false;
   previewCode: any = [];
   listofColor = ['blue', 'black', 'white'];
   listofAlignment = ['left', 'center', 'right'];
-  listofCalloutBar = ['sale', 'no sale'];
+  listofCalloutBar = ['none', 'sale', 'no sale'];
 
   txtColor: any = [
     { name: 'headline', color: 'blue'},
@@ -45,13 +47,7 @@ export class AppComponent implements OnInit {
     { type: 'alternate', name: 'Clear/Blue' }
   ];
 
-  logoSizeOptions: any = [
-    { size: 150, name: 'Small' },
-    { size: 180, name: 'Medium' },
-    { size: 200, name: 'Large' }
-  ];
-
-
+  logoSizeOptions: any = ['small', 'medium', 'large' ];
 
   showSampleBg = false;
   showSampleLogo = false;
@@ -82,16 +78,25 @@ export class AppComponent implements OnInit {
       
       } else if (field === 'logo') {
         
-        if (ad === 'D1') {
+        if (ad === 1) {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg';
         
-        } else if (ad === 'A1Left') {
+        } else if (ad === 2) {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg';
         
-        } else if (ad === 'A1Right') {
+        } else if (ad === 3) {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png';
         
-        } else { this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; }
+        } else if (ad === 4) { 
+          this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; 
+        
+        } else if (ad === 5) {
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/GE bw.svg';
+
+        } else if (ad === 6) {
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/ForbesLogo.svg';
+
+        }
       }
     }
 
@@ -120,26 +125,29 @@ export class AppComponent implements OnInit {
     }
 
     logoBorder(ad) {
-      if (ad === 'D1') {
-        $('.sample-logo-D1').css('border', 'groove');
-        $('.sample-logo-A1Left').css('border', 'none');
-        $('.sample-logo-A1Right').css('border', 'none');
-        $('.sample-logo-email').css('border', 'none');
-      } else if (ad === 'A1Left') {
-        $('.sample-logo-D1').css('border', 'none');
-        $('.sample-logo-A1Left').css('border', 'groove');
-        $('.sample-logo-A1Right').css('border', 'none');
-        $('.sample-logo-email').css('border', 'none');
-      } else if (ad === 'A1Right') {
-        $('.sample-logo-D1').css('border', 'none');
-        $('.sample-logo-A1Left').css('border', 'none');
-        $('.sample-logo-A1Right').css('border', 'groove');
-        $('.sample-logo-email').css('border', 'none');
-      } else if (ad === 'email') {
-        $('.sample-logo-D1').css('border', 'none');
-        $('.sample-logo-A1Left').css('border', 'none');
-        $('.sample-logo-A1Right').css('border', 'none');
-        $('.sample-logo-email').css('border', 'groove');
+      if (ad === 1) {
+        $('.sample-logo-1').css('border', 'groove');
+        $('.sample-logo-2, .sample-logo-3, .sample-logo-4, .sample-logo-5, .sample-logo-6').css('border', 'none');
+      } else if (ad === 2) {
+        $('.sample-logo-2').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-3, .sample-logo-4, .sample-logo-5, .sample-logo-6').css('border', 'none');
+
+      } else if (ad === 3) {
+        $('.sample-logo-3').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-2, .sample-logo-4, .sample-logo-5, .sample-logo-6').css('border', 'none');
+
+      } else if (ad === 4) {
+        $('.sample-logo-4').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-2, .sample-logo-3, .sample-logo-5, .sample-logo-6').css('border', 'none');
+
+      } else if (ad === 5) {
+        $('.sample-logo-5').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-2, .sample-logo-3, .sample-logo-4, .sample-logo-6').css('border', 'none');
+
+      } else if (ad === 6) {
+        $('.sample-logo-6').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-2, .sample-logo-3, .sample-logo-4, .sample-logo-5').css('border', 'none');
+
       }
     }
     /* ------------------------------------------------*/
@@ -148,19 +156,22 @@ export class AppComponent implements OnInit {
   @HostListener('document:keyup', ['$event'])
   keyEvent(event) {
     $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download impex');
+    $('.impex-btn-txt').html(' Download Impex');
+    $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Check the text color */
   changeColor(value) {
     $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download impex');
+    $('.impex-btn-txt').html(' Download Impex');
+    $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Check the button style */
   changeButton(event) {
     $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download impex');
+    $('.impex-btn-txt').html(' Download Impex');
+    $('.silverpop-btn-txt').html(' Silverpop Code');
     console.log(this.button);
 
     if (this.button === 'none') {
@@ -171,50 +182,44 @@ export class AppComponent implements OnInit {
   }
 
   changeAlignment(e) {
-    // console.log('Text align: ', this.textAlign);
-    // console.log('Logo align: ', this.logoAlign);
+    $('.copy-btn-txt').html(' Copy Code');
+    $('.impex-btn-txt').html(' Download Impex');
+    $('.silverpop-btn-txt').html(' Silverpop Code');
+    // console.log('Alignment: Text->', this.textAlign, ' Logo->', this.logoAlign); 
+  }
+
+  changeCalloutBar(e) {
+    if (this.calloutBar === 'none') {
+      this.disabledcallout = true;
+    } else {
+      this.disabledcallout = false;
+    }
   }
 
   minusLogo(e) {
     this.logoWidth = Number(this.logoWidth);
     this.logoWidth -= 5;
+    $('.copy-btn-txt').html(' Copy Code');
+    $('.impex-btn-txt').html(' Download Impex');
+    $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   plusLogo(e) {
     this.logoWidth = Number(this.logoWidth);
     this.logoWidth += 5;
+    $('.copy-btn-txt').html(' Copy Code');
+    $('.impex-btn-txt').html(' Download Impex');
+    $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Add a white transparent bg to a logo */
   addWhiteBgLogo() {
     this.whiteBGLogo = !this.whiteBGLogo;
+    $('.copy-btn-txt').html(' Copy Code');
+    $('.impex-btn-txt').html(' Download Impex');
+    $('.silverpop-btn-txt').html(' Silverpop Code');
     console.log('WhiteBGLogo: ', this.whiteBGLogo, ' tabClick: ', this.tabClick);
   }
-
-  /* Receive code from children */
-  // receiveCode(section, code) {
-  //   switch (section) {
-  //     case 'D1':
-  //       // this.previewCode.D1 = code;
-  //       this.outputCode = code;
-  //       break;
-
-  //     case 'A1':
-  //       // this.previewCode.A1 = code;
-  //       this.outputCode = code;
-  //       break;
-
-  //     case 'email':
-  //       // this.previewCode.email = code;
-  //       if (this.tabClick === 2 ) {
-  //         this.outputCode = code;
-  //       }
-  //       break;
-
-  //     default:
-  //       this.outputCode = '';
-  //   }
-  // }
 
   /* Check what tab is on */
   onTabClick(e: MatTabChangeEvent) {
@@ -243,12 +248,6 @@ export class AppComponent implements OnInit {
           console.log('if red, change to wht');
         }
 
-        console.log(this.whiteBGLogo);
-        if (this.whiteBGLogo === true) {
-          $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
-          $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');        
-        }
-
         break;
 
       case 1:
@@ -256,6 +255,7 @@ export class AppComponent implements OnInit {
         $('.background-label').html('Background');
         $('.copy-btn-txt').html(' Copy Code');
         $('.impex-btn-txt').html(' Download impex');
+        $('.A1-iframe').css('height', 410);
         this.listofColor[2] = 'white';
         // this.outputCode = this.previewCode.A1;
         this.tabClick = e.index;
@@ -283,7 +283,7 @@ export class AppComponent implements OnInit {
         $('.background-label').html('Hero Image');
         $('.copy-btn-txt').html(' Copy Code');
         $('.impex-btn-txt').html(' Download impex');
-        $('iframe').css('height', 520);
+        $('email-iframe').css('height', 530);
         this.listofColor[2] = 'red';
         // this.outputCode = this.previewCode.email;
         this.tabClick = e.index;
@@ -327,7 +327,7 @@ export class AppComponent implements OnInit {
       $('iframe').css('height', 1150);
 
       if (this.tabClick === 1) {
-        $('iframe').css('height', 400);
+        $('iframe').css('height', 410);
       } else if (this.tabClick === 2) {
         $('iframe').css('height', 530);
       }
@@ -339,7 +339,7 @@ export class AppComponent implements OnInit {
       $('iframe').css('height', 1150);
 
       if (this.tabClick === 1) {
-        $('iframe').css('height', 400);
+        $('iframe').css('height', 410);
       } else if (this.tabClick === 2) {
         $('iframe').css('height', 530);
       }
@@ -348,7 +348,7 @@ export class AppComponent implements OnInit {
       this.device = 'Desktop';
       $('.btn-desktop').addClass('current');
       $('.btn-tablet,.btn-mobile,.btn-widescreen').removeClass('current');
-      $('iframe').css('height', 400);
+      $('iframe').css('height', 410);
 
       if (this.tabClick === 2) {
         $('iframe').css('height', 530);
@@ -360,7 +360,7 @@ export class AppComponent implements OnInit {
       $('.btn-tablet,.btn-desktop,.btn-mobile').removeClass('current');
 
       if (this.tabClick === 1) {
-        $('iframe').css('height', 400);
+        $('iframe').css('height', 410);
       } else if (this.tabClick === 2) {
         $('iframe').css('height', 530);
       }

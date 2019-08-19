@@ -24,16 +24,17 @@ export class PreviewA1Component implements DoCheck {
   @Input() altLogo: string;
   @Input() button: string;
   @Input() device: string;
-  @Input() logoWidth: number;
+  @Input() logoSize: string;
   @Input() txtColor: any = [];
   @Input() whiteBGLogo: boolean;
   @Input() textAlign: string;
   @Input() logoAlign: string;
   // @Output() A1Code = new EventEmitter();
+  buttonLink: string;
   A1iframeCode: string;
   outputCode: string;
   impexCode: string;
-  prevTextAlign = 'left'; prevLogoAlign = 'left';
+  prevTextAlign = 'left'; prevLogoAlign = 'left'; prevLogoSize = 'small';
   css = new AppCss();
 
   ngDoCheck() {
@@ -47,8 +48,9 @@ export class PreviewA1Component implements DoCheck {
     }
     
     insertLogo(this.data.logoURL, 'A1');
-    insertWidth(this.logoWidth);
+
     $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoAlign).addClass(this.logoAlign);
+    $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoSize).addClass(this.logoSize);
 
     if (this.whiteBGLogo === true) {
       $('.A1-iframe').contents().find('#A1logo').addClass('bg-white-transparent');
@@ -82,12 +84,22 @@ export class PreviewA1Component implements DoCheck {
         this.prevTextAlign = this.textAlign;
       }
 
+      /* Logo alignment */
       if (this.logoAlign !== this.prevLogoAlign) { 
         // $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoAlign).addClass(this.logoAlign);
         const str = $('.a1-supplier-logo').html();   
         const str1 = $('.a1-supplier-logo').html().replace(this.prevLogoAlign, this.logoAlign);
         const res = $('.A1-template').children().html().replace(str, str1);
         this.prevLogoAlign = this.logoAlign;
+        tmp = res;
+      }
+
+      /* Logo size class  */
+      if (this.logoSize !== this.prevLogoSize) {
+        const str = $('.a1-supplier-logo').html();   
+        const str1 = $('.a1-supplier-logo').html().replace(this.prevLogoSize, this.logoSize);
+        const res = $('.A1-template').children().html().replace(str, str1);
+        this.prevLogoSize = this.logoSize;
         tmp = res;
       }
       
@@ -104,6 +116,16 @@ export class PreviewA1Component implements DoCheck {
         const res = tmp.replace(str, '');
         tmp = res;
         tmpButtonTxt = '';
+      }
+      
+      /* Button link path */
+      if (this.data.buttonURL.startsWith('https://www.americanhotel.com') || this.data.buttonURL.startsWith('www.americanhotel.com')) {
+        const url = this.data.buttonURL;
+        let lst: string[] = url.split('www.americanhotel.com');
+        const str = tmp.substring(tmp.search('href') + 6, tmp.search('a1-supplier-logo') - 42);
+        this.buttonLink = lst[1];
+      } else {
+        this.buttonLink = this.data.buttonURL;
       }
 
       /* Headline Color */

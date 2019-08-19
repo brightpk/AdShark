@@ -31,18 +31,6 @@ function insertGlobalcss(css) {
   // console.log('A1 global:\n', $('.A1-iframe').contents().find('#globalcss').html());
 }
 
-// function insertAlignment(css, align) {
-//   if (align == 'left') {
-//     $('.A1-iframe').contents().find('#style-align-left').html(css);
-//     $('.A1-iframe').contents().find('#style-align-right').html('');
-//   } else if (align == 'right') {
-//     $('.A1-iframe').contents().find('#style-align-left').html('');
-//     $('.A1-iframe').contents().find('#style-align-right').html(css);
-//   }
-//   // console.log('A1 ALIGN LEFT:\n', $('.A1-iframe').contents().find('#style-align-left').html() + '\n----------------------------------------------------------------');
-//   // console.log('A1 ALIGN RIGHT:\n', $('.A1-iframe').contents().find('#style-align-right').html() + '\n----------------------------------------------------------------');
-// }
-
 /* Insert background into iframe */
 function insertbg(img, ad) {
   switch (ad) {
@@ -90,9 +78,11 @@ function insertLogo(logo, ad) {
 /* Insert logo width into iframe */
 function insertWidth(width) {
   $('.D1-iframe').contents().find('#D1logo').attr('width', width);
-  $('.A1-iframe').contents().find('#A1logo').attr('width', width);
-  console.log($('.A1-iframe').contents().find('#A1logo').parent().html());
-  
+  // console.log($('.A1-iframe').contents().find('#A1logo').parent().html());
+}
+
+function insertCalloutBar(bar) {
+  $('.email-iframe').contents().find('#calloutHTML').html(bar);
 }
 
 $(document).ready(function () {
@@ -134,6 +124,10 @@ $(document).ready(function () {
   });
   $('.as-split-gutter-icon').mouseup(function () {
     $('iframe').css("pointer-events", "auto");
+  });
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
   });
   
 });

@@ -20,10 +20,10 @@
       <!-- Callout bar -->
       <div class="callout-bar mb-3">
         <label for="CalloutBar"><h5 class="text-primary mr-3">Callout Bar:</h5></label>
-        <mat-radio-group [(ngModel)]="calloutBar">
+        <mat-radio-group [(ngModel)]="calloutBar" (change)="changeCalloutBar($event)">
           <mat-radio-button *ngFor="let bar of listofCalloutBar" [value]="bar">{{bar | titlecase}}</mat-radio-button>
         </mat-radio-group>
-        <input class="form-control ad-field" type="text" placeholder="Text" />
+        <input [disabled]="disabledcallout" class="form-control ad-field" type="text" [(ngModel)]="data.callout" placeholder="Text" />
       </div>
 
         <!-- Text alignment -->
@@ -103,7 +103,7 @@
           <!-- Logo size for A1 -->
           <div class="logo-size">
             <mat-radio-group [(ngModel)]="logoSize">
-              <mat-radio-button *ngFor="let logo of logoSizeOptions" [value]="logo.size">{{logo.name}}</mat-radio-button>
+              <mat-radio-button *ngFor="let logo of logoSizeOptions" [value]="logo">{{logo | titlecase}}</mat-radio-button>
             </mat-radio-group>
           </div>
 
@@ -135,10 +135,13 @@
             <u><b>Click for sample logo URL</b></u></h6></div>
           <div class="codeBox card card-body" *ngIf="showSampleLogo" style="border-color: #08a4ec; border-width: thin; width: 420px;">
             <h6 style="color:#0393cc;"><u>Logo</u></h6>
-            <h6 class="text-dark sample-logo-D1" (click)="onClickSample('logo', 'D1')" (mouseover)="logoBorder('D1')"><b>One-Third Banner (D1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
-            <h6 class="text-dark sample-logo-A1Left" (click)="onClickSample('logo', 'A1Left')" (mouseover)="logoBorder('A1Left')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg</h6>
-            <h6 class="text-dark sample-logo-A1Right" (click)="onClickSample('logo', 'A1Right')" (mouseover)="logoBorder('A1Right')"><b>Hero Banner (A1):</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png</h6>
-            <h6 class="text-dark sample-logo-email" (click)="onClickSample('logo', 'email')" (mouseover)="logoBorder('email')"><b>Email Banner:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
+            <h6 class="text-dark sample-logo-1" (click)="onClickSample('logo', 1)" (mouseover)="logoBorder(1)"><b>Suppliers:</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
+            <h6 class="text-dark sample-logo-2" (click)="onClickSample('logo', 2)" (mouseover)="logoBorder(2)"><b>Suppliers:</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg</h6>
+            <h6 class="text-dark sample-logo-3" (click)="onClickSample('logo', 3)" (mouseover)="logoBorder(3)"><b>Suppliers:</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png</h6>
+            <h6 class="text-dark sample-logo-4" (click)="onClickSample('logo', 4)" (mouseover)="logoBorder(4)"><b>Email:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
+            <h6 class="text-dark sample-logo-5" (click)="onClickSample('logo', 5)" (mouseover)="logoBorder(5)"><b>Suppliers:</b> https://images.americanhotel.com/images/logos/suppliers/GE bw.svg</h6>
+            <h6 class="text-dark sample-logo-6" (click)="onClickSample('logo', 6)" (mouseover)="logoBorder(6)"><b>Suppliers:</b> https://images.americanhotel.com/images/logos/suppliers/ForbesLogo.svg</h6>            
+          
           </div>
         </div>
          
@@ -194,10 +197,10 @@
             <app-preview-D1 [data]="data" [altLogo]="altLogo" [altImg]="altImg" [button]="button" [txtColor]="txtColor" [logoWidth]="logoWidth" [whiteBGLogo]="whiteBGLogo"></app-preview-D1>
           </mat-tab>
           <mat-tab label="Hero Banner">
-            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor" [logoWidth]="logoWidth" [whiteBGLogo]="whiteBGLogo" [textAlign]="textAlign" [logoAlign]="logoAlign"></app-preview-A1>
+            <app-preview-A1 [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor" [logoSize]="logoSize" [whiteBGLogo]="whiteBGLogo" [textAlign]="textAlign" [logoAlign]="logoAlign"></app-preview-A1>
           </mat-tab>
           <mat-tab label="Email"> 
-            <app-preview-email [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor"></app-preview-email>
+            <app-preview-email [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor" [calloutBar]="calloutBar"></app-preview-email>
           </mat-tab>
         </mat-tab-group>
       </div>

@@ -1,5 +1,6 @@
 export class AppData {
   constructor(
+    public callout: string,
     public headline: string,
     public subline: string,
     public para: string,

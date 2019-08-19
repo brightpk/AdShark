@@ -27,6 +27,7 @@ export class PreviewD1Component implements DoCheck {
   @Input() txtColor: any = [];
   @Input() whiteBGLogo: boolean;
   // @Output() D1Code = new EventEmitter();
+  buttonLink: string;
   D1iframeCode: string;
   outputCode: string;
   impexCode: string;
@@ -82,6 +83,16 @@ export class PreviewD1Component implements DoCheck {
         const res = tmp.replace(str, '');
         tmp = res;
         tmpButtonTxt = '';
+      }
+
+      /* Button link path */
+      if (this.data.buttonURL.startsWith('https://www.americanhotel.com') || this.data.buttonURL.startsWith('www.americanhotel.com')) {
+        const url = this.data.buttonURL;
+        let lst: string[] = url.split('www.americanhotel.com');
+        const str = tmp.substring(tmp.search('href') + 6, tmp.search('title="') - 1);
+        this.buttonLink = lst[1];
+      } else {
+        this.buttonLink = this.data.buttonURL;
       }
 
       /* Headline Color */
