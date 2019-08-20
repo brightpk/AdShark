@@ -157,34 +157,30 @@ export class PreviewD1Component implements DoCheck {
       copyCode = $('code#impex-code').text();
     } 
   
-    if (this.data.isEmpty('D1')) {
-      alert('One-Third Banner (D1) form is empty! Please fill up the form!');
-    } else {
-      let txtarea: any;
-      txtarea = document.createElement('textarea');
-      txtarea.style.position = 'fixed';
-      txtarea.style.left = '0';
-      txtarea.style.top = '0';
-      txtarea.style.opacity = '0';
-      txtarea.value = copyCode;
-      document.body.appendChild(txtarea);
-      txtarea.focus();
-      txtarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(txtarea);
-      this.copyButtonReact(codeType);
-    }
+    let txtarea: any;
+    txtarea = document.createElement('textarea');
+    txtarea.style.position = 'fixed';
+    txtarea.style.left = '0';
+    txtarea.style.top = '0';
+    txtarea.style.opacity = '0';
+    txtarea.value = copyCode;
+    document.body.appendChild(txtarea);
+    txtarea.focus();
+    txtarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(txtarea);
+    // this.copyButtonReact(codeType);
   }
   
   /* Change color when COPIED! is completed */
   copyButtonReact(codeType) {
     if (codeType === 'plain') {
-      $('.copy-btn-txt').html(' Copied!');
-      $('.impex-btn-txt').html(' Download impex');
+      // $('.copy-btn-txt').html(' Copied!');
+      // $('.impex-btn-txt').html(' Download impex');
   
     } else if (codeType === 'impex') {
-      $('.impex-btn-txt').html(' Copied!');
-      $('.copy-btn-txt').html(' Copy Code');
+      // $('.impex-btn-txt').html(' Copied!');
+      // $('.copy-btn-txt').html(' Copy Code');
     }
   }
 

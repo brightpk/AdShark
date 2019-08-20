@@ -155,23 +155,23 @@ export class AppComponent implements OnInit {
 
   @HostListener('document:keyup', ['$event'])
   keyEvent(event) {
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download Impex');
-    $('.silverpop-btn-txt').html(' Silverpop Code');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Check the text color */
   changeColor(value) {
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download Impex');
-    $('.silverpop-btn-txt').html(' Silverpop Code');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Check the button style */
   changeButton(event) {
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download Impex');
-    $('.silverpop-btn-txt').html(' Silverpop Code');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
     console.log(this.button);
 
     if (this.button === 'none') {
@@ -182,9 +182,9 @@ export class AppComponent implements OnInit {
   }
 
   changeAlignment(e) {
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download Impex');
-    $('.silverpop-btn-txt').html(' Silverpop Code');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
     // console.log('Alignment: Text->', this.textAlign, ' Logo->', this.logoAlign); 
   }
 
@@ -199,25 +199,25 @@ export class AppComponent implements OnInit {
   minusLogo(e) {
     this.logoWidth = Number(this.logoWidth);
     this.logoWidth -= 5;
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download Impex');
-    $('.silverpop-btn-txt').html(' Silverpop Code');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   plusLogo(e) {
     this.logoWidth = Number(this.logoWidth);
     this.logoWidth += 5;
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download Impex');
-    $('.silverpop-btn-txt').html(' Silverpop Code');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Add a white transparent bg to a logo */
   addWhiteBgLogo() {
     this.whiteBGLogo = !this.whiteBGLogo;
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download Impex');
-    $('.silverpop-btn-txt').html(' Silverpop Code');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
     console.log('WhiteBGLogo: ', this.whiteBGLogo, ' tabClick: ', this.tabClick);
   }
 
@@ -226,8 +226,8 @@ export class AppComponent implements OnInit {
     switch (e.index) {
       case 0:
         $('.sample-logo').css('margin-top', '22px'); // sample logo
-        $('.copy-btn-txt').html(' Copy Code');
-        $('.impex-btn-txt').html(' Download impex');
+        // $('.copy-btn-txt').html(' Copy Code');
+        // $('.impex-btn-txt').html(' Download impex');
         this.listofColor[2] = 'white';
         // this.outputCode = this.previewCode.D1;
         this.tabClick = e.index;
@@ -253,8 +253,8 @@ export class AppComponent implements OnInit {
       case 1:
         $('.sample-logo').css('margin-top', '22px'); // sample logo
         $('.background-label').html('Background');
-        $('.copy-btn-txt').html(' Copy Code');
-        $('.impex-btn-txt').html(' Download impex');
+        // $('.copy-btn-txt').html(' Copy Code');
+        // $('.impex-btn-txt').html(' Download impex');
         $('.A1-iframe').css('height', 410);
         this.listofColor[2] = 'white';
         // this.outputCode = this.previewCode.A1;
@@ -281,8 +281,8 @@ export class AppComponent implements OnInit {
       case 2:
         $('.sample-logo').css('margin-top', '46px'); // sample logo
         $('.background-label').html('Hero Image');
-        $('.copy-btn-txt').html(' Copy Code');
-        $('.impex-btn-txt').html(' Download impex');
+        // $('.copy-btn-txt').html(' Copy Code');
+        // $('.impex-btn-txt').html(' Download impex');
         $('email-iframe').css('height', 530);
         this.listofColor[2] = 'red';
         // this.outputCode = this.previewCode.email;

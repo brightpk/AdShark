@@ -148,36 +148,75 @@ li#nav-icon .current {
 }
 
 /* Copy button */
-.copy-button {
+.copy-button1 {
   background-color: hotpink;
   color: white;
+  border: .5px solid hotpink !important;
   margin-left: 20px !important;
 } 
-.copy-button:hover {
+.copy-button1:hover {
   background-color: #c04f88;
-	color: white;
+  color: white;
+  border: .5px solid #c04f88 !important;
+}
+.copy-button2 {
+  background-color: white ;
+  color: hotpink;
+  border: .5px solid hotpink !important;
+  margin-left: 10px !important;
+} 
+.copy-button2:hover {
+  background-color: hotpink;
+  color: white ;
+  border: .5px solid hotpink !important;
 }
 
 /* Impex button */
-.impex-button {
+.impex-button1 {
   background-color: #08a4ec;
   color: white;
+  border: .5px solid #08a4ec !important;
   margin-left: 20px !important;
 }
-.impex-button:hover {
+.impex-button1:hover {
   background-color: #037db6;
-	color: white;
+  color: white;
+  border: .5px solid #037db6 !important;
+}
+.impex-button2 {
+  background-color: white;
+  color: #08a4ec;
+  border: .5px solid #08a4ec !important;
+  margin-left: 10px !important;
+}
+.impex-button2:hover {
+  background-color: #08a4ec;
+  color: white;
+  border: .5px solid #08a4ec !important;
 }
 
 /* Silverpop button */
-.silverpop-button {
+.silverpop-button1 {
   background-color: #08a4ec;
   color: white;
+  border: .5px solid #08a4ec !important;
   margin-left: 20px !important;
 }
-.silverpop-button:hover {
+.silverpop-button1:hover {
   background-color: #037db6;
-	color: white;
+  color: white;
+  border: .5px solid #037db6 !important;
+}
+.silverpop-button2 {
+  background-color: white;
+  color: #08a4ec;
+  border: .5px solid #08a4ec !important;
+  margin-left: 10px !important;
+}
+.silverpop-button2:hover {
+  background-color: #08a4ec;
+  color: white;
+  border: .5px solid #08a4ec !important;
 }
 .silverpop {
   margin-bottom: 50px;

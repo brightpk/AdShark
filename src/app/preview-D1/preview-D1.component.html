@@ -28,11 +28,16 @@ Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now -->
 <div class="plain-text">
   <h4 class="mt-4 ml-4">Plain Text</h4>
   <div class="codeBox card card-body">
-  <code>{{outputCode}}</code>
+    <code>{{outputCode}}</code>
   </div>
-  <button mat-flat-button class="copy-button" (click)="onCopy('plain')" matTooltip="Copy plain code" matTooltipPosition="right">
+  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0"> 
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
+  </button>
+
+  <button mat-flat-button class="copy-button2" (click)="onCopy('plain')" tooltip="Download html file" placement="bottom" hide-delay="0">
+    <span><i class="fas fa-download"></i></span>
+    <span class="copy-btn-txt"> Download Code</span>
   </button>
 </div>  
 
@@ -66,8 +71,12 @@ INSERT_UPDATE CMSParagraphComponent ; $contentCV[unique = true] ; uid[unique = t
 "</pre>
     </code>
   </div>
-  <button mat-flat-button class="impex-button" (click)="onCopy('impex')" matTooltip="Copy impex file" matTooltipPosition="right">
-    <span class="fas fa-file-code"></span>
-    <span class="impex-btn-txt"> Download impex</span>
+  <button mat-flat-button class="impex-button1" (click)="onCopy('impex')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+    <span class="fas fa-code"></span>
+    <span class="impex-btn-txt"> Copy Impex</span>
+  </button>
+  <button mat-flat-button class="impex-button2" (click)="onCopy('impex')" tooltip="Download impex file" placement="bottom" hide-delay="0">
+    <span class="fas fa-download"></span>
+    <span class="impex-btn-txt"> Download Impex</span>
   </button>
 </div>

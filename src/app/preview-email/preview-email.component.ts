@@ -79,7 +79,6 @@ export class PreviewEmailComponent implements DoCheck {
     // tmp = $('div.preheader').parent().html();
     // tmp = $('div.preheader').parents('div#email').html();
     tmp = $('.email-template').find('tr').html();
-    console.log(tmp);
     
     this.setHeadcolor(this.txtColor[0].color);
     this.setParacolor(this.txtColor[2].color);
@@ -229,24 +228,21 @@ export class PreviewEmailComponent implements DoCheck {
     } else if (codeType === 'silverpop') {
       copyCode = $('code#silverpop-code').text();
     } 
-  
-    if (this.data.isEmpty('email')) {
-      alert('Email form is empty! Please fill up the form!');
-    } else {
-      let txtarea: any;
-      txtarea = document.createElement('textarea');
-      txtarea.style.position = 'fixed';
-      txtarea.style.left = '0';
-      txtarea.style.top = '0';
-      txtarea.style.opacity = '0';
-      txtarea.value = copyCode;
-      document.body.appendChild(txtarea);
-      txtarea.focus();
-      txtarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(txtarea);
-      this.copyButtonReact(codeType);
-    }
+
+    let txtarea: any;
+    txtarea = document.createElement('textarea');
+    txtarea.style.position = 'fixed';
+    txtarea.style.left = '0';
+    txtarea.style.top = '0';
+    txtarea.style.opacity = '0';
+    txtarea.value = copyCode;
+    document.body.appendChild(txtarea);
+    txtarea.focus();
+    txtarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(txtarea);
+    // this.copyButtonReact(codeType);
+    
   }
   
   /* Change color when COPIED! is completed */

@@ -199,24 +199,21 @@ export class PreviewA1Component implements DoCheck {
     } else if (codeType === 'impex') {
       copyCode = $('code#impex-code').text();
     } 
-  
-    if (this.data.isEmpty('A1')) {
-      alert('Hero Banner (A1) form is empty! Please fill up the form!');
-    } else {
-      let txtarea: any;
-      txtarea = document.createElement('textarea');
-      txtarea.style.position = 'fixed';
-      txtarea.style.left = '0';
-      txtarea.style.top = '0';
-      txtarea.style.opacity = '0';
-      txtarea.value = copyCode;
-      document.body.appendChild(txtarea);
-      txtarea.focus();
-      txtarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(txtarea);
-      this.copyButtonReact(codeType);
-    }
+
+    let txtarea: any;
+    txtarea = document.createElement('textarea');
+    txtarea.style.position = 'fixed';
+    txtarea.style.left = '0';
+    txtarea.style.top = '0';
+    txtarea.style.opacity = '0';
+    txtarea.value = copyCode;
+    document.body.appendChild(txtarea);
+    txtarea.focus();
+    txtarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(txtarea);
+    // this.copyButtonReact(codeType);
+    
   }
   
   /* Change color when COPIED! is completed */
