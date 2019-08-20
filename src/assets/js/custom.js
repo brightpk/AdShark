@@ -125,9 +125,5 @@ $(document).ready(function () {
   $('.as-split-gutter-icon').mouseup(function () {
     $('iframe').css("pointer-events", "auto");
   });
-
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  });
   
 });
