@@ -6,7 +6,7 @@ import { MatTabsModule, MatTooltipModule, MatSlideToggleModule, MatRadioModule }
 import { MatButtonModule, MatSelectModule, MatCheckboxModule } from '@angular/material';
 import { AngularSplitModule } from 'angular-split';
 import { AngularResizedEventModule } from 'angular-resize-event';
-
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +34,8 @@ import { PreviewEmailComponent } from './preview-email/preview-email.component';
       MatRadioModule,
       MatButtonModule,
       MatSelectModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      TooltipModule
    ],
    providers: [],
    bootstrap: [
