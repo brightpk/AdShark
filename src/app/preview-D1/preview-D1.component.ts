@@ -8,6 +8,7 @@ declare const insertbg: any;
 declare const insertLogo: any;
 declare const insertWidth: any;
 declare const insertGlobalcss: any;
+declare const download: any;
 declare var $: any;
 
 @Component({
@@ -59,6 +60,11 @@ export class PreviewD1Component implements DoCheck {
     }
 
     this.getHTML();
+  }
+
+  /* Snackbar for copied */
+  openSnackBar(msg: string, action: string, duration: number) {
+    this.snackBar.open(msg, '', { duration: 2000 });
   }
 
   openWindow(data, event) {
@@ -173,25 +179,15 @@ export class PreviewD1Component implements DoCheck {
     txtarea.select();
     document.execCommand('copy');
     document.body.removeChild(txtarea);
-    this.copyButtonReact(codeType);
   }
 
-  /* Change color when COPIED! is completed */
-  copyButtonReact(codeType) {
-    if (codeType === 'plain') {
-      // $('.copy-btn-txt').html(' Copied!');
-      // $('.impex-btn-txt').html(' Download impex');
-
-    } else if (codeType === 'impex') {
-      // $('.impex-btn-txt').html(' Copied!');
-      // $('.copy-btn-txt').html(' Copy Code');
+  onDownload(filename, type) {
+    if (type === 'html') {
+      download(filename, this.outputCode);
+    } else if (type === 'impex') {
+      const impex = $('code#impex-code').text();
+      download(filename, impex);
     }
   }
-
-  openSnackBar(msg: string, action: string, duration: number) {
-    this.snackBar.open(msg, '', { duration: 2000 });
-  }
-
-
 
 }
