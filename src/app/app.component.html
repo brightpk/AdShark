@@ -33,13 +33,6 @@
             <mat-radio-button *ngFor="let align of listofAlignment" [value]="align">{{align | titlecase}}</mat-radio-button>
           </mat-radio-group>
         </div>
-        <div class="logo-alignment">
-          <label for="logo-align"><h5 class="text-primary mr-3">Logo Alignment:</h5></label>
-          <mat-radio-group [(ngModel)]="logoAlign" (change)="changeAlignment($event)">
-            <mat-radio-button value="left">Left</mat-radio-button>
-            <mat-radio-button value="right">Right</mat-radio-button>
-          </mat-radio-group>
-        </div>
 
         <!-- Headline -->
         <div class="headline-form mb-3">
@@ -129,6 +122,15 @@
           <div class="checkbox-bg-white">
               <mat-checkbox (change)="addWhiteBgLogo()" [checked]="whiteBGLogo">White background under logo</mat-checkbox>
           </div> 
+
+          <!-- Logo alignment -->
+          <div class="logo-alignment">
+              <label for="logo-align"><h5 class="text-primary mr-3">Logo Alignment:</h5></label>
+              <mat-radio-group [(ngModel)]="logoAlign" (change)="changeAlignment($event)">
+                <mat-radio-button value="left">Left</mat-radio-button>
+                <mat-radio-button value="right">Right</mat-radio-button>
+              </mat-radio-group>
+            </div>
 
           <!-- Sample logo for D1/A1/email -->
           <div><h6 class="sample-logo" (click)="showSampleLogo = !showSampleLogo">

@@ -159,11 +159,11 @@
   <div class="codeBox card card-body">
   <code>{{outputCode}}</code>
   </div>
-  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied code!')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
   </button>
-  <button mat-flat-button class="copy-button2" (click)="onCopy('plain')" tooltip="Download html file" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="copy-button2" (click)="onDownload('email.html', 'html')" tooltip="Download html file" placement="bottom" hide-delay="0">
     <span><i class="fas fa-download"></i></span>
     <span class="copy-btn-txt"> Download Code</span>
   </button>
@@ -340,11 +340,11 @@ overflow: hidden;
       </pre>
     </code>
   </div> 
-  <button mat-flat-button class="silverpop-button1" (click)="onCopy('silverpop')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="silverpop-button1" (click)="onCopy('silverpop')" (click)="openSnackBar('Copied silverpop!')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
     <span class="fas fa-file-code"></span>
     <span class="silverpop-btn-txt"> Silverpop Code</span>
   </button>
-  <button mat-flat-button class="silverpop-button2" (click)="onCopy('silverpop')" tooltip="Download silverpop file" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="silverpop-button2" (click)="onDownload('email_silverpop.html', 'silverpop')" tooltip="Download silverpop file" placement="bottom" hide-delay="0">
     <span class="fas fa-download"></span>
     <span class="silverpop-btn-txt"> Download Silverpop</span>
   </button>

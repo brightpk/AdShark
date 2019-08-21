@@ -60,11 +60,11 @@
   <div class="codeBox card card-body">
     <code>{{outputCode}}</code>
   </div>
-  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied!')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied code!')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
   </button>
-  <button mat-flat-button class="copy-button2" (click)="onCopy('plain')" tooltip="Download html file" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="copy-button2" (click)="onDownload('A1.html', 'html')" tooltip="Download html file" placement="bottom" hide-delay="0">
     <span><i class="fas fa-download"></i></span>
     <span class="copy-btn-txt"> Download Code</span>
   </button>
@@ -100,11 +100,11 @@ INSERT_UPDATE CMSParagraphComponent ; $contentCV[unique = true] ; uid[unique = t
 "</pre>
     </code>
   </div>
-  <button mat-flat-button class="impex-button1" (click)="onCopy('impex')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="impex-button1" (click)="onCopy('impex')" (click)="openSnackBar('Copied impex!')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
     <span class="fas fa-code"></span>
     <span class="impex-btn-txt"> Copy Impex</span>
   </button>
-  <button mat-flat-button class="impex-button2" (click)="onCopy('impex')" tooltip="Download impex file" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="impex-button2" (click)="onDownload('A1.impex', 'impex')" tooltip="Download impex file" placement="bottom" hide-delay="0">
     <span class="fas fa-download"></span>
     <span class="impex-btn-txt"> Download Impex</span>
   </button>

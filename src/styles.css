@@ -2,6 +2,11 @@
   padding-bottom: 50px;
 }
 
+/* Gutter size */ 
+.as-split-gutter {
+  flex-basis: 7px !important;
+}
+
 /* active tab */
 .mat-tab-label-active {
   background-color: #dddcdc;
@@ -242,9 +247,6 @@ h6 {
   color:#46aa54;
   cursor: pointer;
 }
-.sample-logo {
-}
-
 
 /* White transparent bg to a logo */
 /* img.bg-white-transparent {

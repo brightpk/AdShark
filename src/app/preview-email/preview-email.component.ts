@@ -1,10 +1,13 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
+import { MatSnackBar } from '@angular/material';
 
 declare const insertEmail: any;
 declare const insertbg: any;
 declare const insertLogo: any;
 declare const insertCalloutBar: any;
+declare const download: any;
+declare var $: any;
 
 @Component({
   selector: 'app-preview-email',
@@ -26,28 +29,11 @@ export class PreviewEmailComponent implements DoCheck {
   previousParaColor = '';
   bar = '';
 
+  constructor(private snackBar: MatSnackBar) {}
+
   ngDoCheck() {
     insertbg(this.data.bgURL, 'email');
     insertLogo(this.data.logoURL, 'email');
-
-    // if (this.calloutBar === 'sale') {
-    //   $('.callout-sale').show();
-    //   $('.callout-nosale').hide();
-    // } else if (this.calloutBar === 'no sale') {
-    //   $('.callout-sale').hide();
-    //   $('.callout-nosale').show();
-    // }
-    
-    // if (this.button === 'default') {
-    //   $('.blue-btn').show();
-    //   $('.wht-btn').hide();
-    // } else if (this.button === 'alternate') {
-    //   $('.blue-btn').hide();
-    //   $('.wht-btn').show();
-    // } else {
-    //   $('.blue-btn').hide();
-    //   $('.wht-btn').hide();
-    // }
 
     if (this.calloutBar === 'sale') {
       this.bar = $('.callout-sale').html();
@@ -69,6 +55,10 @@ export class PreviewEmailComponent implements DoCheck {
     this.getHTML();
   }
 
+  openSnackBar(msg: string, action: string, duration: number) {
+    this.snackBar.open(msg, '', { duration: 2000 });
+  }
+
   openWindow(data, event) {
     event.preventDefault();
     window.open(data.buttonURL);
@@ -79,7 +69,7 @@ export class PreviewEmailComponent implements DoCheck {
     // tmp = $('div.preheader').parent().html();
     // tmp = $('div.preheader').parents('div#email').html();
     tmp = $('.email-template').find('tr').html();
-    
+
     this.setHeadcolor(this.txtColor[0].color);
     this.setParacolor(this.txtColor[2].color);
 
@@ -100,11 +90,11 @@ export class PreviewEmailComponent implements DoCheck {
       } else if (this.calloutBar === 'sale') {
         const str = tmp.substring(tmp.search('<tr class="callout-nosale'), tmp.search('<tr class="bg-image'));
         tmp = tmp.replace(str, '');
-  
+
       } else if (this.calloutBar === 'no sale') {
         const str = tmp.substring(tmp.search('<tr class="callout-sale'), tmp.search('<tr class="callout-nosale'));
         tmp = tmp.replace(str, '');
-      } 
+      }
 
       /* Remove button code if not chosen  */
       if (this.button === '' || this.button === 'none') {
@@ -241,20 +231,16 @@ export class PreviewEmailComponent implements DoCheck {
     txtarea.select();
     document.execCommand('copy');
     document.body.removeChild(txtarea);
-    // this.copyButtonReact(codeType);
-    
   }
   
-  /* Change color when COPIED! is completed */
-  copyButtonReact(codeType) {
-    if (codeType === 'plain') {
-      $('.copy-btn-txt').html(' Copied!');
-      $('.silverpop-btn-txt').html(' Silverpop code');
-  
-    } else if (codeType === 'silverpop') {
-      $('.silverpop-btn-txt').html(' Copied!');
-      $('.copy-btn-txt').html(' Copy Code');
+  onDownload(filename, type) {
+    if (type === 'html') {
+      download(filename, this.outputCode);
+    } else if (type === 'silverpop') {
+      const impex = $('code#silverpop-code').text();
+      download(filename, impex);
     }
   }
+
 
 }
