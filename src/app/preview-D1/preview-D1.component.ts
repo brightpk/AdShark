@@ -63,8 +63,8 @@ export class PreviewD1Component implements DoCheck {
   }
 
   /* Snackbar for copied */
-  openSnackBar(msg: string, action: string, duration: number) {
-    this.snackBar.open(msg, '', { duration: 2000 });
+  openSnackBar(msg: string, action: string, time: number) {
+    this.snackBar.open(msg, '', { duration: time });
   }
 
   openWindow(data, event) {

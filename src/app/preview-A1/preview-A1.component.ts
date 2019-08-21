@@ -47,7 +47,7 @@ export class PreviewA1Component implements DoCheck {
     } else {
       insertbg(this.data.bgURL, 'A1');
     }
-    
+
     insertLogo(this.data.logoURL, 'A1');
 
     $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoAlign).addClass(this.logoAlign);
@@ -60,12 +60,12 @@ export class PreviewA1Component implements DoCheck {
       $('.A1-iframe').contents().find('#A1logo').removeClass('bg-white-transparent');
       $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
     }
- 
+
     this.getHTML();
   }
 
-  openSnackBar(msg: string, action: string, duration: number) {
-    this.snackBar.open(msg, '', { duration: 2000 });
+  openSnackBar(msg: string, action: string, time: number) {
+    this.snackBar.open(msg, '', { duration: time });
   }
 
   openWindow(data, event) {
@@ -90,9 +90,9 @@ export class PreviewA1Component implements DoCheck {
       }
 
       /* Logo alignment */
-      if (this.logoAlign !== this.prevLogoAlign) { 
+      if (this.logoAlign !== this.prevLogoAlign) {
         // $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoAlign).addClass(this.logoAlign);
-        const str = $('.a1-supplier-logo').html();   
+        const str = $('.a1-supplier-logo').html();
         const str1 = $('.a1-supplier-logo').html().replace(this.prevLogoAlign, this.logoAlign);
         const res = $('.A1-template').children().html().replace(str, str1);
         this.prevLogoAlign = this.logoAlign;
@@ -101,13 +101,13 @@ export class PreviewA1Component implements DoCheck {
 
       /* Logo size class  */
       if (this.logoSize !== this.prevLogoSize) {
-        const str = $('.a1-supplier-logo').html();   
+        const str = $('.a1-supplier-logo').html();
         const str1 = $('.a1-supplier-logo').html().replace(this.prevLogoSize, this.logoSize);
         const res = $('.A1-template').children().html().replace(str, str1);
         this.prevLogoSize = this.logoSize;
         tmp = res;
       }
-      
+
       /* Button Type */
       if (tmp.includes('btn--')) {
         const str = tmp.substring(tmp.search('btn--'), tmp.search('c-hero__action'));
@@ -122,7 +122,7 @@ export class PreviewA1Component implements DoCheck {
         tmp = res;
         tmpButtonTxt = '';
       }
-      
+
       /* Button link path */
       if (this.data.buttonURL.startsWith('https://www.americanhotel.com') || this.data.buttonURL.startsWith('www.americanhotel.com')) {
         const url = this.data.buttonURL;
@@ -203,7 +203,7 @@ export class PreviewA1Component implements DoCheck {
       copyCode = this.outputCode;
     } else if (codeType === 'impex') {
       copyCode = $('code#impex-code').text();
-    } 
+    }
 
     let txtarea: any;
     txtarea = document.createElement('textarea');
