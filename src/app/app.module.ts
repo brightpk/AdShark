@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule, MatTooltipModule, MatSlideToggleModule, MatRadioModule } from '@angular/material';
-import { MatButtonModule, MatSelectModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatSelectModule, MatCheckboxModule, MatSnackBarModule } from '@angular/material';
 import { AngularSplitModule } from 'angular-split';
 import { AngularResizedEventModule } from 'angular-resize-event';
 import { TooltipModule } from 'ng2-tooltip-directive';
@@ -35,6 +35,7 @@ import { PreviewEmailComponent } from './preview-email/preview-email.component';
       MatButtonModule,
       MatSelectModule,
       MatCheckboxModule,
+      MatSnackBarModule,
       TooltipModule
    ],
    providers: [],

@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
 import { AppCss } from '../AppCss';
+import { MatSnackBar } from '@angular/material';
 
 declare const insertD1: any;
 declare const insertbg: any;
@@ -33,16 +34,18 @@ export class PreviewD1Component implements DoCheck {
   impexCode: string;
   css = new AppCss();
 
+  constructor(private snackBar: MatSnackBar) {}
+
   ngDoCheck() {
     insertGlobalcss(this.css.getGlobalCSS());
-    
+
     if (this.data.bgURL === '') {
       const tmpBg = 'https://images.americanhotel.com/images/banners/D1-placeholder.jpg';
       insertbg(tmpBg, 'D1');
     } else {
       insertbg(this.data.bgURL, 'D1');
     }
-    
+
     // insertbg(this.data.bgURL, 'D1');
     insertLogo(this.data.logoURL, 'D1');
     insertWidth(this.logoWidth);
@@ -88,7 +91,7 @@ export class PreviewD1Component implements DoCheck {
       /* Button link path */
       if (this.data.buttonURL.startsWith('https://www.americanhotel.com') || this.data.buttonURL.startsWith('www.americanhotel.com')) {
         const url = this.data.buttonURL;
-        let lst: string[] = url.split('www.americanhotel.com');
+        const lst: string[] = url.split('www.americanhotel.com');
         const str = tmp.substring(tmp.search('href') + 6, tmp.search('title="') - 1);
         this.buttonLink = lst[1];
       } else {
@@ -153,10 +156,11 @@ export class PreviewD1Component implements DoCheck {
     let copyCode = '';
     if (codeType === 'plain') {
       copyCode = this.outputCode;
+
     } else if (codeType === 'impex') {
       copyCode = $('code#impex-code').text();
-    } 
-  
+    }
+
     let txtarea: any;
     txtarea = document.createElement('textarea');
     txtarea.style.position = 'fixed';
@@ -169,19 +173,25 @@ export class PreviewD1Component implements DoCheck {
     txtarea.select();
     document.execCommand('copy');
     document.body.removeChild(txtarea);
-    // this.copyButtonReact(codeType);
+    this.copyButtonReact(codeType);
   }
-  
+
   /* Change color when COPIED! is completed */
   copyButtonReact(codeType) {
     if (codeType === 'plain') {
       // $('.copy-btn-txt').html(' Copied!');
       // $('.impex-btn-txt').html(' Download impex');
-  
+
     } else if (codeType === 'impex') {
       // $('.impex-btn-txt').html(' Copied!');
       // $('.copy-btn-txt').html(' Copy Code');
     }
   }
+
+  openSnackBar(msg: string, action: string, duration: number) {
+    this.snackBar.open(msg, '', { duration: 2000 });
+  }
+
+
 
 }

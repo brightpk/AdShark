@@ -60,7 +60,7 @@
   <div class="codeBox card card-body">
     <code>{{outputCode}}</code>
   </div>
-  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied!')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
   </button>

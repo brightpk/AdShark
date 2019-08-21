@@ -30,11 +30,10 @@ Button link: /can-liners?icid=inteplast-d1-d3_hp_otb_4_20190628_1_shop-now -->
   <div class="codeBox card card-body">
     <code>{{outputCode}}</code>
   </div>
-  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0"> 
+  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied!')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0"> 
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
   </button>
-
   <button mat-flat-button class="copy-button2" (click)="onCopy('plain')" tooltip="Download html file" placement="bottom" hide-delay="0">
     <span><i class="fas fa-download"></i></span>
     <span class="copy-btn-txt"> Download Code</span>

@@ -1,13 +1,11 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
 import { AppCss } from '../AppCss';
-import { TouchSequence } from 'selenium-webdriver';
-import { ThrowStmt } from '@angular/compiler';
+import { MatSnackBar } from '@angular/material';
 
 declare const insertA1: any;
 declare const insertbg: any;
 declare const insertLogo: any;
-declare const insertWidth: any;
 declare const insertGlobalcss: any;
 declare var $: any;
 
@@ -36,6 +34,8 @@ export class PreviewA1Component implements DoCheck {
   impexCode: string;
   prevTextAlign = 'left'; prevLogoAlign = 'left'; prevLogoSize = 'small';
   css = new AppCss();
+
+  constructor(private snackBar: MatSnackBar) {}
 
   ngDoCheck() {
     insertGlobalcss(this.css.getGlobalCSS);
@@ -226,6 +226,10 @@ export class PreviewA1Component implements DoCheck {
       $('.impex-btn-txt').html(' Copied!');
       $('.copy-btn-txt').html(' Copy Code');
     }
+  }
+
+  openSnackBar(msg: string, action: string, duration: number) {
+    this.snackBar.open(msg, '', { duration: 2000 });
   }
 
 
