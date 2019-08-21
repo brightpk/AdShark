@@ -41,10 +41,9 @@ export class PreviewEmailComponent implements DoCheck {
       this.bar = $('.callout-nosale').html();
     } else {
       this.bar = '';
-    } 
+    }
     insertCalloutBar(this.bar);
 
-    
     if (this.txtColor[0].color !== this.previousHeadColor) {
       this.setHeadcolor(this.txtColor[0].color);
     }
@@ -55,8 +54,8 @@ export class PreviewEmailComponent implements DoCheck {
     this.getHTML();
   }
 
-  openSnackBar(msg: string, action: string, duration: number) {
-    this.snackBar.open(msg, '', { duration: 2000 });
+  openSnackBar(msg: string, action: string, time: number) {
+    this.snackBar.open(msg, '', { duration: time });
   }
 
   openWindow(data, event) {
@@ -217,7 +216,7 @@ export class PreviewEmailComponent implements DoCheck {
       copyCode = this.outputCode;
     } else if (codeType === 'silverpop') {
       copyCode = $('code#silverpop-code').text();
-    } 
+    }
 
     let txtarea: any;
     txtarea = document.createElement('textarea');
@@ -232,7 +231,7 @@ export class PreviewEmailComponent implements DoCheck {
     document.execCommand('copy');
     document.body.removeChild(txtarea);
   }
-  
+
   onDownload(filename, type) {
     if (type === 'html') {
       download(filename, this.outputCode);
