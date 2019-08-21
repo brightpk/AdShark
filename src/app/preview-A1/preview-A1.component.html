@@ -42,15 +42,70 @@
           <img alt="{{data.headline}}" class="c-hero__image" src="{{data.bgURL}}"> </picture>
       </div>
       <div class="c-hero__inner home-a1-ad">
-        <div class="c-hero__copy c-hero__copy--align-left">
+        <div class="c-hero__copy c-hero__copy--align-{{textAlign}}">
           <h2 class="c-hero__title c-hero__title--{{txtColor[0].color}} c-hero__title--weight-extrabold c-hero__title--size-large">{{data.headline}}</h2>
           <h3 class="c-hero__sub-title c-hero__sub-title--{{txtColor[1].color}} c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">{{data.subline}}</h3>
-          <div class="mt-2"><a class="btn btn--{{button}} c-hero__action" href="{{data.buttonURL}}">{{data.buttonTxt}}</a></div>
+          <div class="mt-2"><a class="btn btn--{{button}} c-hero__action" href="{{buttonLink}}">{{data.buttonTxt}}</a></div>
         </div>
       </div>
-      <div class="a1-supplier-logo"><img alt="{{altLogo}}" class="" src="{{data.logoURL}}" width="{{logoWidth}}"></div>
     </div>
+    <div class="a1-supplier-logo"><img alt="{{altLogo}}" class="{{logoAlign}} {{logoSize}}" src="{{data.logoURL}}"></div>
   </div>
 </div>
 
 <iframe class="A1-iframe iframe-widescreen" src="assets/html/A1.html"></iframe>
+
+<div class="plain-text">
+  <h4 class="mt-4 ml-4">Plain Text</h4>
+  <div class="codeBox card card-body">
+    <code>{{outputCode}}</code>
+  </div>
+  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied!')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+    <span><i class="fas fa-code"></i></span>
+    <span class="copy-btn-txt"> Copy Code</span>
+  </button>
+  <button mat-flat-button class="copy-button2" (click)="onCopy('plain')" tooltip="Download html file" placement="bottom" hide-delay="0">
+    <span><i class="fas fa-download"></i></span>
+    <span class="copy-btn-txt"> Download Code</span>
+  </button>
+</div>  
+
+<div class="impex-file">
+  <h4 class="mt-4 ml-4">Impex File</h4>
+  <div class="codeBox card card-body">
+    <code id="impex-code">
+      <pre>
+$contentCatalog = americanhotelContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default = $contentCatalog]), CatalogVersion.version[default = Staged])[default = $contentCatalog:Staged]
+$mediaContainer = media(qualifier, $contentCV);
+$medias = medias(code, $contentCV);
+$media = media(code, $contentCV);
+$productCatalog = americanhotelProductCatalog
+$productCV = catalogVersion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = $productCatalog:Staged]
+$siteResource = jar:com.americanhotel.hybris.initialdata.constants.AmericanhotelInitialDataConstants&/americanhotelinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$lang = en
+          
+UPDATE GenericItem[processor = de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor]; pk[unique = true]
+$jarResourceCms = $config-jarResourceCmsValue
+          
+          
+          
+          
+          
+INSERT_UPDATE CMSParagraphComponent ; $contentCV[unique = true] ; uid[unique = true] ; onlyOneRestrictionMustApply[default='false'] ; name                          ; &componentRef    ; content[lang = $lang]
+
+                              ;                           ; componentid   ;                                              ; component name ; componentid ; "
+                              {{impexCode}}
+          
+"</pre>
+    </code>
+  </div>
+  <button mat-flat-button class="impex-button1" (click)="onCopy('impex')" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+    <span class="fas fa-code"></span>
+    <span class="impex-btn-txt"> Copy Impex</span>
+  </button>
+  <button mat-flat-button class="impex-button2" (click)="onCopy('impex')" tooltip="Download impex file" placement="bottom" hide-delay="0">
+    <span class="fas fa-download"></span>
+    <span class="impex-btn-txt"> Download Impex</span>
+  </button>
+</div>

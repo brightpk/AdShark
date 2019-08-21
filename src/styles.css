@@ -2,6 +2,11 @@
   padding-bottom: 50px;
 }
 
+/* active tab */
+.mat-tab-label-active {
+  background-color: #dddcdc;
+}
+
 /* impex file code output #212529 */
 pre {
   display: inline-block;
@@ -14,6 +19,10 @@ pre {
 /* plain/impex/silverpop title */
 h4 {
   font-family: Verdana, Geneva, sans-serif;
+}
+
+textarea {
+  resize: none;
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -43,26 +52,25 @@ input[type="radio"] {
   white-space: pre-line
 }
 .ad-field {
-  width: 470px;
+  max-width: 470px;
 }
 /* Style for logo field */
 .logo-form .ad-field {
-  width: 220px;
-  float: left;
+  max-width: 220px;
 }
 #logo-width-label {
-  margin-left: 44px;
   margin-right: 20px;
 }
 
 /* Checbox bg-white-transparent */
 .checkbox-bg-white {
-  position: absolute;
+  position: none;
+  margin-left: -8px;
 }
 
 /* Plue-Minus width Logo */
 .input-logo-width {
-  width: 60px;
+  width: 65px;
   height: 35px;
   text-align: center;
   font-size: small;
@@ -88,12 +96,12 @@ li#nav-icon {
   color: rgb(149, 155, 161);
 }
 
-/* Code box*/
+/* Code box  #73AD21*/
 .codeBox {
   margin: 20px;
   width: auto;
   height: 150px;
-  border: 3px solid #73AD21;
+  border: 2px solid grey;
   padding: 10px;
   overflow-y: scroll;
 }
@@ -140,36 +148,78 @@ li#nav-icon .current {
 }
 
 /* Copy button */
-.copy-button {
-  background-color: #08a4ec;
+.copy-button1 {
+  background-color: hotpink;
   color: white;
+  border: .5px solid hotpink !important;
   margin-left: 20px !important;
 } 
-.copy-button:hover {
-  background-color: #037db6;
-	color: white;
+.copy-button1:hover {
+  background-color: #c04f88;
+  color: white;
+  border: .5px solid #c04f88 !important;
+}
+.copy-button2 {
+  background-color: white ;
+  color: hotpink;
+  border: .5px solid hotpink !important;
+  margin-left: 10px !important;
+} 
+.copy-button2:hover {
+  background-color: hotpink;
+  color: white ;
+  border: .5px solid hotpink !important;
 }
 
 /* Impex button */
-.impex-button {
-  background-color: hotpink;
+.impex-button1 {
+  background-color: #08a4ec;
   color: white;
+  border: .5px solid #08a4ec !important;
   margin-left: 20px !important;
 }
-.impex-button:hover {
-  background-color: #c04f88;
-	color: white;
+.impex-button1:hover {
+  background-color: #037db6;
+  color: white;
+  border: .5px solid #037db6 !important;
+}
+.impex-button2 {
+  background-color: white;
+  color: #08a4ec;
+  border: .5px solid #08a4ec !important;
+  margin-left: 10px !important;
+}
+.impex-button2:hover {
+  background-color: #08a4ec;
+  color: white;
+  border: .5px solid #08a4ec !important;
 }
 
 /* Silverpop button */
-.silverpop-button {
-  background-color:hotpink;
+.silverpop-button1 {
+  background-color: #08a4ec;
   color: white;
+  border: .5px solid #08a4ec !important;
   margin-left: 20px !important;
 }
-.silverpop-button:hover {
-  background-color: #c04f88;
-	color: white;
+.silverpop-button1:hover {
+  background-color: #037db6;
+  color: white;
+  border: .5px solid #037db6 !important;
+}
+.silverpop-button2 {
+  background-color: white;
+  color: #08a4ec;
+  border: .5px solid #08a4ec !important;
+  margin-left: 10px !important;
+}
+.silverpop-button2:hover {
+  background-color: #08a4ec;
+  color: white;
+  border: .5px solid #08a4ec !important;
+}
+.silverpop {
+  margin-bottom: 50px;
 }
 
 /* Show/Hide toggle switch */
@@ -193,8 +243,6 @@ h6 {
   cursor: pointer;
 }
 .sample-logo {
-  align-content: left;
-  margin-top: 22px;
 }
 
 

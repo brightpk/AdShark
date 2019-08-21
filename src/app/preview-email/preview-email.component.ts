@@ -2,6 +2,9 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } fr
 import { AppData } from '../AppData';
 
 declare const insertEmail: any;
+declare const insertbg: any;
+declare const insertLogo: any;
+declare const insertCalloutBar: any;
 
 @Component({
   selector: 'app-preview-email',
@@ -15,23 +18,47 @@ export class PreviewEmailComponent implements DoCheck {
   @Input() button: string;
   @Input() device: string;
   @Input() txtColor: any = [];
-  @Output() emailCode = new EventEmitter();
-  HTMLCode: string;
+  @Input() calloutBar: string;
+  // @Output() emailCode = new EventEmitter();
+  emailiframeCode: string;
+  outputCode: string;
   previousHeadColor = '';
   previousParaColor = '';
+  bar = '';
 
   ngDoCheck() {
-    if (this.button === 'default') {
-      $('.blue-btn').show();
-      $('.wht-btn').hide();
-    } else if (this.button === 'alternate') {
-      $('.blue-btn').hide();
-      $('.wht-btn').show();
-    } else {
-      $('.blue-btn').hide();
-      $('.wht-btn').hide();
-    }
+    insertbg(this.data.bgURL, 'email');
+    insertLogo(this.data.logoURL, 'email');
 
+    // if (this.calloutBar === 'sale') {
+    //   $('.callout-sale').show();
+    //   $('.callout-nosale').hide();
+    // } else if (this.calloutBar === 'no sale') {
+    //   $('.callout-sale').hide();
+    //   $('.callout-nosale').show();
+    // }
+    
+    // if (this.button === 'default') {
+    //   $('.blue-btn').show();
+    //   $('.wht-btn').hide();
+    // } else if (this.button === 'alternate') {
+    //   $('.blue-btn').hide();
+    //   $('.wht-btn').show();
+    // } else {
+    //   $('.blue-btn').hide();
+    //   $('.wht-btn').hide();
+    // }
+
+    if (this.calloutBar === 'sale') {
+      this.bar = $('.callout-sale').html();
+    } else if (this.calloutBar === 'no sale') {
+      this.bar = $('.callout-nosale').html();
+    } else {
+      this.bar = '';
+    } 
+    insertCalloutBar(this.bar);
+
+    
     if (this.txtColor[0].color !== this.previousHeadColor) {
       this.setHeadcolor(this.txtColor[0].color);
     }
@@ -51,7 +78,8 @@ export class PreviewEmailComponent implements DoCheck {
     let tmp: string;
     // tmp = $('div.preheader').parent().html();
     // tmp = $('div.preheader').parents('div#email').html();
-    tmp = $('.email-template').html();
+    tmp = $('.email-template').find('tr').html();
+    
     this.setHeadcolor(this.txtColor[0].color);
     this.setParacolor(this.txtColor[2].color);
 
@@ -61,6 +89,22 @@ export class PreviewEmailComponent implements DoCheck {
         tmp = this.rgbToHexHeadline();
         tmp = this.rgbToHexPara(tmp);
       }
+
+      /* Remove callout bar if not chosen  */
+      if (this.calloutBar === 'none') {
+        const str1 = tmp.substring(tmp.search('<tr class="callout-nosale'), tmp.search('<tr class="bg-image'));
+        const str2 = tmp.substring(tmp.search('<tr class="callout-sale'), tmp.search('<tr class="callout-nosale'));
+        tmp = tmp.replace(str1, '');
+        tmp = tmp.replace(str2, '');
+
+      } else if (this.calloutBar === 'sale') {
+        const str = tmp.substring(tmp.search('<tr class="callout-nosale'), tmp.search('<tr class="bg-image'));
+        tmp = tmp.replace(str, '');
+  
+      } else if (this.calloutBar === 'no sale') {
+        const str = tmp.substring(tmp.search('<tr class="callout-sale'), tmp.search('<tr class="callout-nosale'));
+        tmp = tmp.replace(str, '');
+      } 
 
       /* Remove button code if not chosen  */
       if (this.button === '' || this.button === 'none') {
@@ -79,15 +123,19 @@ export class PreviewEmailComponent implements DoCheck {
 
       }
 
-      this.HTMLCode = tmp;
-      this.emailCode.emit(this.HTMLCode);
+      this.outputCode = tmp;
+      this.emailiframeCode = tmp;
 
-      if (this.HTMLCode.includes('target="_blank"')) {
-        this.HTMLCode = this.HTMLCode.replace(new RegExp('target="_blank"', 'g'), '');
+      // this.emailCode.emit(tmp);
+
+      if (this.emailiframeCode.includes('target="_blank"')) {
+        this.emailiframeCode = this.emailiframeCode.replace(new RegExp('target="_blank"', 'g'), '');
         // this.HTMLCode = this.HTMLCode.replace(new RegExp('href="#"', 'g'), 'href=""');
       }
 
-      insertEmail(this.HTMLCode);
+      this.emailiframeCode = this.emailiframeCode.substring(this.emailiframeCode.search('<tr class="start-headline"'), this.emailiframeCode.search('<tr class="logo"'));
+
+      insertEmail(this.emailiframeCode);
 
     } catch (err) { }
 
@@ -170,6 +218,43 @@ export class PreviewEmailComponent implements DoCheck {
     }
 
     return paraHex;
+  }
+
+  /* Copy code */
+  onCopy(codeType) {
+    let copyCode = '';
+    if (codeType === 'plain') {
+      copyCode = this.outputCode;
+    } else if (codeType === 'silverpop') {
+      copyCode = $('code#silverpop-code').text();
+    } 
+
+    let txtarea: any;
+    txtarea = document.createElement('textarea');
+    txtarea.style.position = 'fixed';
+    txtarea.style.left = '0';
+    txtarea.style.top = '0';
+    txtarea.style.opacity = '0';
+    txtarea.value = copyCode;
+    document.body.appendChild(txtarea);
+    txtarea.focus();
+    txtarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(txtarea);
+    // this.copyButtonReact(codeType);
+    
+  }
+  
+  /* Change color when COPIED! is completed */
+  copyButtonReact(codeType) {
+    if (codeType === 'plain') {
+      $('.copy-btn-txt').html(' Copied!');
+      $('.silverpop-btn-txt').html(' Silverpop code');
+  
+    } else if (codeType === 'silverpop') {
+      $('.silverpop-btn-txt').html(' Copied!');
+      $('.copy-btn-txt').html(' Copy Code');
+    }
   }
 
 }

@@ -15,6 +15,7 @@ function insertD1(code) {
 function insertA1(code) {
   var A1iframe = $('.A1-iframe');
   A1iframe.contents().find('#A1HTML').html(code);
+  // console.log(A1iframe.contents().find('#A1HTML').html());
 }
 
 /* Email iframe insert Output */
@@ -23,6 +24,66 @@ function insertEmail(code) {
   emailiframe.contents().find('#emailHTML').html(code);
 }
 
+function insertGlobalcss(css) {
+  $('.D1-iframe').contents().find('#globalcss').html(css);
+  $('.A1-iframe').contents().find('#globalcss').html(css);
+  // console.log('D1 global:\n', $('.D1-iframe').contents().find('#globalcss').html());
+  // console.log('A1 global:\n', $('.A1-iframe').contents().find('#globalcss').html());
+}
+
+/* Insert background into iframe */
+function insertbg(img, ad) {
+  switch (ad) {
+    case 'D1':
+      $('.D1-iframe').contents().find('#D1bg').attr('src', img);
+      break;
+    case 'A1':
+      var A1bg = $('.A1-iframe');
+      A1bg.contents().find('#A1bg').attr('src', img);
+      var img1 = img;
+      var str = img1.substring(img1.search('widescreen'), img1.search('widescreen') + 10);
+      A1bg.contents().find('#A1Mobile').attr('srcset', img1.replace(str, 'mobile'));
+      A1bg.contents().find('#A1Tablet').attr('srcset', img1.replace(str, 'tablet'));
+      A1bg.contents().find('#A1Desktop').attr('srcset', img1.replace(str, 'desktop'));   
+      A1bg.contents().find('#A1Wide').attr('srcset', img);  
+      break; 
+    case 'email':
+      $('.email-iframe').contents().find('#emailbg').attr('src', img);
+  }
+
+}
+
+/* Insert logo into iframe */
+function insertLogo(logo, ad) {
+  switch (ad) {
+    case 'D1':
+      $('.D1-iframe').contents().find('#D1logo').attr('src', logo);
+      break;
+    case 'A1':
+      $('.A1-iframe').contents().find('#A1logo').attr('src', logo);
+      break;
+    case 'email':
+        $('.email-iframe').contents().find('#emaillogo').attr('src', logo);
+        $('.email-iframe').contents().find('#emaillogo').attr('height', 51);
+        $('.email-iframe').contents().find('#emaillogo').attr('width', 211);
+
+      if (logo == '') {
+        $('.email-iframe').contents().find('#emaillogo').attr('height', '');
+        $('.email-iframe').contents().find('#emaillogo').attr('width', '');
+      } 
+  }
+
+}
+
+/* Insert logo width into iframe */
+function insertWidth(width) {
+  $('.D1-iframe').contents().find('#D1logo').attr('width', width);
+  // console.log($('.A1-iframe').contents().find('#A1logo').parent().html());
+}
+
+function insertCalloutBar(bar) {
+  $('.email-iframe').contents().find('#calloutHTML').html(bar);
+}
 
 $(document).ready(function () {
   //mobile

@@ -18,18 +18,22 @@ declare var $: any;
 
 export class AppComponent implements OnInit {
   title = 'AdShark';
-  data = new AppData('', '', '', '', '', '', '', ''); // object to store inputs and pass around inside ads
+  data = new AppData('', '', '', '', '', '', '', '', ''); // object to store inputs and pass around inside ads
   altLogo = ''; altImg = '';
-  button = ''; device = '';
+  button = ''; device = ''; 
   paneSize: number; rightWidth: number; leftWidth: number;
-  outputCode: string; impexCode: string; silverpopCode: string; copyCode: string;
+  outputCode: string; textAlign = 'left'; logoAlign = 'left'; calloutBar = 'none'
   showCode = true;
   tabClick = 0;
   logoWidth = 150;
+  logoSize = 'small';
   disabledButton = false;
+  disabledcallout = false;
   whiteBGLogo = false;
   previewCode: any = [];
   listofColor = ['blue', 'black', 'white'];
+  listofAlignment = ['left', 'center', 'right'];
+  listofCalloutBar = ['none', 'sale', 'no sale'];
 
   txtColor: any = [
     { name: 'headline', color: 'blue'},
@@ -43,13 +47,19 @@ export class AppComponent implements OnInit {
     { type: 'alternate', name: 'Clear/Blue' }
   ];
 
+  logoSizeOptions: any = ['small', 'medium', 'large' ];
+
   showSampleBg = false;
   showSampleLogo = false;
 
   ngOnInit(): void {
+    $('.text-alignment').hide();
+    $('.logo-alignment').hide();
     $('.paragraph-form').hide();
     $('.foreground-form').hide();
+    $('.logo-size').hide();
     $('.silverpop').hide();
+    $('.callout-bar').hide();
   }
 
     /* -------- Show and Hide Sample bg and logo -----*/
@@ -57,47 +67,87 @@ export class AppComponent implements OnInit {
       if (field === 'bg') {
         if (ad === 'D1') {
           this.data.bgURL = 'https://images.americanhotel.com/images/banners/8754_1888Mills_AD_D1_061719_bg.jpg';
-        } else if (ad === 'A1') {
+        
+        } else if (ad === 'A1Left') {
           this.data.bgURL = 'https://images.americanhotel.com/images/banners/8713_hunter_A1_widescreen_overlay.jpg';
-        } else { this.data.bgURL = 'https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg'; }
+        
+        }  else if (ad === 'A1Right') {
+          this.data.bgURL = 'https://images.americanhotel.com/images/banners/8865_1888Mills_080619_widescreen.jpg?q=123';
+        
+        }else { this.data.bgURL = 'https://images.americanhotel.com/images/emails/8743K_Inteplast_EML_061919_03.jpg'; }
+      
       } else if (field === 'logo') {
-        if (ad === 'D1') {
+        
+        if (ad === 1) {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg';
-        } else if (ad === 'A1') {
+        
+        } else if (ad === 2) {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg';
-        } else { this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; }
+        
+        } else if (ad === 3) {
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png';
+        
+        } else if (ad === 4) { 
+          this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; 
+        
+        } else if (ad === 5) {
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/GE bw.svg';
+
+        } else if (ad === 6) {
+          this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/ForbesLogo.svg';
+
+        }
       }
     }
 
     bgBorder(ad) {
       if (ad === 'D1') {
         $('.sample-bg-D1').css('border', 'groove');
-        $('.sample-bg-A1').css('border', 'none');
+        $('.sample-bg-A1Left').css('border', 'none');
+        $('.sample-bg-A1Right').css('border', 'none');
         $('.sample-bg-email').css('border', 'none');
-      } else if (ad === 'A1') {
+      } else if (ad === 'A1Left') {
         $('.sample-bg-D1').css('border', 'none');
-        $('.sample-bg-A1').css('border', 'groove');
+        $('.sample-bg-A1Left').css('border', 'groove');
+        $('.sample-bg-A1Right').css('border', 'none');
+        $('.sample-bg-email').css('border', 'none');
+      } else if (ad === 'A1Right') {
+        $('.sample-bg-D1').css('border', 'none');
+        $('.sample-bg-A1Left').css('border', 'none');
+        $('.sample-bg-A1Right').css('border', 'groove');
         $('.sample-bg-email').css('border', 'none');
       } else if (ad === 'email') {
         $('.sample-bg-D1').css('border', 'none');
-        $('.sample-bg-A1').css('border', 'none');
+        $('.sample-bg-A1Left').css('border', 'none');
+        $('.sample-bg-A1Right').css('border', 'none');
         $('.sample-bg-email').css('border', 'groove');
       }
     }
 
     logoBorder(ad) {
-      if (ad === 'D1') {
-        $('.sample-logo-D1').css('border', 'groove');
-        $('.sample-logo-A1').css('border', 'none');
-        $('.sample-logo-email').css('border', 'none');
-      } else if (ad === 'A1') {
-        $('.sample-logo-D1').css('border', 'none');
-        $('.sample-logo-A1').css('border', 'groove');
-        $('.sample-logo-email').css('border', 'none');
-      } else if (ad === 'email') {
-        $('.sample-logo-D1').css('border', 'none');
-        $('.sample-logo-A1').css('border', 'none');
-        $('.sample-logo-email').css('border', 'groove');
+      if (ad === 1) {
+        $('.sample-logo-1').css('border', 'groove');
+        $('.sample-logo-2, .sample-logo-3, .sample-logo-4, .sample-logo-5, .sample-logo-6').css('border', 'none');
+      } else if (ad === 2) {
+        $('.sample-logo-2').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-3, .sample-logo-4, .sample-logo-5, .sample-logo-6').css('border', 'none');
+
+      } else if (ad === 3) {
+        $('.sample-logo-3').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-2, .sample-logo-4, .sample-logo-5, .sample-logo-6').css('border', 'none');
+
+      } else if (ad === 4) {
+        $('.sample-logo-4').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-2, .sample-logo-3, .sample-logo-5, .sample-logo-6').css('border', 'none');
+
+      } else if (ad === 5) {
+        $('.sample-logo-5').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-2, .sample-logo-3, .sample-logo-4, .sample-logo-6').css('border', 'none');
+
+      } else if (ad === 6) {
+        $('.sample-logo-6').css('border', 'groove');
+        $('.sample-logo-1, .sample-logo-2, .sample-logo-3, .sample-logo-4, .sample-logo-5').css('border', 'none');
+
       }
     }
     /* ------------------------------------------------*/
@@ -105,26 +155,23 @@ export class AppComponent implements OnInit {
 
   @HostListener('document:keyup', ['$event'])
   keyEvent(event) {
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download impex');
-  }
-
-  onPaste(e: ClipboardEvent) {
-    const clipboard = e.clipboardData;
-    const pastedText = clipboard.getData('text');
-    // console.log(pastedText);
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Check the text color */
   changeColor(value) {
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download impex');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Check the button style */
   changeButton(event) {
-    $('.copy-btn-txt').html(' Copy Code');
-    $('.impex-btn-txt').html(' Download impex');
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
     console.log(this.button);
 
     if (this.button === 'none') {
@@ -132,62 +179,46 @@ export class AppComponent implements OnInit {
     } else {
       this.disabledButton = false;
     }
+  }
 
+  changeAlignment(e) {
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
+    // console.log('Alignment: Text->', this.textAlign, ' Logo->', this.logoAlign); 
+  }
+
+  changeCalloutBar(e) {
+    if (this.calloutBar === 'none') {
+      this.disabledcallout = true;
+    } else {
+      this.disabledcallout = false;
+    }
   }
 
   minusLogo(e) {
     this.logoWidth = Number(this.logoWidth);
     this.logoWidth -= 5;
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   plusLogo(e) {
     this.logoWidth = Number(this.logoWidth);
     this.logoWidth += 5;
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
   }
 
   /* Add a white transparent bg to a logo */
   addWhiteBgLogo() {
     this.whiteBGLogo = !this.whiteBGLogo;
-
-    switch (this.whiteBGLogo) {
-      case true:
-        $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
-        $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
-        break;
-
-      case false:
-        $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
-        $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
-        break;
-
-    }
-  }
-
-  /* Receive code from children */
-  receiveCode(section, code) {
-    switch (section) {
-      case 'D1':
-        // this.previewCode.D1 = code;
-        this.outputCode = code;
-        this.impexCode = code.replace(/"/g, '""');
-        break;
-
-      case 'A1':
-        // this.previewCode.A1 = code;
-        this.outputCode = code;
-        this.impexCode = code.replace(/"/g, '""');
-        break;
-
-      case 'email':
-        // this.previewCode.email = code;
-        if (this.tabClick === 2 ) {
-          this.outputCode = code;
-        }
-        break;
-
-      default:
-        this.outputCode = '';
-    }
+    // $('.copy-btn-txt').html(' Copy Code');
+    // $('.impex-btn-txt').html(' Download Impex');
+    // $('.silverpop-btn-txt').html(' Silverpop Code');
+    console.log('WhiteBGLogo: ', this.whiteBGLogo, ' tabClick: ', this.tabClick);
   }
 
   /* Check what tab is on */
@@ -195,21 +226,22 @@ export class AppComponent implements OnInit {
     switch (e.index) {
       case 0:
         $('.sample-logo').css('margin-top', '22px'); // sample logo
-        $('.copy-btn-txt').html(' Copy Code');
-        $('.impex-btn-txt').html(' Download impex');
+        // $('.copy-btn-txt').html(' Copy Code');
+        // $('.impex-btn-txt').html(' Download impex');
         this.listofColor[2] = 'white';
         // this.outputCode = this.previewCode.D1;
-        // this.impexCode = this.previewCode.D1.replace(/"/g, '""');
         this.tabClick = e.index;
         console.log(e.index);
+        $('.callout-bar').hide();
+        $('.text-alignment').hide();
+        $('.logo-alignment').hide();
         $('.subheadline-form').show();
-        $('.button-link-form').show();
-        $('.checkbox-bg-white').show();
-        $('.plus-minus-logoWidth').show();
-        $('.impex-file').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
-        $('.silverpop').hide();
+        $('.logo-size').hide();
+        $('.checkbox-bg-white').show();
+        $('.plus-minus-logoWidth').show();
+        $('.button-link-form').show();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -221,20 +253,23 @@ export class AppComponent implements OnInit {
       case 1:
         $('.sample-logo').css('margin-top', '22px'); // sample logo
         $('.background-label').html('Background');
-        $('.copy-btn-txt').html(' Copy Code');
-        $('.impex-btn-txt').html(' Download impex');
+        // $('.copy-btn-txt').html(' Copy Code');
+        // $('.impex-btn-txt').html(' Download impex');
+        $('.A1-iframe').css('height', 410);
         this.listofColor[2] = 'white';
         // this.outputCode = this.previewCode.A1;
         this.tabClick = e.index;
         console.log(e.index);
+        $('.callout-bar').hide();
+        $('.text-alignment').show();
+        $('.logo-alignment').show();
         $('.subheadline-form').show();
-        $('.button-link-form').show();
-        $('.checkbox-bg-white').show();
-        $('.plus-minus-logoWidth').show();
-        $('.impex-file').show();
         $('.paragraph-form').hide();
         $('.foreground-form').hide();
-        $('.silverpop').hide();
+        $('.logo-size').show();
+        $('.checkbox-bg-white').show();
+        $('.plus-minus-logoWidth').hide();
+        $('.button-link-form').show();
 
         if (this.txtColor[0].color === 'red') {
           this.txtColor[0].color = 'white';
@@ -246,21 +281,23 @@ export class AppComponent implements OnInit {
       case 2:
         $('.sample-logo').css('margin-top', '46px'); // sample logo
         $('.background-label').html('Hero Image');
-        $('.copy-btn-txt').html(' Copy Code');
-        $('.impex-btn-txt').html(' Download impex');
-        $('iframe').css('height', 520);
+        // $('.copy-btn-txt').html(' Copy Code');
+        // $('.impex-btn-txt').html(' Download impex');
+        $('email-iframe').css('height', 530);
         this.listofColor[2] = 'red';
         // this.outputCode = this.previewCode.email;
         this.tabClick = e.index;
         console.log(e.index);
-        $('.paragraph-form').show();
-        $('.silverpop').show();
+        $('.callout-bar').show();
+        $('.text-alignment').hide();
+        $('.logo-alignment').hide();
         $('.subheadline-form').hide();
-        $('.button-link-form').hide();
+        $('.paragraph-form').show();
         $('.foreground-form').hide();
+        $('.logo-size').show();
         $('.checkbox-bg-white').hide();
         $('.plus-minus-logoWidth').hide();
-        $('.impex-file').hide();
+        $('.button-link-form').hide();
 
         if (this.txtColor[0].color === 'white') {
           this.txtColor[0].color = 'red';
@@ -290,9 +327,9 @@ export class AppComponent implements OnInit {
       $('iframe').css('height', 1150);
 
       if (this.tabClick === 1) {
-        $('iframe').css('height', 400);
+        $('iframe').css('height', 410);
       } else if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
+        $('iframe').css('height', 530);
       }
 
     } else if (this.rightWidth <= 1024) {
@@ -302,19 +339,19 @@ export class AppComponent implements OnInit {
       $('iframe').css('height', 1150);
 
       if (this.tabClick === 1) {
-        $('iframe').css('height', 400);
+        $('iframe').css('height', 410);
       } else if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
+        $('iframe').css('height', 530);
       }
 
     } else if (this.rightWidth <= 1280) {
       this.device = 'Desktop';
       $('.btn-desktop').addClass('current');
       $('.btn-tablet,.btn-mobile,.btn-widescreen').removeClass('current');
-      $('iframe').css('height', 400);
+      $('iframe').css('height', 410);
 
       if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
+        $('iframe').css('height', 530);
       }
 
     } else {
@@ -323,9 +360,9 @@ export class AppComponent implements OnInit {
       $('.btn-tablet,.btn-desktop,.btn-mobile').removeClass('current');
 
       if (this.tabClick === 1) {
-        $('iframe').css('height', 400);
+        $('iframe').css('height', 410);
       } else if (this.tabClick === 2) {
-        $('iframe').css('height', 520);
+        $('iframe').css('height', 530);
       }
     }
 
@@ -392,82 +429,6 @@ export class AppComponent implements OnInit {
       tmp = tmp.substring(0, tmp.search('.jpg'));
       this.altImg = tmp;
     }
-  }
-
-  /* Copy code */
-  onCopy(codeType) {
-    if (codeType === 'plain') {
-      this.copyCode = this.outputCode;
-    } else if (codeType === 'impex') {
-      this.copyCode = $('code#impex-code').text();
-    } else if (codeType === 'silverpop') {
-      this.copyCode = $('code#silverpop-code').text();
-    }
-
-    if (this.tabClick === 0 && this.data.isEmpty('D1')) {
-      alert('One-Third Banner (D1) form is empty! Please fill up the form!');
-    } else if (this.tabClick === 1 && this.data.isEmpty('A1')) {
-      alert('Hero Banner (A1) form is empty! Please fill up the form!');
-    } else if (this.tabClick === 2 && this.data.isEmpty('email')) {
-      alert('Email Banner form is empty! Please fill up the form!');
-    } else {
-      let txtarea: any;
-      txtarea = document.createElement('textarea');
-      txtarea.style.position = 'fixed';
-      txtarea.style.left = '0';
-      txtarea.style.top = '0';
-      txtarea.style.opacity = '0';
-      txtarea.value = this.copyCode;
-      document.body.appendChild(txtarea);
-      txtarea.focus();
-      txtarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(txtarea);
-      this.copyButtonReact(codeType);
-    }
-  }
-
-  /* Change color when COPIED! is completed */
-  copyButtonReact(codeType) {
-    if (codeType === 'plain') {
-      $('.copy-btn-txt').html(' Copied!');
-      $('.impex-btn-txt').html(' Download impex');
-
-    } else if (codeType === 'impex') {
-      $('.impex-btn-txt').html(' Copied!');
-      $('.copy-btn-txt').html(' Copy Code');
-    }
-
-    // if ($('.copy-btn-txt').html() === ' Copied!') {
-    //   $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-    //   $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-    //   $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
-
-    //   $('.copy-button').hover(() => {
-    //     $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-    //     $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-    //     $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
-    //   // }, () => {
-    //   //   $('.copy-button').css('background-color', 'rgb(228, 229, 230)');
-    //   //   $('.fa-code').css('color' , 'rgb(134, 134, 134)');
-    //   //   $('.copy-btn-txt').css('color' , 'rgb(134, 134, 134)');
-    //   });
-
-    // } else if ($('.copy-btn-txt').html() === ' Copy Code') {
-    //   $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
-    //   $('.fa-code').css('color' , 'white');
-    //   $('.copy-btn-txt').css('color' , 'white');
-
-    //   $('.copy-button').hover(() => {
-    //     $('.copy-button').css('background-color', 'rgb(3, 125, 182)');
-    //     $('.fa-code').css('color', 'white');
-    //     $('.copy-btn-txt').css('color', 'white');
-    //   }, () => {
-    //     $('.copy-button').css('background-color', 'rgb(8, 164, 236)');
-    //     $('.fa-code').css('color' , 'white');
-    //     $('.copy-btn-txt').css('color' , 'white');
-    //   });
-    // }
   }
 
 }
