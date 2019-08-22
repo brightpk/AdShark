@@ -80,10 +80,14 @@ function insertLogo(logo, ad) {
         $('.email-iframe').contents().find('#emaillogo').attr('src', logo);
         $('.email-iframe').contents().find('#emaillogo').attr('height', 51);
         $('.email-iframe').contents().find('#emaillogo').attr('width', 211);
+        $('.email-iframe').contents().find('.border-top').css('border-top', '1px solid #CCCCCC');
+
 
       if (logo == '') {
         $('.email-iframe').contents().find('#emaillogo').attr('height', '');
         $('.email-iframe').contents().find('#emaillogo').attr('width', '');
+        $('.email-iframe').contents().find('.border-top').css('border-top', 'transparent');
+
       } 
   }
 
