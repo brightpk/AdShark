@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AdShark-app": {
+    "AdShark": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/AdShark-app",
+            "outputPath": "dist/AdShark",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AdShark-app:build"
+            "browserTarget": "AdShark:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "AdShark-app:build:production"
+              "browserTarget": "AdShark:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AdShark-app:build"
+            "browserTarget": "AdShark:build"
           }
         },
         "test": {
@@ -112,16 +112,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "AdShark-app:serve"
+            "devServerTarget": "AdShark:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "AdShark-app:serve:production"
+              "devServerTarget": "AdShark:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "AdShark-app"
+  "defaultProject": "AdShark"
 }

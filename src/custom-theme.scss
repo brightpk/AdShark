@@ -12,19 +12,19 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$AdShark-app-primary: mat-palette($mat-indigo);
-$AdShark-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$AdShark-primary: mat-palette($mat-indigo);
+$AdShark-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$AdShark-app-warn: mat-palette($mat-red);
+$AdShark-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$AdShark-app-theme: mat-light-theme($AdShark-app-primary, $AdShark-app-accent, $AdShark-app-warn);
+$AdShark-theme: mat-light-theme($AdShark-primary, $AdShark-accent, $AdShark-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($AdShark-app-theme);
+@include angular-material-theme($AdShark-theme);
 
 
 // Custom Theming for Angular Material
@@ -40,17 +40,17 @@ $AdShark-app-theme: mat-light-theme($AdShark-app-primary, $AdShark-app-accent, $
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$AdShark-app-primary: mat-palette($mat-indigo);
-$AdShark-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$AdShark-primary: mat-palette($mat-indigo);
+$AdShark-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$AdShark-app-warn: mat-palette($mat-red);
+$AdShark-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$AdShark-app-theme: mat-light-theme($AdShark-app-primary, $AdShark-app-accent, $AdShark-app-warn);
+$AdShark-theme: mat-light-theme($AdShark-primary, $AdShark-accent, $AdShark-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($AdShark-app-theme);
+@include angular-material-theme($AdShark-theme);
 
