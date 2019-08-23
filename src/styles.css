@@ -12,6 +12,10 @@
   background-color: #dddcdc;
 }
 
+.mat-tab-body-content {
+  overflow: hidden !important;
+}
+
 /* impex file code output #212529 */
 pre {
   display: inline-block;
@@ -131,6 +135,9 @@ li#nav-icon {
 iframe {
   border: none;
   align-items: left;
+}
+.email-iframe {
+  background-color: white;
 }
 
 /* Device icon buttons */
