@@ -36,11 +36,18 @@
 
         <!-- Headline -->
         <div class="headline-form mb-3">
-          <label for="headline"><h5 class="text-primary">Headline</h5></label><br>
+          <label for="headline"><h5 class="text-primary">Headline</h5></label>
           <div class="headline-color">
-            <mat-radio-group [(ngModel)]="txtColor[0].color" (change)="changeColor($event)">
-              <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
-            </mat-radio-group>
+            <div *ngIf="tabClick!=2">
+              <mat-radio-group [(ngModel)]="txtColor[0].color" (change)="changeColor($event)">
+                <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <span *ngIf="tabClick==2">
+              <mat-radio-group [(ngModel)]="txtColor[0].color" (change)="changeColor($event)">
+                <mat-radio-button *ngFor="let color of listofColorSeasonal" [value]="color">{{color | titlecase}}</mat-radio-button>
+              </mat-radio-group>
+            </span>
           </div>
           <textarea class="form-control ad-field" type="text" [(ngModel)]="data.headline" rows="2" placeholder="Text"></textarea>
         </div>

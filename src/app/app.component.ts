@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   whiteBGLogo = false;
   previewCode: any = [];
   listofColor = ['blue', 'black', 'white'];
+  listofColorSeasonal = ['black', 'red'];
   listofAlignment = ['left', 'center', 'right'];
   listofCalloutBar = ['none', 'sale', 'no sale'];
 
@@ -206,7 +207,7 @@ export class AppComponent implements OnInit {
 
   /* Check the text color */
   changeColor(value) {
-    console.log(this.txtColor);
+    // console.log(this.txtColor);
   }
 
   /* Check the button style */
@@ -255,8 +256,8 @@ export class AppComponent implements OnInit {
       // D1 tab
       case 0:
         $('background-label').html('Background');
+        $('iframe').css('width', this.rightWidth);
         this.listofColor[2] = 'white';
-        // this.outputCode = this.previewCode.D1;
         this.tabClick = e.index;
         console.log(e.index);
         $('.callout-bar').hide();
@@ -286,9 +287,10 @@ export class AppComponent implements OnInit {
       // A1 tab
       case 1:
         $('.background-label').html('Background');
-        $('.A1-iframe').css('height', 410);
+        $('iframe').css('width', this.rightWidth);
+        // $('.A1-iframe').css('height', 410);
+        this.setIframeHeight();
         this.listofColor[2] = 'white';
-        // this.outputCode = this.previewCode.A1;
         this.tabClick = e.index;
         console.log(e.index);
         $('.callout-bar').hide();
@@ -317,14 +319,15 @@ export class AppComponent implements OnInit {
 
         // Seasonal tab
         case 2:
-          $('seasonal-iframe').css('height', 410);
-          // this.outputCode = this.previewCode.seasonal;
+          $('iframe').css('width', this.rightWidth);
+          $('.Seasonal-iframe').css('height', 410);
+          this.setIframeHeight();
           this.tabClick = e.index;
           console.log(e.index);
           $('.callout-bar').hide();
           $('.text-alignment').hide();
           $('.logo-alignment').hide();
-          $('.headline-color').hide();
+          $('.headline-color').show();
           $('.subheadline-form').show();
           $('.subheadline-color').hide();
           $('.paragraph-form').show();
@@ -343,14 +346,20 @@ export class AppComponent implements OnInit {
             this.disabledButton = false;
           }
 
+          if (this.txtColor[0].color === 'white' || this.txtColor[0].color === 'blue') {
+            this.txtColor[0].color = 'black';
+            console.log('if wht or blk, change to black');
+          }
+
           break;
 
         // Email tab
         case 3:
           $('.background-label').html('Hero Image');
-          $('email-iframe').css('height', 530);
+          $('iframe').css('width', this.rightWidth);
+          $('.email-iframe').css('height', 650);
+          this.setIframeHeight();
           this.listofColor[2] = 'red';
-          // this.outputCode = this.previewCode.email;
           this.tabClick = e.index;
           console.log(e.index);
           $('.callout-bar').show();
@@ -395,55 +404,55 @@ export class AppComponent implements OnInit {
       this.device = 'Mobile';
       $('.btn-mobile').addClass('current');
       $('.btn-tablet,.btn-desktop,.btn-widescreen').removeClass('current');
-      $('iframe').css('height', 1150);
+      // $('iframe').css('height', 1150);
 
-      if (this.tabClick === 1) {
-        $('iframe').css('height', 410);
-      } else if (this.tabClick === 3) {
-        $('iframe').css('height', 600);
-      }
+      // if (this.tabClick === 1) {
+      //   $('iframe').css('height', 410);
+      // } else if (this.tabClick === 3) {
+      //   $('iframe').css('height', 600);
+      // }
 
     } else if (this.rightWidth <= 1024) {
       this.device = 'Tablet';
       $('.btn-tablet').addClass('current');
       $('.btn-mobile,.btn-desktop,.btn-widescreen').removeClass('current');
-      $('iframe').css('height', 1150);
+      // $('iframe').css('height', 1150);
 
-      if (this.tabClick === 1) {
-        $('iframe').css('height', 410);
-      } else if (this.tabClick === 3) {
-        $('iframe').css('height', 600);
-      }
+      // if (this.tabClick === 1) {
+      //   $('iframe').css('height', 410);
+      // } else if (this.tabClick === 3) {
+      //   $('iframe').css('height', 600);
+      // }
 
     } else if (this.rightWidth <= 1280) {
       this.device = 'Desktop';
       $('.btn-desktop').addClass('current');
       $('.btn-tablet,.btn-mobile,.btn-widescreen').removeClass('current');
-      $('iframe').css('height', 410);
+      // $('iframe').css('height', 410);
 
-      if (this.tabClick === 3) {
-        $('iframe').css('height', 600);
-      }
+      // if (this.tabClick === 3) {
+      //   $('iframe').css('height', 600);
+      // }
 
     } else {
       this.device = 'Wide Screen';
       $('.btn-widescreen').addClass('current');
       $('.btn-tablet,.btn-desktop,.btn-mobile').removeClass('current');
 
-      if (this.tabClick === 1) {
-        $('iframe').css('height', 410);
-      } else if (this.tabClick === 3) {
-        $('iframe').css('height', 600);
-      }
+      // if (this.tabClick === 1) {
+      //   $('iframe').css('height', 410);
+      // } else if (this.tabClick === 3) {
+      //   $('iframe').css('height', 600);
+      // }
     }
 
     // seasonal iframe size
-    if (this.tabClick === 2 && this.rightWidth <= 1200) {
-      $('iframe').css('height', 700);
-    }
-    if (this.tabClick === 2 && this.rightWidth <= 768) {
-      $('iframe').css('height', 950);
-    }
+    // if (this.tabClick === 2 && this.rightWidth <= 1200) {
+    //   $('iframe').css('height', 700);
+    // }
+    // if (this.tabClick === 2 && this.rightWidth <= 768) {
+    //   $('iframe').css('height', 950);
+    // }
 
   }
 
@@ -456,27 +465,60 @@ export class AppComponent implements OnInit {
   setPaneSize(event, device) {
     switch (device) {
       case 'mobile':
-        this.paneSize = 500;
+        this.paneSize = 475; //500
         break;
 
       case 'tablet':
         event.preventDefault();
-        this.paneSize = 700;
+        this.paneSize = 750; //700
         break;
 
       case 'desktop':
         event.preventDefault();
-        this.paneSize = 1150;
+        this.paneSize = 1250; //1150
         break;
 
       case 'widescreen':
         event.preventDefault();
-        this.paneSize = 1350;
+        this.paneSize = 1400; //1350
         break;
 
       default:
     }
   }
+  
+  setIframeHeight() {
+    if (this.rightWidth <= 500) {
+      $('.D1-iframe').css('height', 1150);
+      $('.A1-iframe').css('height', 410);
+      $('.email-iframe').css('height', 650);
+
+    } else if (this.rightWidth <= 1024) {
+      $('.D1-iframe').css('height', 1150);
+      $('.A1-iframe').css('height', 410);
+      $('.email-iframe').css('height', 650);
+
+    } else if (this.rightWidth <= 1280) {
+      $('.D1-iframe').css('height', 410);
+      $('.email-iframe').css('height', 650);
+      $('.Seasonal-iframe').css('height', 410);
+
+    } else {
+      $('.D1-iframe').css('height', 410);
+      $('.A1-iframe').css('height', 410);
+      $('.email-iframe').css('height', 650);
+      $('.Seasonal-iframe').css('height', 410);
+    }
+
+    // for seasonal iframe height
+    if (this.rightWidth <= 1200) {
+      $('.Seasonal-iframe').css('height', 700);
+    }
+    if (this.rightWidth <= 768) {
+      $('.Seasonal-iframe').css('height', 950);
+    }
+  }
+
 
   /* Get an alternate logo name */
   getAlterLogo(data) {
