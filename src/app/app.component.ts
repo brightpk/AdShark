@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   altLogo = ''; altImg = '';
   button = ''; device = '';
   paneSize: number; rightWidth: number; leftWidth: number;
-  outputCode: string; textAlign = 'left'; logoAlign = 'left'; calloutBar = 'none'
+  outputCode: string; textAlign = 'left'; logoAlign = 'left'; calloutBar = 'none';
   showCode = true;
   tabClick = 0;
   logoWidth = 150;
@@ -54,9 +54,6 @@ export class AppComponent implements OnInit {
     prod3Link: '', prod3Name: '', prod3Img: '' ,
     prod4Link: '', prod4Name: '', prod4Img: ''
   };
-
-  showSampleBg = false;
-  showSampleLogo = false;
 
   ngOnInit(): void {
     $('.text-alignment').hide();
@@ -95,7 +92,7 @@ export class AppComponent implements OnInit {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png';
 
         } else if (ad === 4) {
-          this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png'; 
+          this.data.logoURL = 'https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png';
 
         } else if (ad === 5) {
           this.data.logoURL = 'https://images.americanhotel.com/images/logos/suppliers/GE bw.svg';
@@ -335,7 +332,7 @@ export class AppComponent implements OnInit {
           $('.background-form').hide();
           $('.foreground-form').hide();
           $('.logo-size').hide();
-          $('.checkbox-bg-white').hide();
+          $('.checkbox-bg-white').show();
           $('.plus-minus-logoWidth').show();
           $('.button-link-form').show();
           $('.button-options-form').hide();

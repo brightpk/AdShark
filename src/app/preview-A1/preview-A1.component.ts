@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material';
 declare const insertA1: any;
 declare const insertbg: any;
 declare const insertLogo: any;
+declare const insertWhiteBGLogo: any;
 declare const insertGlobalcss: any;
 declare const download: any;
 declare var $: any;
@@ -29,6 +30,7 @@ export class PreviewA1Component implements DoCheck {
   @Input() textAlign: string;
   @Input() logoAlign: string;
   // @Output() A1Code = new EventEmitter();
+  defaultBg = 'https://images.americanhotel.com/images/banners/A1-placeholder-widescreen.jpg';
   buttonLink: string;
   A1iframeCode: string;
   outputCode: string;
@@ -40,26 +42,14 @@ export class PreviewA1Component implements DoCheck {
 
   ngDoCheck() {
     insertGlobalcss(this.css.getGlobalCSS);
-
-    if (this.data.bgURL === '') {
-      const tmpBg = 'https://images.americanhotel.com/images/banners/A1-placeholder-widescreen.jpg';
-      insertbg(tmpBg, 'A1');
-    } else {
-      insertbg(this.data.bgURL, 'A1');
-    }
+    // this.data.bgURL === '' ? insertbg(this.defaultBg, 'A1') : insertbg(this.data.bgURL, 'A1');
+    insertbg(this.data.bgURL, 'A1')
 
     insertLogo(this.data.logoURL, 'A1');
+    insertWhiteBGLogo(this.whiteBGLogo, 'A1');
 
     $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoAlign).addClass(this.logoAlign);
     $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoSize).addClass(this.logoSize);
-
-    if (this.whiteBGLogo === true) {
-      $('.A1-iframe').contents().find('#A1logo').addClass('bg-white-transparent');
-      $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
-    } else {
-      $('.A1-iframe').contents().find('#A1logo').removeClass('bg-white-transparent');
-      $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
-    }
 
     this.getHTML();
   }
@@ -75,7 +65,7 @@ export class PreviewA1Component implements DoCheck {
 
   getHTML() {
     let tmp: string;
-    tmp = $('.A1-template').children().html();
+    tmp = $('.A1-template').html();
     let tmpButtonTxt = this.data.buttonTxt;
 
     try {
@@ -85,8 +75,8 @@ export class PreviewA1Component implements DoCheck {
         const len = this.prevTextAlign.length;
         const str = tmp.substring( tmp.search('c-hero__copy--align-') + 20, tmp.search('c-hero__copy--align-') + 20 + len);
         const res = tmp.replace(str, this.textAlign);
-        tmp = res;
         this.prevTextAlign = this.textAlign;
+        tmp = res;
       }
 
       /* Logo alignment */
@@ -94,7 +84,7 @@ export class PreviewA1Component implements DoCheck {
         // $('.A1-iframe ').contents().find('#A1logo').removeClass(this.prevLogoAlign).addClass(this.logoAlign);
         const str = $('.a1-supplier-logo').html();
         const str1 = $('.a1-supplier-logo').html().replace(this.prevLogoAlign, this.logoAlign);
-        const res = $('.A1-template').children().html().replace(str, str1);
+        const res = $('.A1-template').html().replace(str, str1);
         this.prevLogoAlign = this.logoAlign;
         tmp = res;
       }
@@ -103,7 +93,7 @@ export class PreviewA1Component implements DoCheck {
       if (this.logoSize !== this.prevLogoSize) {
         const str = $('.a1-supplier-logo').html();
         const str1 = $('.a1-supplier-logo').html().replace(this.prevLogoSize, this.logoSize);
-        const res = $('.A1-template').children().html().replace(str, str1);
+        const res = $('.A1-template').html().replace(str, str1);
         this.prevLogoSize = this.logoSize;
         tmp = res;
       }
@@ -165,7 +155,7 @@ export class PreviewA1Component implements DoCheck {
         tmp = res;
       }
 
-      this.outputCode = tmp;
+      this.outputCode = this.css.getA1CSS() + ' <!-- Homepage A1 Ad -->' + tmp + ' <!-- Homepage A1 Ad -->';
       // this.A1Code.emit(tmp);
 
       this.impexCode = tmp.replace(/"/g, '""');
