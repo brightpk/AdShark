@@ -3,11 +3,11 @@ import { AppData } from '../AppData';
 import { AppCss } from '../AppCss';
 import { MatSnackBar } from '@angular/material';
 
-declare const insertA1: any;
+declare const insertGlobalcss: any;
+declare const insertCodeBlock: any;
 declare const insertbg: any;
 declare const insertLogo: any;
 declare const insertWhiteBGLogo: any;
-declare const insertGlobalcss: any;
 declare const download: any;
 declare var $: any;
 
@@ -42,8 +42,7 @@ export class PreviewA1Component implements DoCheck {
 
   ngDoCheck() {
     insertGlobalcss(this.css.getGlobalCSS);
-    // this.data.bgURL === '' ? insertbg(this.defaultBg, 'A1') : insertbg(this.data.bgURL, 'A1');
-    insertbg(this.data.bgURL, 'A1')
+    insertbg(this.data.bgURL, 'A1');
 
     insertLogo(this.data.logoURL, 'A1');
     insertWhiteBGLogo(this.whiteBGLogo, 'A1');
@@ -116,7 +115,7 @@ export class PreviewA1Component implements DoCheck {
       /* Button link path */
       if (this.data.buttonURL.startsWith('https://www.americanhotel.com') || this.data.buttonURL.startsWith('www.americanhotel.com')) {
         const url = this.data.buttonURL;
-        let lst: string[] = url.split('www.americanhotel.com');
+        const lst: string[] = url.split('www.americanhotel.com');
         const str = tmp.substring(tmp.search('href') + 6, tmp.search('a1-supplier-logo') - 42);
         this.buttonLink = lst[1];
       } else {
@@ -167,7 +166,7 @@ export class PreviewA1Component implements DoCheck {
       '<div class="mt-2"><a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '">' + tmpButtonTxt + '</a></div></div>';
       
       this.A1iframeCode = this.getScript(this.A1iframeCode);
-      insertA1(this.A1iframeCode);
+      insertCodeBlock(this.A1iframeCode, 'A1');
 
     } catch (err) { }
 

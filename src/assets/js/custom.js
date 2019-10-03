@@ -7,39 +7,36 @@
 
 var bgImage;
 
-/* D1 iframe insert Output */
-function insertD1(code) {
-  var D1iframe = $('.D1-iframe');
-  D1iframe.contents().find('#D1HTML').html(code);  
-}
-
-/* A1 iframe insert Output */
-function insertA1(code) {
-  var A1iframe = $('.A1-iframe');
-  A1iframe.contents().find('#A1HTML').html(code);
-  // console.log(A1iframe.contents().find('#A1HTML').html());
-}
-
-/* Seasonal iframe insert Output */
-function insertSeasonal(code) {
-  var Seasonaliframe = $('.seasonal-iframe');
-  Seasonaliframe.contents().find('#seasonalHTML').html(code);
-
-}
-
-/* Email iframe insert Output */
-function insertEmail(code) {
-  var emailiframe = $('.email-iframe');
-  emailiframe.contents().find('#emailHTML').html(code);
-}
-
+/* Insert global css in iframe */
 function insertGlobalcss(css) {
   $('.D1-iframe').contents().find('#globalcss').html(css);
   $('.A1-iframe').contents().find('#globalcss').html(css);
   $('.seasonal-iframe').contents().find('#globalcss').html(css);
 }
 
-/* Insert background into iframe */
+/* Insert block of code in iframe */
+function insertCodeBlock(code, ad) {
+  switch (ad) {
+    case 'D1':
+      $('.D1-iframe').contents().find('#D1HTML').html(code);
+      break;
+
+    case 'A1':
+        $('.A1-iframe').contents().find('#A1HTML').html(code);
+      break; 
+    
+    case 'seasonal':
+        $('.seasonal-iframe').contents().find('#seasonalHTML').html(code);
+      break;
+      
+    case 'email':
+        $('.email-iframe').contents().find('#emailHTML').html(code);
+      break;
+  }
+
+}
+
+/* Insert background in iframe */
 function insertbg(img, ad) {
   switch (ad) {
     case 'D1':
@@ -68,7 +65,7 @@ function insertbg(img, ad) {
 
 }
 
-/* Insert logo into iframe */
+/* Insert logo in iframe */
 function insertLogo(logo, ad) {
   switch (ad) {
     case 'D1':
@@ -97,18 +94,19 @@ function insertLogo(logo, ad) {
 
 }
 
-/* Insert logo width into iframe */
+/* Insert logo width in iframe */
 function insertWidth(width) {
   $('.D1-iframe').contents().find('#D1logo').attr('width', width);
   $('.seasonal-iframe').contents().find('#seasonallogo').attr('width', width);
   // console.log($('.A1-iframe').contents().find('#A1logo').parent().html());
 }
 
-/* Insert collout bar into iframe */
+/* Insert collout bar in iframe */
 function insertCalloutBar(bar) {
   $('.email-iframe').contents().find('#calloutHTML').html(bar);
 }
 
+/* Insert white backgrounf under logo */
 function insertWhiteBGLogo(white, ad) {
   switch (ad) {
     case 'D1':
@@ -144,9 +142,9 @@ function insertWhiteBGLogo(white, ad) {
 
 }
 
-/* Inset headline into seasonal iframe */
+/* Inset headline in seasonal iframe */
 function insertSeasonalHeadline(headline) {
-  $('.Seasonal-iframe').contents().find('.container').find('h4').text(headline);
+  $('.seasonal-iframe').contents().find('.container').find('h4').text(headline);
 }
 /* Insert products img for seasonal preventing flicker */
 function insertProductImages(products) {

@@ -3,12 +3,12 @@ import { AppData } from '../AppData';
 import { AppCss } from '../AppCss';
 import { MatSnackBar } from '@angular/material';
 
-declare const insertD1: any;
+declare const insertGlobalcss: any;
+declare const insertCodeBlock: any;
 declare const insertbg: any;
 declare const insertLogo: any;
 declare const insertWidth: any;
-declare const  insertWhiteBGLogo: any;
-declare const insertGlobalcss: any;
+declare const insertWhiteBGLogo: any;
 declare const download: any;
 declare var $: any;
 
@@ -41,8 +41,8 @@ export class PreviewD1Component implements DoCheck {
   ngDoCheck() {
     insertGlobalcss(this.css.getGlobalCSS());
     insertbg(this.data.bgURL, 'D1');
-    insertWidth(this.logoWidth);
     insertLogo(this.data.logoURL, 'D1');
+    insertWidth(this.logoWidth);
     insertWhiteBGLogo(this.whiteBGLogo, 'D1');
 
     this.getHTML();
@@ -133,7 +133,7 @@ export class PreviewD1Component implements DoCheck {
       '<a class="btn btn--' + this.button + ' c-hero__action" href="' + this.data.buttonURL + '" title="' + tmpButtonTxt + '">' + tmpButtonTxt + '</a>';
 
       this.D1iframeCode = this.getScript(this.D1iframeCode);
-      insertD1(this.D1iframeCode);
+      insertCodeBlock(this.D1iframeCode, 'D1');
 
     } catch (err) { }
 

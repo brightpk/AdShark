@@ -4,13 +4,13 @@ import { AppCss } from '../AppCss';
 import { MatSnackBar } from '@angular/material';
 
 declare const insertGlobalcss: any;
+declare const insertCodeBlock: any;
 declare const insertLogo: any;
 declare const insertWidth: any;
 declare const insertWhiteBGLogo: any;
 declare const insertSeasonalHeadline: any;
 declare const insertProductNames: any;
 declare const insertProductImages: any;
-declare const insertSeasonal: any;
 declare const download: any;
 declare var $: any;
 
@@ -79,7 +79,7 @@ export class PreviewSeasonalComponent implements DoCheck {
       '<a href="' + this.data.buttonURL + '" class="btn btn--secondary">' + this.data.buttonTxt + '</a>';
 
       this.seasonaliframeCode = this.getScript(this.seasonaliframeCode);
-      insertSeasonal(this.seasonaliframeCode);
+      insertCodeBlock(this.seasonaliframeCode, 'seasonal');
 
     } catch (err) { }
 
