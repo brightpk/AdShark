@@ -1,11 +1,13 @@
-import { Component, Input, ViewEncapsulation, DoCheck  } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
 import { AppData } from '../AppData';
 import { AppCss } from '../AppCss';
 import { MatSnackBar } from '@angular/material';
 
 declare const insertGlobalcss: any;
 declare const insertLogo: any;
-declare const insertHeadline: any;
+declare const insertWidth: any;
+declare const insertWhiteBGLogo: any;
+declare const insertSeasonalHeadline: any;
 declare const insertProductNames: any;
 declare const insertProductImages: any;
 declare const insertSeasonal: any;
@@ -13,24 +15,25 @@ declare const download: any;
 declare var $: any;
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-preview-seasonal',
   templateUrl: './preview-seasonal.component.html',
-  styleUrls: ['./preview-seasonal.component.css']
+  styleUrls: ['./preview-seasonal.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
+
 export class PreviewSeasonalComponent implements DoCheck {
   @Input() data: AppData;
   @Input() seasonalData: any;
   @Input() altLogo: string;
   @Input() button: string;
   @Input() device: string;
-  @Input() logoSize: string;
+  @Input() logoWidth: number;
   @Input() txtColor: any = [];
   @Input() whiteBGLogo: boolean;
-  @Input() textAlign: string;
-  @Input() logoAlign: string;
   // @Output() SeasonalCode = new EventEmitter();
   buttonLink: string;
-  SeasonaliframeCode: string;
+  seasonaliframeCode: string;
   outputCode: string;
   impexCode: string;
   css = new AppCss();
@@ -39,9 +42,11 @@ export class PreviewSeasonalComponent implements DoCheck {
 
   ngDoCheck() {
     insertGlobalcss(this.css.getGlobalCSS);
-    insertLogo(this.data.logoURL, 'Seasonal');
+    insertLogo(this.data.logoURL, 'seasonal');
+    insertWidth(this.logoWidth);
+    insertWhiteBGLogo(this.whiteBGLogo, 'seasonal');
     insertProductImages(this.seasonalData);
-    insertHeadline(this.data.headline);
+    insertSeasonalHeadline(this.data.headline);
     insertProductNames(this.seasonalData);
 
     this.getHTML();
@@ -58,7 +63,7 @@ export class PreviewSeasonalComponent implements DoCheck {
 
   getHTML() {
     let tmp: string;
-    tmp = $('.Seasonal-template').html();
+    tmp = $('.seasonal-template').html();
 
     try {
 
@@ -68,13 +73,13 @@ export class PreviewSeasonalComponent implements DoCheck {
 
       this.impexCode = tmp.replace(/"/g, '""');
 
-      this.SeasonaliframeCode =
+      this.seasonaliframeCode =
       '<h5 class="text-center">' + this.data.subline + '</h5>' +
       '<p class="text-white">' + this.data.para + '</p>' +
       '<a href="' + this.data.buttonURL + '" class="btn btn--secondary">' + this.data.buttonTxt + '</a>';
 
-      this.SeasonaliframeCode = this.getScript(this.SeasonaliframeCode);
-      insertSeasonal(this.SeasonaliframeCode);
+      this.seasonaliframeCode = this.getScript(this.seasonaliframeCode);
+      insertSeasonal(this.seasonaliframeCode);
 
     } catch (err) { }
 
@@ -118,3 +123,4 @@ export class PreviewSeasonalComponent implements DoCheck {
   }
 
 }
+

@@ -7,6 +7,7 @@ declare const insertD1: any;
 declare const insertbg: any;
 declare const insertLogo: any;
 declare const insertWidth: any;
+declare const  insertWhiteBGLogo: any;
 declare const insertGlobalcss: any;
 declare const download: any;
 declare var $: any;
@@ -39,25 +40,10 @@ export class PreviewD1Component implements DoCheck {
 
   ngDoCheck() {
     insertGlobalcss(this.css.getGlobalCSS());
-
-    if (this.data.bgURL === '') {
-      const tmpBg = 'https://images.americanhotel.com/images/banners/D1-placeholder.jpg';
-      insertbg(tmpBg, 'D1');
-    } else {
-      insertbg(this.data.bgURL, 'D1');
-    }
-
-    // insertbg(this.data.bgURL, 'D1');
-    insertLogo(this.data.logoURL, 'D1');
+    insertbg(this.data.bgURL, 'D1');
     insertWidth(this.logoWidth);
-
-    if (this.whiteBGLogo === true) {
-      $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');
-      $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');
-    } else {
-      $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
-      $('.D1-iframe').contents().find('#D1logo').removeClass('bg-white-transparent');
-    }
+    insertLogo(this.data.logoURL, 'D1');
+    insertWhiteBGLogo(this.whiteBGLogo, 'D1');
 
     this.getHTML();
   }
