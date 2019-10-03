@@ -113,6 +113,8 @@ export class PreviewEmailComponent implements DoCheck {
       }
 
       this.outputCode = tmp;
+      console.log(this.outputCode);
+      
       this.emailiframeCode = tmp;
 
       // this.emailCode.emit(tmp);

@@ -117,19 +117,19 @@ li#nav-icon {
 
 /* breakpoint button styles */
 .iframe-widescreen {
-  width: 1350px;
+  width: 1400px; /* 1350 */
   height: 400px;
 }
 .iframe-desktop {
-  width: 1150px;
+  width: 1250px; /* 1150 */
   height: 400px;
 }
 .iframe-tablet {
-  width: 700px;
+  width: 750px; /* 700 */
   height: 1150px;
 }
 .iframe-mobile {
-  width: 500px;
+  width: 475px; /* 500 */
   height: 1150px;
 }
 iframe {
