@@ -10,76 +10,124 @@
   <link rel="stylesheet" href="https://images.americanhotel.com/images/css/inline.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<script>
-  $( document ).ready(function() {
-    $('a.btn').click(function(e) {
-      e.preventDefault();
-    });
-    // if ($('#D1bg').attr('src') == '') { $('#D1bg').attr('src', 'https://images.americanhotel.com/images/banners/D1-placeholder.jpg') };
-  });
-</script>
-<body>
-<div class="content">
-    <style type="text/css"> .onethirdcol { 	max-height: 350px; } .c-hero__copy { 	max-width: 100%; } .w-50.square { 	width: 30% !important; } .c-hero__sub-title--size-normal { 	line-height: 24px; } .w-40 { 	width: 40% !important; }  .logo-stacked {     max-height: 80px; }   
-    .c-hero.c-hero--one_third.onethirdcol img { height: auto; } 
-    /* img.bg-white-transparent { background-color: rgba(255,255,255,0.9); padding: 10px; } */
-    </style>
 
+<body>
+<!-- <section class="c-section c-section--home-hero"> -->
+  <div class="content">
     <!-- global css file -->
     <div id="globalcss">
-      
+        
     </div>
 
-  <div class="container">
-    <div class="row mb-1">
-      <!-- D1 -->
-      <div class="col-lg-4 col-md-12 mt-4"> <!-- id="D1HTML" -->
-        <div class="c-hero c-hero--one_third onethirdcol"> <img id="D1bg" src="https://images.americanhotel.com/images/banners/D1-placeholder.jpg" class="c-hero__image">
-          <div class="c-hero__inner">
-            <div class="c-hero__copy c-hero__copy--align-center"> <img id="D1logo" class="pb-2" src="" width="150">
-            <span id="D1HTML">
+      <style type="text/css">
+      #one-third-banner-wrap {text-align: center;}
+#one-third-banner-wrap.grey .one-third-banner {
+    background-color: #f4f4f4;
+}
+#one-third-banner-wrap.white .one-third-banner {
+    background-color: #ffffff;
+}
+.one-third-banner p.sub-headline, .one-third-banner h2.headline, .one-third-banner a.hero-link:hover span {
+    color: #000;
+}
+.one-third-banner {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
 
-            </span>
+}
+.one-third-banner a {
+    /* display: block;*/
+    text-decoration: none;
+}
+.one-third-banner .cta:hover {
+    text-decoration: underline;
+}
+.one-third-banner a:hover span.cta {
+    text-decoration: underline;
+}
+.one-third-banner a span.cta {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+.one-third-banner a span.cta {
+    color: #000;
+}
+.one-third-banner .text-wrap {
+  padding: 20px 55px;
+}
+.one-third-banner .row-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.one-third-banner p{
+    margin-bottom: 0 !important;
+}
+.one-third-banner p.caption {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 22px;
+    color: #000;
+	padding-bottom: 7px;
+}
+/* Media Queries */
+@media (max-width: 1200px) {
+.one-third-banner p.caption {
+    font-size: 18px;
+}
+.one-third-banner .text-wrap {
+    padding: 20px 35px;
+}
+}
+
+@media (max-width: 992px) {
+.one-third-banner p.caption {
+    font-size: 16px;
+    line-height: 20px;
+}
+.one-third-banner a span.cta {
+    font-size: 14px;
+}
+.one-third-banner .text-wrap{
+		padding: 20px 20px;
+	}
+}
+
+@media (max-width: 768px) {
+#one-third-banner-wrap.grey .one-third-banner, #one-third-banner-wrap.white .one-third-banner {
+    max-width: 450px;
+    margin-bottom: 30px;
+    height: auto;
+}
+.one-third-banner p.caption {
+	font-size: 18px;
+}
+.one-third-banner .text-wrap{
+	padding: 20px 86px;
+	}
+}
+      </style>
+  <div id="one-third-banner-wrap" div class="grey">
+        <div class="container pt-4">
+          <div class="row row-flex">
+            <!-- Start 1/3 banner -->
+            <div class="col-md-4 col-sm-12">
+              <div class="one-third-banner"><a class="hero-link" href="#">
+                <div class="text-center"> <img id="D1bg" src="" alt="">
+                  <div id="D1HTML" class="text-wrap text-center">
+                
+                
+                </div>
+                </div>
+                </a></div>
             </div>
-          </div>
-        </div>
-      </div> 
-      
-      <!-- D2 -->
-      <div class="col-lg-4 col-md-12 mt-4">
-        <div class="c-hero c-hero--one_third onethirdcol">
-          <picture>
-            <source media="(min-width: 1201px)" srcset="https://images.americanhotel.com/images/banners/hp-registry-widescreen.jpg"> 
-              <img alt="Home Promo Two Thirds 1 Banner" class="c-hero__image" src="https://images.americanhotel.com/images/banners/hp-registry-widescreen.jpg">
-          </picture>
-          <div class="c-hero__inner">
-            <div class="c-hero__copy c-hero__copy--align-center"><img class="w-50 pb-2" src="https://images.americanhotel.com/images/banners/hp-registry-logo.png">
-              <h4 class="c-hero__sub-title c-hero__sub-title--white c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">
-                4,000+ products with the perfect blend of quality and value</h4>
-                <a class="btn btn--primary c-hero__action" href="/registry?icid=american-hotel-launch_hp_otb_2_20190412_2_registry" title="Learn More">Learn More</a>
-            </div>
-          </div>
-        </div>
-      </div> 
-      
-      <!-- D3 -->
-      <div class="col-lg-4 col-md-12 mt-4">
-        <div class="c-hero c-hero--one_third onethirdcol">
-          <picture>
-            <source media="(min-width: 1201px)" srcset="https://images.americanhotel.com/images/banners/Half-Width-Pool-Towels.jpg">
-              <img alt="Home Promo Two Thirds 1 Banner" class="c-hero__image" src="https://images.americanhotel.com/images/banners/Half-Width-Pool-Towels.jpg">
-          </picture>
-          <div class="c-hero__inner">
-            <div class="c-hero__copy c-hero__copy--align-center">
-              <h2 class="c-hero__title c-hero__title--white c-hero__title--weight-extrabold c-hero__title--size-normal">Pool Towels</h2>
-              <h4 class="c-hero__sub-title c-hero__sub-title--white c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">Quality pool towels from quality brands</h4>
-              <a class="btn btn--primary c-hero__action" href="/registrypooltowels?icid=registry-pool-towels-(d3)_hp_otb_4_20190621_1_cta" title="Shop Now">Shop Now</a>
-            </div>
+            <!-- End 1/3 banner -->
           </div>
         </div>
       </div>
-    </div>
   </div>
-</div>
+<!-- </section> -->
 </body>
+
 </html>
