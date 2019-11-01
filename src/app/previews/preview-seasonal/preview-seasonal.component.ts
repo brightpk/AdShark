@@ -62,7 +62,7 @@ export class PreviewSeasonalComponent implements ISeasonalIframe, DoCheck {
         $('.seasonal-iframe').contents().find('h4').addClass('c-carousel__headline c-carousel__headline--red');
       }
 
-      tmp = $('.Seasonal-template').html();
+      tmp = $('.seasonal-template').html();
 
       this.outputCode = this.outputCode = this.css.getSeasonalCSS() + tmp;
 
@@ -111,17 +111,17 @@ export class PreviewSeasonalComponent implements ISeasonalIframe, DoCheck {
   }
 
   insertProductNames(products: any): void {
-    $('.seasonal-iframe').contents().find('#Seasonal-prod1').find('img').attr('src', products.prod1Img);
-    $('.seasonal-iframe').contents().find('#Seasonal-prod2').find('img').attr('src', products.prod2Img);
-    $('.seasonal-iframe').contents().find('#Seasonal-prod3').find('img').attr('src', products.prod3Img);
-    $('.seasonal-iframe').contents().find('#Seasonal-prod4').find('img').attr('src', products.prod4Img);
+    $('.seasonal-iframe').contents().find('#seasonal-prod1').find('img').attr('src', products.prod1Img);
+    $('.seasonal-iframe').contents().find('#seasonal-prod2').find('img').attr('src', products.prod2Img);
+    $('.seasonal-iframe').contents().find('#seasonal-prod3').find('img').attr('src', products.prod3Img);
+    $('.seasonal-iframe').contents().find('#seasonal-prod4').find('img').attr('src', products.prod4Img);
   }
 
   insertProductImages(products: any): void {
-    $('.seasonal-iframe').contents().find('#Seasonal-prod1').find('span').text(products.prod1Name);
-    $('.seasonal-iframe').contents().find('#Seasonal-prod2').find('span').text(products.prod2Name);
-    $('.seasonal-iframe').contents().find('#Seasonal-prod3').find('span').text(products.prod3Name);
-    $('.seasonal-iframe').contents().find('#Seasonal-prod4').find('span').text(products.prod4Name);
+    $('.seasonal-iframe').contents().find('#seasonal-prod1').find('span').text(products.prod1Name);
+    $('.seasonal-iframe').contents().find('#seasonal-prod2').find('span').text(products.prod2Name);
+    $('.seasonal-iframe').contents().find('#seasonal-prod3').find('span').text(products.prod3Name);
+    $('.seasonal-iframe').contents().find('#seasonal-prod4').find('span').text(products.prod4Name);
   }
 
   /* Prevent default from clicking iframe button */
