@@ -1,0 +1,82 @@
+<app-loading-screen *ngIf="loading"></app-loading-screen>
+
+<div class="splitexample" style="height: 1200px">
+  <as-split unit="pixel">
+    <!-- Left side -->
+    <as-split-area class="leftPane" (resized)="onResizedLeft($event)" size="500">
+      <div class="container-fluid navbar-default mt-3 mb-3">
+        <nav class="">
+        </nav>
+      </div>
+
+      <div class="container col-xs-6">
+        <div *ngIf="tabClick==0">
+          <app-form-D1 [d1Data]="d1Data"></app-form-D1>
+        </div>
+        <div *ngIf="tabClick==1">
+          <app-form-A1 [a1Data]="a1Data" (a1LogoSize)="receiveA1Logosize($event)"></app-form-A1>
+        </div>
+        <div *ngIf="tabClick==2">
+          <app-form-seasonal [seasonalData]="seasonalData" [altLogo]="altLogo" [altImg]="altImg"></app-form-seasonal>
+        </div>
+        <div *ngIf="tabClick==3">
+          <app-form-email></app-form-email>
+        </div>
+
+        <nav class="">
+          <button class="btn btn-warning mr-2 mb-2" (click)="onClickClear()">Clear Form</button>
+          <button class="btn btn-primary mr-2 mb-2" (click)="onSubmit()">Update Data to database</button>
+          
+        </nav>
+      </div>
+    </as-split-area>
+
+    <!-- Right side-->
+    <as-split-area class="rightPane" (resized)="onResizedRight($event)" [(size)]="paneSize" [minSize]="400">
+      <div class="container-fluid navbar-default">
+        <nav class="navbar pull-left">
+          <ul class="nav">
+            <li id="nav-icon"><i class="fas fa-mobile-alt btn-mobile" id="icon-button" style="font-size:25px;"
+                (click)="setPaneSize($event, 'mobile')" tooltip="Mobile preview" placement="bottom" hide-delay="0"></i>
+            </li>
+            <li id="nav-icon"><i class="fas fa-tablet-alt btn-tablet" id="icon-button" style="font-size:25px;"
+                (click)="setPaneSize($event, 'tablet')" tooltip="Tablet preview" placement="bottom" hide-delay="0"></i>
+            </li>
+            <li id="nav-icon"><i class="fas fa-laptop btn-desktop current" id="icon-button" style="font-size:25px;"
+                (click)="setPaneSize($event, 'desktop')" tooltip="Desktop/Laptop preview" placement="bottom"
+                hide-delay="0"></i></li>
+            <li id="nav-icon"><i class="fas fa-desktop btn-widescreen" id="icon-button" style="font-size:25px;"
+                (click)="setPaneSize($event, 'widescreen')" tooltip="Wide Screen preview" placement="bottom"
+                hide-delay="0"></i></li>
+          </ul>
+          <h5>
+            <div class="resize-info float-right badge badge-secondary">{{rightWidth}}px x 1000px </div>
+          </h5>
+        </nav>
+      </div>
+
+      <div class="mat-app-background basic-container">
+        <mat-tab-group class="" (selectedTabChange)="onTabClick($event)" (click)="onTabClick($event)">
+          <mat-tab label="One-Third Banner">
+            <app-preview-D1 [d1Data]="d1Data"></app-preview-D1>
+          </mat-tab>
+          <mat-tab label="Hero Banner">
+            <app-preview-A1 [a1Data]="a1Data" [a1LogoSize]="a1LogoSize"></app-preview-A1>
+          </mat-tab>
+          <mat-tab label="Seasonal Component">
+            <app-preview-seasonal [seasonalData]="seasonalData" [altLogo]="altLogo"></app-preview-seasonal>
+          </mat-tab>
+          <mat-tab label="Email">
+            <!-- <app-preview-email [data]="data" [altLogo]="altLogo" [button]="button" [txtColor]="txtColor" [calloutBar]="calloutBar"></app-preview-email> -->
+            Email is coming soon!
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+      <!-- <mat-slide-toggle id="mat-toggle" (change)="showCode=!showCode" [checked]="showCode" matTooltip="Show/Hide"></mat-slide-toggle>
+      <span id="show-hide-toggle" *ngIf="showCode; else hideCode"><b>Show</b></span>
+      <ng-template #hideCode><span id="show-hide-toggle">Hide</span></ng-template> -->
+
+    </as-split-area>
+  </as-split>
+</div>

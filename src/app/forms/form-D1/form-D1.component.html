@@ -1,0 +1,26 @@
+<!-- Image for desktop -->
+<div class="background-form mb-3">
+  <label for="Background"><h5 class="text-primary background-label1">Image for desktop - 960px x 410px</h5></label>  
+  <button class="btn btn-outline-success ml-2" (click)="onClickImageSample()" tooltip="Click to genarate D1 images" placement="top" hide-delay="0">Sample</button>  
+  <input class="form-control ad-field" type="text" [(ngModel)]="d1Data.data.parameterValues['DE:Image path for 1/3 banner']" placeholder="URL" />
+</div>
+
+<!-- Subline -->
+<div class="subheadline-form mb-3">
+  <label for="subheadline"><h5 class="text-primary">Sub-Headline</h5></label><br>
+  <textarea class="form-control ad-field" type="text" [(ngModel)]="d1Data.data.parameterValues['DE:Sub-Headline']" rows="2" placeholder="Text"></textarea>
+</div>
+
+<!-- CTA -->
+<div class="CTA-form mb-3">
+  <!-- CTA Link -->
+  <div class="CTA-link-form mb-3">
+    <label for="CTALink"><h5 class="text-primary">CTA Link</h5></label> 
+    <input class="form-control ad-field" type="text" [(ngModel)]="d1Data.data.parameterValues['DE:CTA URL']" placeholder="URL" />
+  </div>
+  <!-- CTA Text -->
+  <div>
+    <label for="CTAText"><h5 class="text-primary">CTA Text</h5></label> 
+      <input class="form-control" style="width:300px" type="text" [(ngModel)]="d1Data.data.parameterValues['DE:CTA text']" placeholder="Text" /> 
+  </div>
+</div>

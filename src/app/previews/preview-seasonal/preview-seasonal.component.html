@@ -1,42 +1,42 @@
-
+<!-- Seasonal template -->
 <div class="Seasonal-template" hidden>
   <div class="container mt-5">
-    <h4>{{data.headline}}</h4>
+    <h4 class="">{{seasonalData.headline}}</h4>
     <div class="seasonalComponent-block">
       <div class="seasonalComponent-callout text-center">
         <div class="seasonalComponent-callout-inner">
-          <img class="mx-auto mb-2" src="{{data.logoURL}}" alt="{{altLogo}}">
-          <h5 class="text-center">{{data.subline}}</h5>
-          <p class="text-white">{{data.para}}</p>
-          <a href="{{data.buttonURL}}" class="btn btn--secondary">{{data.buttonTxt}}</a>
+          <img class="mx-auto mb-2" src="{{seasonalData.logoURL}}" alt="{{altLogo}}" width="{{seasonalData.logoWidth}}">
+          <h5 class="text-center">{{seasonalData.subline}}</h5>
+          <p class="text-white">{{seasonalData.paragraph}}</p>
+          <a href="{{seasonalData.buttonURL}}" class="btn btn--secondary">{{seasonalData.buttonTxt}}</a>
         </div>
       </div>
 
-      <a href="{{seasonalData.prod1Link}}" class="seasonalComponent-item">
-        <img alt="{{seasonalData.prod1Name}}" 
-        src="{{seasonalData.prod1Img}}" width="140"
-        height="140"><span>{{seasonalData.prod1Name}}</span></a>
+      <a href="{{seasonalData.products.prod1Link}}" class="seasonalComponent-item">
+        <img alt="{{seasonalData.products.prod1Name}}" 
+        src="{{seasonalData.products.prod1Img}}" width="140"
+        height="140"><span>{{seasonalData.products.prod1Name}}</span></a>
 
-      <a href="{{seasonalData.prod2Link}}" class="seasonalComponent-item">
-        <img alt="{{seasonalData.prod2Name}}"
-        src="{{seasonalData.prod2Img}}" width="140"
-        height="140"><span>{{seasonalData.prod2Name}}</span></a> 
+      <a href="{{seasonalData.products.prod2Link}}" class="seasonalComponent-item">
+        <img alt="{{seasonalData.products.prod2Name}}"
+        src="{{seasonalData.products.prod2Img}}" width="140"
+        height="140"><span>{{seasonalData.products.prod2Name}}</span></a> 
 
-      <a href="{{seasonalData.prod3Link}}" class="seasonalComponent-item">
-        <img alt="{{seasonalData.prod3Name}}"
-        src="{{seasonalData.prod3Img}}" width="140"
-        height="140"><span>{{seasonalData.prod3Name}}</span></a> 
+      <a href="{{seasonalData.products.prod3Link}}" class="seasonalComponent-item">
+        <img alt="{{seasonalData.products.prod3Name}}"
+        src="{{seasonalData.products.prod3Img}}" width="140"
+        height="140"><span>{{seasonalData.products.prod3Name}}</span></a> 
 
-      <a href="{{seasonalData.prod4Link}}" class="seasonalComponent-item">
-        <img alt="{{seasonalData.prod4Name}}"
-        src="{{seasonalData.prod4Img}}" width="140"
-        height="140"><span>{{seasonalData.prod4Name}}</span></a>
+      <a href="{{seasonalData.products.prod4Link}}" class="seasonalComponent-item">
+        <img alt="{{seasonalData.products.prod4Name}}"
+        src="{{seasonalData.products.prod4Img}}" width="140"
+        height="140"><span>{{seasonalData.products.prod4Name}}</span></a>
     </div>
   </div>
 </div>
 
 
-<iframe class="Seasonal-iframe iframe-widescreen" src="assets/html/seasonal.html"></iframe>
+<iframe class="seasonal-iframe iframe-widescreen" src="assets/html/Seasonal.html"></iframe>
 
 <div class="plain-text">
   <h4 class="mt-4 ml-4">Plain Text</h4>
@@ -48,7 +48,7 @@
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
   </button>
-  <button mat-flat-button class="copy-button2" (click)="onDownload('seasonal.html', 'html')" tooltip="Download html file"
+  <button mat-flat-button class="copy-button2" (click)="onDownload('Seasonal.html', 'html')" tooltip="Download html file"
     placement="bottom" hide-delay="0">
     <span><i class="fas fa-download"></i></span>
     <span class="copy-btn-txt"> Download Code</span>
@@ -89,7 +89,7 @@ INSERT_UPDATE CMSParagraphComponent ; $contentCV[unique = true] ; uid[unique = t
     <span class="fas fa-code"></span>
     <span class="impex-btn-txt"> Copy Impex</span>
   </button>
-  <button mat-flat-button class="impex-button2" (click)="onDownload('seasonal.impex', 'impex')" tooltip="Download impex file" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="impex-button2" (click)="onDownload('Seasonal.impex', 'impex')" tooltip="Download impex file" placement="bottom" hide-delay="0">
     <span class="fas fa-download"></span>
     <span class="impex-btn-txt"> Download Impex</span>
   </button>

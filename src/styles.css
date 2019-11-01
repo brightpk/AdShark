@@ -13,14 +13,14 @@
 }
 
 .mat-tab-body-content {
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 
 /* impex file code output #212529 */
 pre {
   display: inline-block;
   font-size: 100%;
-  color: #08a4ec;
+  color: #24aae2;
   word-break: break-word;
   overflow-x: hidden;
   white-space: pre-wrap;
@@ -34,6 +34,19 @@ textarea {
   resize: none;
 }
 
+/* AdShark UI Styles */
+
+.bg-primary {
+  background-color: #24aae2!important;
+}
+.leftPane >* label h5, .leftPane >* label h6 {
+  color: #24aae2!important;
+}
+.input-group-btn .btn-primary {
+  color: #fff;
+  background-color:  #ff4081!important;
+  border-color:  #ff4081!important;
+}
 /* You can add global styles to this file, and also import other style files */
 .column {
   float: left;
@@ -63,10 +76,7 @@ input[type="radio"] {
 .ad-field {
   max-width: 470px;
 }
-/* Style for logo field */
-.logo-form .ad-field {
-  max-width: 220px;
-}
+
 #logo-width-label {
   margin-right: 20px;
 }
@@ -117,19 +127,19 @@ li#nav-icon {
 
 /* breakpoint button styles */
 .iframe-widescreen {
-  width: 1350px;
+  width: 1400px; /* 1350 */
   height: 400px;
 }
 .iframe-desktop {
-  width: 1150px;
+  width: 1250px; /* 1150 */
   height: 400px;
 }
 .iframe-tablet {
-  width: 700px;
+  width: 750px; /* 700 */
   height: 1150px;
 }
 .iframe-mobile {
-  width: 500px;
+  width: 475px; /* 500 */
   height: 1150px;
 }
 iframe {
@@ -185,9 +195,9 @@ li#nav-icon .current {
 
 /* Impex button */
 .impex-button1 {
-  background-color: #08a4ec;
+  background-color: #24aae2;
   color: white;
-  border: .5px solid #08a4ec !important;
+  border: .5px solid #24aae2 !important;
   margin-left: 20px !important;
 }
 .impex-button1:hover {
@@ -197,21 +207,21 @@ li#nav-icon .current {
 }
 .impex-button2 {
   background-color: white;
-  color: #08a4ec;
-  border: .5px solid #08a4ec !important;
+  color: #24aae2;
+  border: .5px solid #24aae2 !important;
   margin-left: 10px !important;
 }
 .impex-button2:hover {
-  background-color: #08a4ec;
+  background-color: #24aae2;
   color: white;
-  border: .5px solid #08a4ec !important;
+  border: .5px solid #24aae2 !important;
 }
 
 /* Silverpop button */
 .silverpop-button1 {
-  background-color: #08a4ec;
+  background-color: #24aae2;
   color: white;
-  border: .5px solid #08a4ec !important;
+  border: .5px solid #24aae2 !important;
   margin-left: 20px !important;
 }
 .silverpop-button1:hover {
@@ -221,14 +231,14 @@ li#nav-icon .current {
 }
 .silverpop-button2 {
   background-color: white;
-  color: #08a4ec;
-  border: .5px solid #08a4ec !important;
+  color: #24aae2;
+  border: .5px solid #24aae2 !important;
   margin-left: 10px !important;
 }
 .silverpop-button2:hover {
-  background-color: #08a4ec;
+  background-color: #24aae2;
   color: white;
-  border: .5px solid #08a4ec !important;
+  border: .5px solid #24aae2 !important;
 }
 .silverpop {
   margin-bottom: 50px;

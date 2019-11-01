@@ -1,0 +1,108 @@
+<!-- Image for desktop -->
+<div class="background-form mb-3">
+  <label for="Background"><h5 class="text-primary background-label1">Image for desktop - 960px x 410px</h5></label>  
+  <button class="btn btn-outline-success ml-2" (click)="onClickImageSample()" tooltip="Click to genarate A1 images" placement="top" hide-delay="0">Sample</button>
+  <input class="form-control ad-field" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:Image for desktop - 960px x 410px']" placeholder="URL" />
+</div>
+  
+<!-- Image for mobile -->
+<div class="background-form mb-3">
+    <label for="Background"><h5 class="text-primary background-label2">Image for mobile - 480px x 205px</h5></label>  
+    <input class="form-control ad-field" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:Image for mobile - 480px x 205px']" placeholder="URL" />
+</div>
+
+<div class="logo-required mb-3">
+    <label for="LogoRequired"><h5 class="text-primary mr-3">Logo required?</h5></label>
+    <mat-radio-group [(ngModel)]="a1Data.data.parameterValues['DE:Logo required?']" (change)="onChangeLogo()">
+      <mat-radio-button value="No">No</mat-radio-button>
+      <mat-radio-button value="Yes">Yes</mat-radio-button>
+    </mat-radio-group>
+</div>
+
+<!-- Logo -->
+<div *ngIf="a1Data.data.parameterValues['DE:Logo required?']=='Yes'">
+  <div class="logo-form mb-3">
+    <label for="Logo"><h5 class="text-primary">Logo</h5></label>
+
+    <!-- Sample logo for D1/A1/email -->
+    <button class="btn btn-outline-success ml-2" data-toggle="collapse" data-target="#sampleLogo" tooltip="Click for of a list of logo samples" placement="right" hide-delay="0">Sample</button>
+    <div id="sampleLogo" class="collapse">
+      <div class="codeBox card card-body" style="border-color: #08a4ec; border-width: thin; width: 420px;">
+        <h6 style="color:#0393cc;"><u>Logo</u></h6>
+        <h6 class="text-dark sample-logo-1" (click)="onClickLogoSample(1)" (mouseover)="logoBorder(1)"><b>1888 mills white:</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
+        <h6 class="text-dark sample-logo-2" (click)="onClickLogoSample(2)" (mouseover)="logoBorder(2)"><b>Hunter:</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg</h6>
+        <h6 class="text-dark sample-logo-3" (click)="onClickLogoSample(3)" (mouseover)="logoBorder(3)"><b>1888 mills gold:</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png</h6>
+        <h6 class="text-dark sample-logo-4" (click)="onClickLogoSample(4)" (mouseover)="logoBorder(4)"><b>RegistryNoTag:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
+        <h6 class="text-dark sample-logo-5" (click)="onClickLogoSample(5)" (mouseover)="logoBorder(5)"><b>GE:</b> https://images.americanhotel.com/images/logos/suppliers/GE bw.svg</h6>
+        <h6 class="text-dark sample-logo-6" (click)="onClickLogoSample(6)" (mouseover)="logoBorder(6)"><b>Forbes:</b> https://images.americanhotel.com/images/logos/suppliers/ForbesLogo.svg</h6>            
+        <h6 class="text-dark sample-logo-7" (click)="onClickLogoSample(7)" (mouseover)="logoBorder(7)"><b>1888 aura:</b> https://images.americanhotel.com/images/logos/suppliers/1888-aura-logo-white.svg</h6>
+        <h6 class="text-dark sample-logo-8" (click)="onClickLogoSample(8)" (mouseover)="logoBorder(8)"><b>Martex:</b> https://images.americanhotel.com/images/logos/suppliers/westpoint-martex-logo.svg</h6>    
+      </div>
+    </div>
+
+    <!-- Logo size -->
+    <div class="logo-size">
+      <mat-radio-group [(ngModel)]="logoSize" (change)="onChangeLogoSize()">
+        <mat-radio-button *ngFor="let size of listofLogoSize" [value]="size">{{size | titlecase}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:Image path for logo']" placeholder="URL" />
+  </div>
+</div>
+
+<!-- Callout bar -->
+<div class="callout-bar mb-3">
+  <label for="CalloutBar"><h5 class="text-primary mr-3">Call-out</h5></label>
+  <mat-radio-group [(ngModel)]="a1Data.data.parameterValues['DE:Sale Call-Out']" (change)="onChangeCallout()">
+    <mat-radio-button value="No">No</mat-radio-button>
+    <mat-radio-button value="Yes">Yes</mat-radio-button>
+  </mat-radio-group>
+
+  <!-- Callout sale -->
+  <div *ngIf="a1Data.data.parameterValues['DE:Sale Call-Out']=='Yes'" class="callout-text">
+    <label for="Sale"><h5 class="text-primary mr-3">Call-out Text</h5></label>
+    <input class="form-control" style="width: 350px" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:Text for Sale Call-Out']" placeholder="Ex. sale 99%!" />
+  </div>
+</div>
+
+<!-- Background color behind text -->
+<div *ngIf="a1Data.data.parameterValues['DE:Sale Call-Out']=='No'" class="background-color mb-3" >
+  <label for="Nosale"><h5 class="text-primary mr-3">Background color behind text</h5></label>
+  <mat-radio-group [(ngModel)]="a1Data.data.parameterValues['DE:Background color behind text']" (change)="getBackgroundColor()">
+    <mat-radio-button value="White">White</mat-radio-button>
+    <mat-radio-button value="Color">Hex Color</mat-radio-button>
+  </mat-radio-group>
+  <div *ngIf="a1Data.data.parameterValues['DE:Background color behind text']=='Color'" class="background-hexcolor">
+    <label for="Sale"><h5 class="text-primary mr-3">Background Hex Color</h5></label>
+    <input class="form-control" style="width: 255px" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:Hex #']" placeholder="Ex. #9e876b" />
+  </div>
+</div>
+
+<!-- Headline -->
+<div class="headline-form mb-3">
+    <label for="headline"><h5 class="text-primary">Headline</h5></label>
+    <textarea class="form-control ad-field" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:Headline']" rows="2" placeholder="Text"></textarea>
+</div>
+
+<!-- Subline -->
+<div class="subheadline-form mb-3">
+  <label for="subheadline"><h5 class="text-primary">Sub-Headline</h5></label><br>
+  <textarea class="form-control ad-field" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:Sub-Headline']" rows="2" placeholder="Text"></textarea>
+</div>
+
+<!-- CTA -->
+<div class="CTA-form mb-3">
+  <!-- CTA Link -->
+  <div class="CTA-link-form mb-3">
+    <label for="CTALink"><h5 class="text-primary">CTA Link</h5></label> 
+    <input class="form-control ad-field" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:CTA URL']" placeholder="URL" />
+  </div>
+  <!-- Button Text -->
+  <div>
+    <label for="CTAText"><h5 class="text-primary">CTA Text</h5></label> 
+      <input class="form-control" style="width:300px" type="text" [(ngModel)]="a1Data.data.parameterValues['DE:CTA text']" placeholder="Text" /> 
+  </div>
+</div>
+
+
