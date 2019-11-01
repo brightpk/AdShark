@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PreviewSeasonalComponent } from './preview-seasonal.component';
+import { LoadingScreenComponent } from './loading-screen.component';
 
-describe('PreviewSeasonalComponent', () => {
-  let component: PreviewSeasonalComponent;
-  let fixture: ComponentFixture<PreviewSeasonalComponent>;
+describe('LoadingScreenComponent', () => {
+  let component: LoadingScreenComponent;
+  let fixture: ComponentFixture<LoadingScreenComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreviewSeasonalComponent ]
+      declarations: [ LoadingScreenComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreviewSeasonalComponent);
+    fixture = TestBed.createComponent(LoadingScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

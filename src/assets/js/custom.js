@@ -5,78 +5,28 @@
 //   iframe.src = 'data:text/html,' + encodeURIComponent(html);
 // }
 
-var bgImage;
-
-/* Insert global css in iframe */
-function insertGlobalcss(css) {
-  $('.D1-iframe').contents().find('#globalcss').html(css);
-  $('.A1-iframe').contents().find('#globalcss').html(css);
-  $('.seasonal-iframe').contents().find('#globalcss').html(css);
-}
-
 /* Insert block of code in iframe */
 function insertCodeBlock(code, ad) {
-  switch (ad) {
-    case 'D1':
-      $('.D1-iframe').contents().find('#D1HTML').html(code);
-      break;
-
-    case 'A1':
-        $('.A1-iframe').contents().find('#A1HTML').html(code);
-      break; 
-    
-    case 'seasonal':
-        $('.seasonal-iframe').contents().find('#seasonalHTML').html(code);
-      break;
-      
+  switch (ad) {     
     case 'email':
         $('.email-iframe').contents().find('#emailHTML').html(code);
       break;
   }
-
 }
 
 /* Insert background in iframe */
 function insertbg(img, ad) {
-  switch (ad) {
-    case 'D1':
-      var defaultbg = 'https://images.americanhotel.com/images/banners/D1-placeholder.jpg';
-      img == '' ? bgImage = defaultbg : bgImage = img;
-      $('.D1-iframe').contents().find('#D1bg').attr('src', bgImage);
-      break;
-
-    case 'A1':
-      var A1bg = $('.A1-iframe');
-      var defaultbg = 'https://images.americanhotel.com/images/banners/A1-placeholder-widescreen.jpg';
-      img == '' ? bgImage = defaultbg : bgImage = img;
-      A1bg.contents().find('#A1bg').attr('src', bgImage);
-
-      var img1 = bgImage;
-      var str = img1.substring(img1.search('widescreen'), img1.search('widescreen') + 10);
-      A1bg.contents().find('#A1Mobile').attr('srcset', img1.replace(str, 'mobile'));
-      A1bg.contents().find('#A1Tablet').attr('srcset', img1.replace(str, 'tablet'));
-      A1bg.contents().find('#A1Desktop').attr('srcset', img1.replace(str, 'desktop'));   
-      A1bg.contents().find('#A1Wide').attr('srcset', img);  
-      break; 
-      
+  switch (ad) {     
     case 'email':
       $('.email-iframe').contents().find('#emailbg').attr('src', img);
   }
-
 }
 
 /* Insert logo in iframe */
 function insertLogo(logo, ad) {
   switch (ad) {
-    case 'D1':
-      $('.D1-iframe').contents().find('#D1logo').attr('src', logo);
-      break;
-    case 'A1':
-      $('.A1-iframe').contents().find('#A1logo').attr('src', logo);
-      break;
-
-    case 'seasonal':
-      $('.seasonal-iframe').contents().find('#seasonallogo').attr('src', logo);
+    case 'Seasonal':
+      $('.Seasonal-iframe').contents().find('#Seasonallogo').attr('src', logo);
       break;
 
     case 'email':
@@ -91,14 +41,6 @@ function insertLogo(logo, ad) {
         $('.email-iframe').contents().find('.border-top').css('border-top', 'transparent');
       } 
   }
-
-}
-
-/* Insert logo width in iframe */
-function insertWidth(width) {
-  $('.D1-iframe').contents().find('#D1logo').attr('width', width);
-  $('.seasonal-iframe').contents().find('#seasonallogo').attr('width', width);
-  // console.log($('.A1-iframe').contents().find('#A1logo').parent().html());
 }
 
 /* Insert collout bar in iframe */
@@ -106,62 +48,21 @@ function insertCalloutBar(bar) {
   $('.email-iframe').contents().find('#calloutHTML').html(bar);
 }
 
-/* Insert white backgrounf under logo */
-function insertWhiteBGLogo(white, ad) {
-  switch (ad) {
-    case 'D1':
-      if (white) {
-        $('.D1-template').find('img.pb-2').addClass('bg-white-transparent');        
-        $('.D1-iframe').contents().find('#D1logo').addClass('bg-white-transparent');
-      } else {
-        $('.D1-template').find('img.pb-2').removeClass('bg-white-transparent');
-        $('.D1-iframe').contents().find('#D1logo').removeClass('bg-white-transparent');
-      }
-      break;
-    
-    case 'A1':
-      if (white) {
-        $('.A1-iframe').contents().find('#A1logo').addClass('bg-white-transparent');
-        $('.A1-template').find('.a1-supplier-logo').find('img').addClass('bg-white-transparent');
-      } else {
-        $('.A1-iframe').contents().find('#A1logo').removeClass('bg-white-transparent');
-        $('.A1-template').find('div.a1-supplier-logo').find('img').removeClass('bg-white-transparent');
-      }
-      break;
-    
-    case 'seasonal':
-      if (white) {
-        $('.seasonal-iframe').contents().find('#seasonallogo').addClass('bg-white-transparent');
-        $('.seasonal-template').find('.mx-auto').addClass('bg-white-transparent');
-      } else {
-        $('.seasonal-iframe').contents().find('#seasonallogo').removeClass('bg-white-transparent');
-        $('.seasonal-template').find('.mx-auto').removeClass('bg-white-transparent');
-      }
-      break;
-  }
-
+/* Copy html */
+function copy(code) {
+  let txtarea;
+  txtarea = document.createElement('textarea');
+  txtarea.style.position = 'fixed';
+  txtarea.style.left = '0';
+  txtarea.style.top = '0';
+  txtarea.style.opacity = '0';
+  txtarea.value = code;
+  document.body.appendChild(txtarea);
+  txtarea.focus();
+  txtarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(txtarea);
 }
-
-/* Inset headline in seasonal iframe */
-function insertSeasonalHeadline(headline) {
-  $('.seasonal-iframe').contents().find('.container').find('h4').text(headline);
-}
-/* Insert products img for seasonal preventing flicker */
-function insertProductImages(products) {
-  $('.seasonal-iframe').contents().find('#seasonal-prod1').find('img').attr('src', products.prod1Img);
-  $('.seasonal-iframe').contents().find('#seasonal-prod2').find('img').attr('src', products.prod2Img);
-  $('.seasonal-iframe').contents().find('#seasonal-prod3').find('img').attr('src', products.prod3Img);
-  $('.seasonal-iframe').contents().find('#seasonal-prod4').find('img').attr('src', products.prod4Img);
-}
-
-function insertProductNames(products) {
-  $('.seasonal-iframe').contents().find('#seasonal-prod1').find('span').text(products.prod1Name);
-  $('.seasonal-iframe').contents().find('#seasonal-prod2').find('span').text(products.prod2Name);
-  $('.seasonal-iframe').contents().find('#seasonal-prod3').find('span').text(products.prod3Name);
-  $('.seasonal-iframe').contents().find('#seasonal-prod4').find('span').text(products.prod4Name);
-}
-
-/* ----- SEASONAL COMPONENT ------ */
 
 /* Download files */
 function download(filename, text) {

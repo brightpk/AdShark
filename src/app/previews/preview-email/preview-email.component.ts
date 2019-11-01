@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, DoCheck } from '@angular/core';
-import { AppData } from '../AppData';
+import { AppData } from 'src/app/AppData';
 import { MatSnackBar } from '@angular/material';
 
 declare const insertCodeBlock: any;
@@ -32,6 +32,9 @@ export class PreviewEmailComponent implements DoCheck {
   constructor(private snackBar: MatSnackBar) {}
 
   ngDoCheck() {
+
+    console.log();
+
     insertbg(this.data.bgURL, 'email');
     insertLogo(this.data.logoURL, 'email');
 
@@ -51,7 +54,7 @@ export class PreviewEmailComponent implements DoCheck {
       this.setParacolor(this.txtColor[2].color);
     }
 
-    this.getHTML();
+    this.generateCode();
   }
 
   openSnackBar(msg: string, action: string, time: number) {
@@ -63,7 +66,7 @@ export class PreviewEmailComponent implements DoCheck {
     window.open(data.buttonURL);
   }
 
-  getHTML() {
+  generateCode() {
     let tmp: string;
     // tmp = $('div.preheader').parent().html();
     // tmp = $('div.preheader').parents('div#email').html();

@@ -1,34 +1,49 @@
-<!-- D1 template -->
-<div class="D1-template" hidden>
-  <div class="col-lg-4 col-md-12 mt-4">
-    <div class="c-hero c-hero--one_third onethirdcol"> <img alt="{{altImg}}" src="{{data.bgURL}}" class="c-hero__image">
-      <div class="c-hero__inner">
-        <div class="c-hero__copy c-hero__copy--align-center"><img class="pb-2" src="{{data.logoURL}}" alt="{{altLogo}}" width="{{logoWidth}}">
-          <h2 class="c-hero__title c-hero__title--{{txtColor[0].color}} c-hero__title--weight-extrabold c-hero__title--size-normal pt-3">{{data.headline}}</h2>
-          <h3 class="c-hero__sub-title c-hero__sub-title--{{txtColor[1].color}} c-hero__sub-title--weight-regular c-hero__sub-title--size-normal">{{data.subline}}</h3>
-          <a class="btn btn--{{button}} c-hero__action" href="{{buttonLink}}" title="{{data.buttonTxt}}" (click)="openWindow(data, $event)">{{data.buttonTxt}}</a>
+<!-- A1 template -->
+<div class="A1-template" hidden>
+  <div class="container">
+    <div class="a1-hero a1-hero_primary"> <a class="hero-link" href="{{a1Data.data.parameterValues['DE:CTA URL']}}">
+        <div class="row">
+          <!-- Hero Text -->
+          <div class="col-lg-4 col-md-12 a1-hero_text-wrap">
+            <div class="c-hero__inner">
+              <div class="c-hero__copy c-hero__copy--align-center">
+                <h4 class="callout sale">{{a1Data.data.parameterValues['DE:Text for Sale Call-Out']}}</h4>
+                <h2 class="headline">{{a1Data.data.parameterValues['DE:Headline']}}</h2>
+                <p class="sub-headline">{{a1Data.data.parameterValues['DE:Sub-Headline']}}</p>
+                <span class="cta">{{a1Data.data.parameterValues['DE:CTA text']}}</span>
+              </div>
+            </div>
+          </div>
+          <!-- Hero Image -->
+          <div class="col-lg-8 col-md-12 order-lg-last order-first">
+            <div class="c-hero a1-hero_image">
+              <picture>
+                <source media="(max-width: 480px)" srcset="{{a1Data.data.parameterValues['DE:Image for mobile - 480px x 205px']}}">
+                <source media="(min-width: 1201px)" srcset="{{a1Data.data.parameterValues['DE:Image for desktop - 960px x 410px']}}">
+                <img alt="" class="c-hero__image" src="{{a1Data.data.parameterValues['DE:Image for desktop - 960px x 410px']}}">
+              </picture>
+            </div>
+            <div alt="" class="a1-supplier-logo"><img class="bg-white large" src="{{a1Data.data.parameterValues['DE:Image path for logo']}}"/></div>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>
 
-<iframe class="D1-iframe iframe-widescreen" src="assets/html/D1.html"></iframe>
+
+<iframe class="A1-iframe iframe-widescreen" src="assets/html/A1.html"></iframe>
 
 <div class="plain-text">
   <h4 class="mt-4 ml-4">Plain Text</h4>
   <div class="codeBox card card-body">
     <code>{{outputCode}}</code>
   </div>
-  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied code!', '', 2000)" tooltip="Copy to clipboard" placement="bottom" hide-delay="0"> 
+  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied code!', '', 2000)" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
     <span><i class="fas fa-code"></i></span>
     <span class="copy-btn-txt"> Copy Code</span>
   </button>
-  <!-- <a mat-flat-button class="btn copy-button2" href="assets/download/D1.html" download="D1.html" tooltip="Download html file" placement="bottom" hide-delay="0">
-    <span><i class="fas fa-download"></i></span>
-    <span class="copy-btn-txt"> Download Code</span>
-  </a> -->
-  <button mat-flat-button class="copy-button2" (click)="onDownload('D1.html', 'html')" tooltip="Download html file" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="copy-button2" (click)="onDownload('A1.html', 'html')" tooltip="Download html file" placement="bottom" hide-delay="0">
     <span><i class="fas fa-download"></i></span>
     <span class="copy-btn-txt"> Download Code</span>
   </button>
@@ -68,7 +83,7 @@ INSERT_UPDATE CMSParagraphComponent ; $contentCV[unique = true] ; uid[unique = t
     <span class="fas fa-code"></span>
     <span class="impex-btn-txt"> Copy Impex</span>
   </button>
-  <button mat-flat-button class="impex-button2" (click)="onDownload('D1.impex', 'impex')" tooltip="Download impex file" placement="bottom" hide-delay="0">
+  <button mat-flat-button class="impex-button2" (click)="onDownload('A1.impex', 'impex')" tooltip="Download impex file" placement="bottom" hide-delay="0">
     <span class="fas fa-download"></span>
     <span class="impex-btn-txt"> Download Impex</span>
   </button>

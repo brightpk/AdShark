@@ -1,0 +1,10 @@
+.snackbar-success {
+  background-color: rgb(0, 122, 0);
+  color: white;
+}
+
+.snackbar-fail {
+  background-color: rgb(163, 31, 31);
+  color: white;
+}
+

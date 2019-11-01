@@ -1,0 +1,109 @@
+<!-- Headline -->
+<div class="headline-form mb-3">
+  <label for="headline"><h5 class="text-primary">Headline</h5></label>
+  <div class="headline-color">
+    <mat-radio-group [(ngModel)]="seasonalData.headlineColor" (change)="changeColor($event)">
+      <mat-radio-button *ngFor="let color of listofColor" [value]="color">{{color | titlecase}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <textarea class="form-control ad-field" type="text" [(ngModel)]="seasonalData.headline" rows="2" placeholder="Text"></textarea>
+</div>
+
+<!-- Logo -->
+<div class="logo-form mb-3">
+    <label for="Logo"><h5 class="text-primary">Logo</h5></label>
+  
+    <!-- Sample logo for D1/A1/email -->
+    <button class="btn btn-outline-success ml-2" data-toggle="collapse" data-target="#sampleLogo" tooltip="Click for of a list of logo samples" placement="right" hide-delay="0">Sample</button>
+    <div id="sampleLogo" class="collapse">
+      <div class="codeBox card card-body" style="border-color: #08a4ec; border-width: thin; width: 420px;">
+        <h6 style="color:#0393cc;"><u>Logo</u></h6>
+        <h6 class="text-dark sample-logo-1" (click)="onClickSample('logo', 1)" (mouseover)="logoBorder(1)"><b>1888 mills white:</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo-white.svg</h6>
+        <h6 class="text-dark sample-logo-2" (click)="onClickSample('logo', 2)" (mouseover)="logoBorder(2)"><b>Hunter:</b> https://images.americanhotel.com/images/logos/suppliers/hunter-logo.svg</h6>
+        <h6 class="text-dark sample-logo-3" (click)="onClickSample('logo', 3)" (mouseover)="logoBorder(3)"><b>1888 mills gold:</b> https://images.americanhotel.com/images/logos/suppliers/1888-mills-logo.png</h6>
+        <h6 class="text-dark sample-logo-4" (click)="onClickSample('logo', 4)" (mouseover)="logoBorder(4)"><b>RegistryNoTag:</b> https://images.americanhotel.com/images/emails/logos/RegistryNoTag.png</h6>
+        <h6 class="text-dark sample-logo-5" (click)="onClickSample('logo', 5)" (mouseover)="logoBorder(5)"><b>GE:</b> https://images.americanhotel.com/images/logos/suppliers/GE bw.svg</h6>
+        <h6 class="text-dark sample-logo-6" (click)="onClickSample('logo', 6)" (mouseover)="logoBorder(6)"><b>Forbes:</b> https://images.americanhotel.com/images/logos/suppliers/ForbesLogo.svg</h6>            
+        <h6 class="text-dark sample-logo-7" (click)="onClickSample('logo', 7)" (mouseover)="logoBorder(7)"><b>1888 aura:</b> https://images.americanhotel.com/images/logos/suppliers/1888-aura-logo-white.svg</h6>
+      </div>
+    </div>
+  
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.logoURL" placeholder="URL" />
+    
+    <!-- Button plus/minus -->
+    <div class="plus-minus-logoWidth">
+      <label for="plus-minus-logoWidth" id="logo-width-label"><h6 class="text-primary">Width:</h6></label>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-primary btn-sm btn-number" (click)="minusLogo($event)">
+          <span><i class="fas fa-minus"></i></span>
+        </button>
+      </span>
+      <input class="input-number input-logo-width" type="text" [(ngModel)]="seasonalData.logoWidth"/>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-primary btn-sm btn-number" (click)="plusLogo($event)">
+          <span><i class="fas fa-plus"></i></span>
+        </button>
+      </span>
+    </div>
+  
+    <!-- White background logo -->
+    <mat-checkbox (change)="addWhiteBgLogo()" [checked]="seasonalData.whiteBGLogo">White background under logo</mat-checkbox>
+  </div>
+
+<!-- Sub-headline -->
+<div class="subheadline-form mb-3">
+  <label for="subheadline"><h5 class="text-primary">Sub-Headline</h5></label><br>
+  <textarea class="form-control ad-field" type="text" [(ngModel)]="seasonalData.subline" rows="2" placeholder="Text"></textarea>
+</div>
+
+<!-- Paragraph -->
+<div class="paragraph-form mb-3">
+  <label for="para"><h5 class="text-primary">Paragraph</h5></label><br>
+  <textarea class="form-control ad-field" type="text" [(ngModel)]="seasonalData.paragraph" rows="2" placeholder="Text"></textarea>
+</div>
+
+<!-- Button Link -->
+<div class="button-form mb-3">
+  <div class="button-link-form mb-3">
+    <label for="linkOption"><h5 class="text-primary">Button Link</h5></label> 
+    <input class="form-control ad-field" type="text" [(ngModel)]="seasonalData.buttonURL" placeholder="URL" />
+  </div>
+
+  <!-- <mat-checkbox (change)="disabledButton=!disabledButton" [checked]="disabledButton">No button</mat-checkbox> -->
+  
+  <!-- Button text -->
+  <label for="Button"><h5 class="text-primary">Button Text</h5></label>
+  <input class="form-control" style="width:300px" type="text" [(ngModel)]="seasonalData.buttonTxt" placeholder="Text" /> 
+</div>
+
+<!-- Product info for Seasonal Component  -->
+<div class="seasonal-products-form">
+
+  <div class="seasonal-product-links-form mb-3">
+    <label><h5 class="text-primary">Product Links</h5></label> 
+    <button class="btn btn-outline-success ml-2" (click)="onClickProductSample()" tooltip="Click to genarate product sample" placement="top" hide-delay="0">Sample</button>
+    <button class="btn btn-outline-danger ml-2" (click)="onClearProductSample()" tooltip="Click to clear product sample" placement="top" hide-delay="0">Clear</button>
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.products.prod1Link" placeholder="Product 1 URL" />
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.products.prod2Link" placeholder="Product 2 URL" />
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.products.prod3Link" placeholder="Product 3 URL" />
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.products.prod4Link" placeholder="Product 4 URL" />
+  </div>
+
+  <div class="seasonal-product-names-form mb-3">
+    <label><h5 class="text-primary">Product Names</h5></label> 
+    <input class="form-control mb-2" style="width:300px" type="text" [(ngModel)]="seasonalData.products.prod1Name" placeholder="Product 1 Text" /> 
+    <input class="form-control mb-2" style="width:300px" type="text" [(ngModel)]="seasonalData.products.prod2Name" placeholder="Product 2 Text" /> 
+    <input class="form-control mb-2" style="width:300px" type="text" [(ngModel)]="seasonalData.products.prod3Name" placeholder="Product 3 Text" /> 
+    <input class="form-control mb-2" style="width:300px" type="text" [(ngModel)]="seasonalData.products.prod4Name" placeholder="Product 4 Text" /> 
+  </div>
+  
+  <div class="seasonal-product-images-form mb-3">
+    <label><h5 class="text-primary">Product Images</h5></label> 
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.products.prod1Img" placeholder="Product 1 Image" />
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.products.prod2Img" placeholder="Product 2 Image" />
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.products.prod3Img" placeholder="Product 3 Image" />
+    <input class="form-control ad-field mb-2" type="text" [(ngModel)]="seasonalData.products.prod4Img" placeholder="Product 4 Image" />
+  </div>
+
+</div>
+<!-- Product info for Seasonal Component -->

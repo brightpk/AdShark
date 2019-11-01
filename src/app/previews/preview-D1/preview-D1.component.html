@@ -1,0 +1,32 @@
+<div class="D1-template" hidden>
+  <!-- Start 1/3 banner -->
+  <div class="col-md-4 col-sm-12">
+    <div class="one-third-banner"><a class="hero-link" href="{{d1Data.data.parameterValues['DE:CTA URL']}}">
+        <div class="text-center"> <img src="{{d1Data.data.parameterValues['DE:Image path for 1/3 banner']}}"
+            alt="Foodservice">
+          <div class="text-wrap text-center">
+            <p class="caption">{{d1Data.data.parameterValues['DE:Sub-Headline']}}</p>
+            <span class="cta">{{d1Data.data.parameterValues['DE:CTA text']}}</span>
+          </div>
+        </div>
+      </a></div>
+  </div>
+  <!-- End 1/3 banner -->
+</div>
+
+<iframe class="D1-iframe iframe-widescreen" src="assets/html/D1.html"></iframe>
+
+<div class="plain-text">
+  <h4 class="mt-4 ml-4">Plain Text</h4>
+  <div class="codeBox card card-body">
+    <code>{{outputCode}}</code>
+  </div>
+  <button mat-flat-button class="copy-button1" (click)="onCopy('plain')" (click)="openSnackBar('Copied code!', '', 2000)" tooltip="Copy to clipboard" placement="bottom" hide-delay="0">
+    <span><i class="fas fa-code"></i></span>
+    <span class="copy-btn-txt"> Copy Code</span>
+  </button>
+  <button mat-flat-button class="copy-button2" (click)="onDownload('D1.html', 'html')" tooltip="Download html file" placement="bottom" hide-delay="0">
+    <span><i class="fas fa-download"></i></span>
+    <span class="copy-btn-txt"> Download Code</span>
+  </button>
+</div>  
